@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "portfolio-agent",
+  "version": "0.4.0",
+  "description": "Cross-domain portfolio research, editorial design and evaluation workflows for Claude Code and Codex. Verified reference cases, editable outputs, optional agent routing.",
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "editorial",
+    "layout",
+    "references",
+    "evaluation",
+    "agent-skills"
+  ]
+}

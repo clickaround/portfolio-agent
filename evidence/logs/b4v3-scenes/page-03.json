@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-03",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "plan", "kind": "pdf-region", "asset_id": "plan01", "box_mm": [12, 12, 226.5, 159.98], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "p-rule", "kind": "shape", "asset_id": null, "box_mm": [244.5, 12, 40.5, 0.8], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1d5a6c"}},
+    {"id": "p-label", "kind": "text", "asset_id": null, "text": "Plan", "box_mm": [244.5, 16, 40.5, 9], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 14, "style": {"font": "georgiai", "color": "#1d5a6c"}},
+    {"id": "p-text", "kind": "text", "asset_id": null, "text": "A shifted courtyard under a long timber roof.", "box_mm": [244.5, 28, 40.5, 40], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "georgia", "color": "#1a1a1a", "line_height": 1.4}},
+    {"id": "p-cap", "kind": "text", "asset_id": null, "text": "Courtyard Housing, plan", "box_mm": [12, 178, 226.5, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 9, "style": {"font": "georgiai", "color": "#6b6b6b"}}
+  ]
+}

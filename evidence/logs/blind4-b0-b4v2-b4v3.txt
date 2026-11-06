@@ -1,0 +1,75 @@
+**Portfolio critique: X, Y, Z (scored on layout and typography only)**
+
+## X (5 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.80 |
+| composition_balance | 0.65 |
+| whitespace_intent | 0.75 |
+| typography | 0.85 |
+| sequence_narrative | 0.80 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.65 |
+| anti_template | 0.80 |
+
+**Mean 0.75.** Verdict: **revise**. It misses pass because of the two high-severity issues below.
+
+Top 3 issues:
+1. page 4, severity high, category composition_balance. The two images are different sizes and sit at different baselines, with a big void above and below them. Evidence: a tall image at left, a shorter one offset lower at center, and the title "Two views" tucked at the right. Route: `pivot_layout`.
+2. page 3, severity high, category domain_fit. The plan is the key drawing but only about 75% of the page width, with a small title and a large empty strip at the bottom. Evidence: the drawing sits in a boxed panel, with about 100px of dead space below and the heading just "Plan 01". Route: `local_refine`.
+3. page 2, severity medium, category composition_balance. The image is pushed to the bottom left with a big empty area above it. The right text column floats with large gaps between its elements. Evidence: the image starts at about y=283 while the headline sits at about y=150. Route: `local_refine`.
+
+Strengths: the serif title with italic contrast on the cover and the closing page, a consistent header/folio system, and a clear cover, concept, plan, studies, close rhythm. The last page is typographic only, so it adds little for an architecture portfolio.
+
+## Y (4 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.55 |
+| composition_balance | 0.50 |
+| whitespace_intent | 0.45 |
+| typography | 0.55 |
+| sequence_narrative | 0.50 |
+| asset_fidelity | 0.65 |
+| domain_fit | 0.55 |
+| anti_template | 0.50 |
+
+**Mean 0.53.** Verdict: **fail**. It has several high-severity issues.
+
+Top 3 issues:
+1. page 2, severity high, category composition_balance. This is a three-column page where the images are mismatched in size and misaligned. The labels "Role" and "Site" sit at the bottom with rules, and there are large dead areas. Evidence: a large elevation in the middle, a small thumbnail at top right, and a text column with a gap of about 300px. Route: `pivot_layout`.
+2. page 1, severity high, category hierarchy. The cover has a bold title that sits below the image and away from the "Architecture portfolio" label. The keyword list floats unmoored, and the wide empty strip under the title looks accidental. Evidence: the title is at y≈465 and the label at y≈57. Route: `pivot_layout`.
+3. page 3, severity medium, category typography. The only content text is a tiny two-line caption at the top right. The "Courtyard Housing, plan" caption is orphaned at the bottom left, and there are mixed fonts (Georgia italic, a sans, and a CJK-style sans). Route: `revise_type_system`.
+
+Further notes: the cover is the only page that uses a bold weight, so the type voice is inconsistent. The plan is large and legible but unanchored. There is no page-number or running-header system on pages 1–3.
+
+## Z (4 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.70 |
+| composition_balance | 0.65 |
+| whitespace_intent | 0.60 |
+| typography | 0.65 |
+| sequence_narrative | 0.65 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.70 |
+| anti_template | 0.45 |
+
+**Mean 0.64.** Verdict: **revise**.
+
+Top 3 issues:
+1. page 2, severity high, category composition_balance. The concept page is awkward. The large elevation at left sits against a small thumbnail at lower right. The "Role" text is wedged between them, and there is dead space beside the headline. Evidence: the "Role" label at y≈481 sits next to the image edge at x≈645. Route: `pivot_layout`.
+2. all pages, severity medium, category anti_template. Every page uses the same title-with-teal-rule, bottom footer rule and folio. It reads as a generic template, and the page pattern is repeated. Evidence: the same footer line and number on pages 1–4, and the same title, rule and description at top right on pages 2–3. Route: `revise_story`.
+3. page 3, severity medium, category typography. The body text is small and the right column is mostly empty. The "Plan" caption is orphaned at the bottom left, and the heading says "Site" while the caption says "Plan". Evidence: the 2-line description at the top right, and "Plan" at y≈541. Route: `local_refine`.
+
+Strengths: pages 1 and 4 are clean, with the image large and a clear hierarchy. The footer system is consistent, and the plan is large and readable.
+
+## Ranking (best to worst)
+
+1. **X** (0.75, revise). It has the strongest type system and the most distinct editorial identity, and the story runs cover → concept → plan → studies → close. Its flaws are layout issues on pages 2–4.
+2. **Z** (0.64, revise). It is clean and consistent, with good cover and hero pages, but templated, and page 2 is weak.
+3. **Y** (0.53, fail). Its cover and its concept and plan pages are unbalanced and inconsistent, and it has no running system.
+
+No candidate passes. X is the one to refine, starting with the layouts on pages 3 and 4.

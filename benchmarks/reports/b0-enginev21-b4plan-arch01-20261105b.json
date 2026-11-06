@@ -1,0 +1,29 @@
+{
+ "run_id": "b0-enginev21-b4plan-arch01-20261105b",
+ "blinded": true,
+ "key": {
+  "X": "B0",
+  "Y": "ENGINE_V21",
+  "Z": "B4PLAN"
+ },
+ "scores_mean": {
+  "B0": 0.78,
+  "ENGINE_V21": 0.59,
+  "B4PLAN": 0.66
+ },
+ "verdicts": {
+  "B0": "pass",
+  "ENGINE_V21": "revise",
+  "B4PLAN": "revise"
+ },
+ "ranking": [
+  "B0",
+  "B4PLAN",
+  "ENGINE_V21"
+ ],
+ "cost_usd": {
+  "critic": 1.3474629999999999
+ },
+ "note": "same B4PLAN pdf scored 0.60 in the previous session and 0.66 here; same B0 pdf 0.74 -> 0.78: single-critic noise ~ +-0.07 confirmed; engine v2.1 post-score fixes did not measurably help (0.64 -> 0.59)",
+ "status": "n=1, synthetic, one LLM critic; not professional-quality evidence"
+}

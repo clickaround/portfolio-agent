@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PortfolioReferenceCase",
+  "type": "object",
+  "required": [
+    "case_id",
+    "domain",
+    "source_url",
+    "rights_status",
+    "portfolio_purpose",
+    "page_sequence",
+    "use_scope"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "rights_status": {
+      "enum": [
+        "link_only",
+        "permission_pending",
+        "approved",
+        "rejected",
+        "expired"
+      ]
+    },
+    "use_scope": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "view",
+          "extract_metadata",
+          "store_thumbnails",
+          "redistribute",
+          "commercial_training",
+          "commercial_generation"
+        ]
+      }
+    },
+    "portfolio_purpose": {
+      "type": "string"
+    },
+    "target_audience": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "source_license": {
+      "type": "string"
+    },
+    "quality_rationale": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "page_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page_index",
+          "role",
+          "main_asset_kind",
+          "editorial_rationale"
+        ],
+        "properties": {
+          "page_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "role": {
+            "type": "string"
+          },
+          "main_asset_kind": {
+            "type": "string"
+          },
+          "editorial_rationale": {
+            "type": "string"
+          },
+          "layout_attributes": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

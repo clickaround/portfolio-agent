@@ -1,0 +1,109 @@
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+# Blind critique of Robie House candidates X, Y and Z
+
+I read the rubric and all 30 pages (X 10, Y 8, Z 12). X is the bleed candidate (836×596 px versus 819×579 for Y and Z). I had no access to the review context or gate results, so these scores rest on the PNGs alone.
+
+## Candidate X (10 pages, bleed)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.62 |
+| composition_balance | 0.50 |
+| whitespace_intent | 0.45 |
+| typography | 0.55 |
+| sequence_narrative | 0.62 |
+| asset_fidelity | 0.55 |
+| domain_fit | 0.52 |
+| anti_template | 0.62 |
+| **MEAN** | **0.55** |
+
+**Verdict: revise.** Two high-severity issues stand, so it cannot pass.
+
+**Page notes**
+- **p1:** Full-bleed cover with a translucent white title box. The subtitle is tiny and low-contrast. Strong image.
+- **p2:** Half-page photo bleeding off the edge. The text column leaves its lower 60% empty.
+- **p3:** Full-bleed interior with a dark caption box. This is the most editorial page in any candidate.
+- **p4:** The index thumbnails are about 110 px wide and unreadable, and the bottom 35% is empty.
+- **p5:** Two large plans with a headline and captions. This is the best page in the book.
+- **p6:** The third-floor plan is good, but the right column below the title is empty.
+- **p7:** Section and south elevation are large and legible. The caption is italic serif.
+- **p8:** Four elevations sit in a thin strip across the top, with the lower 55% of the page empty.
+- **p9:** Four crude box diagrams with 5–6 pt text, and the headline is at the page bottom.
+- **p10:** Typographic close with four keywords. Clean.
+
+**Top 3 issues**
+1. `page 8`, severity **high**, `asset_fidelity`: Four elevations are shrunk to thumbnails and the lower 55% of the page is empty. Evidence: each drawing is about 160 px wide and the sheet labels are unreadable. Route: `pivot_layout`.
+2. `page 9`, severity **high**, `domain_fit`: Placeholder-looking box diagrams with 5–6 pt text appear in an architecture survey book. Evidence: "Volume A/B" rectangles, with the headline "Conceptual diagrams, not survey facts" at the bottom. Route: `revise_story`.
+3. `page 4`, severity **medium**, `whitespace_intent`: The index thumbnails are illegible and the layout is lopsided. Evidence: a 6-up row of thumbnails with a large blank bottom. Route: `pivot_layout`.
+
+## Candidate Y (8 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.74 |
+| composition_balance | 0.70 |
+| whitespace_intent | 0.66 |
+| typography | 0.68 |
+| sequence_narrative | 0.72 |
+| asset_fidelity | 0.78 |
+| domain_fit | 0.76 |
+| anti_template | 0.74 |
+| **MEAN** | **0.72** |
+
+**Verdict: revise.** It is close to the 0.75 pass bar, with no blocker or high issue.
+
+**Page notes**
+- **p1:** The cover has a brown spine, a large serif "Robie House", a rule, a framed photo with a caption, and a keyword footer. Deliberate, and the only real cover in the set.
+- **p2:** Interior and street photos with text and an accent-colour pull-quote. The 7 pt captions are very small.
+- **p3:** Two large plans with captions that carry survey provenance.
+- **p4:** The third-floor plan is large, but "Bedrooms above" is followed by a floating one-line sentence, and there is a gap before the caption.
+- **p5:** Section and elevation fill the left 70% of the page with a clean right text column.
+- **p6:** West/east/north elevations and fireplace elevations at readable size. The two drawings are unequal in size and misaligned vertically.
+- **p7:** Windows, two large drawings, consistent header grid.
+- **p8:** The index of sheets has labelled thumbnails, but they are small and the page is left-heavy.
+
+**Top 3 issues**
+1. `page 8`, severity **medium**, `asset_fidelity`: The index thumbnails are small, though they are labelled and numbered. Evidence: 8 thumbnails of about 100 px each, with a blank lower third. Route: `local_refine`.
+2. `page 4`, severity **medium**, `whitespace_intent`: A one-line body floats mid-column between the title and the caption. Evidence: "The third floor holds the bedrooms." sits alone with large gaps above and below. Route: `local_refine`.
+3. `pages 2, 3, 5`, severity **low**, `typography`: Captions and body copy are about 6–7 pt and low-contrast on the cream background. Evidence: p2 caption text is a thin grey. Route: `revise_type_system`.
+
+## Candidate Z (12 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.64 |
+| composition_balance | 0.60 |
+| whitespace_intent | 0.55 |
+| typography | 0.62 |
+| sequence_narrative | 0.62 |
+| asset_fidelity | 0.60 |
+| domain_fit | 0.62 |
+| anti_template | 0.50 |
+| **MEAN** | **0.59** |
+
+**Verdict: revise.** One page has a cropped drawing and another is a placeholder.
+
+**Page notes**
+- **p1:** Photo-led cover with a left accent bar. The subtitle is tiny and grey, and the cover has no hierarchy beyond the title.
+- **p2:** Photo with text at left. The bottom 20% is empty.
+- **p3:** The interior is large and the caption is a thin line at the bottom with the section tag.
+- **p4:** The thumbnails are tiny, with a large blank area on the page.
+- **p5:** Plans are large and clear.
+- **p6:** The third-floor plan is large, but the right column is empty below the title.
+- **p7:** The section is large and legible, with the text at left.
+- **p8:** The three elevations are large and legible. This is stronger than in X or Y.
+- **p9:** Fireplace and windows, large, captioned.
+- **p10:** The art-glass drawing is cropped at the right: the second window and its scale bar are cut off by the page edge.
+- **p11:** "Process placeholders, not survey facts" shows one huge placeholder diagram next to three micro-thumbnails.
+- **p12:** Typographic close. The same as X's p10.
+
+**Top 3 issues**
+1. `page 10`, severity **high**, `asset_fidelity`: The right drawing is cut at the page edge. Evidence: the second window and the "SCALE" label run off the right side. Route: `local_refine`.
+2. `page 11`, severity **high**, `domain_fit`: The page is a placeholder diagram, with the headline admitting "placeholders". Evidence: "Volume A/B" at large size, next to micro-thumbnails. Route: `revise_story`.
+3. `page 4`, severity **medium**, `whitespace_intent`: Tiny survey thumbnails sit in the upper right of a mostly empty page. Evidence: two rows of unlabelled thumbnails with a large blank below. Route: `pivot_layout`.
+
+## Ranking
+
+**1. Y (0.72), 2. Z (0.59), 3. X (0.55).** All three need a revision, and none passes. Z and X are close: Z's p8 is strong, but its p10 crop and p11 placeholder pull it down. X's p3, p5 and p7 are good, but its p8 and p9 are worse.
+
+**What the best one does that the others do not:** Y is the only book with a designed cover, a consistent warm palette and header/footer system, and a different layout on nearly every page. Its drawings stay large and unclipped, and it leaves out the placeholder diagram pages that hurt X and Z.

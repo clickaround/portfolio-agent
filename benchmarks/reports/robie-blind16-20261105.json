@@ -1,0 +1,12 @@
+{
+  "run_id": "robie-blind16-20261105",
+  "blinded": true,
+  "key": {"X": "B0", "Y": "LLMPLAN4_ATT12", "Z": "LLMPLAN4_ATT10"},
+  "scores_mean": {"LLMPLAN4_ATT12": 0.67, "LLMPLAN4_ATT10": 0.66, "B0": 0.65},
+  "predictions_checked": {"P10 att12 vs att10: whitespace >= +0.08, asset_fidelity >= +0.08, anti_template >= +0.05; mean >= 0.71": "mean 0.66->0.67 NO (flat); first round where ours ranks above B0, but a near-tie and B0 itself moved 0.74 -> 0.65 between sessions = the critic noise, not a win"},
+  "critic_ranking": "Y (att12) > Z (att10) > B0, 'a near-tie', all revise",
+  "critic_on_att12": "adds a full analysis layer (annotated overlays on plan, section, elevation) and the fullest narrative arc: photographs -> drawings -> analysis -> concept diagrams -> close",
+  "critic_on_B0": "typographically cleanest, no analysis",
+  "honest_reading": "After 6 rounds on Robie: ours 0.52 -> 0.55 -> 0.66 -> 0.65 -> 0.67 -> 0.67 -> 0.67; B0 0.76 / 0.72 / 0.73 / 0.74 / 0.74 / 0.74 / 0.65. The gap closed from ~0.2 to inside the noise band; neither passes 0.75. Next evidence must be human blind pairwise review (benchmarks/HUMAN_REVIEW.md), not another LLM round.",
+  "status": "n=1, one LLM critic (noise ~+-0.07); log evidence/logs/blind16-robie-b0-att10-att12.txt; attempt 13 (diagrams 2x2) not yet scored"
+}

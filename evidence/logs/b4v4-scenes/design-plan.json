@@ -1,0 +1,20 @@
+{
+  "palette": {"paper": "#ffffff", "ink": "#1c1c1c", "accent": "#2f5d62", "muted": "#8a8a8a", "tint": "#eef2f2"},
+  "type": {"title_font": "georgia", "body_font": "malgun", "title_scale": 1.0, "body_pt": 10},
+  "grid": {"margin_mm": 12, "gutter_mm": 6},
+  "layout_concept": "Quiet four-page monograph. Every inner page opens with a Georgia section title above one full-width hairline; one dominant graphic per page (hero photo, portrait+square pair, plan, panorama) bottom-aligned to the margin at 198 mm. Cover: hero on top, title beneath hairline, narrow meta column right. Pages alternate image-top / image-bottom.",
+  "footer": false,
+  "principles": [
+    "one accent colour (deep teal) used only for small labels",
+    "serif for titles and the single pull-quote, sans for facts",
+    "the plan is the largest object of the book and keeps its original aspect",
+    "white space instead of filler; text only from project.md"
+  ],
+  "generic_defaults_checked": [
+    "cream+serif+terracotta replaced by white + teal",
+    "identical cards avoided: four different compositions",
+    "no all-caps tracked eyebrow labels",
+    "no numbered markers",
+    "no footer"
+  ]
+}

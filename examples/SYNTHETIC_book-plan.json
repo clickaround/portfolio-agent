@@ -1,0 +1,20 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "SYNTHETIC_DEMO_ONLY",
+  "purpose": "technical_test",
+  "domain": "architecture",
+  "pages": [
+    {
+      "id": "page-01",
+      "page_role": "drawing",
+      "message": "Synthetic example only — not a real architectural proposal",
+      "primary_asset_ids": [
+        "plan-01"
+      ],
+      "support_asset_ids": [],
+      "facts": [],
+      "style_reference_ids": [],
+      "layout_intent": "one large drawing, little text"
+    }
+  ]
+}

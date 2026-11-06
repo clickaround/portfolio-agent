@@ -1,0 +1,30 @@
+{
+ "run_id": "b0-enginev22-b4plan2-arch01-20261105c",
+ "blinded": true,
+ "key": {
+  "X": "B4PLAN2",
+  "Y": "ENGINE_V22",
+  "Z": "B0"
+ },
+ "scores_mean": {
+  "B0": 0.78,
+  "B4PLAN2": 0.65,
+  "ENGINE_V22": 0.59
+ },
+ "verdicts": {
+  "B0": "pass",
+  "B4PLAN2": "revise",
+  "ENGINE_V22": "revise"
+ },
+ "ranking": [
+  "B0",
+  "B4PLAN2",
+  "ENGINE_V22"
+ ],
+ "cost_usd": {
+  "B4PLAN2": 3.44,
+  "ENGINE_V22": 0.0,
+  "critic": 1.44837325
+ },
+ "status": "n=1, synthetic, one LLM critic; noise ~+-0.07"
+}

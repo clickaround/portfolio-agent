@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Asset Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "assets"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "relative_path",
+          "sha256",
+          "role",
+          "rights",
+          "original_immutable"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "relative_path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "role": {
+            "enum": [
+              "plan",
+              "section",
+              "elevation",
+              "render",
+              "diagram",
+              "axonometric",
+              "model_photo",
+              "text",
+              "other"
+            ]
+          },
+          "rights": {
+            "enum": [
+              "owned",
+              "licensed",
+              "unverified"
+            ]
+          },
+          "original_immutable": {
+            "const": true
+          },
+          "crop_allowed": {
+            "type": "boolean"
+          },
+          "source_page": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "description": {
+            "type": "string"
+          },
+          "analysis_confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    }
+  }
+}

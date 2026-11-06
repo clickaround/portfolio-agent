@@ -1,0 +1,35 @@
+{
+ "B0_naive": {
+  "runs": 9,
+  "gate_pass": 0,
+  "issues": 10,
+  "secs": 13.0,
+  "edit_ok": 9,
+  "edit_n": 9
+ },
+ "B1_cases": {
+  "runs": 9,
+  "gate_pass": 7,
+  "issues": 2,
+  "secs": 19.1,
+  "edit_ok": 9,
+  "edit_n": 9
+ },
+ "B2_review": {
+  "runs": 9,
+  "gate_pass": 7,
+  "issues": 2,
+  "secs": 19.7,
+  "edit_ok": 9,
+  "edit_n": 9
+ },
+ "B3_full": {
+  "runs": 9,
+  "gate_pass": 9,
+  "issues": 0,
+  "secs": 25.7,
+  "edit_ok": 9,
+  "edit_n": 9
+ }
+}
+crashed: 0 []

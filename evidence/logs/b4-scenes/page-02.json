@@ -1,0 +1,4 @@
+{"schema_version":"0.1.0","project_id":"arch_01","page_id":"page-02","size_mm":[297,210],"elements":[
+{"id":"fig-plan01","kind":"pdf-region","asset_id":"plan01","box_mm":[12,12,212.4,150],"z_index":0,"locked":true,"allow_overlap":false,"allow_crop":false},
+{"id":"title-concept","kind":"text","asset_id":null,"text":"Concept","box_mm":[236,12,49,14],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":14},
+{"id":"concept-text","kind":"text","asset_id":null,"text":"The scheme organizes public program around a shifted courtyard and a long timber roof.","box_mm":[236,32,49,70],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":10}]}

@@ -1,0 +1,107 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+# Blind critique: X, Y, Z (Robie House HABS, A4 landscape)
+
+I read the rubric, then viewed all 31 pages: X has 8, Y has 12 and Z has 11. Y and Z are the two bleed candidates. Pages 1–3 of Y and Z are identical, so the difference between them starts at page 4. The three means are within 0.02 of each other, which is a near-tie. A single LLM critic cannot settle a gap that small.
+
+## X (8 pp, no bleed)
+| dimension | score |
+|---|---|
+| hierarchy | 0.70 |
+| composition_balance | 0.62 |
+| whitespace_intent | 0.58 |
+| typography | 0.66 |
+| sequence_narrative | 0.62 |
+| asset_fidelity | 0.72 |
+| domain_fit | 0.62 |
+| anti_template | 0.68 |
+| **MEAN** | **0.65** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1:** Spine bar, large serif title and framed photo with caption read as editorial. This is the most designed cover of the three.
+- **p2:** Large interior, small street photo and a pull-quote give a good magazine rhythm. The text column floats mid-page.
+- **p3:** Two plans sit small and low, with a dead band between title and drawings.
+- **p4:** The third-floor plan is on the left and the title on the right. The lower third of the page is empty, which looks accidental.
+- **p5:** Section and south elevation are large and crisp. This is the best drawing page.
+- **p6:** Fireplace elevation is noticeably smaller than the west/east/north sheet. The dead band recurs.
+- **p7:** The two window sheets are unequal in height.
+- **p8:** The index thumbnails are tiny and pale, and the second row is ragged. The book ends on an index with no closing statement.
+- **Overall:** There is no analysis layer and no diagrams. Captions are about 7 px at page size.
+
+**Top issues**
+1. `p3` | medium | whitespace_intent | Empty band between heading and plans; plans small | evidence: drawings start ~y=170 of 579, ~60% width each | `pivot_layout`
+2. `p8` | high | asset_fidelity | Sheet index thumbnails illegible and misaligned; weak ending | evidence: 8 thumbs ~100 px wide, row 2 ragged | `pivot_layout`
+3. `p4` | medium | composition_balance | Lower third empty beside a one-line text | evidence: nothing below y≈400 | `local_refine`
+
+## Y (12 pp, bleed)
+| dimension | score |
+|---|---|
+| hierarchy | 0.70 |
+| composition_balance | 0.64 |
+| whitespace_intent | 0.58 |
+| typography | 0.60 |
+| sequence_narrative | 0.78 |
+| asset_fidelity | 0.62 |
+| domain_fit | 0.76 |
+| anti_template | 0.64 |
+| **MEAN** | **0.67** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1:** Full-bleed photo with a white title box. Strong image, but the box is a stock device.
+- **p2:** Text and photo split. Clear hero and good hierarchy.
+- **p3:** Full-bleed interior with a dark text box over the rug. Legible, but the box feels pasted on.
+- **p4:** Plan analysis overlay. The "Hearth core" label collides with the dashed circle. The right third of the page is empty. The folio label sits against the italic caption.
+- **p5:** Section and elevation analysis. Labels have a doubled, blurry halo and are weak on the hatched linework. The caption sits above the drawing.
+- **p6:** Ground and main plans side by side. Same dead band under the title as in X.
+- **p7:** Third-floor plan is large and clean.
+- **p8:** Section and elevation are large. The caption is italic and heavier than the heading above it.
+- **p9:** The title floats right with a big gap above the drawings.
+- **p10:** Window sheets are legible.
+- **p11:** Four diagrams are crammed into the top 45% of the page. The lower half is empty, and the intro text and title are misaligned. Labels are very small.
+- **p12:** Large statement and four keywords. This is a deliberate close.
+- **Overall:** Y has the fullest arc: cover, concept, interior, analysis, plans, section, elevations, windows, diagrams, close.
+
+**Top issues**
+1. `p11` | high | composition_balance | Diagrams crowd the top; the bottom ~55% is empty; text tiny | evidence: diagrams end ~y=265 of 595 | `pivot_layout`
+2. `p5` | high | asset_fidelity | Overlay labels blurred and low contrast on hatched drawing; caption above | evidence: "Belvedere storey height" and "Grade to main floor" haloed | `local_refine`
+3. `p4` | medium | asset_fidelity | "Hearth core" label collides with dashed circle; right third empty | evidence: label at x≈250,y≈297 | `local_refine`
+
+## Z (11 pp, bleed)
+| dimension | score |
+|---|---|
+| hierarchy | 0.72 |
+| composition_balance | 0.70 |
+| whitespace_intent | 0.64 |
+| typography | 0.60 |
+| sequence_narrative | 0.72 |
+| asset_fidelity | 0.60 |
+| domain_fit | 0.70 |
+| anti_template | 0.62 |
+| **MEAN** | **0.66** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1–3:** Same as Y.
+- **p4:** Plan and section/elevation analysis are combined on one page and fit well. The legend is in Korean ("주요 동선축", "보조 동선"), which is wrong for an English book. The south elevation is not annotated. Labels are tiny, and about a quarter of the page is empty below.
+- **p5:** Ground and main plans with the title top-right. The gap above the drawings is smaller than in X or Y.
+- **p6:** Third-floor plan, the same as Y p7.
+- **p7:** Section and elevation. The caption has the same italic heavier-than-heading problem as Y p8.
+- **p8:** Tighter than Y p9, with the title directly above the drawings.
+- **p9:** Window sheets are legible.
+- **p10:** The 2×2 diagram grid fills the page, which is the best diagram layout of the three. Serif bold labels clash with the sans body text. Every diagram carries the same "Conceptual diagram… not to scale" line plus a second caption, so the captions are redundant.
+- **p11:** Closing statement, the same as Y.
+
+**Top issues**
+1. `p4` | high | asset_fidelity | Legend text is Korean in an English book; the elevation is only partly annotated | evidence: legend glyphs "주요 동선축…" | `local_refine`
+2. `p10` | medium | typography | Serif bold diagram labels clash with the sans system; the caption is repeated four times | evidence: "Conceptual diagram from the project text, not to scale" ×4 plus a second caption | `revise_type_system`
+3. `p4` | medium | asset_fidelity | Analysis overlays shrunk to ~45% width; labels very small | evidence: label heights ~5 px | `pivot_layout`
+
+## Ranking
+**Y (0.67) > Z (0.66) > X (0.65)**, a near-tie. All three are `revise` and none passes. A deterministic-gate failure would override these scores, and I haven't seen any gate output.
+
+Y does what X and Z don't: it adds a full analysis layer with annotated overlays on the plan, section and elevation across two pages, and it has the fullest narrative arc, from photographs through drawings and analysis to concept diagrams and a close. The other two are weaker in different ways. X is typographically cleanest but has no analysis. Z has the better diagram page and a tighter layout, but a Korean legend and smaller analysis panels.

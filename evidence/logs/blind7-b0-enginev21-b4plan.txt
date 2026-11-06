@@ -1,0 +1,100 @@
+Scoring complete. All 16 pages viewed (X: 5, Y: 5, Z: 6).
+
+```
+PORTFOLIO CRITIQUE — "Courtyard Housing", A4 landscape, 3 candidates
+Judged on layout and typography only; placeholder art and filler text ignored.
+Independence note: no review_context.json or gate results were available; scores are visual only.
+
+=====================================================================
+CANDIDATE X (5 pages)
+=====================================================================
+hierarchy             0.85  one hero per page; p4 heading small vs. two images but still readable
+composition_balance   0.70  p4 stagger and p2 upper-left void (see issues)
+whitespace_intent     0.70  p5 type-only close is deliberate; p2/p4 voids are borderline
+typography            0.85  strong scale contrast (display serif roman+italic, small-caps sans meta), consistent family, short line lengths
+sequence_narrative    0.75  cover / concept / plan / studies / close, rhythm varies; studies page thin
+asset_fidelity        0.75  nothing stretched or recolored; p4 shows two crops of the same elevation; source labels intact
+domain_fit            0.80  plan and drawings large, framed, crisp; text minimal
+anti_template         0.85  editorial voice, not a report
+MEAN                  0.78
+VERDICT               pass
+
+Top issues
+1. page: X_p4 | severity: medium | category: composition_balance
+   description: Two study images sit at different heights and formats (portrait left, landscape right); the stagger reads as accidental and leaves an empty band above the right image.
+   evidence: left image spans y≈160-617, right image y≈283-617; heading "Two views" is tiny relative to both.
+   suggested_route: pivot_layout
+2. page: X_p2 | severity: medium | category: whitespace_intent
+   description: Render is anchored to the bottom-left while the heading floats top-right; the upper-left ~40% of the page is empty without a clear reason.
+   evidence: image occupies y≈283-617 only; nothing above it in the left column.
+   suggested_route: local_refine
+3. page: X_p3 | severity: low | category: hierarchy
+   description: "Plan 01" label carries no description and the framed drawing leaves a blank band below the frame.
+   evidence: frame ends at y≈558, page content ends at 617; right column has only two words.
+   suggested_route: local_refine
+
+=====================================================================
+CANDIDATE Y (5 pages)
+=====================================================================
+hierarchy             0.60  section headings ("Concept", "Site", "Studies") barely larger than body; p3 orphan one-line body top-right
+composition_balance   0.55  p2 bottom third empty; p3 plan hugs left with ~25% empty right; p1 keywords float unaligned to title
+whitespace_intent     0.50  voids on p2 and p3 read as leftover from fitting, not margins
+typography            0.60  serif display paired with a generic system sans for body; heading scale too flat; cover title lighter than X
+sequence_narrative    0.60  cover / concept / site / studies / role, but p3-p5 share identical top-left heading structure; assets reused
+asset_fidelity        0.70  cover render reused on p4 (different crop); elevation reused p2/p4; nothing stretched
+domain_fit            0.70  plan large on p3 (good); concept drawing reduced to a strip on p2
+anti_template         0.50  eyebrow + small heading top-left on every page; reads like an auto-generated report
+MEAN                  0.59
+VERDICT               revise
+
+Top issues
+1. page: Y_p2 | severity: high | category: composition_balance
+   description: Concept drawing is squeezed into a top strip, heading and body sit mid-page, and the bottom third is empty; no element reads as the hero.
+   evidence: drawing y≈60-405, text y≈428-520, nothing below y≈520.
+   suggested_route: pivot_layout
+2. page: Y_p3 | severity: medium | category: whitespace_intent
+   description: Plan is pushed left leaving a wide empty right column, and a single sentence is orphaned at top-right with no relation to the grid.
+   evidence: plan spans x≈70-700 of 935; one-line body at x≈624-823, y≈68.
+   suggested_route: local_refine
+3. page: Y_p2-Y_p5 | severity: medium | category: anti_template
+   description: Every inner page uses the same eyebrow + small serif heading at top-left with near-body-size type; the system has no scale contrast between pages.
+   evidence: "Concept", "Site", "Studies" all set at the same ~18 px size; cover title is the only large type.
+   suggested_route: revise_type_system
+
+=====================================================================
+CANDIDATE Z (6 pages)
+=====================================================================
+hierarchy             0.70  clear hero per page; p3/p5 headings small; p6 closing statement set small for a close
+composition_balance   0.60  p1 hero stops short of right margin; p5 text column off-grid; p3 and p4 lower voids
+whitespace_intent     0.60  p3 bottom and p4 lower-left read as leftover; p5 left half empty
+typography            0.65  same serif/sans pair as Y; p2 heading leading tight; p6 two lines with uneven gap; modest heading scale
+sequence_narrative    0.70  cover / concept / plan / site / courtyard / close with genuinely varied layouts (L-image, strip, R-image, type-only)
+asset_fidelity        0.65  same elevation drawing used on p2 and p4; cover render reused on p5; nothing stretched; labels intact
+domain_fit            0.70  drawings large and crisp; plan could fill more of p3
+anti_template         0.65  more varied than Y, but the eyebrow/heading template still shows
+MEAN                  0.66
+VERDICT               revise
+
+Top issues
+1. page: Z_p5 | severity: medium | category: composition_balance
+   description: Heading, eyebrow and caption start at an indented x position that matches no other page margin, leaving the left half of the page largely empty.
+   evidence: text column begins x≈184 while header and all other pages use x≈37.
+   suggested_route: local_refine
+2. page: Z_p1 | severity: medium | category: composition_balance
+   description: Cover hero image does not reach the right margin established by the header, so the grid looks mis-set on the first page.
+   evidence: image right edge x≈822; header text right edge x≈898; left margins match at x≈37.
+   suggested_route: local_refine
+3. page: Z_p2, Z_p4 | severity: medium | category: sequence_narrative
+   description: The same elevation drawing is the hero on two consecutive spreads, and the cover render returns on p5; six pages carry only three distinct assets.
+   evidence: p2 and p4 show the identical four-block elevation; p1 and p5 show the same render at different crops.
+   suggested_route: revise_story
+
+=====================================================================
+RANKING (best to worst)
+=====================================================================
+1. X  — 0.78, pass.   Strongest typographic system and most deliberate page rhythm; fix p4 stagger and p2 void.
+2. Z  — 0.66, revise. Best narrative length and layout variety, undermined by grid slips (p1, p5) and asset repetition.
+3. Y  — 0.59, revise. Flat heading scale and leftover whitespace on p2/p3; reads as a generated report.
+
+Limit: single-critic visual read; design-quality claims need blinded expert pairwise review.
+```

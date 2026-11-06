@@ -1,0 +1,94 @@
+{
+  "_note": "Slot compositions, grid-agnostic: col/row are fractions [start, end) of the grid's columns and rows, snapped to the nearest column/flowline at render time. image slots: index = which page asset (0 = lead), align = anchor letters l/r/t/b (c = centred). text slots: role = label | heading | body | caption | statement | pull | keywords. A composition is valid for a page when it has at least as many image slots as the page has assets (extra slots are dropped) and slots never overlap. Anyone (a host LLM too) may add entries; tests check overlap and fit.",
+  "compositions": [
+    {"id": "hero-bleed-caption-bottom", "images": 1, "tags": ["landscape", "photo"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0, 0.84], "align": "lt"},
+      {"kind": "text", "role": "label", "col": [0, 0.2], "row": [0.86, 0.92]},
+      {"kind": "text", "role": "statement", "col": [0.2, 0.8], "row": [0.86, 1]}]},
+    {"id": "hero-right-two-thirds", "images": 1, "tags": ["any"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.3], "row": [0.07, 0.22]},
+      {"kind": "text", "role": "body", "col": [0, 0.3], "row": [0.24, 0.8]},
+      {"kind": "image", "index": 0, "col": [0.34, 1], "row": [0, 1], "align": "rt"}]},
+    {"id": "hero-left-two-thirds", "images": 1, "tags": ["any"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 0.66], "row": [0, 1], "align": "lt"},
+      {"kind": "text", "role": "label", "col": [0.7, 1], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0.7, 1], "row": [0.07, 0.22]},
+      {"kind": "text", "role": "body", "col": [0.7, 1], "row": [0.24, 0.8]}]},
+    {"id": "image-top-text-two-col", "images": 1, "tags": ["wide"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0, 0.62], "align": "lt"},
+      {"kind": "text", "role": "label", "col": [0, 0.4], "row": [0.66, 0.72]},
+      {"kind": "text", "role": "heading", "col": [0, 0.4], "row": [0.73, 0.9]},
+      {"kind": "text", "role": "body", "col": [0.5, 1], "row": [0.66, 1]}]},
+    {"id": "statement-top-image-bottom", "images": 1, "tags": ["wide", "portrait-page"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "statement", "col": [0, 0.75], "row": [0.07, 0.3]},
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0.36, 1], "align": "lb"}]},
+    {"id": "plate-caption-left", "images": 1, "tags": ["drawing"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.22], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.22], "row": [0.07, 0.22]},
+      {"kind": "text", "role": "caption", "col": [0, 0.22], "row": [0.24, 0.5]},
+      {"kind": "image", "index": 0, "col": [0.26, 1], "row": [0, 1], "align": "rt"}]},
+    {"id": "plate-centred-notes-right", "images": 1, "tags": ["drawing"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 0.74], "row": [0, 1], "align": "ct"},
+      {"kind": "text", "role": "label", "col": [0.78, 1], "row": [0, 0.06]},
+      {"kind": "text", "role": "caption", "col": [0.78, 1], "row": [0.07, 0.4]}]},
+    {"id": "pair-row-heading-top", "images": 2, "tags": ["pair"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.5], "row": [0.07, 0.17]},
+      {"kind": "image", "index": 0, "col": [0, 0.49], "row": [0.2, 0.92], "align": "lt"},
+      {"kind": "image", "index": 1, "col": [0.51, 1], "row": [0.2, 0.92], "align": "rt"},
+      {"kind": "text", "role": "caption", "col": [0, 0.49], "row": [0.93, 1]},
+      {"kind": "text", "role": "caption2", "col": [0.51, 1], "row": [0.93, 1]}]},
+    {"id": "pair-stack-right-text-left", "images": 2, "tags": ["pair", "wide"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.3], "row": [0.07, 0.22]},
+      {"kind": "text", "role": "body", "col": [0, 0.3], "row": [0.24, 0.8]},
+      {"kind": "image", "index": 0, "col": [0.36, 1], "row": [0, 0.48], "align": "rt"},
+      {"kind": "image", "index": 1, "col": [0.36, 1], "row": [0.52, 1], "align": "rb"}]},
+    {"id": "large-small-stacked-notes", "images": 2, "tags": ["pair"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 0.66], "row": [0, 1], "align": "lt"},
+      {"kind": "image", "index": 1, "col": [0.7, 1], "row": [0, 0.42], "align": "rt"},
+      {"kind": "text", "role": "label", "col": [0.7, 1], "row": [0.46, 0.52]},
+      {"kind": "text", "role": "heading", "col": [0.7, 1], "row": [0.53, 0.66]},
+      {"kind": "text", "role": "caption", "col": [0.7, 1], "row": [0.68, 1]}]},
+    {"id": "triptych", "images": 3, "tags": ["series"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.6], "row": [0.07, 0.17]},
+      {"kind": "image", "index": 0, "col": [0, 0.32], "row": [0.2, 0.9], "align": "lt"},
+      {"kind": "image", "index": 1, "col": [0.34, 0.66], "row": [0.2, 0.9], "align": "ct"},
+      {"kind": "image", "index": 2, "col": [0.68, 1], "row": [0.2, 0.9], "align": "rt"},
+      {"kind": "text", "role": "caption", "col": [0, 0.32], "row": [0.92, 1]}]},
+    {"id": "quad", "images": 4, "tags": ["series"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.5], "row": [0.07, 0.17]},
+      {"kind": "image", "index": 0, "col": [0, 0.49], "row": [0.2, 0.58], "align": "lt"},
+      {"kind": "image", "index": 1, "col": [0.51, 1], "row": [0.2, 0.58], "align": "rt"},
+      {"kind": "image", "index": 2, "col": [0, 0.49], "row": [0.62, 1], "align": "lb"},
+      {"kind": "image", "index": 3, "col": [0.51, 1], "row": [0.62, 1], "align": "rb"}]},
+    {"id": "panorama-band", "images": 1, "tags": ["wide"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0, 0.5], "row": [0.07, 0.22]},
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0.3, 0.78], "align": "lt"},
+      {"kind": "text", "role": "caption", "col": [0.6, 1], "row": [0.82, 1]}]},
+    {"id": "statement-keywords", "images": 0, "tags": ["closing", "opener"], "slots": [
+      {"kind": "text", "role": "label", "col": [0, 0.3], "row": [0, 0.06]},
+      {"kind": "text", "role": "statement", "col": [0, 0.8], "row": [0.28, 0.6]},
+      {"kind": "text", "role": "body", "col": [0.7, 1], "row": [0, 0.26]},
+      {"kind": "text", "role": "keywords", "col": [0, 1], "row": [0.9, 1]}]},
+    {"id": "margin-notes-plate", "images": 1, "tags": ["drawing", "editorial-8"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 0.76], "row": [0, 1], "align": "lt"},
+      {"kind": "text", "role": "label", "col": [0.8, 1], "row": [0, 0.06]},
+      {"kind": "text", "role": "heading", "col": [0.8, 1], "row": [0.07, 0.24]},
+      {"kind": "text", "role": "caption", "col": [0.8, 1], "row": [0.7, 1]}]},
+    {"id": "cover-title-over-hero", "images": 1, "tags": ["cover"], "slots": [
+      {"kind": "text", "role": "display", "col": [0, 0.7], "row": [0, 0.22]},
+      {"kind": "text", "role": "keywords-line", "col": [0.72, 1], "row": [0.12, 0.22]},
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0.26, 1], "align": "lb"},
+      {"kind": "text", "role": "tagline", "col": [0, 0.5], "row": [0.22, 0.26]}]},
+    {"id": "cover-hero-title-below", "images": 1, "tags": ["cover"], "slots": [
+      {"kind": "image", "index": 0, "col": [0, 1], "row": [0, 0.72], "align": "lt"},
+      {"kind": "text", "role": "display", "col": [0, 0.7], "row": [0.76, 1]},
+      {"kind": "text", "role": "keywords-line", "col": [0.72, 1], "row": [0.8, 0.9]}]}
+  ]
+}

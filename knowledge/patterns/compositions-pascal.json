@@ -1,0 +1,7981 @@
+{
+ "_note": "Imported from the user's pptAgent (pascal-agents) board layouts by scripts/import_pascal_layouts.py; slots are fractions of the source 24x20 grid. Regenerate rather than edit.",
+ "compositions": [
+  {
+   "id": "pascal-board-context",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-context.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5833
+     ],
+     "row": [
+      0.2,
+      0.8
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.625,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.625,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.625,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2917
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2917
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.625
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.625
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2917
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.625
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-diagram-12",
+   "images": 12,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-diagram-12.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 6,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 7,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 8,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 9,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 10,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 11,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-diagram-6",
+   "images": 6,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-diagram-6.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.2,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.55,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.55,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-drawing-notes",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-drawing-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.7083
+     ],
+     "row": [
+      0.2,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.45
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.45,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.7
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.45,
+      0.455
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-drawing-quad",
+   "images": 5,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-drawing-quad.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.2,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.65,
+      0.7
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.7,
+      0.8
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.2,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.65,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.65,
+      0.655
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.4583
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-drawing-rail",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-drawing-rail.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-drawing-strip",
+   "images": 5,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-drawing-strip.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.7
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.75,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.75,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.75,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.35
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.55
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.75
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.355
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.505
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-drawing-wide",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-drawing-wide.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.85
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.85,
+      0.855
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-elevation",
+   "images": 8,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-elevation.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      0.8333
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.6667,
+      0.8333
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 6,
+     "col": [
+      0.6667,
+      0.8333
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 7,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-hero-panels",
+   "images": 3,
+   "tags": [
+    "pascal",
+    "drawing",
+    "comparison",
+    "process"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-hero-panels.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.7,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.2083,
+      0.5
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.2083,
+      0.5
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.5,
+      0.7083
+     ],
+     "row": [
+      0.7,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.2083,
+      0.5
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-photo-row",
+   "images": 7,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-photo-row.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.35
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.55
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.65
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.1667
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.1667,
+      0.3333
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.3333,
+      0.5
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.5,
+      0.6667
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.6667,
+      0.8333
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 6,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.355
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.505
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-2-notes",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-2-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-2",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-2.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-4-notes",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-4-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-4",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-4.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-6-notes",
+   "images": 6,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-6-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-6",
+   "images": 6,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-6.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-8-notes",
+   "images": 8,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-8-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 6,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 7,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-sheet-8",
+   "images": 8,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-sheet-8.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.45
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.25,
+      0.5
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 6,
+     "col": [
+      0.5,
+      0.75
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 7,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.85,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.805
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-table-set",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-table-set.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2917
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.625
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2917
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.625
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.85,
+      0.855
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.85,
+      0.855
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.85,
+      0.855
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-unit",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-unit.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.625
+     ],
+     "row": [
+      0.2,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.65
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.7
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.605
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-board-wide-strip",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/board-wide-strip.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.35
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.355
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-comparison-split",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "comparison"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/comparison-split.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.4167
+     ],
+     "row": [
+      0.125,
+      0.25
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.4167
+     ],
+     "row": [
+      0.25,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5833,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      0.5833
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-contents-list",
+   "images": 0,
+   "tags": [
+    "pascal",
+    "contents"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/contents-list.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.0,
+      0.05
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.15,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.3,
+      0.35
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.35,
+      0.45
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.5,
+      0.55
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.55,
+      0.65
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.3,
+      0.35
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.35,
+      0.45
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.5,
+      0.55
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.55,
+      0.65
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5833,
+      0.9583
+     ],
+     "row": [
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.255
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-drawing-pair",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing",
+    "comparison"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/drawing-pair.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.75
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.125,
+      0.875
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.875
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.4167
+     ],
+     "row": [
+      0.875,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.9167
+     ],
+     "row": [
+      0.875,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-drawing-portrait",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/drawing-portrait.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.4167
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5,
+      0.9167
+     ],
+     "row": [
+      0.25,
+      0.625
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-drawing-stack",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "comparison",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/drawing-stack.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.75
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.125,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.5
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.5,
+      0.875
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.875,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.505
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-drawing-triptych",
+   "images": 3,
+   "tags": [
+    "pascal",
+    "drawing",
+    "process"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/drawing-triptych.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.75
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.125,
+      0.75
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.125,
+      0.75
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.75
+     ],
+     "align": "lb"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.75,
+      0.875
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-drawing-wide",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/drawing-wide.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.5833
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-center-notes",
+   "images": 3,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-center-notes.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.25,
+      0.75
+     ],
+     "row": [
+      0.2,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.2,
+      0.25
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.25,
+      0.45
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.45,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.5,
+      0.7
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.75,
+      0.95
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.45,
+      0.455
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-divider-vignette",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-divider-vignette.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.625
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.6667,
+      0.7917
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.65
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.85
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-gallery-band",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-gallery-band.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.15,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.125,
+      0.875
+     ],
+     "row": [
+      0.8,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.2083,
+      0.7917
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-hero-rail-2",
+   "images": 3,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-hero-rail-2.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.9167,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.1,
+      0.2
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.3
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.45
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.45,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.7
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.355
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.655
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-hero-rail-3",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-hero-rail-3.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.9167,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.1,
+      0.2
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.7083,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.3
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.7083,
+      0.875
+     ],
+     "row": [
+      0.35,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.4
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.4,
+      0.5
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.7083,
+      0.875
+     ],
+     "row": [
+      0.55,
+      0.7
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.6
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.7
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.7083,
+      0.875
+     ],
+     "row": [
+      0.75,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.8
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.8,
+      0.9
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.35,
+      0.355
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.555
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.755
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-hero-strip-3",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-hero-strip-3.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.7,
+      0.8
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      0.6667
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      0.8333
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-hero-strip-4",
+   "images": 5,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-hero-strip-4.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.7,
+      0.8
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.75,
+      0.85
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.4583
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5,
+      0.625
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.625,
+      0.75
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.75,
+      0.875
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.875,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.2083
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.25,
+      0.4583
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-photo-mosaic",
+   "images": 5,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-photo-mosaic.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5833
+     ],
+     "row": [
+      0.2,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.625,
+      0.7917
+     ],
+     "row": [
+      0.2,
+      0.4
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.4
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.625,
+      0.7917
+     ],
+     "row": [
+      0.45,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.45,
+      0.65
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.625,
+      0.7917
+     ],
+     "row": [
+      0.75,
+      0.8
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.625,
+      0.7917
+     ],
+     "row": [
+      0.8,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.8
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.8,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.625,
+      0.7917
+     ],
+     "row": [
+      0.75,
+      0.755
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.8333,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.755
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-plans-3",
+   "images": 6,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-plans-3.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.2,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.2,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.6
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.0,
+      0.1667
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.1667,
+      0.3333
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 5,
+     "col": [
+      0.3333,
+      0.5
+     ],
+     "row": [
+      0.7,
+      0.95
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.7,
+      0.705
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-section-wide",
+   "images": 4,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-section-wide.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.0833
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0833,
+      0.9583
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0833,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.55
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.6,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.6,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.6,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.9,
+      0.95
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.95,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.3333
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.3333,
+      0.6667
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.9,
+      0.905
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-fam-split-quad",
+   "images": 5,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/fam-split-quad.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.5417,
+      0.625
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.625,
+      1.0
+     ],
+     "row": [
+      0.05,
+      0.15
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.625,
+      1.0
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.25,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.5,
+      0.6
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.25,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.6
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 3,
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.65,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5417,
+      0.75
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 4,
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.9
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.7917,
+      1.0
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.5417,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.205
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-hero-drawing-left",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing",
+    "hero"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/hero-drawing-left.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.6667
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.375
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.375,
+      0.75
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-hero-drawing-right",
+   "images": 1,
+   "tags": [
+    "pascal",
+    "drawing",
+    "hero"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/hero-drawing-right.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.3333,
+      1.0
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.125,
+      0.375
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.375,
+      0.75
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      0.25
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "ink"
+    }
+   ]
+  },
+  {
+   "id": "pascal-image-drawing",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "hero",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/image-drawing.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.5833,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.5833,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.75
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.5833,
+      1.0
+     ],
+     "row": [
+      0.75,
+      0.875
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.5833,
+      1.0
+     ],
+     "row": [
+      0.875,
+      1.0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pascal-plan-detail",
+   "images": 2,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/plan-detail.json",
+   "slots": [
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.5833
+     ],
+     "row": [
+      0.0,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.0,
+      0.125
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.625
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.625,
+      0.75
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.75,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.625,
+      0.63
+     ],
+     "color": "ink"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.625,
+      0.63
+     ],
+     "color": "line"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.6667,
+      1.0
+     ],
+     "row": [
+      0.125,
+      0.13
+     ],
+     "color": "line"
+    }
+   ]
+  },
+  {
+   "id": "pascal-prac-board-3",
+   "images": 3,
+   "tags": [
+    "pascal",
+    "drawing"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/prac-board-3.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.7083
+     ],
+     "row": [
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "body",
+     "col": [
+      0.0,
+      0.7083
+     ],
+     "row": [
+      0.1,
+      0.15
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 0,
+     "col": [
+      0.0,
+      0.7083
+     ],
+     "row": [
+      0.15,
+      1.0
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.75,
+      0.9583
+     ],
+     "row": [
+      0.0,
+      0.05
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.15,
+      0.2
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.2,
+      0.3
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 1,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.3,
+      0.5
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.55
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.55,
+      0.65
+     ]
+    },
+    {
+     "kind": "image",
+     "index": 2,
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.65,
+      0.85
+     ],
+     "align": "lt"
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      0.9
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "caption",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.9,
+      1.0
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.15,
+      0.155
+     ],
+     "color": "accent"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.5,
+      0.505
+     ],
+     "color": "accent"
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.75,
+      1.0
+     ],
+     "row": [
+      0.85,
+      0.855
+     ],
+     "color": "accent"
+    }
+   ]
+  },
+  {
+   "id": "pascal-title-card",
+   "images": 0,
+   "tags": [
+    "pascal",
+    "cover",
+    "closing",
+    "text"
+   ],
+   "source": "agents/pascal-agents/pptAgent/design-system/layouts/title-card.json",
+   "slots": [
+    {
+     "kind": "text",
+     "role": "label",
+     "col": [
+      0.0,
+      0.5
+     ],
+     "row": [
+      0.25,
+      0.375
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "heading",
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.375,
+      0.625
+     ]
+    },
+    {
+     "kind": "text",
+     "role": "pull",
+     "col": [
+      0.0,
+      0.8333
+     ],
+     "row": [
+      0.625,
+      0.75
+     ]
+    },
+    {
+     "kind": "rule",
+     "col": [
+      0.0,
+      1.0
+     ],
+     "row": [
+      0.625,
+      0.63
+     ],
+     "color": "ink"
+    }
+   ]
+  }
+ ],
+ "skipped": [
+  "board-plan: required slot legend roles=['table']",
+  "board-stats-table: required slot stat_1 roles=['stat']",
+  "board-stats-table: required slot table roles=['table']",
+  "board-stats: required slot stat_1 roles=['stat']",
+  "contents-hero: slots overlap (image / label) - text-over-image not supported yet",
+  "cover-full-bleed: slots overlap (image / label) - text-over-image not supported yet",
+  "fam-fullbleed-tag: slots overlap (image / heading) - text-over-image not supported yet",
+  "plan-sheet: required slot legend roles=['table']",
+  "section-divider: required slot index roles=['index']",
+  "stats-band: required slot stat_1 roles=['stat']",
+  "stats-row: required slot stat_1 roles=['stat']",
+  "table-focus: required slot table roles=['table']"
+ ]
+}

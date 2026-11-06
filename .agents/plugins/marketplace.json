@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-agent",
+  "interface": {
+    "displayName": "Portfolio Agent"
+  },
+  "plugins": [
+    {
+      "name": "portfolio-agent",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    }
+  ]
+}

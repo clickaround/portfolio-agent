@@ -1,0 +1,365 @@
+{
+ "run_id": "apbench-20261104-212344",
+ "bench": "ArchPortfolioBench (engine-only subset)",
+ "source_case_ids": [],
+ "fixtures": "SYNTHETIC",
+ "output_format": "A4/A3 landscape PDF + PPTX + scene JSON (+DesignCraft if installed)",
+ "renderer": "portfolio_agent local compositor (PyMuPDF)",
+ "host": null,
+ "model": null,
+ "sha": null,
+ "prompt_version": null,
+ "hard_gates": {
+  "checked": [
+   "G1 source hash",
+   "G3 clip/overflow/overlap (via qa)"
+  ],
+  "not_checked": [
+   "G2 human zoom review",
+   "G4 fact links",
+   "G5 recipient policy"
+  ]
+ },
+ "scores": null,
+ "human_preferences": null,
+ "cost_usd": 0.0,
+ "latency_s": 214.3,
+ "evidence_paths": [],
+ "blinded": false,
+ "status": "PARTIAL - engine tasks only; B0-B5 host conditions, AP-01/02/04/09/10, blind human review NOT RUN",
+ "results": [
+  {
+   "task": "AP-03",
+   "project": "arch_01",
+   "passed": true,
+   "pages": 5,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_01",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-2",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "drawing-03-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "photo-04-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 0,
+   "safely_refused": 4,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_01",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "caption-03",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "caption-04",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 3,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_01",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_01",
+   "pdf_opens": true,
+   "pptx_slides": 5,
+   "pptx_shapes": 23,
+   "pptx_text_boxes_nonempty": 13,
+   "pptx_named_objects": 23,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "designcraft": true,
+     "pdf": true,
+     "idml": true,
+     "pptx": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  },
+  {
+   "task": "AP-03",
+   "project": "arch_02",
+   "passed": true,
+   "pages": 5,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_02",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "drawing-03-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "photo-04-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 0,
+   "safely_refused": 4,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_02",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "caption-03",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "caption-04",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 3,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_02",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_02",
+   "pdf_opens": true,
+   "pptx_slides": 5,
+   "pptx_shapes": 23,
+   "pptx_text_boxes_nonempty": 13,
+   "pptx_named_objects": 23,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "designcraft": true,
+     "pdf": true,
+     "idml": true,
+     "pptx": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  },
+  {
+   "task": "AP-03",
+   "project": "arch_03",
+   "passed": true,
+   "pages": 3,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_03",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-1",
+     "committed": false,
+     "refused_reasons": [
+      "BBOX_OVERLAP",
+      "LOCKED_TARGET_EDITED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 0,
+   "safely_refused": 2,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_03",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "caption-02",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 2,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_03",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_03",
+   "pdf_opens": true,
+   "pptx_slides": 3,
+   "pptx_shapes": 13,
+   "pptx_text_boxes_nonempty": 8,
+   "pptx_named_objects": 13,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "designcraft": true,
+     "pdf": true,
+     "idml": true,
+     "pptx": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  }
+ ]
+}

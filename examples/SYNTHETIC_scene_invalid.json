@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "SYNTHETIC_DEMO_ONLY",
+  "page_id": "page-bad",
+  "size_mm": [
+    420,
+    297
+  ],
+  "elements": [
+    {
+      "id": "item-a",
+      "kind": "image",
+      "box_mm": [
+        10,
+        10,
+        100,
+        100
+      ],
+      "z_index": 1,
+      "locked": false,
+      "allow_overlap": false
+    },
+    {
+      "id": "item-b",
+      "kind": "text",
+      "box_mm": [
+        50,
+        50,
+        100,
+        100
+      ],
+      "z_index": 2,
+      "locked": false,
+      "allow_overlap": false
+    },
+    {
+      "id": "item-c",
+      "kind": "text",
+      "box_mm": [
+        400,
+        290,
+        40,
+        30
+      ],
+      "z_index": 3,
+      "locked": false,
+      "allow_overlap": false
+    }
+  ]
+}

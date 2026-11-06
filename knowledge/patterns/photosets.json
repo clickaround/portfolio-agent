@@ -1,0 +1,32 @@
+{
+  "note": "Photo-set templates for 2-6 photographs on one page (layout/photoset.py). Cells are fractions of the content band under the heading (col 0-1 = full width, row 0-1 = full height); the engine snaps cols to the column grid, fits each photo inside its cell (no crop) or covers it when the host sets crop: cover, and picks the template whose cells fit the photos' aspects best unless the host names one. Add a template = add an entry; tests check cells never overlap.",
+  "templates": [
+    {"id": "row-2", "k": 2, "cells": [[0, 0.5, 0, 1], [0.5, 1, 0, 1]], "tags": ["equal", "row"]},
+    {"id": "stack-2", "k": 2, "cells": [[0, 1, 0, 0.5], [0, 1, 0.5, 1]], "tags": ["equal", "stack", "panorama"]},
+    {"id": "lead-left-2", "k": 2, "cells": [[0, 0.667, 0, 1], [0.667, 1, 0, 0.5]], "tags": ["lead"]},
+    {"id": "lead-left-bottom-2", "k": 2, "cells": [[0, 0.667, 0, 1], [0.667, 1, 0.5, 1]], "tags": ["lead"]},
+    {"id": "lead-right-2", "k": 2, "cells": [[0.333, 1, 0, 1], [0, 0.333, 0.5, 1]], "tags": ["lead", "mirror"]},
+    {"id": "tall-wide-2", "k": 2, "cells": [[0, 0.4, 0, 1], [0.4, 1, 0, 0.6]], "tags": ["portrait+landscape"]},
+
+    {"id": "lead-left-3", "k": 3, "cells": [[0, 0.667, 0, 1], [0.667, 1, 0, 0.5], [0.667, 1, 0.5, 1]], "tags": ["lead"]},
+    {"id": "lead-right-3", "k": 3, "cells": [[0.333, 1, 0, 1], [0, 0.333, 0, 0.5], [0, 0.333, 0.5, 1]], "tags": ["lead", "mirror"]},
+    {"id": "lead-top-3", "k": 3, "cells": [[0, 1, 0, 0.62], [0, 0.5, 0.62, 1], [0.5, 1, 0.62, 1]], "tags": ["lead", "panorama"]},
+    {"id": "triptych-3", "k": 3, "cells": [[0, 0.333, 0, 1], [0.333, 0.667, 0, 1], [0.667, 1, 0, 1]], "tags": ["equal", "portrait"]},
+    {"id": "stack-3", "k": 3, "cells": [[0, 1, 0, 0.333], [0, 1, 0.333, 0.667], [0, 1, 0.667, 1]], "tags": ["equal", "panorama"]},
+
+    {"id": "quad-4", "k": 4, "cells": [[0, 0.5, 0, 0.5], [0.5, 1, 0, 0.5], [0, 0.5, 0.5, 1], [0.5, 1, 0.5, 1]], "tags": ["equal"]},
+    {"id": "lead-left-4", "k": 4, "cells": [[0, 0.667, 0, 1], [0.667, 1, 0, 0.333], [0.667, 1, 0.333, 0.667], [0.667, 1, 0.667, 1]], "tags": ["lead"]},
+    {"id": "lead-top-4", "k": 4, "cells": [[0, 1, 0, 0.6], [0, 0.333, 0.6, 1], [0.333, 0.667, 0.6, 1], [0.667, 1, 0.6, 1]], "tags": ["lead", "panorama"]},
+    {"id": "row-4", "k": 4, "cells": [[0, 0.25, 0, 1], [0.25, 0.5, 0, 1], [0.5, 0.75, 0, 1], [0.75, 1, 0, 1]], "tags": ["equal", "portrait"]},
+    {"id": "lead-left-stack-4", "k": 4, "cells": [[0, 0.5, 0, 1], [0.5, 1, 0, 0.5], [0.5, 0.75, 0.5, 1], [0.75, 1, 0.5, 1]], "tags": ["lead", "mosaic"]},
+
+    {"id": "lead-left-5", "k": 5, "cells": [[0, 0.6, 0, 1], [0.6, 0.8, 0, 0.5], [0.8, 1, 0, 0.5], [0.6, 0.8, 0.5, 1], [0.8, 1, 0.5, 1]], "tags": ["lead"]},
+    {"id": "lead-top-5", "k": 5, "cells": [[0, 1, 0, 0.6], [0, 0.25, 0.6, 1], [0.25, 0.5, 0.6, 1], [0.5, 0.75, 0.6, 1], [0.75, 1, 0.6, 1]], "tags": ["lead", "panorama"]},
+    {"id": "mosaic-2-3", "k": 5, "cells": [[0, 0.5, 0, 0.55], [0.5, 1, 0, 0.55], [0, 0.333, 0.55, 1], [0.333, 0.667, 0.55, 1], [0.667, 1, 0.55, 1]], "tags": ["mosaic"]},
+    {"id": "mosaic-3-2", "k": 5, "cells": [[0, 0.333, 0, 0.45], [0.333, 0.667, 0, 0.45], [0.667, 1, 0, 0.45], [0, 0.5, 0.45, 1], [0.5, 1, 0.45, 1]], "tags": ["mosaic"]},
+
+    {"id": "grid-2x3", "k": 6, "cells": [[0, 0.333, 0, 0.5], [0.333, 0.667, 0, 0.5], [0.667, 1, 0, 0.5], [0, 0.333, 0.5, 1], [0.333, 0.667, 0.5, 1], [0.667, 1, 0.5, 1]], "tags": ["equal"]},
+    {"id": "grid-3x2", "k": 6, "cells": [[0, 0.5, 0, 0.333], [0.5, 1, 0, 0.333], [0, 0.5, 0.333, 0.667], [0.5, 1, 0.333, 0.667], [0, 0.5, 0.667, 1], [0.5, 1, 0.667, 1]], "tags": ["equal", "panorama"]},
+    {"id": "lead-left-6", "k": 6, "cells": [[0, 0.5, 0, 1], [0.5, 0.75, 0, 0.333], [0.75, 1, 0, 0.333], [0.5, 0.75, 0.333, 0.667], [0.75, 1, 0.333, 0.667], [0.5, 1, 0.667, 1]], "tags": ["lead", "mosaic"]}
+  ]
+}

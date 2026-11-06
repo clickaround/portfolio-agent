@@ -1,0 +1,20 @@
+{
+  "palette": {"paper": "#ffffff", "ink": "#1a1a1a", "accent": "#1f5f5b", "muted": "#6b6b6b", "tint": "#f0efec"},
+  "type": {"title_font": "georgia", "body_font": "malgun", "title_scale": 1.0, "body_pt": 10},
+  "grid": {"margin_mm": 12, "gutter_mm": 12},
+  "layout_concept": "Four-page A4 landscape sequence with one dominant image per page and shifting asymmetry: p1 cover with hero image offset right and title column left; p2 tall portrait image left with concept text and a small square image right; p3 the plan as large evidence plate with a narrow text column; p4 the panoramic image full-width as a closing statement with a quiet caption. Serif (Georgia, italic for headings) against Korean-capable sans (Malgun) for body; a single deep-teal accent used only on short hairlines and folios; muted grey for secondary text.",
+  "footer": false,
+  "principles": [
+    "spend boldness in one place: the image scale changes each page, type stays quiet",
+    "one accent colour, used only as short rules and folios",
+    "images locked at native aspect, never cropped",
+    "no text that duplicates what the drawing shows"
+  ],
+  "generic_defaults_checked": [
+    "cream+serif+terracotta: replaced by white paper with deep teal accent",
+    "identical cards: pages use different compositions per image aspect",
+    "all-caps eyebrow labels: sentence-case labels only",
+    "numbered markers without a real sequence: none used except page folios",
+    "tracked-out labels: none"
+  ]
+}

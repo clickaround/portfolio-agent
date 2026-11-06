@@ -1,0 +1,2 @@
+# OpenPencil adapter — candidate, not installed
+[Upstream](https://github.com/open-pencil/open-pencil) describes local CLI, MCP, editable layer operations and SVG/PDF/PPTX exports. Validate on independent synthetic assets, then actual **vector PDF** (source lines, fonts, scale) and A3 size. Record whether PDF and editable native document can coexist. No permission to overwrite source files. If it cannot preserve the PDF, do not adopt as sole final compositor.

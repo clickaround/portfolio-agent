@@ -1,0 +1,21 @@
+{
+ "run_id": "robie-blind10-20261105",
+ "blinded": true,
+ "key": {
+  "X": "ENGINE_V3",
+  "Y": "LLMPLAN3",
+  "Z": "B0"
+ },
+ "scores_mean": {
+  "B0": 0.76,
+  "LLMPLAN3": 0.65,
+  "ENGINE_V3": 0.52
+ },
+ "predictions_checked": {
+  "P1 anti_template +0.1": "LLM 0.45->0.55 yes; engine 0.40->0.45 no",
+  "P2 engine domain_fit>=0.6": "0.60 yes",
+  "P3 LLM sequence>=0.7": "0.75 yes",
+  "P4 engine trails LLM hierarchy>=0.05": "0.60 vs 0.70 yes"
+ },
+ "status": "n=1, one LLM critic (noise ~+-0.07); real public-domain sources"
+}

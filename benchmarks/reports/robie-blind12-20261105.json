@@ -1,0 +1,19 @@
+{
+  "run_id": "robie-blind12-20261105",
+  "blinded": true,
+  "key": {"X": "LLMPLAN3", "Y": "LLMPLAN4_ATT04", "Z": "B0"},
+  "scores_mean": {"B0": 0.73, "LLMPLAN4_ATT04": 0.66, "LLMPLAN3": 0.56},
+  "dimensions": {
+    "LLMPLAN4_ATT04": {"hierarchy": 0.72, "composition_balance": 0.67, "whitespace_intent": 0.62, "typography": 0.64, "sequence_narrative": 0.74, "asset_fidelity": 0.60, "domain_fit": 0.66, "anti_template": 0.62},
+    "B0": {"hierarchy": 0.78, "composition_balance": 0.70, "whitespace_intent": 0.66, "typography": 0.76, "sequence_narrative": 0.74, "asset_fidelity": 0.76, "domain_fit": 0.74, "anti_template": 0.68}
+  },
+  "predictions_checked": {
+    "P6 attempt 03/04 vs 02: composition_balance >= +0.1, whitespace_intent >= +0.1, mean >= 0.62": "composition 0.50->0.67 YES (+0.17); whitespace 0.45->0.62 YES (+0.17); mean 0.55->0.66 YES"
+  },
+  "gap_to_B0": 0.07,
+  "critic_remaining_issues_for_ours": ["p8 four sheets pale + small in 2x2, right third blank (high)", "p9 synthetic diagrams, tiny labels (medium)", "p3 red eyebrow on dark panel low contrast; panel body small (medium)"],
+  "critic_on_B0": "p6 plates with different sizes/top edges; p4 scattered text column; p8 tiny index thumbnails; p7 scale bar cut off",
+  "fixes_for_attempt_05": ["drawings: levels stretch (prepare --levels) recorded in derived.json", "4 drawings -> photoset lead-left-4 (lead + 3 small), grid of 3-6 drawings routes to photoset", "dark page accent lifted towards the type colour", "panel caption at body size", "diagram labels Helvetica", "crop focal point `focus`"],
+  "prediction_P7": "attempt 05 vs 04: asset_fidelity >= +0.1 (levels + lead layout), typography >= +0.05; mean >= 0.70",
+  "status": "n=1, one LLM critic (noise ~+-0.07); log evidence/logs/blind12-robie-b0-llmplan3-llmplan4att04.txt"
+}

@@ -1,0 +1,519 @@
+{
+ "run_id": "apbench-20261104-215217",
+ "bench": "ArchPortfolioBench (engine-only subset)",
+ "source_case_ids": [],
+ "fixtures": "SYNTHETIC",
+ "output_format": "A4/A3 landscape PDF + PPTX + scene JSON (+DesignCraft if installed)",
+ "renderer": "portfolio_agent local compositor (PyMuPDF)",
+ "host": null,
+ "model": null,
+ "sha": null,
+ "prompt_version": null,
+ "hard_gates": {
+  "checked": [
+   "G1 source hash",
+   "G3 clip/overflow/overlap (via qa)"
+  ],
+  "not_checked": [
+   "G2 human zoom review",
+   "G4 fact links",
+   "G5 recipient policy"
+  ]
+ },
+ "scores": null,
+ "human_preferences": null,
+ "cost_usd": 0.0,
+ "latency_s": 95.2,
+ "evidence_paths": [],
+ "blinded": false,
+ "status": "PARTIAL - engine tasks only; B0-B5 host conditions, AP-01/02/04/09/10, blind human review NOT RUN",
+ "results": [
+  {
+   "task": "AP-03",
+   "project": "arch_01",
+   "passed": true,
+   "pages": 5,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_01",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [
+      "title-01"
+     ],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-2",
+     "committed": true,
+     "refused_reasons": [],
+     "reflowed": [
+      "body-02",
+      "photo-02-1",
+      "title-02"
+     ],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "drawing-03-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "photo-04-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 1,
+   "safely_refused": 3,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_01",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "caption-03",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "caption-04",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 3,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_01",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_01",
+   "diagnostics": {
+    "per_page": [
+     {
+      "page": "page-01",
+      "colorfulness": 19.7,
+      "entropy": 2.471,
+      "usability": 0.821
+     },
+     {
+      "page": "page-02",
+      "colorfulness": 3.85,
+      "entropy": 2.033,
+      "usability": 0.844
+     },
+     {
+      "page": "page-03",
+      "colorfulness": 0.0,
+      "entropy": 0.598,
+      "usability": 0.771
+     },
+     {
+      "page": "page-04",
+      "colorfulness": 1.09,
+      "entropy": 1.109,
+      "usability": 0.771
+     },
+     {
+      "page": "page-05",
+      "colorfulness": 0.0,
+      "entropy": 0.094,
+      "usability": 0.846
+     }
+    ],
+    "usability_mean": 0.811,
+    "colorfulness_mean": 4.93,
+    "entropy_rmssd": 0.941,
+    "note": "diagnostic only; entropy here is plain grayscale Shannon entropy (proxy for the paper's subband entropy)"
+   },
+   "pei_local_pptx": {
+    "level": 1,
+    "reasons": [
+     "L1: editable text boxes"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pei_designcraft_native_estimate": {
+    "level": 3,
+    "reasons": [
+     "L1: editable text boxes",
+     "L2: vector graphics retained in the native file",
+     "L3: styles/masters present"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pdf_opens": true,
+   "pptx_slides": 5,
+   "pptx_shapes": 23,
+   "pptx_text_boxes_nonempty": 13,
+   "pptx_named_objects": 23,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "pdf": true,
+     "pptx": true,
+     "native": true,
+     "idml": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  },
+  {
+   "task": "AP-03",
+   "project": "arch_02",
+   "passed": true,
+   "pages": 5,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_02",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-1",
+     "committed": true,
+     "refused_reasons": [],
+     "reflowed": [
+      "body-02",
+      "photo-02-2",
+      "title-02"
+     ],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "drawing-03-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "photo-04-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 1,
+   "safely_refused": 3,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_02",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-03",
+     "target": "caption-03",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-04",
+     "target": "caption-04",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 3,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_02",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_02",
+   "diagnostics": {
+    "per_page": [
+     {
+      "page": "page-01",
+      "colorfulness": 20.92,
+      "entropy": 2.571,
+      "usability": 0.804
+     },
+     {
+      "page": "page-02",
+      "colorfulness": 1.16,
+      "entropy": 1.79,
+      "usability": 0.828
+     },
+     {
+      "page": "page-03",
+      "colorfulness": 0.0,
+      "entropy": 0.596,
+      "usability": 0.746
+     },
+     {
+      "page": "page-04",
+      "colorfulness": 3.56,
+      "entropy": 1.079,
+      "usability": 0.807
+     },
+     {
+      "page": "page-05",
+      "colorfulness": 0.0,
+      "entropy": 0.092,
+      "usability": 0.828
+     }
+    ],
+    "usability_mean": 0.803,
+    "colorfulness_mean": 5.13,
+    "entropy_rmssd": 0.9,
+    "note": "diagnostic only; entropy here is plain grayscale Shannon entropy (proxy for the paper's subband entropy)"
+   },
+   "pei_local_pptx": {
+    "level": 1,
+    "reasons": [
+     "L1: editable text boxes"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pei_designcraft_native_estimate": {
+    "level": 3,
+    "reasons": [
+     "L1: editable text boxes",
+     "L2: vector graphics retained in the native file",
+     "L3: styles/masters present"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pdf_opens": true,
+   "pptx_slides": 5,
+   "pptx_shapes": 23,
+   "pptx_text_boxes_nonempty": 13,
+   "pptx_named_objects": 23,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "pdf": true,
+     "pptx": true,
+     "native": true,
+     "idml": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  },
+  {
+   "task": "AP-03",
+   "project": "arch_03",
+   "passed": true,
+   "pages": 3,
+   "two_page_requirement_met": false,
+   "gate_codes": []
+  },
+  {
+   "task": "AP-05",
+   "project": "arch_03",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "photo-01-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "photo-02-1",
+     "committed": false,
+     "refused_reasons": [
+      "TARGET_NOT_ENLARGED",
+      "TARGET_UNCHANGED"
+     ],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 0,
+   "safely_refused": 2,
+   "unsafe_commits": 0
+  },
+  {
+   "task": "AP-06",
+   "project": "arch_03",
+   "attempts": [
+    {
+     "page": "page-01",
+     "target": "caption-01",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    },
+    {
+     "page": "page-02",
+     "target": "caption-02",
+     "committed": true,
+     "reasons": [],
+     "reflowed": [],
+     "px_outside": 0
+    }
+   ],
+   "committed": 2,
+   "safely_refused": 0
+  },
+  {
+   "task": "AP-07",
+   "project": "arch_03",
+   "committed": true,
+   "other_pages_identical": true,
+   "page2_changed": true,
+   "reasons": []
+  },
+  {
+   "task": "AP-08",
+   "project": "arch_03",
+   "diagnostics": {
+    "per_page": [
+     {
+      "page": "page-01",
+      "colorfulness": 25.26,
+      "entropy": 3.247,
+      "usability": 0.773
+     },
+     {
+      "page": "page-02",
+      "colorfulness": 0.85,
+      "entropy": 0.842,
+      "usability": 0.751
+     },
+     {
+      "page": "page-03",
+      "colorfulness": 0.0,
+      "entropy": 0.092,
+      "usability": 0.832
+     }
+    ],
+    "usability_mean": 0.785,
+    "colorfulness_mean": 8.7,
+    "entropy_rmssd": null,
+    "note": "diagnostic only; entropy here is plain grayscale Shannon entropy (proxy for the paper's subband entropy)"
+   },
+   "pei_local_pptx": {
+    "level": 1,
+    "reasons": [
+     "L1: editable text boxes"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pei_designcraft_native_estimate": {
+    "level": 3,
+    "reasons": [
+     "L1: editable text boxes",
+     "L2: vector graphics retained in the native file",
+     "L3: styles/masters present"
+    ],
+    "note": "estimate; L4 (native charts) and L5 (animation) not applicable/not assessed"
+   },
+   "pdf_opens": true,
+   "pptx_slides": 3,
+   "pptx_shapes": 13,
+   "pptx_text_boxes_nonempty": 8,
+   "pptx_named_objects": 13,
+   "scene_json_schema_valid": true,
+   "designcraft_export": {
+    "exit": 0,
+    "files": {
+     "pdf": true,
+     "pptx": true,
+     "native": true,
+     "idml": true
+    }
+   },
+   "note": "PPTX opened with python-pptx only; PowerPoint/Keynote opening and preview parity NOT checked"
+  }
+ ]
+}

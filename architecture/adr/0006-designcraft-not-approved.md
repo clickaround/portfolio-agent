@@ -1,0 +1,2 @@
+# ADR-0006: DesignCraft is DTP lead candidate, NOT selected core
+Status: PROPOSED; 2026-11-04. Evaluate DesignCraft against Vivliostyle/Paged.js on 2-page print book, arbitrary dimensions, threadable text, Unicode, original PDF and SVG, bleed, fonts, selection/editing. Pre-alpha state and independent source/rights safety are explicit risks. One candidate failure must not block fallback engineering.

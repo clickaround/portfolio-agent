@@ -1,0 +1,82 @@
+**Ranking: Y > Z > X.** Y is the best but still needs revision. Z needs revision. X fails.
+
+## X (4 pages): mean 0.39, verdict **fail**
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.45 |
+| composition_balance | 0.35 |
+| whitespace_intent | 0.30 |
+| typography | 0.40 |
+| sequence_narrative | 0.35 |
+| asset_fidelity | 0.55 |
+| domain_fit | 0.45 |
+| anti_template | 0.20 |
+
+Top issues:
+1. page 3, composition_balance, **high**. The two elevation images are different sizes and don't share a top, bottom or baseline. The "Site" heading sits under the smaller image with a dead zone beneath it.
+   - Evidence: the left image runs x37–430 and is tall; the right one is smaller at x466–783.
+   - Route: `pivot_layout`.
+2. pages 1–2, whitespace_intent, **high**. Leftover space reads as accidental. On p1 the title block floats in the right column with a large void between it and a lone footnote ("Individual work, 14 weeks"). On p2 the plan is followed by a large empty lower third.
+   - Route: `pivot_layout`.
+3. all pages, typography, **high**. There is a single sans family with weak scale contrast: the "Concept" heading is only slightly bigger than the body. Body and caption text is tiny, about 8–9 px at page size. Nothing reads as a hero on p2–p4.
+   - Route: `revise_type_system`.
+
+Other issues:
+- The narrative is flat. There is no overview, no closing page, and the "Role" page is a hero image with a caption.
+- The look is a default auto-generated template: image, then heading, then one line.
+
+## Y (5 pages): mean 0.71, verdict **revise**
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.80 |
+| composition_balance | 0.65 |
+| whitespace_intent | 0.70 |
+| typography | 0.80 |
+| sequence_narrative | 0.75 |
+| asset_fidelity | 0.65 |
+| domain_fit | 0.60 |
+| anti_template | 0.70 |
+
+Top issues:
+1. page 5, domain_fit, **high**. The closing page is text only, with no drawing or image. An architecture portfolio should end on a drawing or image.
+   - Evidence: a large "Individual work, 14 weeks." and a keyword row, nothing else.
+   - Route: `revise_story`.
+2. page 4, asset_fidelity, **medium**. The two elevations are small and staggered, with a large empty band above them and a mismatched bottom edge. This is the weakest drawing page, and the linework is hard to read at page size.
+   - Route: `local_refine`.
+3. page 3, composition_balance, **medium**. The plan is in a white card but sits high, with a dead band below it. The "Plan 01" title is small relative to the card, and the caption text is tiny.
+   - Route: `local_refine`.
+
+Strengths: a serif/sans type system with a consistent header and folio, an accent colour used sparingly, and varied rhythm across cover, concept, plan, images and close. The cover is a strong hero. Page 2's building image is anchored low with a gap above it, which is a minor weakness.
+
+## Z (4 pages): mean 0.57, verdict **revise**
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.60 |
+| composition_balance | 0.50 |
+| whitespace_intent | 0.50 |
+| typography | 0.65 |
+| sequence_narrative | 0.55 |
+| asset_fidelity | 0.65 |
+| domain_fit | 0.60 |
+| anti_template | 0.50 |
+
+Top issues:
+1. page 2, composition_balance, **high**. The layout is fragmented. A tall elevation fills the left side, and a second small elevation floats bottom-right, disconnected from the text. "Role / Individual work" is wedged between them and the text block, with a large void in the middle.
+   - Evidence: the small image sits at x645–897, y333–585; the Role text sits at x422, y481.
+   - Route: `pivot_layout`.
+2. page 3, hierarchy, **high**. The heading "Site" and its text sit on the right, while the drawing is captioned "Plan" in tiny italics at the bottom-left, below the "SYNTHETIC PLAN" label. The heading and caption contradict each other, and the plan has no clear title.
+   - Route: `local_refine`.
+3. page 4, whitespace_intent, **medium**. A good hero image is followed by a short caption and a small grey side note, then empty space above the footer. The caption row is under-scaled for the image, and the side note is tiny and low-contrast.
+   - Route: `local_refine`.
+
+Strengths: a clean serif/sans pairing, a teal rule motif, and a good cover. The structure is repeated, though: a template of title, rule and text recurs on pages 2–3.
+
+## Rank
+1. **Y**: best typography, hierarchy and narrative rhythm. It needs a drawing on the closing page and larger elevations.
+2. **Z**: a decent type system but weaker, fragmented layouts on p2–p3.
+3. **X**: fails. It looks like an unstyled default with no hierarchy and misaligned images.
+
+None of the three passes (mean ≥ 0.75 with no high issues).

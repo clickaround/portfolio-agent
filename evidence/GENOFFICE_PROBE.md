@@ -1,0 +1,6 @@
+# GenOffice probe (T207) - 2026-11-04 - CODE_INSPECTED only, NOT executed (BLOCKED)
+- Repo pinned (.cache/vendor/genoffice, Apache-2.0, 6212 files). README (DOC_REPORTED): a `genoffice` CLI + MCP (`genoffice mcp`) can create/convert/read/edit Word, Excel, PowerPoint, PDF, Markdown, HTML headless; `genoffice slides check` rejects overflow/overlap; ships as part of the desktop app installer ("installs with GenOffice, needs no runtime of its own").
+- npm lookup: `genoffice` and `@genspark-ai/genoffice` -> 404; monorepo has `@genoffice/cli` (packages/cli) needing a full monorepo + Rust engines build.
+- Not executed because the supported install path is a system-wide desktop app (latest release v0.12.600, 2026-11-02) or a heavy source build; installing it changes the user's system beyond the portable, isolated approach used for DesignCraft/OpenPencil. Needs an explicit go-ahead or a disposable VM.
+- Relevance: targets Office documents/slides (PPTX/DOCX/XLSX), not A3/print portfolio layout with vector linework; a PPTX candidate (design alternative C) remains UNTESTED.
+- Next if approved: install release into a throwaway Windows Sandbox/VM, run `genoffice slides` on one page spec, check PPTX/PDF output + overflow checker + vector PDF placement.

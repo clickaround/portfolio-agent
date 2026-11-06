@@ -1,0 +1,42 @@
+{
+ "run_id": "b0-b4v2-b4v3-arch01-20261104",
+ "blinded": true,
+ "key": {
+  "X": "B0",
+  "Y": "B4v3",
+  "Z": "B4v2"
+ },
+ "critic": "claude -p Read-only, 1 critic",
+ "scores_mean": {
+  "B0": 0.75,
+  "B4v3": 0.53,
+  "B4v2": 0.64
+ },
+ "verdicts": {
+  "B0": "revise",
+  "B4v3": "fail",
+  "B4v2": "revise"
+ },
+ "ranking": [
+  "B0",
+  "B4v2",
+  "B4v3"
+ ],
+ "cost_usd": {
+  "B4v3": 0.325,
+  "critic": 0.199
+ },
+ "seconds": {
+  "B4v3": 79
+ },
+ "gates": {
+  "B4v3": {
+   "pass": true,
+   "issues": 0,
+   "pages": 4,
+   "first_try": true
+  }
+ },
+ "reference_basis": "NO_EXTERNAL_REFERENCE",
+ "status": "n=1, synthetic, one LLM critic; not professional-quality evidence"
+}

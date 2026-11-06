@@ -1,0 +1,9 @@
+{
+ "palette": {"paper": "#ffffff", "ink": "#1a1a1a", "accent": "#8a6a3d", "muted": "#777777"},
+ "type": {"title_font": "malgunbd", "body_font": "malgun", "title_scale": 1.0, "body_pt": 10},
+ "grid": {"margin_mm": 12, "gutter_mm": 12},
+ "layout_concept": "Single dominant image per page, narrow text column, generous white space: hero, plan, site/context, long section strip.",
+ "footer": false,
+ "principles": ["one dominant visual per page", "no cards or decoration", "text only where it carries project facts"],
+ "generic_defaults_checked": ["cream+serif+terracotta", "identical cards", "all-caps eyebrow labels", "numbered markers without a real sequence", "tracked-out labels"]
+}

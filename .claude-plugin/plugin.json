@@ -1,0 +1,5 @@
+{
+  "name": "portfolio-agent",
+  "version": "0.4.0",
+  "description": "Cross-domain, case-grounded portfolio authoring skills and QA; local design backends optional."
+}

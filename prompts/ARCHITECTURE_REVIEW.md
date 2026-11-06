@@ -1,0 +1,3 @@
+# Independent architecture critic (write review only)
+
+Read `GOALS.md`, `architecture/QUALITY_SCENARIOS.md`, active technical spikes, `research/REPO_MATRIX.md`, `benchmarks/SPEC.md`, ADRs. Try to **disprove** chosen architecture using tradeoff analysis: drawing fidelity, local edit rollback, rights, human design quality, general vs domain packs, cross-host portability, licensing, installation friction, model/context cost. Each finding MUST include severity, exact document/claim, evidence level, cheapest real test, and change recommendation. Do not alter product code or ADRs without separate authorization.

@@ -1,0 +1,112 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+# Blind critique: Robie House HABS books (X, Y, Z)
+
+I read the rubric, then viewed all 30 pages: X 10, Y 12, Z 8. X and Y carry the 3 mm bleed. None of the three reaches the pass threshold, and Z comes closest.
+
+## Candidate X (10 pp)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.70 |
+| composition_balance | 0.62 |
+| whitespace_intent | 0.58 |
+| typography | 0.62 |
+| sequence_narrative | 0.62 |
+| asset_fidelity | 0.66 |
+| domain_fit | 0.64 |
+| anti_template | 0.55 |
+| **MEAN** | **0.62** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1:** Full-bleed photo with a white card. It is strong, but the card is a stock device.
+- **p2:** Split page with the photo on the right. Good, but a large empty column sits under the text.
+- **p3:** Interior photo with a dark text card. The card covers floor detail.
+- **p4:** Six HABS sheets as a thumbnail grid. The linework is illegible and the grid repeats p5–p8.
+- **p5:** Two plans side by side. Readable, with the title floating top-right.
+- **p6:** Third-floor plan on the left, text top-right, and an empty lower band.
+- **p7:** Section and south elevation are large, with text on the right.
+- **p8:** Large elevations, plus three tiny side thumbnails (the fireplace and art-glass sheets).
+- **p9:** Four generic serif diagrams, labelled "not survey facts".
+- **p10:** Closing text on an otherwise empty page, with small keyword labels.
+
+**Top 3 issues**
+1. page 8, severity high, category asset_fidelity: "Fireplace and art-glass sheets reduced to ~130 px thumbnails; linework unreadable at page size." Evidence: the three right-column thumbnails on p8. Route: `pivot_layout`.
+2. page 4, severity medium, category composition_balance: "Survey index uses six small thumbnails that duplicate p5–p8; the left column below the text is empty." Evidence: p4 grid. Route: `pivot_layout`.
+3. page 9, severity medium, category anti_template: "Synthetic diagrams in default serif with a repeated 'Conceptual diagram… not to scale' line, in a 2×2 grid." Evidence: p9. Route: `revise_story`.
+
+## Candidate Y (12 pp)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.72 |
+| composition_balance | 0.64 |
+| whitespace_intent | 0.60 |
+| typography | 0.64 |
+| sequence_narrative | 0.72 |
+| asset_fidelity | 0.68 |
+| domain_fit | 0.76 |
+| anti_template | 0.56 |
+| **MEAN** | **0.67** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1–p3:** Same as X, but p2 gains a bottom caption.
+- **p4:** Analysis overlays (zones, stairs, datum) on the source plan and section. It is the most architectural page in any book. The legend is small and in Korean ("주요 동선축") inside an English book, and the lower third is empty.
+- **p5:** Thumbnail survey grid, same as X p4. It repeats the sheets that p6–p10 show large.
+- **p6:** Two plans. Fine.
+- **p7:** Third-floor plan plus title, with an empty bottom.
+- **p8:** Section and south elevation. Good.
+- **p9:** Elevations and fireplace are now large and readable, with a quarter of the page empty below.
+- **p10:** Windows and art glass, two large plates. Good detail page.
+- **p11:** Four generic diagrams.
+- **p12:** Empty closing page.
+
+**Top 3 issues**
+1. page 4, severity high, category asset_fidelity: "Analysis legends are ~6 pt and partly Korean; overlay labels are tiny on a 1/8-inch-scale sheet." Evidence: the bottom-left legend and the right-hand legend on p4. Route: `revise_type_system`.
+2. page 11, severity medium, category anti_template: "Default-serif conceptual diagrams look generated and add no survey information." Evidence: p11 (the same diagrams as X p9). Route: `revise_story`.
+3. pages 7, 9, 10, severity medium, category whitespace_intent: "Bottom 20–25% of the page is blank on several plate pages, so the empty band reads as leftover from fitting." Evidence: p7, p9 and p10 below the captions. Route: `local_refine`.
+
+## Candidate Z (8 pp)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.78 |
+| composition_balance | 0.70 |
+| whitespace_intent | 0.68 |
+| typography | 0.74 |
+| sequence_narrative | 0.72 |
+| asset_fidelity | 0.76 |
+| domain_fit | 0.76 |
+| anti_template | 0.80 |
+| **MEAN** | **0.74** |
+
+**Verdict: revise.** The mean is 0.01 under the pass line, and the issues below stop it passing.
+
+**Page notes**
+- **p1:** Cream ground with a brick-red spine, large title, and framed photo with caption. It reads as a designed cover.
+- **p2:** Interior hero with a smaller street photo and an italic pull-quote. The text column floats a little, but the page is rich.
+- **p3:** Plans with the title, intro and caption above and below. The plate tops and bottoms are not aligned.
+- **p4:** Third-floor plan large on the left, text right. The text scatters and the bottom third is empty.
+- **p5:** Section and south elevation, large and crisp. The best drawing page.
+- **p6:** Elevations and fireplace sheet. The left and right plates sit at different heights and sizes.
+- **p7:** Two large art-glass plates. Good.
+- **p8:** Index of sheets with eight thumbnails and the HABS credit. The thumbnails are small and the last one runs ragged.
+
+**Top 3 issues**
+1. pages 3 and 6, severity medium, category composition_balance: "Side-by-side plates do not share a top or bottom edge (p6 left plate starts ~50 px above the right), which breaks the grid." Evidence: p6 (and, slightly, p3). Route: `local_refine`.
+2. page 4, severity medium, category whitespace_intent: "Text blocks float at three unrelated heights beside the plan; ~30% of the page is empty at the bottom." Evidence: p4 title, one-liner and caption. Route: `local_refine`.
+3. page 8, severity medium, category asset_fidelity: "Index thumbnails are ~100 px and the sheets are illegible. The 09 thumbnail overruns the right edge, and the left text column is scattered." Evidence: p8 grid. Route: `pivot_layout`.
+
+## Ranking
+
+**1. Z, 2. Y, 3. X.** Y beats X because it adds the analysis page and a windows page, and it shows the elevations and fireplace large. X is the most template-like and has the worst thumbnail pages.
+
+Z does what neither X nor Y does. It gives the book a single visual identity (cream paper, brick accent, one type system, eyebrow labels, running footer). It also keeps every survey sheet large and aligned to a page rhythm that varies from cover to hero to plates to index, without filler diagrams.
+
+X and Y share the generic white template and a thumbnail page that duplicates later pages. Y's analysis page is the one thing Z lacks.
+
+**Evidence status:** this is a single LLM visual critique. It does not replace the domain-expert blind pairwise review. I changed no files and did not read `_unblind_key.json`.

@@ -1,0 +1,2 @@
+# Original vector PDF compositing — spike only
+Candidate tools can embed PDF pages; evaluate glyph metrics, clipping, layers, line weights, scale, print outcome. Do not rasterize vector drawings merely to make screenshot-based PDFs visually attractive. Run content hash, zoom render, and human comparison, then decide whether source pages remain editable as placed PDF objects or are intentionally immutable.

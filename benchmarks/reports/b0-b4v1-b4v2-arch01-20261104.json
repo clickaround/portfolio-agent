@@ -1,0 +1,48 @@
+{
+ "run_id": "b0-b4v1-b4v2-arch01-20261104",
+ "blinded": true,
+ "key": {
+  "X": "B4v1",
+  "Y": "B0",
+  "Z": "B4v2"
+ },
+ "critic": "claude -p, Read-only, 1 critic, pages rendered at 80 dpi",
+ "scores_mean": {
+  "B4v1": 0.39,
+  "B0": 0.71,
+  "B4v2": 0.57
+ },
+ "verdicts": {
+  "B4v1": "fail",
+  "B0": "revise",
+  "B4v2": "revise"
+ },
+ "ranking": [
+  "B0",
+  "B4v2",
+  "B4v1"
+ ],
+ "cost_usd": {
+  "B4v2": 0.331,
+  "critic": 0.252
+ },
+ "turns": {
+  "B4v2": 12
+ },
+ "seconds": {
+  "B4v2": 86
+ },
+ "gates": {
+  "B4v2": {
+   "pass": true,
+   "issues": 0,
+   "pages": 4,
+   "first_try": true
+  }
+ },
+ "invalid_runs": [
+  "b4v2 run 1: host blocked from running its own generator script; 0 pages; excluded"
+ ],
+ "reference_basis": "NO_EXTERNAL_REFERENCE",
+ "status": "n=1 per condition, synthetic assets, one LLM critic; NOT evidence of professional quality"
+}

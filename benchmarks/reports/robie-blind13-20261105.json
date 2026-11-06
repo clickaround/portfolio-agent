@@ -1,0 +1,13 @@
+{
+  "run_id": "robie-blind13-20261105",
+  "blinded": true,
+  "key": {"X": "LLMPLAN3", "Y": "LLMPLAN4_ATT07", "Z": "B0"},
+  "scores_mean": {"B0": 0.74, "LLMPLAN4_ATT07": 0.65, "LLMPLAN3": 0.54},
+  "dimensions": {"LLMPLAN4_ATT07": {"hierarchy": 0.70, "composition_balance": 0.62, "whitespace_intent": 0.58, "typography": 0.66, "sequence_narrative": 0.70, "asset_fidelity": 0.62, "domain_fit": 0.68, "anti_template": 0.66}},
+  "predictions_checked": {"P7 att05/07 vs att04: asset_fidelity >= +0.1, typography >= +0.05, mean >= 0.70": "asset_fidelity 0.60->0.62 NO; typography 0.64->0.66 NO; mean 0.66->0.65 NO (levels + lead-left-4 did not read as larger drawings: three details still thumbnails)"},
+  "critic_on_ours": ["p8 three detail sheets ~130 px thumbnails, caption 'Elevations II' does not describe the sheet (high)", "p9 diagram text 5-7 pt default serif (medium)", "p2 blank lower-left column, p6 gap under title (medium)", "praise: best rhythm and photography; p3 most editorial page in the set"],
+  "critic_on_B0": "consistent system on every page (eyebrow, rule, serif headline, body line, caption), drawings large and crisp, plans in full, no placeholder",
+  "fixes_for_attempt_08": ["p8 split into two pair pages (elevations / details) - no sheet below 12 % of the content area", "new ADVISORY DRAWING_SMALL (< 12 % content area) so the host sees thumbnails before a critic does", "hairline under the running head on every page (system consistency)", "p2 caption at the column foot; index captions name the sheets", "diagram-design re-run with 18 px sans labels", "DiagramAgent overlay page (English labels, book tokens) added"],
+  "prediction_P8": "attempt 08 vs 07: asset_fidelity >= +0.1 and composition_balance >= +0.05; mean >= 0.70",
+  "status": "n=1, one LLM critic (noise ~+-0.07); log evidence/logs/blind13-robie-b0-llmplan3-llmplan4att07.txt"
+}

@@ -1,0 +1,44 @@
+{
+ "run_id": "b0-b4v2-b4v4-arch01-20261104",
+ "blinded": true,
+ "key": {
+  "X": "B4v4",
+  "Y": "B0",
+  "Z": "B4v2"
+ },
+ "scores_mean": {
+  "B4v4": 0.5,
+  "B0": 0.74,
+  "B4v2": 0.6
+ },
+ "verdicts": {
+  "B4v4": "revise",
+  "B0": "revise",
+  "B4v2": "revise"
+ },
+ "ranking": [
+  "B0",
+  "B4v2",
+  "B4v4"
+ ],
+ "cost_usd": {
+  "B4v4": 0.454,
+  "critic": 0.218
+ },
+ "seconds": {
+  "B4v4": 114.5
+ },
+ "turns": {
+  "B4v4": 25
+ },
+ "gates": {
+  "B4v4": {
+   "pass": true,
+   "issues": 0,
+   "pages": 4
+  }
+ },
+ "reference_basis": "NO_EXTERNAL_REFERENCE",
+ "status": "n=1, synthetic, one LLM critic; not professional-quality evidence",
+ "caveat": "whether the host actually opened the previews is not verifiable from the log (25 turns, $0.45 suggest it did)"
+}

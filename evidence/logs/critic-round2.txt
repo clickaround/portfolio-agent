@@ -1,0 +1,31 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 6 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+```json
+{
+  "scores": {
+    "A": {"hierarchy":0.50,"composition_balance":0.40,"whitespace_intent":0.35,"typography":0.50,"sequence_narrative":0.45,"asset_fidelity":0.55,"domain_fit":0.40,"anti_template":0.35, "mean":0.44},
+    "B": {"hierarchy":0.52,"composition_balance":0.45,"whitespace_intent":0.40,"typography":0.50,"sequence_narrative":0.45,"asset_fidelity":0.55,"domain_fit":0.42,"anti_template":0.38, "mean":0.46},
+    "C": {"hierarchy":0.55,"composition_balance":0.45,"whitespace_intent":0.42,"typography":0.50,"sequence_narrative":0.45,"asset_fidelity":0.55,"domain_fit":0.42,"anti_template":0.40, "mean":0.47}
+  },
+  "issues": {
+    "A": [
+      {"page":4,"severity":"high","category":"composition_balance","description":"Elevation is a small floating block pushed to the right with a huge empty left and bottom; caption stranded bottom-left, detached from the drawing.","suggested_route":"pivot_layout"},
+      {"page":3,"severity":"high","category":"domain_fit","description":"Plan drawing is offset right/top with unequal margins; caption split into two unrelated lines at different x positions. Drawing is not hero-scaled for architecture.","suggested_route":"local_refine"},
+      {"page":2,"severity":"high","category":"composition_balance","description":"Elevation thumbnail is tiny and top-left, model photo bottom-right, large dead void between; body text is 3 short lines with no relation to either image.","suggested_route":"pivot_layout"}
+    ],
+    "B": [
+      {"page":4,"severity":"high","category":"composition_balance","description":"Elevation is small, hugging the top-left, with the right ~50% of the page empty; caption floats far below the drawing.","suggested_route":"pivot_layout"},
+      {"page":2,"severity":"high","category":"whitespace_intent","description":"Text, model photo and elevation form a staggered, unaligned arrangement; empty band between text and photo and under the elevation reads as leftover.","suggested_route":"pivot_layout"},
+      {"page":5,"severity":"medium","category":"sequence_narrative","description":"Closing page is a near-empty page with two tiny lines, mid-left; no closing image, contact or sign-off. Pages 3 and 4 are visually weak peaks (small linework).","suggested_route":"revise_story"}
+    ],
+    "C": [
+      {"page":4,"severity":"high","category":"composition_balance","description":"Elevation is only ~half the page width, anchored top-left with the right half empty; caption is far from the drawing. Not drawing-led.","suggested_route":"pivot_layout"},
+      {"page":2,"severity":"high","category":"whitespace_intent","description":"Page 2 crowded to the top and edges with large empty gaps; the text line runs very wide (~340px) while elevation hugs the right edge.","suggested_route":"pivot_layout"},
+      {"page":1,"severity":"medium","category":"hierarchy","description":"Cover: image top-left, title bottom-right of it with tiny 'Portfolio' subtitle; reading path works but the lower-left quadrant is dead and the title is small relative to the page.","suggested_route":"local_refine"}
+    ]
+  },
+  "ranking": ["C","B","A"],
+  "verdict": {"A":"revise","B":"revise","C":"revise"},
+  "notes": "All pass deterministic gates (the fixtures are synthetic, so judgment is layout only). Differences are marginal. None meets pass (mean ≥0.75, no high issues). Shared defects: p4 elevation undersized, p5 closing page empty, tiny captions and source labels. A is the most unbalanced (floating drawings, uneven margins). C is best by a thin margin because the drawings are largest and margins are most consistent."
+}
+```

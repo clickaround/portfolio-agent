@@ -1,0 +1,12 @@
+{
+  "run_id": "robie-blind15-20261105",
+  "blinded": true,
+  "key": {"X": "LLMPLAN4_ATT10", "Y": "B0", "Z": "LLMPLAN4_ATT08"},
+  "scores_mean": {"B0": 0.74, "LLMPLAN4_ATT10": 0.67, "LLMPLAN4_ATT08": 0.63},
+  "predictions_checked": {"P9 att10 vs att08: anti_template >= +0.08, typography >= +0.05, mean >= 0.70": "mean 0.63->0.67 (+0.04) - partial; 0.70 NOT reached (third round in a row at ~0.07 below B0)"},
+  "critic_on_ours_att10": ["p10 four diagrams: redundant labelling (internal title + 'not to scale' x4 + page caption), default serif (high, anti_template)", "p4 analysis overlays tiny, legend in Korean (high, asset_fidelity)", "p5/6/8/9 dead strip in the bottom 20-25 % under landscape drawings (medium, whitespace_intent)"],
+  "critic_on_B0": "real cover with hero photo + title block; eyebrow-rule-title system and same footer every page; drawings large with short captions; no placeholder diagram page, no Korean legend",
+  "fixes_for_attempt_11": ["diagram-design re-run: no internal title/footer, sans only, drawing fills the canvas", "DiagramAgent legend strings -> English (style data)", "overlays one per page (plate) instead of a pair", "pair-row / plate: when > 15 % of the band is left under the drawings, anchor the row to the bottom margin so the void sits under the heading (deliberate) instead of under the captions (leftover)"],
+  "prediction_P10": "att11 vs att10: whitespace_intent >= +0.08, asset_fidelity >= +0.08, anti_template >= +0.05; mean >= 0.71",
+  "status": "n=1, one LLM critic (noise ~+-0.07); log evidence/logs/blind15-robie-b0-att08-att10.txt"
+}

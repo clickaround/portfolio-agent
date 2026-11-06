@@ -1,0 +1,42 @@
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 6 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+```json
+{
+  "candidates": {
+    "A": {
+      "scores": {"hierarchy":0.55,"composition_balance":0.45,"whitespace_intent":0.4,"typography":0.45,"sequence_narrative":0.4,"asset_fidelity":0.5,"domain_fit":0.4,"anti_template":0.35},
+      "mean": 0.44,
+      "issues": [
+        {"page":2,"severity":"high","category":"asset_fidelity","description":"Elevation thumbnail at bottom-right is tiny and washed out, illegible and floating with no caption; reads as leftover asset.","suggested_route":"pivot_layout"},
+        {"page":4,"severity":"high","category":"composition_balance","description":"Elevation image is pushed right with a 3-line caption stranded top-left; large empty band below the drawing and an unexplained left void.","suggested_route":"pivot_layout"},
+        {"page":3,"severity":"medium","category":"typography","description":"Caption is a 3-line sliver in the top-left, tiny text; plan fills the page so text is an afterthought. Plan nearly touches the footer rule.","suggested_route":"revise_type_system"}
+      ]
+    },
+    "B": {
+      "scores": {"hierarchy":0.55,"composition_balance":0.5,"whitespace_intent":0.45,"typography":0.45,"sequence_narrative":0.4,"asset_fidelity":0.5,"domain_fit":0.45,"anti_template":0.4},
+      "mean": 0.46,
+      "issues": [
+        {"page":2,"severity":"high","category":"asset_fidelity","description":"Elevation thumbnail is tiny and low-contrast at bottom-left, detached from both the text and the hero; illegible at page size.","suggested_route":"pivot_layout"},
+        {"page":4,"severity":"high","category":"composition_balance","description":"Elevation sits left, but the caption is squeezed into a 4–5 line narrow column at far right (words broken 'site / description'); big empty middle and lower areas.","suggested_route":"local_refine"},
+        {"page":3,"severity":"medium","category":"typography","description":"Caption is a 4-line narrow column at top-right, tiny and wrapping awkwardly; plan dominates with no hierarchy against text.","suggested_route":"revise_type_system"}
+      ]
+    },
+    "C": {
+      "scores": {"hierarchy":0.55,"composition_balance":0.5,"whitespace_intent":0.45,"typography":0.5,"sequence_narrative":0.4,"asset_fidelity":0.5,"domain_fit":0.45,"anti_template":0.4},
+      "mean": 0.47,
+      "issues": [
+        {"page":2,"severity":"high","category":"asset_fidelity","description":"Elevation thumbnail is tiny, faded and stranded bottom-left; body text is a narrow column with repeated placeholder sentence; image is cramped.","suggested_route":"pivot_layout"},
+        {"page":4,"severity":"high","category":"composition_balance","description":"Elevation is left-aligned with right ~35% of page empty except a small caption in the top-right corner; large blank area under the drawing.","suggested_route":"pivot_layout"},
+        {"page":3,"severity":"medium","category":"composition_balance","description":"Plan bleeds close to the page edges and caption jammed in the top-right corner overlapping the grid's margin zone; text feels crammed.","suggested_route":"local_refine"}
+      ]
+    }
+  },
+  "shared_issues": [
+    {"page":5,"severity":"medium","category":"sequence_narrative","description":"Closing page is a near-empty page with a heading and one line; the sequence is cover/concept/plan/elevation/credits with no overview or detail rhythm, and the plan and elevation pages share the same full-bleed-image-plus-caption pattern.","suggested_route":"revise_story"},
+    {"page":1,"severity":"medium","category":"hierarchy","description":"Cover is a small 'Portfolio' subtitle with a hero image only partially filling the page; B/C place the title beside the image with an awkward right-hand lower void.","suggested_route":"pivot_layout"}
+  ],
+  "ranking": ["C","B","A"],
+  "ranking_note": "Margins are very close (0.47 / 0.46 / 0.44). C and B are nearly tied; A is slightly weaker because the elevation page has an unexplained left void and the cover stacks title under the image with a lot of empty bottom/right area. None are close to passing.",
+  "verdict": {"A":"revise","B":"revise","C":"revise"},
+  "overall": "No candidate passes (mean < 0.75, multiple high issues). Ranking is low-confidence; all share the same defects (tiny elevation thumbnail on p2, stranded captions, sparse closing page)."
+}
+```

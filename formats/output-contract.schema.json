@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OutputSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "medium",
+    "width_mm",
+    "height_mm",
+    "unit",
+    "page_count",
+    "margin_mm",
+    "bleed_mm",
+    "safe_mm"
+  ],
+  "properties": {
+    "medium": {
+      "enum": [
+        "print",
+        "presentation",
+        "digital"
+      ]
+    },
+    "width_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 3000
+    },
+    "height_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 3000
+    },
+    "unit": {
+      "const": "mm"
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 500
+    },
+    "margin_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "bleed_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "safe_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "gutter_mm": {
+      "type": "number",
+      "minimum": 0
+    },
+    "facing_pages": {
+      "type": "boolean"
+    },
+    "output_types": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "pdf",
+          "pptx",
+          "svg",
+          "png",
+          "html",
+          "native"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "pixels_per_inch_target": {
+      "type": "number",
+      "minimum": 1
+    },
+    "raster_scale": {
+      "type": "number",
+      "minimum": 0.25
+    },
+    "binding_edge": {
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "none"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-agent",
+  "version": "0.4.0",
+  "description": "Portable Portfolio Agent compatibility manifest",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Portfolio Agent",
+    "shortDescription": "Case-grounded portfolio design workflows",
+    "developerName": "Portfolio Agent Project"
+  }
+}

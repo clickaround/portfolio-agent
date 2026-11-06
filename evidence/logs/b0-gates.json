@@ -1,0 +1,32 @@
+{
+ "G1_source_hash_intact": true,
+ "pages": 5,
+ "size_ok": true,
+ "images_placed": 4,
+ "distorted": [],
+ "margin_violations": [
+  [
+   2,
+   "text"
+  ],
+  [
+   3,
+   "text"
+  ],
+  [
+   4,
+   "text"
+  ],
+  [
+   5,
+   "text"
+  ]
+ ],
+ "vector_drawing_page": [
+  [
+   3,
+   64
+  ]
+ ],
+ "assets_total": 5
+}

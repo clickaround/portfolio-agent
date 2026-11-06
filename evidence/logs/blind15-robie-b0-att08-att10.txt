@@ -1,0 +1,108 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+# Blind critique of Robie House candidates X, Y and Z
+
+I read the rubric first, then every page: X 11 pages, Y 8, Z 12. All scores are from page images only. This is a single LLM critic, not the expert pairwise review the rubric requires.
+
+## Candidate X (11 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.72 |
+| composition_balance | 0.62 |
+| whitespace_intent | 0.58 |
+| typography | 0.66 |
+| sequence_narrative | 0.68 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.72 |
+| anti_template | 0.66 |
+| **MEAN** | **0.67** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1:** Full-bleed street photo with an overlaid title card. Strong, but the card is generic.
+- **p2:** Photo-led concept page. Clear hero and good title/body/caption order.
+- **p3:** Interior photo with a dark text card. Image-led and confident.
+- **p4:** The only interpretive page, with annotated plan and section. Annotation text is tiny.
+- **p5, p6, p8, p9:** Drawings are large and legible. They stop at about 75% of the page height, which leaves an empty bottom band beside the terracotta spine.
+- **p7:** Section and elevation are large. The caption is a heavy italic block that matches no other caption.
+- **p10:** Four small diagrams, each with three redundant labels.
+- **p11:** Text-only closing page with an empty middle.
+- The warm paper tone and terracotta spine give the book a consistent frame. This is the main reason X beats Z.
+
+**Top 3 issues**
+1. `page: 10`, `severity: high`, `category: anti_template`, `description:` Four small, thinly drawn diagrams with default-serif labels. Each carries a heading, a "not to scale" line and a caption, so the labelling is redundant. `evidence:` "Conceptual diagram from the project text, not to scale" repeats four times, plus a caption under each. `suggested_route: pivot_layout`
+2. `page: 4`, `severity: high`, `category: asset_fidelity`, `description:` The analysis overlays are tiny. The legend text is in Korean in an English book and is unreadable at page size. `evidence:` Legend glyphs (e.g. "주요 동선축") appear at lower-left of both drawings. `suggested_route: local_refine`
+3. `page: 5, 6, 8, 9`, `severity: medium`, `category: whitespace_intent`, `description:` Drawings end around y≈450 of 596, leaving a dead strip at the bottom that reads as leftover. `evidence:` Empty band below the captions on all four pages. `suggested_route: local_refine`
+
+## Candidate Y (8 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.78 |
+| composition_balance | 0.70 |
+| whitespace_intent | 0.72 |
+| typography | 0.74 |
+| sequence_narrative | 0.74 |
+| asset_fidelity | 0.72 |
+| domain_fit | 0.74 |
+| anti_template | 0.76 |
+| **MEAN** | **0.74** |
+
+**Verdict: revise.** It is just under the 0.75 pass line, and the issues below include a high one.
+
+**Page notes**
+- **p1:** Designed cover. Large serif title, accent rule, photo with caption, tidy metadata. The best cover of the three.
+- **p2:** Interior hero plus a smaller street photo. Left-column text blocks float at unrelated heights, and the italic pull-quote sits far from the body.
+- **p3:** Two plans side by side, with a large gap between the title and the drawings.
+- **p4:** A single plan on a cream ground. Page-wide dead space, plus a trivial one-line statement.
+- **p5:** Section and elevation are large and clear, with the text in a narrow right column. The strongest drawing page.
+- **p6:** The two sheets are offset vertically and are different sizes.
+- **p7:** Clean two-up of the window sheets.
+- **p8:** Index of eight sheets. The thumbnails are small and pale.
+- The numbered eyebrow with accent rule, consistent footer and page numbers form a clear system.
+- Y has no analytic overlay and no diagrams, so it shows the survey but does not interpret it.
+
+**Top 3 issues**
+1. `page: 8`, `severity: high`, `category: asset_fidelity`, `description:` Index thumbnails are too small and pale to read, and the lower third of the page is empty. `evidence:` Two rows of about 100 px thumbnails at faint contrast. `suggested_route: pivot_layout`
+2. `page: 4`, `severity: medium`, `category: composition_balance`, `description:` The plan sits in the upper-left. The right column holds a floating one-line statement with a gap above it, and the bottom 30% is empty. `evidence:` "The third floor holds the bedrooms." sits mid-column, detached from the title. `suggested_route: local_refine`
+3. `page: 2, 6`, `severity: medium`, `category: composition_balance`, `description:` Elements do not share edges. On p2 the second photo is shorter than the caption column, and on p6 the two drawings are offset and differently sized. `evidence:` p6 left drawing top ≈y160, right ≈y210. `suggested_route: local_refine`
+
+## Candidate Z (12 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.66 |
+| composition_balance | 0.58 |
+| whitespace_intent | 0.52 |
+| typography | 0.64 |
+| sequence_narrative | 0.66 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.70 |
+| anti_template | 0.58 |
+| **MEAN** | **0.63** |
+
+**Verdict: revise.**
+
+**Page notes**
+- **p1–p3:** Same photo-led opening as X, on plain white.
+- **p4:** Same analysis page as X, with the same tiny overlays and Korean legend.
+- **p5:** Survey index with six pale thumbnails of unequal size. The left column is empty below the intro.
+- **p6–p10:** Same drawings as X, with the same empty lower band. On white, with no frame, the voids read as accidental.
+- **p11:** Same diagram page as X.
+- **p12:** Same closing page as X.
+- Z has the same content as X on a white ground without the spine, plus the p5 index.
+
+**Top 3 issues**
+1. `page: 5`, `severity: high`, `category: composition_balance`, `description:` Six pale, unequal thumbnails in a loose grid with no alignment to the text column. This repeats p6–p10 at lower fidelity. `evidence:` Thumbnails range from roughly 170 to 190 px wide, and the left column below the intro is empty. `suggested_route: pivot_layout`
+2. `page: 4, 7, 8, 9, 10, 11`, `severity: high`, `category: whitespace_intent`, `description:` The bottom 20–25% is blank on every content page. With no frame or spine, it reads as an unfinished page. `evidence:` Captions end at about y≈450 of 596 on white. `suggested_route: local_refine`
+3. `page: 11`, `severity: medium`, `category: anti_template`, `description:` The diagrams carry the same redundant labelling as X p10 and look like generic placeholders. On a white ground there is no brand cue to offset that. `evidence:` Same three-label repetition under each diagram. `suggested_route: pivot_layout`
+
+## Ranking
+
+**Y > X > Z.** Y is the only candidate near the pass line. X is the same content as Z with a stronger frame, and it drops Z's weak index page, so X beats Z.
+
+**What the best one (Y) does that the others do not:** Y has a real cover, with a hero photo and a title block in a clear hierarchy. A consistent eyebrow-rule-title system and the same footer on every page give it a recognizable editorial voice. Its section/elevation and window pages place the drawings large and legible with short captions, and it avoids the placeholder diagram page and the Korean legend text that weaken X and Z.
+
+None of the three passes. Y's gap to pass is mainly the p8 index and the unbalanced pages (p2, p4, p6). X would need the p10 diagrams and the p4 legend fixed.

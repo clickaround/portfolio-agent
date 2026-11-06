@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1.0",
+  "doc_title": "Courtyard Housing",
+  "domain": "architecture",
+  "keywords": ["housing", "courtyard", "timber", "urban infill"],
+  "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1c1c1c",
+    "accent": "#6b4a2b",
+    "display": "serif"
+  },
+  "pages": [
+    {
+      "role": "cover",
+      "assets": ["img01"],
+      "section": "Courtyard Housing",
+      "title": "Courtyard Housing",
+      "tagline": "Urban infill housing around a shifted courtyard"
+    },
+    {
+      "role": "split",
+      "assets": ["img03"],
+      "section": "Concept",
+      "title": "A shifted courtyard under a long timber roof",
+      "text": "The scheme organizes its public program around a shifted courtyard. A long timber roof spans this shared ground and holds the housing together as one urban infill block.",
+      "caption": "The long timber roof as one continuous line.",
+      "variant": 0
+    },
+    {
+      "role": "hero",
+      "assets": ["plan01"],
+      "section": "Plan",
+      "caption": "Plan. The public program gathers around the shifted courtyard."
+    },
+    {
+      "role": "split",
+      "assets": ["img04"],
+      "section": "Site",
+      "title": "One long timber roof over the infill",
+      "text": "The site description is synthetic and serves tests only. Read the long timber roof as a single continuous line above the infill housing.",
+      "caption": "Timber roof over the shared ground.",
+      "variant": 1
+    },
+    {
+      "role": "hero",
+      "assets": ["img02"],
+      "section": "Courtyard",
+      "caption": "Housing and public program meet at the shifted courtyard."
+    },
+    {
+      "role": "closing",
+      "assets": [],
+      "section": "Role",
+      "statement": "Individual work over fourteen weeks, one urban infill scheme, around a shifted courtyard, under one long timber roof."
+    }
+  ]
+}

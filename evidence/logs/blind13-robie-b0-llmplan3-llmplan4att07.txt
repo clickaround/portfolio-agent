@@ -1,0 +1,110 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 5 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+# Blind critique: X, Y and Z (Robie House, HABS survey)
+
+I read the rubric and every page PNG: X has 12 pages, Y has 10 (this is the bleed candidate, since its pages are about 836×596), and Z has 8. I saw no deterministic-gate results. The scores are my own visual judgment.
+
+## Candidate X (12 pp)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.62 |
+| composition_balance | 0.50 |
+| whitespace_intent | 0.45 |
+| typography | 0.62 |
+| sequence_narrative | 0.60 |
+| asset_fidelity | 0.50 |
+| domain_fit | 0.55 |
+| anti_template | 0.45 |
+| **MEAN** | **0.54** |
+
+**Verdict:** revise. It carries high-severity issues, and it is the weakest of the three.
+
+**Page notes**
+- **p1:** The cover photo is strong. The right column holds tiny grey text and is otherwise empty.
+- **p2:** The photo floats with empty space below it. The layout is acceptable.
+- **p3:** The interior photo is large and good. The caption is detached at the bottom, and the "02 / CONCEPT" label is stranded beside it.
+- **p4:** Six survey sheets sit in a ragged 4+2 grid at thumbnail size, and about 60% of the page is empty.
+- **p5–p6:** The plans are good, large and legible. p6 leaves its lower third empty.
+- **p7–p8:** The drawings are large and crisp, which fits the domain. Both pages leave dead space at the bottom.
+- **p9:** Two plates with captions. This is solid.
+- **p10:** The window sheet is cropped at the right edge, and its second plate is cut off.
+- **p11:** Placeholder diagrams ("Volume A / Volume B") with default-serif text and unreadable thumbnails. The title "Process placeholders, not survey facts." is self-defeating.
+- **p12:** The closing page is clean.
+
+**Top 3 issues**
+1. `page 11 | severity high | category anti_template | description: Process page shows crude placeholder diagrams (Volume A/B boxes) plus three unreadable thumbnails, and the title calls them placeholders. | evidence: boxes at the page centre; thumbnails are about 150 px wide with illegible text | suggested_route: revise_story`
+2. `page 4 | severity high | category asset_fidelity | description: Six sheets are shrunk to thumbnails in a ragged 4+2 grid and are not legible. The lower half of the page is empty. | evidence: the sheets are about 110 px wide; no sheet is labelled | suggested_route: pivot_layout`
+3. `page 10 | severity high | category asset_fidelity | description: The art-glass sheet is cropped at the right page edge, so the second plate and its scale bar are cut off. | evidence: the right plate is truncated at x≈787 and the scale text reads "SCALE 3" = 1'-0'..." | suggested_route: local_refine`
+
+## Candidate Y (10 pp, 3 mm bleed)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.70 |
+| composition_balance | 0.62 |
+| whitespace_intent | 0.58 |
+| typography | 0.66 |
+| sequence_narrative | 0.70 |
+| asset_fidelity | 0.62 |
+| domain_fit | 0.68 |
+| anti_template | 0.66 |
+| **MEAN** | **0.65** |
+
+**Verdict:** revise. It has the best rhythm and the best use of photography. Its detail pages are weak.
+
+**Page notes**
+- **p1:** A full-bleed cover photo with a white title card. The photo works. The card feels generic and sits over the trees.
+- **p2:** A half-bleed photo with a text column at left. The lower-left of that column is empty.
+- **p3:** A full-bleed interior photo with a dark caption card that has a real headline. This is the most editorial page in the set.
+- **p4:** A survey index with labelled sheets. The labels "Elevations" and "Elevations II" don't describe the sheets. The thumbnails are small but readable.
+- **p5:** Two plans with captions. This is good.
+- **p6:** The plan is large. The title sits at the right with a long gap beneath it, and the sheet has no caption.
+- **p7:** The section and elevation sheet, large, with a caption. This is good.
+- **p8:** The elevation is large. Three stacked detail sheets at the right are tiny and pale, and their captions are weak.
+- **p9:** Four real concept diagrams (axon, layer stack, flow, roof) in a 2×2 grid. They are honest and legible but small, and they use a default serif.
+- **p10:** A closing page that repeats the p12 idea of X. It is clean.
+
+**Top 3 issues**
+1. `page 8 | severity high | category asset_fidelity | description: The art-glass and fireplace details are cut down to thumbnails of about 130 px, with captions like "Elevations II" that don't match their content. | evidence: right-hand column, three tiny sheets with a wrongly captioned top one | suggested_route: pivot_layout`
+2. `page 9 | severity medium | category typography | description: The diagram text is 5–7 pt and set in a default serif. It does not match the title typeface and is hard to read at page size. | evidence: all four panels have axis text and labels that are barely legible | suggested_route: revise_type_system`
+3. `pages 2, 6 | severity medium | category whitespace_intent | description: Large empty areas look leftover. p2 has a blank lower-left text column, and p6 has a gap between the title and the drawing. | evidence: p2 bottom-left is about 300×350 px of blank white; p6 is similar at the right | suggested_route: local_refine`
+
+## Candidate Z (8 pp)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.78 |
+| composition_balance | 0.72 |
+| whitespace_intent | 0.70 |
+| typography | 0.76 |
+| sequence_narrative | 0.74 |
+| asset_fidelity | 0.72 |
+| domain_fit | 0.76 |
+| anti_template | 0.74 |
+| **MEAN** | **0.74** |
+
+**Verdict:** revise, but it is only 0.01 under the pass bar. A critic could pass it if the issues below are fixed.
+
+**Page notes**
+- **p1:** A real cover with an accent bar, the title "Robie House", a rule, a photo and a caption. The hierarchy is clear.
+- **p2:** Two photos with captions, an intro paragraph and a pull quote. It is a cohesive spread, though the pull quote is a little far from the small photo.
+- **p3:** Two plans, large and legible, with a caption for each. The intro text sits at top right, away from the title, with a gap before the drawings.
+- **p4:** The third-floor plan is large. The title is at the right with a loose gap before a short body line. The page is a little thin but deliberate.
+- **p5:** The section and elevation sheet is large and crisp, which fits the domain. The caption is small.
+- **p6:** The elevations and the fireplace plate are shown together. The plates have different widths and top edges, so they look misaligned.
+- **p7:** The two window sheets are both legible. The right plate is cut at its edge, but that is probably the source sheet.
+- **p8:** An index of nine sheets plus an author note. The thumbnails are small and the lower-left is empty, but it works as a finale.
+
+**Top 3 issues**
+1. `page 6 | severity medium | category composition_balance | description: The two plates have different widths and top edges, so the page looks misaligned, and the fireplace plate floats lower than the elevation sheet. | evidence: elevation plate spans x≈38–450 at y≈160; fireplace plate spans x≈468–780 at y≈238 | suggested_route: local_refine`
+2. `pages 3, 4 | severity medium | category whitespace_intent | description: Text blocks are scattered and detached from their titles. p3 has intro text at top right with a gap, and p4 has a headline, body line and caption spread over the column. | evidence: p3 text at x≈413, y≈45 while the title is at x≈38; p4 has a gap of about 130 px between the title and the body | suggested_route: local_refine`
+3. `page 8 | severity medium | category asset_fidelity | description: The index thumbnails are only about 100 px wide and cannot be read, and the lower-left of the page is empty. | evidence: the eight thumbnails are small; the left column has two small notes and then blank space | suggested_route: pivot_layout`
+
+## Ranking
+
+**Z > Y > X.** None passes.
+
+Z is the only book that holds a consistent grid and system across every page. Each page has an eyebrow, a rule, a serif headline, a body line and a caption, and the drawings stay large and crisp throughout. It also shows the plans in full instead of as thumbnails, and it has no placeholder content.
+
+Y has the best editorial moments: the full-bleed cover and the p3 card with a headline. Its detail pages are thumbnail-sized, and the colour and type system is less consistent. X's 12 pages are padded with weak pages (p4 and p11 are the worst), and it has the cropped sheet on p10.

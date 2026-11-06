@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-01",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "hero", "kind": "image", "asset_id": "img01", "box_mm": [12, 12, 216, 135], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "rule", "kind": "shape", "asset_id": null, "box_mm": [12, 156, 273, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1c1c1c"}},
+    {"id": "title", "kind": "text", "asset_id": null, "text": "Courtyard Housing", "box_mm": [12, 161, 200, 22], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 40, "style": {"font": "georgia", "color": "#1c1c1c", "line_height": 1.1}},
+    {"id": "keywords", "kind": "text", "asset_id": null, "text": "Housing · Courtyard · Timber · Urban infill", "box_mm": [12, 186, 200, 12], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 14, "style": {"font": "georgiai", "color": "#2f5d62"}},
+    {"id": "role-label", "kind": "text", "asset_id": null, "text": "Role", "box_mm": [240, 12, 45, 6], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 8, "style": {"font": "malgunbd", "color": "#2f5d62"}},
+    {"id": "role-text", "kind": "text", "asset_id": null, "text": "Individual work, 14 weeks.", "box_mm": [240, 19, 45, 16], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "malgun", "color": "#1c1c1c", "line_height": 1.4}}
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SpecialistTaskResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "role",
+    "status",
+    "changed_paths",
+    "evidence_paths",
+    "claims",
+    "next_actions"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^T[0-9]{3}$"
+    },
+    "role": {
+      "enum": [
+        "integration-lead",
+        "case-curator",
+        "repo-auditor",
+        "domain-expert",
+        "layout-engineer",
+        "quality-reviewer"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "PARTIAL"
+      ]
+    },
+    "changed_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "statement",
+          "evidence_level"
+        ],
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "evidence_level": {
+            "enum": [
+              "REPRODUCED",
+              "CODE_INSPECTED",
+              "DOC_REPORTED",
+              "HYPOTHESIS",
+              "BLOCKED"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost_usd": {
+      "type": "number",
+      "minimum": 0
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

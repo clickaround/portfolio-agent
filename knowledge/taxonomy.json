@@ -1,0 +1,49 @@
+{
+  "version": "0.1.0",
+  "domains": [
+    "architecture",
+    "ux-product",
+    "graphic-branding",
+    "photography"
+  ],
+  "purposes": [
+    "job_application",
+    "graduate_admission",
+    "client_pitch",
+    "competition",
+    "showcase"
+  ],
+  "media": [
+    "print_pdf",
+    "editable_design",
+    "presentation",
+    "web"
+  ],
+  "page_roles": [
+    "hero",
+    "context",
+    "concept",
+    "process",
+    "drawing",
+    "comparison",
+    "evidence",
+    "detail",
+    "outcome",
+    "closing"
+  ],
+  "asset_roles": [
+    "plan",
+    "section",
+    "elevation",
+    "render",
+    "axonometric",
+    "diagram",
+    "model_photo",
+    "prototype",
+    "screen",
+    "photograph",
+    "caption",
+    "credit",
+    "source_pdf_region"
+  ]
+}

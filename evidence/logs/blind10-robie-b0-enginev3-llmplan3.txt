@@ -1,0 +1,244 @@
+```
+CRITIQUE — Robie House portfolios (A4 landscape)
+Pages viewed: X=10, Y=12, Z=8. Rubric read first.
+
+===============================================================
+X  (10 pp)
+===============================================================
+Scores
+ hierarchy             0.60
+ composition_balance   0.45
+ whitespace_intent     0.40
+ typography            0.60
+ sequence_narrative    0.50
+ asset_fidelity        0.55
+ domain_fit            0.60
+ anti_template         0.45
+ MEAN                  0.52
+ VERDICT: revise (borderline fail)
+
+Page notes
+ - p1 cover: title and photo are fine, but the right column is
+   mostly empty and its small gray text is almost illegible.
+ - p2: a dining-room photo sits above a blank lower third. The
+   text is a stub, and the section is labelled "Concept".
+ - p3: four conceptual diagrams are shown as white cards. They
+   are crude and have tiny internal text. Placed this early,
+   they weaken the portfolio.
+ - p4: the ground-floor plan is a fair size, but it is wedged
+   against the left edge with a dead strip below.
+ - p5: a photo and a plan share a page. The captions are weak
+   ("Drawing 02"), and one of them is a long run-on line.
+ - p6: the third-floor plan sits off to the right with nothing
+   balancing it, and the heading floats at left.
+ - p7: section and south elevation are large, which is good.
+   The three small elevations and the details are shrunk to
+   thumbnails that are unreadable. The sheet crops are tight.
+ - p8: both window sheets are cut by the right margin. The
+   right sheet's scale bar and label are clipped. The page
+   has a dead bottom third.
+ - p9: an "Index of sheets" page of faint thumbnails with
+   generic captions ("sheet 02"). A lot of empty space.
+ - p10: a statement page with four keyword labels. The
+   headline is ok, but it is a generic close.
+ - Section titles ("Drawings", "Drawings II", "Drawings III")
+   are generic labels, not argument. There is no headline
+   voice.
+ - The layout is repeated and flips left/right without
+   reason: image-left/text-right, then centered heading, then
+   left heading.
+
+Top 3 issues
+ 1. page=8, severity=high, category=asset_fidelity,
+    description="Window sheet 02 is cropped at the right page
+    edge. Scale bar and label are cut off."
+    evidence="The right-hand sheet runs to the page edge and
+    its scale text is clipped to 'SCALE 3/' (as shown on p8)."
+    suggested_route=local_refine
+ 2. page=3, severity=high, category=sequence_narrative,
+    description="Placeholder-looking schematic cards appear
+    before any survey drawing, at the start of the portfolio.
+    They look amateur beside the HABS sheets."
+    evidence="Four white boxes with 6pt Times text; plain
+    boxes labelled 'Volume A / B' (p3)."
+    suggested_route=revise_story
+ 3. page=7, severity=medium, category=asset_fidelity,
+    description="Elevation and detail sheets are shrunk to
+    thumbnails, so labels and linework cannot be read."
+    evidence="Two small sheets in the right column of p7;
+    their text is not legible at page size."
+    suggested_route=pivot_layout
+ (Also: weak captions, generic titles and dead space on p2, p6,
+  p8 and p9 point to a general whitespace_intent problem.)
+
+===============================================================
+Y  (12 pp)
+===============================================================
+Scores
+ hierarchy             0.70
+ composition_balance   0.60
+ whitespace_intent     0.50
+ typography            0.72
+ sequence_narrative    0.75
+ asset_fidelity        0.62
+ domain_fit            0.72
+ anti_template         0.55
+ MEAN                  0.65
+ VERDICT: revise
+
+Page notes
+ - Pages carry a statement-style headline ("Every line of
+   the house runs with the street", "Ground floor serves;
+   the main floor is one space"). This gives a real
+   narrative voice.
+ - Order is logical: cover, concept (exterior photo, then
+   interior photo), survey overview, plans (ground and main,
+   then third), section, elevations, details, process,
+   close.
+ - Drawings appear at a decent size: p5 (two plans
+   side by side), p6, p7, p8 (West/East/North plus the
+   North elevation, fairly large).
+ - p3: a full-bleed interior photo with the caption in the
+   footer. This is a good rhythm change, though the caption
+   is tiny.
+ - p4: thumbnails of six sheets, with an awkward 4+2 grid
+   and a large empty lower half. It is repetitive with p5
+   onwards, and it has no captions.
+ - p2 and p6: the text column is small relative to the image
+   and leaves dead whitespace under it.
+ - p9: two details at a good size. The caption style is
+   consistent (serif title and sans description).
+ - p10: only one of the two window sheets is shown, and it
+   is cropped on the right. The italic credit line is set
+   too large and is not really a caption. This page is
+   less strong because of the cropping.
+ - p11: placeholder diagrams are put near the end, with a
+   header that admits it: "Process placeholders, not survey
+   facts." It is honest, but it reads as scaffolding. One
+   large crude diagram plus three thumbnails is a weak page.
+ - p12: the close duplicates the cover idea; it is the
+   same layout as X's last page.
+ - The header, folio and orange kicker are consistent
+   throughout.
+
+Top 3 issues
+ 1. page=11, severity=high, category=anti_template,
+    description="Crude schematic diagrams enlarged to a
+    full page with a self-deprecating headline. It looks
+    like leftover placeholder content."
+    evidence="Giant 'Volume A / Volume B' boxes, with
+    'Process placeholders, not survey facts.' as title."
+    suggested_route=revise_story
+ 2. page=10, severity=high, category=asset_fidelity,
+    description="The window sheet is cropped by the page
+    edge, so the second window drawing and its scale bar are
+    cut. The caption is a large italic paragraph that
+    reads like body copy."
+    evidence="Right-hand pane is cut at the page margin; the
+    scale text reads 'SCALE 3/'."
+    suggested_route=local_refine
+ 3. page=4, severity=medium, category=composition_balance,
+    description="Six small, faint thumbnails sit in a 4+2
+    grid with no captions, leaving a large blank lower half.
+    The page adds nothing the plan pages do not show."
+    evidence="Two rows of faint sheet previews on the upper
+    right, with the whole bottom half empty."
+    suggested_route=pivot_layout
+
+===============================================================
+Z  (8 pp)
+===============================================================
+Scores
+ hierarchy             0.80
+ composition_balance   0.72
+ whitespace_intent     0.68
+ typography            0.80
+ sequence_narrative    0.78
+ asset_fidelity        0.80
+ domain_fit            0.78
+ anti_template         0.72
+ MEAN                  0.76
+ VERDICT: pass on the mean, but the high issue below blocks it,
+         so final verdict = revise (close to pass)
+
+Page notes
+ - p1: a real cover. A large serif title at left, a short
+   accent rule, a one-line description, and the hero photo
+   with a caption. The warm paper tone and a rust spine
+   make it feel designed.
+ - p2: two photos shown at different sizes (hero interior
+   and a smaller exterior), with an italic pull-quote, bold
+   run-in captions, and a title that makes a claim. The
+   result is a good editorial rhythm.
+ - p3: ground and main plans side by side at equal size, with
+   bold run-in captions (title and then description).
+   Drawings are fully visible and uncropped. A gap sits
+   between the intro line and the drawings.
+ - p4: the third-floor plan at left, the claim at right,
+   and a caption that cites the source and scale. Slightly
+   under-filled below the plan.
+ - p5: the section and south elevation are large and crisp,
+   and the commentary is limited to what is visible
+   ("Stacked on one sheet..."). The body text is small but
+   readable.
+ - p6: West/East/North and the fireplace elevations on one
+   spread at different sizes. The fireplace sheet is smaller
+   and offset, which is a slight stagger rather than a
+   strict grid.
+ - p7: both window sheets are shown with captions. The
+   right sheet is clipped at the page edge, cutting the
+   second window's scale bar (the same defect seen in X and
+   Y).
+ - p8: a closing index of sheets with proper captions
+   ("02 Ground floor plan ... 09 Main floor windows"), and
+   the provenance and scale in a text column. It works as an
+   end matter.
+ - The photos and the diagrams are handled honestly: the
+   weak conceptual diagrams are left out entirely. The
+   decision costs some "process" content but protects the
+   quality of the whole.
+ - Type is consistent. A serif headline, sans body and a
+   small-caps, wide-tracked kicker and footer form one
+   system with a clear scale. The footer ("ROBIE HOUSE ·
+   PLANS ... 03 / 08") is quiet.
+ - Weaknesses: the body text on the plan pages is small and
+   light gray, large dead areas appear at the bottom of p4
+   and p8, and the layouts of p3, p6 and p7 are similar.
+
+Top 3 issues
+ 1. page=7, severity=high, category=asset_fidelity,
+    description="The right-hand window sheet is cropped at
+    the page edge, clipping its scale bar and label."
+    evidence="The 'Second (main) floor windows' sheet runs
+    to the right margin and its scale text is cut."
+    suggested_route=local_refine
+ 2. page=4, severity=medium, category=whitespace_intent,
+    description="The third-floor plan page has a large empty
+    bottom band and a tiny body text column, so the
+    whitespace looks like leftover space rather than
+    something designed."
+    evidence="The plan ends at roughly two-thirds of the
+    page height. The caption is about 6pt, light gray."
+    suggested_route=local_refine
+ 3. page=3, severity=medium, category=typography,
+    description="Body and caption text are small and
+    light-colored. The intro line floats at top right,
+    detached from the heading it belongs to."
+    evidence="A one-line paragraph sits alone at the right
+    of the title, with a wide gap above the drawings."
+    suggested_route=revise_type_system
+
+===============================================================
+RANKING  (best to worst)
+===============================================================
+ 1. Z  (mean 0.76) — best cover, strongest editorial voice,
+    cleanest caption system, drawings shown large and in
+    full, no weak diagrams. Only the p7 crop keeps it from a
+    clean pass.
+ 2. Y  (mean 0.65) — a good narrative and strong headlines,
+    but the placeholder-diagram page, the cropped p10 and
+    the empty thumbnail page p4 drag it down.
+ 3. X  (mean 0.52) — generic section titles, weak captions,
+    unreadable thumbnails, the diagram cards sitting early,
+    and many dead areas.
+```

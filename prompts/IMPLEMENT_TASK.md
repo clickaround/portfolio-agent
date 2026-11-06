@@ -1,0 +1,3 @@
+# One atomic task implementation
+
+Read shared instructions and task ID from `tasks/backlog.json`, plus only its dependencies. Before writing: report `scope, paths, hypothesis, RED check, intended implementation, GREEN check, rollback, approvals`. Do not change unrelated modules. Write smallest failing test/contract, implement minimum code, run targeted + broader checks, inspect rendered visual artifact where applicable. Record environment, exact command, result, output hashes, cost, failure cases and pending risks. Update just this task and its evidence; do not automatically begin another phase.

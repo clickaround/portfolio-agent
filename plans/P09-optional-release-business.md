@@ -1,0 +1,3 @@
+# P09 — optional platform and business layer
+
+Prerequisites: P06 output quality baseline and rights/audit checks, preferably P07 human preference and P08 host comparisons. Optional HarnessRouter CE UHP for multiple provider harness sessions, resumability, files and cancellation; not required to ship host plugins. Test credential boundaries and isolation. Study licensing restrictions on starter kits. Define commercial gate from paid pilots, not claimed TAM. Specialised training only if ranker or generator improvements are demonstrated over prompt/case retrieval/layout grammar/QA. Do not auto-deploy or run paid APIs.

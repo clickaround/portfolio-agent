@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "SYNTHETIC_DEMO_ONLY",
+  "page_id": "page-01",
+  "size_mm": [
+    420,
+    297
+  ],
+  "elements": [
+    {
+      "id": "drawing-01",
+      "kind": "pdf-region",
+      "asset_id": "plan-01",
+      "box_mm": [
+        18,
+        35,
+        248,
+        225
+      ],
+      "z_index": 0,
+      "locked": true,
+      "allow_overlap": false,
+      "allow_crop": false
+    },
+    {
+      "id": "title-01",
+      "kind": "text",
+      "asset_id": null,
+      "text": "SYNTHETIC DEMO / DRAWING",
+      "box_mm": [
+        283,
+        38,
+        114,
+        21
+      ],
+      "z_index": 2,
+      "locked": false,
+      "allow_overlap": false,
+      "font_size_pt": 12
+    },
+    {
+      "id": "caption-01",
+      "kind": "text",
+      "asset_id": null,
+      "text": "Only tests basic page geometry.",
+      "box_mm": [
+        283,
+        77,
+        114,
+        25
+      ],
+      "z_index": 2,
+      "locked": false,
+      "allow_overlap": false,
+      "font_size_pt": 9
+    }
+  ]
+}

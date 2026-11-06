@@ -1,0 +1,215 @@
+{
+ "proposals": [
+  {
+   "kind": "drawings",
+   "file": "sheet_02.png",
+   "crop_px": [
+    370,
+    221,
+    3198,
+    2475
+   ],
+   "source_sha256": "70f2b71bd47058eec80b5403a454f145d47ca925a128bbdbdd3ac4747c2a44a9",
+   "derived_sha256": "d37df28cd627bd46ec99d9dfa6ba572e42b8afee055f9cc5622509f652a3472a",
+   "source": "sources/sheet_02.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_03.png",
+   "crop_px": [
+    363,
+    219,
+    3211,
+    2603
+   ],
+   "source_sha256": "235623888a8e9a6873e51c643efc7f87c84aa19038e46a2f519d9a0df4d2f093",
+   "derived_sha256": "fe9f037b8398a66772c45a57f95fdc73a30cdc9d19334907c7314cc3c846f701",
+   "source": "sources/sheet_03.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_04.png",
+   "crop_px": [
+    370,
+    223,
+    3196,
+    2476
+   ],
+   "source_sha256": "51ab160099d5d9a65e65cd5e02cc757e6498ac6fcd6e1cc67a3bb145e25e0676",
+   "derived_sha256": "ce3bd6900c2d05d425dd6e5d02228d81562277de2a5caad09223aa980b367e94",
+   "source": "sources/sheet_04.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_05.png",
+   "crop_px": [
+    359,
+    231,
+    3207,
+    2475
+   ],
+   "source_sha256": "6ddaec960b2b3a62e08a54676bfbe959b3ea1d529e1af74396aae5c4f63fe028",
+   "derived_sha256": "e04d59316202d54b6757e135b2dbfbce5e4e20c7ad5b5e918dd28a4f4de728a4",
+   "source": "sources/sheet_05.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_06.png",
+   "crop_px": [
+    362,
+    230,
+    3201,
+    2474
+   ],
+   "source_sha256": "9784e11fa73568a63a04831b4c0708332baa7837a6145b07cfff283b7247af3f",
+   "derived_sha256": "7e2bbef30ef3834c6dda53ccc2823154cedc87abb93afb0f0ef3263f3ff05ebf",
+   "source": "sources/sheet_06.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_07.png",
+   "crop_px": [
+    361,
+    218,
+    3205,
+    2480
+   ],
+   "source_sha256": "9aa8c26e7cd1b6da0d09a96e50b231d0c8ae38b150f3eed0fa374a2e1f1951a7",
+   "derived_sha256": "9dfa39dc4fef0f48e4111015d957cd349566f81841a3cacf63d0f85a6040c5e2",
+   "source": "sources/sheet_07.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_08.png",
+   "crop_px": [
+    369,
+    225,
+    3204,
+    2475
+   ],
+   "source_sha256": "04f7e1f1d99a8757f0b7ad03799b05e8b51eb249def6d2c427465aec97fcd9c8",
+   "derived_sha256": "f890fa4dfe9943bcf9c5c2fb24739067436ebea3419f8b77a62eb04417d6a083",
+   "source": "sources/sheet_08.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_09.png",
+   "crop_px": [
+    370,
+    229,
+    2894,
+    2472
+   ],
+   "source_sha256": "78bffb970567f27378363c20a6fa6d12f7231f68f0acc0f711afe4f10ccd5bfd",
+   "derived_sha256": "dd64e5aec3c57fc5c278cac6ef26d65de232a778225f8fbe965dce8529592e10",
+   "source": "sources/sheet_09.png"
+  }
+ ],
+ "approved": true,
+ "derived": [
+  {
+   "kind": "drawings",
+   "file": "sheet_02.png",
+   "crop_px": [
+    370,
+    221,
+    3198,
+    2475
+   ],
+   "source_sha256": "70f2b71bd47058eec80b5403a454f145d47ca925a128bbdbdd3ac4747c2a44a9",
+   "derived_sha256": "d37df28cd627bd46ec99d9dfa6ba572e42b8afee055f9cc5622509f652a3472a",
+   "source": "sources/sheet_02.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_03.png",
+   "crop_px": [
+    363,
+    219,
+    3211,
+    2603
+   ],
+   "source_sha256": "235623888a8e9a6873e51c643efc7f87c84aa19038e46a2f519d9a0df4d2f093",
+   "derived_sha256": "fe9f037b8398a66772c45a57f95fdc73a30cdc9d19334907c7314cc3c846f701",
+   "source": "sources/sheet_03.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_04.png",
+   "crop_px": [
+    370,
+    223,
+    3196,
+    2476
+   ],
+   "source_sha256": "51ab160099d5d9a65e65cd5e02cc757e6498ac6fcd6e1cc67a3bb145e25e0676",
+   "derived_sha256": "ce3bd6900c2d05d425dd6e5d02228d81562277de2a5caad09223aa980b367e94",
+   "source": "sources/sheet_04.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_05.png",
+   "crop_px": [
+    359,
+    231,
+    3207,
+    2475
+   ],
+   "source_sha256": "6ddaec960b2b3a62e08a54676bfbe959b3ea1d529e1af74396aae5c4f63fe028",
+   "derived_sha256": "e04d59316202d54b6757e135b2dbfbce5e4e20c7ad5b5e918dd28a4f4de728a4",
+   "source": "sources/sheet_05.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_06.png",
+   "crop_px": [
+    362,
+    230,
+    3201,
+    2474
+   ],
+   "source_sha256": "9784e11fa73568a63a04831b4c0708332baa7837a6145b07cfff283b7247af3f",
+   "derived_sha256": "7e2bbef30ef3834c6dda53ccc2823154cedc87abb93afb0f0ef3263f3ff05ebf",
+   "source": "sources/sheet_06.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_07.png",
+   "crop_px": [
+    361,
+    218,
+    3205,
+    2480
+   ],
+   "source_sha256": "9aa8c26e7cd1b6da0d09a96e50b231d0c8ae38b150f3eed0fa374a2e1f1951a7",
+   "derived_sha256": "9dfa39dc4fef0f48e4111015d957cd349566f81841a3cacf63d0f85a6040c5e2",
+   "source": "sources/sheet_07.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_08.png",
+   "crop_px": [
+    369,
+    225,
+    3204,
+    2475
+   ],
+   "source_sha256": "04f7e1f1d99a8757f0b7ad03799b05e8b51eb249def6d2c427465aec97fcd9c8",
+   "derived_sha256": "f890fa4dfe9943bcf9c5c2fb24739067436ebea3419f8b77a62eb04417d6a083",
+   "source": "sources/sheet_08.png"
+  },
+  {
+   "kind": "drawings",
+   "file": "sheet_09.png",
+   "crop_px": [
+    370,
+    229,
+    2894,
+    2472
+   ],
+   "source_sha256": "78bffb970567f27378363c20a6fa6d12f7231f68f0acc0f711afe4f10ccd5bfd",
+   "derived_sha256": "dd64e5aec3c57fc5c278cac6ef26d65de232a778225f8fbe965dce8529592e10",
+   "source": "sources/sheet_09.png"
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "SYNTHETIC_DEMO_ONLY",
+  "assets": [
+    {
+      "id": "plan-01",
+      "relative_path": "synthetic/plan-01.pdf",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "role": "plan",
+      "rights": "owned",
+      "original_immutable": true,
+      "crop_allowed": false,
+      "source_page": 1,
+      "description": "FAKE metadata for schema demonstration; no file exists"
+    }
+  ]
+}

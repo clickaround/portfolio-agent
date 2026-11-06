@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-04",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "pano", "kind": "image", "asset_id": "img04", "box_mm": [12, 12, 273, 109.2], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "end-rule", "kind": "shape", "asset_id": null, "box_mm": [12, 134, 30, 0.8], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1d5a6c"}},
+    {"id": "end-text", "kind": "text", "asset_id": null, "text": "A long timber roof over a shifted courtyard.", "box_mm": [12, 140, 180, 30], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 24, "style": {"font": "georgiai", "color": "#1a1a1a", "line_height": 1.25}},
+    {"id": "end-kw", "kind": "text", "asset_id": null, "text": "Housing, courtyard, timber, urban infill.", "box_mm": [198, 140, 87, 20], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "malgun", "color": "#6b6b6b"}},
+    {"id": "end-name", "kind": "text", "asset_id": null, "text": "Courtyard Housing", "box_mm": [12, 182, 180, 10], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 11, "style": {"font": "georgiab", "color": "#1a1a1a"}}
+  ]
+}

@@ -1,0 +1,38 @@
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 6 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+```json
+{
+  "scores": {
+    "X": {"hierarchy":0.85,"composition_balance":0.7,"whitespace_intent":0.75,"typography":0.8,"sequence_narrative":0.8,"asset_fidelity":0.7,"domain_fit":0.65,"anti_template":0.8,"mean":0.76},
+    "Y": {"hierarchy":0.4,"composition_balance":0.4,"whitespace_intent":0.35,"typography":0.35,"sequence_narrative":0.3,"asset_fidelity":0.6,"domain_fit":0.5,"anti_template":0.2,"mean":0.39},
+    "Z": {"hierarchy":0.5,"composition_balance":0.4,"whitespace_intent":0.4,"typography":0.45,"sequence_narrative":0.45,"asset_fidelity":0.6,"domain_fit":0.5,"anti_template":0.3,"mean":0.45}
+  },
+  "ranking": ["X","Z","Y"],
+  "pass": {"X": false, "Y": false, "Z": false},
+  "pass_note": "X mean 0.76 is above the threshold, but it has a high issue (p4 elevations undersized, with a big blank band above them and thin captions), so it does not pass.",
+  "top_issues": {
+    "X": [
+      {"page":"p4","severity":"high","category":"domain_fit","description":"Two elevations are small and bottom-aligned with a large empty area above. Different heights and offsets look unplanned, and the text is tiny."},
+      {"page":"p3","severity":"medium","category":"asset_fidelity","description":"Plan is boxed with a small 'Plan 01' label and a tiny caption. Drawing is legible but not dominant, and the right column is mostly empty."},
+      {"page":"p2","severity":"medium","category":"composition_balance","description":"Image is bottom-anchored and the text sits in the right column with a large empty top-left area. Body text and keywords are tiny."}
+    ],
+    "Y": [
+      {"page":"all","severity":"high","category":"typography","description":"Default bold sans headings and 8pt body text with no scale contrast. No running header, folio or section labels, so it reads as unstyled output."},
+      {"page":"p1/p4","severity":"high","category":"sequence_narrative","description":"The cover has no hero treatment and the closing page repeats the model image in a generic way. Pages 2 and 3 are loosely placed with no rhythm between them."},
+      {"page":"p3","severity":"high","category":"composition_balance","description":"Elevations are different sizes and there is a large empty area on the right. The 'Site' caption sits below the second drawing, which is ambiguous, and the placeholder text is not neutral."}
+    ],
+    "Z": [
+      {"page":"p2","severity":"high","category":"composition_balance","description":"Repeated filler paragraph. Two images are crammed in at different sizes and overlap the text column, leaving large empty space on the left."},
+      {"page":"p4/p5","severity":"high","category":"whitespace_intent","description":"The elevation sits alone in the upper left with a large empty right half. Page 5 is almost empty, with only a tiny 'Credits & Notes' line."},
+      {"page":"p1","severity":"medium","category":"typography","description":"Title sits at the bottom-right, detached from the image, with a tiny 'Portfolio' label. Text is small throughout."}
+    ]
+  },
+  "template_signs": {
+    "X": ["Repeated 'N / 05 · SECTION' header on every page is a standard template header", "Image-left with text-right appears on p2 and p4, so the rhythm is partly repeated", "Keyword list across the bottom of p5 repeats the cover keywords"],
+    "Y": ["Default sans bold heading with a tiny body paragraph", "White background with no running header or folio", "Images placed at the top-left with text in a right column, repeated on every page", "Placeholder text ('Synthetic site description for tests only.')", "'Role' page ends on a repeated hero image"],
+    "Z": ["Repeated filler paragraph", "Default bold sans headings", "Generic 'Credits & Notes' closing page", "Images at the top-left with a small caption, repeated on p3/p4", "Tiny body text throughout"],
+    "Z_note": "The hidden placeholder text and caption are fixture artifacts, not design choices, so judge only the layout."
+  },
+  "verdict": {"X": "revise", "Y": "fail", "Z": "revise"}
+}
+```

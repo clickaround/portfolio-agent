@@ -1,0 +1,33 @@
+{
+ "run_id": "robie-b0-engine-llmplan-20261105",
+ "project": "Robie House (HABS, real sources)",
+ "blinded": true,
+ "key": {
+  "X": "LLMPLAN",
+  "Y": "ENGINE",
+  "Z": "B0"
+ },
+ "scores_mean": {
+  "B0": 0.76,
+  "LLMPLAN": 0.6,
+  "ENGINE": 0.51
+ },
+ "verdicts": {
+  "B0": "pass-with-caveats",
+  "LLMPLAN": "revise",
+  "ENGINE": "fail"
+ },
+ "ranking": [
+  "B0",
+  "LLMPLAN",
+  "ENGINE"
+ ],
+ "cost_usd": {
+  "B0": 0.4252519,
+  "LLMPLAN": 4.55,
+  "ENGINE": 0.0,
+  "critic": 0.2949426
+ },
+ "note": "engine scored BEFORE the diagram-page fix (its 'Plan' page showed SYNTHETIC placeholder diagrams -> blocker); B0 strengths: brick-red spine, sentence headings, bold-lead captions, index-of-sheets page, accent italic pull quotes",
+ "status": "n=1 project, one LLM critic (noise ~+-0.07); real public-domain sources"
+}

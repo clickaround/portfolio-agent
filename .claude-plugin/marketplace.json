@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-agent",
+  "owner": {
+    "name": "Portfolio Agent Project"
+  },
+  "plugins": [
+    {
+      "name": "portfolio-agent",
+      "source": "./"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{"schema_version":"0.1.0","project_id":"arch_01","page_id":"page-03","size_mm":[297,210],"elements":[
+{"id":"fig-img02","kind":"image","asset_id":"img02","box_mm":[12,12,124,186],"z_index":0,"locked":true,"allow_overlap":false,"allow_crop":false},
+{"id":"fig-img03","kind":"image","asset_id":"img03","box_mm":[148,12,100,100],"z_index":0,"locked":true,"allow_overlap":false,"allow_crop":false},
+{"id":"title-site","kind":"text","asset_id":null,"text":"Site","box_mm":[148,124,100,14],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":14},
+{"id":"site-text","kind":"text","asset_id":null,"text":"Synthetic site description for tests only.","box_mm":[148,142,100,24],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":10}]}

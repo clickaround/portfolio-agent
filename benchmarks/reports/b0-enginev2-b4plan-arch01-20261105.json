@@ -1,0 +1,48 @@
+{
+ "run_id": "b0-enginev2-b4plan-arch01-20261105",
+ "blinded": true,
+ "key": {
+  "X": "ENGINE_V2",
+  "Y": "B4PLAN",
+  "Z": "B0"
+ },
+ "scores_mean": {
+  "B0": 0.74,
+  "ENGINE_V2": 0.64,
+  "B4PLAN": 0.6
+ },
+ "verdicts": {
+  "B0": "revise",
+  "ENGINE_V2": "revise",
+  "B4PLAN": "revise"
+ },
+ "ranking": [
+  "B0",
+  "ENGINE_V2",
+  "B4PLAN"
+ ],
+ "cost_usd": {
+  "B4PLAN": 3.02,
+  "ENGINE_V2": 0.0,
+  "critic": 0.25
+ },
+ "seconds": {
+  "B4PLAN": 268,
+  "ENGINE_V2": 4.5
+ },
+ "turns": {
+  "B4PLAN": 41
+ },
+ "gates": {
+  "B4PLAN": {
+   "pass": true,
+   "pages": 6
+  },
+  "ENGINE_V2": {
+   "pass": true,
+   "pages": 5
+  }
+ },
+ "reference_basis": "NO_EXTERNAL_REFERENCE",
+ "status": "n=1, synthetic, one LLM critic (noise ~+-0.07); not professional-quality evidence"
+}

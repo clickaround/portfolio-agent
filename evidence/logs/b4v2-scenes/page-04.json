@@ -1,0 +1,15 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-04",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "pano", "kind": "image", "asset_id": "img04", "box_mm": [12, 24, 273, 109.2], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "rule-cap", "kind": "shape", "asset_id": null, "box_mm": [12, 143, 18, 0.8], "z_index": 2, "locked": false, "allow_overlap": false, "style": {"fill": "#1f5f5b"}},
+    {"id": "caption", "kind": "text", "asset_id": null, "text": "A shifted courtyard and a long timber roof.", "box_mm": [12, 149, 150, 24], "z_index": 3, "locked": false, "allow_overlap": false, "font_size_pt": 16, "style": {"font": "georgiai", "color": "#1a1a1a", "align": "left", "line_height": 1.3}},
+    {"id": "caption-side", "kind": "text", "asset_id": null, "text": "Public program organized around the courtyard.", "box_mm": [185, 149, 100, 20], "z_index": 4, "locked": false, "allow_overlap": false, "font_size_pt": 9.5, "style": {"font": "malgun", "color": "#6b6b6b", "align": "left", "line_height": 1.5}},
+    {"id": "rule-bottom", "kind": "shape", "asset_id": null, "box_mm": [12, 189, 273, 0.3], "z_index": 5, "locked": false, "allow_overlap": false, "style": {"fill": "#1a1a1a"}},
+    {"id": "folio-l", "kind": "text", "asset_id": null, "text": "Courtyard Housing", "box_mm": [12, 191, 120, 7], "z_index": 6, "locked": false, "allow_overlap": false, "font_size_pt": 8, "style": {"font": "malgun", "color": "#6b6b6b", "align": "left", "line_height": 1.2}},
+    {"id": "folio-r", "kind": "text", "asset_id": null, "text": "04", "box_mm": [255, 191, 30, 7], "z_index": 7, "locked": false, "allow_overlap": false, "font_size_pt": 8, "style": {"font": "malgun", "color": "#1f5f5b", "align": "right", "line_height": 1.2}}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-03",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "heading", "kind": "text", "asset_id": null, "text": "Site", "box_mm": [12, 12, 160, 16], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 28, "style": {"font": "georgia", "color": "#1c1c1c"}},
+    {"id": "rule", "kind": "shape", "asset_id": null, "box_mm": [12, 32, 273, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1c1c1c"}},
+    {"id": "site-text", "kind": "text", "asset_id": null, "text": "Synthetic site description for tests only.", "box_mm": [12, 48, 50, 30], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 11, "style": {"font": "georgiai", "color": "#2f5d62", "line_height": 1.4}},
+    {"id": "plan", "kind": "pdf-region", "asset_id": "plan01", "box_mm": [73, 48.25, 212, 149.75], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "caption", "kind": "text", "asset_id": null, "text": "Plan", "box_mm": [12, 190, 50, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 8, "style": {"font": "malgunbd", "color": "#2f5d62"}}
+  ]
+}

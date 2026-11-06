@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "unit": "mm",
+  "presets": [
+    {
+      "id": "iso-a3-landscape",
+      "width": 420,
+      "height": 297,
+      "medium": "print",
+      "orientation": "landscape"
+    },
+    {
+      "id": "iso-a4-portrait",
+      "width": 210,
+      "height": 297,
+      "medium": "print",
+      "orientation": "portrait"
+    },
+    {
+      "id": "iso-a4-landscape",
+      "width": 297,
+      "height": 210,
+      "medium": "print",
+      "orientation": "landscape"
+    },
+    {
+      "id": "iso-a5-portrait",
+      "width": 148,
+      "height": 210,
+      "medium": "print",
+      "orientation": "portrait"
+    },
+    {
+      "id": "square-210",
+      "width": 210,
+      "height": 210,
+      "medium": "print",
+      "orientation": "square"
+    },
+    {
+      "id": "us-letter-portrait",
+      "width": 215.9,
+      "height": 279.4,
+      "medium": "print",
+      "orientation": "portrait"
+    },
+    {
+      "id": "us-tabloid-landscape",
+      "width": 431.8,
+      "height": 279.4,
+      "medium": "print",
+      "orientation": "landscape"
+    },
+    {
+      "id": "screen-16x9",
+      "width": 338.666667,
+      "height": 190.5,
+      "medium": "screen",
+      "orientation": "landscape"
+    },
+    {
+      "id": "screen-4x3",
+      "width": 254,
+      "height": 190.5,
+      "medium": "screen",
+      "orientation": "landscape"
+    },
+    {
+      "id": "social-square-1080",
+      "width": 285.75,
+      "height": 285.75,
+      "medium": "screen",
+      "orientation": "square"
+    }
+  ],
+  "custom": {
+    "allowed": true,
+    "min_mm": 10,
+    "max_mm": 3000
+  },
+  "print_defaults": {
+    "margin_mm": 12,
+    "bleed_mm": 3,
+    "safe_mm": 5,
+    "gutter_mm": 6,
+    "dpi_target_for_raster": 300
+  },
+  "note": "Screen presets store effective mm using reference 96 dpi; actual pixels and pixel_ratio are provided separately."
+}

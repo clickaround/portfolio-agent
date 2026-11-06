@@ -1,0 +1,2 @@
+# Graphic / Branding — draft knowledge pack (requires domain expert review)
+Core evidence: design brief, typographic hierarchy, identity concepts, brand system, logo lockups, real applications, production constraints, media coherence. Do not redraw protected logos or claim client work not performed. Evaluate how intentionally the brand changes across media while retaining a recognizable system. A colorful mockup gallery without design choices and visual discipline is not sufficient.

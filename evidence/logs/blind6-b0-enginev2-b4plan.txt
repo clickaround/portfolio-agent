@@ -1,0 +1,83 @@
+Scored all 16 pages against the rubric. Verdicts below.
+
+```
+CANDIDATE X  (5 pages)
+  hierarchy             0.65
+  composition_balance   0.55  p2: lower-right half empty; p3: drawing top (y~90) sits below column heading (y~65); p1 hero stops short of right margin
+  whitespace_intent     0.55  p2 and p3 voids read as leftover, not planned
+  typography            0.70
+  sequence_narrative    0.65
+  asset_fidelity        0.80
+  domain_fit            0.75
+  anti_template         0.50  running header/footer + flat label system reads as a generated report
+  MEAN                  0.64   VERDICT: revise
+
+  Top issues
+  1. page=X_p2  severity=high  category=composition_balance
+     description: Full-width drawing panel on top, then a narrow text column pinned bottom-left; the right two thirds of the lower half is dead space.
+     evidence: text block spans x 38-310 only; nothing right of x 310 below y 405; drawing floats mid-panel with blank bands above and below.
+     suggested_route: pivot_layout
+  2. page=X_p3  severity=medium  category=composition_balance
+     description: Plan drawing and right-hand text column are not top-aligned, and the bottom quarter of the page is unused.
+     evidence: column label at y 65, drawing top at y 90; blank band from y 500 to 661.
+     suggested_route: local_refine
+  3. page=X_p1  severity=medium  category=hierarchy
+     description: Cover title is only modestly larger than section headings, so the cover does not read as a cover against p2-p4.
+     evidence: title cap height roughly 2x the p4 "Studies" heading; hero image right edge at x 822 vs header text at x 898.
+     suggested_route: revise_type_system
+
+CANDIDATE Y  (6 pages)
+  hierarchy             0.65
+  composition_balance   0.50  p5 text block indented off the margin grid; p4 lower-left void; p3 same misalignment as X
+  whitespace_intent     0.50
+  typography            0.65  p2 heading leading tight; p4 heading-to-body gap much larger than elsewhere; p6 statement loses scale contrast
+  sequence_narrative    0.50  six pages but the same two elevation assets each appear twice; p2 and p4 are the same "big line drawing + text block" layout
+  asset_fidelity        0.80
+  domain_fit            0.75
+  anti_template         0.45
+  MEAN                  0.60   VERDICT: revise
+
+  Top issues
+  1. page=Y_p5  severity=high  category=composition_balance
+     description: Text column starts well inside the left margin, leaving an empty strip at the left and a large void beneath two lines of text.
+     evidence: label/heading begin at x 185 while every other page sets type at x 38; nothing below y 120 on the left 55% of the page.
+     suggested_route: pivot_layout
+  2. page=Y_p4  severity=high  category=sequence_narrative
+     description: Repeats the p2 line-elevation asset at full width two pages later with a text block dropped into the lower-right corner, lower-left left empty.
+     evidence: same drawing as Y_p2; text block spans x 623-898 only, blank from x 38-620 below y 405.
+     suggested_route: revise_story
+  3. page=Y_p3  severity=medium  category=whitespace_intent
+     description: Plan page leaves the bottom quarter empty and the drawing is not aligned to the column heading.
+     evidence: drawing top y 90 vs heading y 65; blank from y 500 to 661.
+     suggested_route: local_refine
+
+CANDIDATE Z  (5 pages)
+  hierarchy             0.85
+  composition_balance   0.60  p2 upper-left 40% blank above a bottom-anchored image; p4 two frames at different sizes, staggered
+  whitespace_intent     0.65  cover and close are deliberate; p2 and p4 voids are not
+  typography            0.85  strong display/italic scale, consistent small-caps labels, matching close page
+  sequence_narrative    0.70
+  asset_fidelity        0.75  p4 shows the same drawing twice at two scales
+  domain_fit            0.75
+  anti_template         0.80
+  MEAN                  0.74   VERDICT: revise (mean just under 0.75 and one high issue)
+
+  Top issues
+  1. page=Z_p4  severity=high  category=composition_balance
+     description: "Two views" places two frames of the same drawing at different sizes with mismatched tops; the upper third of the page is empty.
+     evidence: left frame y 160-617 / 304 px wide, right frame y 283-617 / 335 px wide; nothing between header (y 26) and y 160.
+     suggested_route: pivot_layout
+  2. page=Z_p2  severity=medium  category=whitespace_intent
+     description: Image is bottom-anchored, leaving a large blank block above it that does not align with the text column start.
+     evidence: image top at y 283 while the right column begins at y 108; keyword rule (y 527) and image bottom (y 617) do not share a baseline.
+     suggested_route: local_refine
+  3. page=Z_p3  severity=low  category=composition_balance
+     description: Plan panel ends with an unused band at the bottom; the panel's hairline border is not used on any other image page.
+     evidence: panel bottom y 557 vs page bottom y 661; p1/p2/p4 images have no border.
+     suggested_route: local_refine
+
+RANKING (best to worst): Z, X, Y
+  Z: strongest hierarchy and type system, least templated; fix p4 and p2 and it passes.
+  X: tidy but flat; two pages with leftover voids and a weak cover.
+  Y: padded to six pages with repeated layouts and assets, plus an off-grid p5.
+```

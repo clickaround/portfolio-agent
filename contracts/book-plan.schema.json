@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Book Plan (host-authored editorial plan; the layout layer turns it into scenes)",
+  "description": "What an LLM host decides: sequence, roles, which asset goes where, the words, the variant. What it never writes: coordinates. See skills/portfolio-create/SKILL.md 'Book plan'.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "doc_title",
+    "pages"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "doc_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paper": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "ink": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "display": {
+          "enum": [
+            "serif",
+            "sans"
+          ]
+        }
+      }
+    },
+    "hero_min_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "assets"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "cover",
+              "split",
+              "hero",
+              "pair",
+              "grid",
+              "text",
+              "closing"
+            ]
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 6
+          },
+          "section": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "text": {
+            "type": "string"
+          },
+          "caption": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "captions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "maxItems": 6
+          },
+          "statement": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "tagline": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "variant": {
+            "enum": [
+              0,
+              1
+            ]
+          },
+          "composition": {
+            "type": "string",
+            "description": "id from knowledge/patterns/compositions.json; when set, this page is laid out by that slot composition instead of the role default"
+          },
+          "index": {
+            "type": "boolean",
+            "description": "true = index-of-sheets page (all listed drawings as numbered thumbnails); repeats are allowed on this page"
+          },
+          "bleed": {
+            "enum": ["full", "split", "top", "grid"],
+            "description": "full-bleed device (from real portfolios): full = one graphic covers the page, title on a panel; split = graphic off three edges beside a text column; top = graphic off the top down to 62 %, text below; grid = 2-4 photos tiled to the trim. Raster photos are cropped to cover; drawings are never cropped."
+          },
+          "dark": {
+            "type": "boolean",
+            "description": "paper/ink swapped on this page (night / model photos on black); use with bleed"
+          },
+          "strip": {
+            "type": "boolean",
+            "description": "grid page as one row of equal numbered thumbnails (process strip, 4-10 assets)"
+          },
+          "photoset": {
+            "type": "string",
+            "description": "template id from knowledge/patterns/photosets.json for 2-6 photographs (row-2, lead-left-3, lead-top-4, mosaic-2-3, grid-2x3 ...); when absent, 3-6 photos on a grid page take the template that fits their aspects best. First asset = lead."
+          },
+          "focus": {
+            "type": "array", "items": {"type": "number", "minimum": 0, "maximum": 1}, "minItems": 2, "maxItems": 2,
+            "description": "focal point [fx, fy] of the page's lead photo as fractions of the source; cover crops (bleed, crop: cover) keep it in view. Default centre."
+          },
+          "crop": {
+            "enum": ["cover"],
+            "description": "photoset cells are covered (raster photos cropped centred) instead of fitted; the host takes responsibility for the crop (AGENTS.md: high-risk crops need approval)"
+          }
+        }
+      }
+    },
+    "allow_repeat_assets": {
+      "type": "boolean",
+      "description": "default false: every asset once; set true only when a repeat is editorially intended"
+    },
+    "grid_system": {
+      "type": "string",
+      "description": "id from knowledge/patterns/grid-systems.json (one per book; default swiss-12)"
+    },
+    "band": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "side": {
+          "enum": [
+            "left",
+            "top"
+          ]
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "width_mm": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "every_page": {
+          "type": "boolean"
+        }
+      },
+      "description": "background layer: a coloured band in the margin (cover by default; every_page for a running spine)"
+    }
+  }
+}

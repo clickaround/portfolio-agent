@@ -1,0 +1,84 @@
+{
+ "run_id": "b0-b4-engine-arch01-20261104",
+ "bench": "ArchPortfolioBench 3-way blind (B0, B4, rule-based engine), 1 project, 1 run each",
+ "source_case_ids": [],
+ "fixtures": "SYNTHETIC arch_01",
+ "output_format": "A4 landscape PDF",
+ "renderer": {
+  "B0": "host-authored Python (Claude Code, model default of this session)",
+  "engine": "portfolio_agent local compositor, candidate C with design-plan tokens"
+ },
+ "host": "Claude Code 2.1.318 (claude -p)",
+ "model": "Claude Sonnet 5.5 (session default; not pinned)",
+ "sha": null,
+ "prompt_version": "evidence/logs/b0-prompt.txt",
+ "hard_gates": {
+  "B0": {
+   "G1_source_hash_intact": true,
+   "pages": 5,
+   "size_ok": true,
+   "images_placed": 4,
+   "distorted": [],
+   "margin_violations": [
+    [
+     2,
+     "text"
+    ],
+    [
+     3,
+     "text"
+    ],
+    [
+     4,
+     "text"
+    ],
+    [
+     5,
+     "text"
+    ]
+   ],
+   "vector_drawing_page": [
+    [
+     3,
+     64
+    ]
+   ],
+   "assets_total": 5
+  },
+  "engine": "gate_pass true (portfolio_agent qa)"
+ },
+ "scores": {
+  "blind_llm_critic_mean": {
+   "B0": 0.76,
+   "B4": 0.39,
+   "engine": 0.45
+  },
+  "source": "evidence/logs/blind3-b0-b4-engine.txt"
+ },
+ "human_preferences": null,
+ "cost_usd": {
+  "B0": 0.39,
+  "B4": 0.41,
+  "engine": 0.0
+ },
+ "latency_s": {
+  "B0": 82,
+  "B4": 115,
+  "engine": 4
+ },
+ "turns": {
+  "B0": 17,
+  "B4": 25
+ },
+ "blinded": "partially: critic saw X/Y only; the generating condition was hidden; labels randomized once",
+ "evidence_paths": [
+  "evidence/logs/b0-arch01-book.pdf",
+  "evidence/logs/b0-gates.json",
+  "evidence/logs/pairwise-b0-vs-engine.txt",
+  "evidence/BLIND_B0_VS_ENGINE.md",
+  "evidence/BLIND3_B0_B4_ENGINE.md",
+  "evidence/logs/b4-arch01-book.pdf",
+  "evidence/logs/blind3-b0-b4-engine.txt"
+ ],
+ "status": "PARTIAL: n=1, 1 critic, synthetic; B1-B3/B5 not run; B4 gates: pass first try"
+}

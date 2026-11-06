@@ -1,0 +1,45 @@
+**Robie House portfolios: X, Y, Z scored against rubric.md**
+
+Scores are in rubric order: hierarchy, composition_balance, whitespace_intent, typography, sequence_narrative, asset_fidelity, domain_fit, anti_template.
+
+**X (10 pages)** — scores 0.65, 0.55, 0.50, 0.65, 0.70, 0.60, 0.70, 0.45. Mean 0.60. Verdict: revise.
+- Layout is a plain white sans-serif system. Photographs and drawings are shown whole, including HABS sheet borders and title blocks.
+- The 10-page sequence is the most logical of the three: cover, concept, plans, section and elevations, interior, details, survey, closing.
+- Every drawing page has a large empty band at the bottom (p2, p5, p6, p7, p9), so the whitespace looks like leftover from fitting.
+- The closing page's headline reads as an afterthought.
+
+Top 3 issues:
+1. page 5/6/9, severity high, composition_balance. Drawings sit top-left with the bottom fifth empty, and the narrow caption column floats. The whitespace is accidental. Evidence: p5 and p6 have a stray vertical rule at the drawing edge and empty space below. Route: pivot_layout.
+2. page 4/8, severity medium, asset_fidelity. Paired drawings are small with hairline sheet borders cropped or visible. Captions sit far below the images, near the page bottom, so they detach from the drawings. Evidence: p4 and p8 captions are about 100px below the images. Route: local_refine.
+3. page 10 (also p6, p7), severity medium, hierarchy. The closing headline "Study of a measured survey. Individual work, 6 weeks." is a heavy bold line over a large void, and the attribution is parked top-right. Heading numbering and titles are inconsistent: p5 has no title, p6 splits "Two slipped volumes" from the north elevation, and p7 puts interior text in the concept slot. Route: revise_story.
+
+**Y (9 pages)** — scores 0.55, 0.45, 0.45, 0.65, 0.45, 0.55, 0.55, 0.40. Mean 0.51. Verdict: fail.
+- The serif titles are elegant, but the story and captions are broken.
+- p3 "Plan" holds four tiny placeholder diagrams labelled "SYNTHETIC DIAGRAM", which is fabricated filler. It is not a plan and sits at the top of an otherwise empty page.
+- Captions such as "Diagram 02", "View 01" and "Drawing 02" are generic and misaligned.
+- Section titles are generic ("Concept", "Plan", "Drawings I/II/III"), and the story is weak.
+- The dining-room interior is used as the Concept hero.
+- p7 shrinks the west/east/north elevations and fireplace sheets to unreadable thumbnails beside the large section.
+
+Top 3 issues:
+1. page 3, severity blocker, domain_fit. The "Plan" page shows synthetic placeholder diagrams marked "SYNTHETIC DIAGRAM" instead of the real plan. Evidence: the diagram captions are misaligned, with "Diagram 02" offset from "02 Primary volume". Route: revise_story.
+2. page 7, severity high, asset_fidelity. The elevations and fireplace sheets are tiny and illegible against the oversized section and south elevation. Route: pivot_layout.
+3. page 2/5/6/8, severity medium, sequence_narrative and typography. Titles are generic. Pages 5 and 6 repeat the third-floor and second-floor plans with "Drawings" headings. Captions are "View 01" or "Drawing 02", and title and caption positions drift between pages (p5 title is centered, p8 title is at mid-right). Route: revise_type_system.
+
+**Z (8 pages)** — scores 0.80, 0.70, 0.70, 0.80, 0.80, 0.70, 0.80, 0.75. Mean 0.76. Verdict: pass with caveats. It has no blocker, but the p7 scale-bar crop and p4's empty lower third would need fixing for a clean pass.
+- Warm cream ground, a rust accent bar and rule, and serif headings with small-caps running heads.
+- The cover is a real composed spread.
+- Pairs of drawings are large and legible, with bold-lead captions in a consistent system. The caption text per drawing is specific and informative.
+- The closing page is an index of sheets with numbered thumbnails, which fits the architecture domain.
+- Page rhythm varies: cover, concept collage, paired plans, a single large plan, a hero section, mixed elevations, windows, index.
+
+Top 3 issues:
+1. page 4, severity medium, composition_balance. The third-floor plan is small, with the lower third of the page empty. The text column floats with a gap before the sentence "The third floor holds the bedrooms." Route: local_refine.
+2. page 7, severity medium, asset_fidelity. The right-hand window sheet is cropped at the right edge, so the scale bar reads "SCALE 3/..." and is cut off. Route: local_refine.
+3. page 2, severity low, hierarchy. The concept page is busy: the two photographs are different sizes and the italic pull-quote sits apart from the heading. Page 8's index thumbnails are very small and unreadable, and the quote text is orphaned. Route: local_refine.
+
+**Ranking, best to worst: Z > X > Y.**
+
+- **Z** has the strongest typography, the most consistent layout system and the best-presented drawings. It is the only candidate near a pass.
+- **X** shows the same real drawings but has a weaker layout system, large empty lower bands on several pages, and an unfocused closing page.
+- **Y** is last because it includes the fabricated "SYNTHETIC DIAGRAM" page, has an unreadable thumbnail page, and uses generic captions.

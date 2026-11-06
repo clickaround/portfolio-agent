@@ -1,0 +1,5 @@
+{"schema_version":"0.1.0","project_id":"arch_01","page_id":"page-01","size_mm":[297,210],"elements":[
+{"id":"fig-img01","kind":"image","asset_id":"img01","box_mm":[12,12,200,125],"z_index":0,"locked":true,"allow_overlap":false,"allow_crop":false},
+{"id":"title-main","kind":"text","asset_id":null,"text":"Courtyard Housing","box_mm":[224,12,61,50],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":26},
+{"id":"keywords","kind":"text","asset_id":null,"text":"Housing · Courtyard · Timber · Urban infill","box_mm":[224,70,61,30],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":10},
+{"id":"role-note","kind":"text","asset_id":null,"text":"Individual work, 14 weeks.","box_mm":[224,170,61,28],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":9}]}

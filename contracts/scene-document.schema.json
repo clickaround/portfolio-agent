@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scene Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "page_id",
+    "size_mm",
+    "elements"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "0.1.0",
+        "0.2.0"
+      ],
+      "description": "0.2.0 adds optional element.style; 0.1.0 scenes stay valid"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "page_id": {
+      "type": "string"
+    },
+    "size_mm": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "box_mm",
+          "z_index",
+          "locked",
+          "allow_overlap"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "image",
+              "pdf-region",
+              "svg",
+              "text",
+              "shape"
+            ]
+          },
+          "asset_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "box_mm": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            ],
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "z_index": {
+            "type": "integer"
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "allow_overlap": {
+            "const": false
+          },
+          "allow_crop": {
+            "type": "boolean"
+          },
+          "source_transform": {
+            "type": "object"
+          },
+          "font_size_pt": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "visible": {
+            "type": "boolean"
+          },
+          "style": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "v0.2 typography/appearance tokens. font: installed font file stem or path (pick the italic/bold file itself, e.g. georgiai); fill applies to kind=shape (tint panels, hairlines).",
+            "properties": {
+              "font": {
+                "type": "string",
+                "minLength": 1
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "fill": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "align": {
+                "enum": [
+                  "left",
+                  "center",
+                  "right"
+                ]
+              },
+              "line_height": {
+                "type": "number",
+                "minimum": 0.9,
+                "maximum": 2.5
+              }
+            }
+          }
+        }
+      }
+    },
+    "intentional_overlaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "elements",
+          "reason"
+        ],
+        "properties": {
+          "elements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 8
+          }
+        }
+      }
+    }
+  }
+}

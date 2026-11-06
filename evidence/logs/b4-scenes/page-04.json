@@ -1,0 +1,4 @@
+{"schema_version":"0.1.0","project_id":"arch_01","page_id":"page-04","size_mm":[297,210],"elements":[
+{"id":"fig-img04","kind":"image","asset_id":"img04","box_mm":[12,12,273,109.2],"z_index":0,"locked":true,"allow_overlap":false,"allow_crop":false},
+{"id":"title-role","kind":"text","asset_id":null,"text":"Role","box_mm":[12,136,80,14],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":14},
+{"id":"role-text","kind":"text","asset_id":null,"text":"Individual work, 14 weeks.","box_mm":[12,154,120,20],"z_index":2,"locked":false,"allow_overlap":false,"font_size_pt":10}]}

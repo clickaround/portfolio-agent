@@ -1,0 +1,375 @@
+[
+ {
+  "id": "harnessrouter",
+  "pinned": "0dd8dfdda9",
+  "group": "agent-routing",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 957,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Dockerfile"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "harnessrouter-starter",
+  "pinned": "9fe6ba181d",
+  "group": "reference-restricted",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 350,
+  "license": "MIT",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "designcraft",
+  "pinned": "a4017a3cda",
+  "group": "layout",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 850,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "photocraft",
+  "pinned": "37a01ca874",
+  "group": "image",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 2815,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml",
+   "Dockerfile"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "vectorcraft",
+  "pinned": "a207c7b816",
+  "group": "vector",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 2473,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "figcraft",
+  "pinned": "6f780211dd",
+  "group": "canvas-candidate",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 1459,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "pdfcraft",
+  "pinned": "a4d148bf48",
+  "group": "pdf",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 1902,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "deckcraft",
+  "pinned": "23ac4f7efd",
+  "group": "presentation",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 758,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "openpencil",
+  "pinned": "4716fcdd93",
+  "group": "layout",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 8034,
+  "license": "MIT",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "genoffice",
+  "pinned": "e1f50e90d2",
+  "group": "office",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 6212,
+  "license": "Apache-2.0",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "diagram-design",
+  "pinned": "f24d98b05e",
+  "group": "diagram",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 696,
+  "license": "MIT",
+  "manifests": [],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "autodesign",
+  "pinned": "bd635851ef",
+  "group": "generation-research",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 736,
+  "license": "MIT",
+  "manifests": [
+   "pyproject.toml"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "deepslides",
+  "pinned": "40240e5847",
+  "group": "generation-research",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 9926,
+  "license": "MIT",
+  "manifests": [
+   "pyproject.toml"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "paper2poster",
+  "pinned": "746e204561",
+  "group": "generation-research",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 1793,
+  "license": "MIT",
+  "manifests": [
+   "requirements.txt",
+   "Dockerfile"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "gdb",
+  "pinned": "74bdff6e56",
+  "group": "evaluation",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 95,
+  "license": "Apache-2.0",
+  "manifests": [
+   "pyproject.toml"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "slidesgen-bench",
+  "pinned": "b202e60c39",
+  "group": "evaluation",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 808,
+  "license": "NO_LICENSE_FILE",
+  "manifests": [],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "deckbench",
+  "pinned": "47393cf4cb",
+  "group": "evaluation",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 27,
+  "license": "NO_LICENSE_FILE",
+  "manifests": [
+   "requirements.txt"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "editable-design",
+  "pinned": "fadd9d99e4",
+  "group": "generation-research",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 308,
+  "license": "Apache-2.0",
+  "manifests": [],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "frontend-slides-editable",
+  "pinned": "e5663e6a0b",
+  "group": "presentation",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 274,
+  "license": "MIT",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "html-to-editable-pptx",
+  "pinned": "17c1dbb76e",
+  "group": "office",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 45,
+  "license": "MIT",
+  "manifests": [
+   "requirements.txt"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "penpot",
+  "pinned": "4173cc34ab",
+  "group": "canvas-candidate",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 6695,
+  "license": "MPL-2.0",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "pagedjs",
+  "pinned": "bbdc7519b4",
+  "group": "fallback",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 770,
+  "license": "MIT",
+  "manifests": [
+   "package.json",
+   "Dockerfile"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "vivliostyle",
+  "pinned": "0c13632417",
+  "group": "fallback",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 818,
+  "license": "AGPL-3.0",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "fabric",
+  "pinned": "a4eb25f213",
+  "group": "canvas-candidate",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 1997,
+  "license": "MIT",
+  "manifests": [
+   "package.json"
+  ],
+  "has_tests_dir": true,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "graphite",
+  "pinned": "708cca339d",
+  "group": "vector",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 1289,
+  "license": "Apache-2.0",
+  "manifests": [
+   "Cargo.toml"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "scribus",
+  "pinned": "a3d289e603",
+  "group": "layout",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 7877,
+  "license": "GPL-2.0",
+  "manifests": [
+   "CMakeLists.txt"
+  ],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ },
+ {
+  "id": "anthropic-plugins",
+  "pinned": "fa4eb54397",
+  "group": "packaging",
+  "sha_ok": true,
+  "worktree_clean": true,
+  "tracked_files": 595,
+  "license": "Apache-2.0",
+  "manifests": [],
+  "has_tests_dir": false,
+  "evidence": "CODE_INSPECTED(static); NOT executed"
+ }
+]

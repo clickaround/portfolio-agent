@@ -1,0 +1,18 @@
+{
+  "medium": "print",
+  "width_mm": 210,
+  "height_mm": 210,
+  "unit": "mm",
+  "page_count": 2,
+  "margin_mm": 12,
+  "bleed_mm": 3,
+  "safe_mm": 5,
+  "gutter_mm": 6,
+  "facing_pages": false,
+  "output_types": [
+    "pdf",
+    "native"
+  ],
+  "pixels_per_inch_target": 300,
+  "binding_edge": "none"
+}

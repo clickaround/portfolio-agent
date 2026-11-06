@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "doc_title": "Frederick C. Robie House",
+  "domain": "architecture",
+  "keywords": ["Prairie School", "brick", "cantilever", "measured survey", "HABS 1963"],
+  "tokens": {"paper": "#ffffff", "ink": "#1f1d1b", "accent": "#6b4a3a", "display": "sans"},
+  "grid_system": "swiss-12",
+  "pages": [
+    {
+      "role": "cover",
+      "assets": ["exterior_south"],
+      "title": "Frederick C. Robie House",
+      "tagline": "A measured survey of a long, low house in Hyde Park, Chicago"
+    },
+    {
+      "role": "split",
+      "assets": ["exterior_street"],
+      "section": "Concept",
+      "title": "Every line runs with the street",
+      "text": "A long, low house on a corner lot in Chicago's Hyde Park: two slipped rectangular volumes under broad hipped roofs. The living and dining rooms are raised to the second floor and opened to the street through a continuous band of art-glass doors. The roofs cantilever far beyond the walls, and the brick is laid with raked horizontal joints, so every line of the house runs with the street."
+    },
+    {
+      "role": "hero",
+      "assets": ["sheet_03"],
+      "section": "Plans",
+      "title": "One continuous living and dining space",
+      "caption": "Second (main) floor plan, 1/8 inch to the foot: one continuous living and dining space divided only by the central fireplace and stair; guest room, kitchen and servants' rooms along the north wing.",
+      "composition": "plate-caption-left"
+    },
+    {
+      "role": "pair",
+      "assets": ["sheet_02", "sheet_04"],
+      "section": "Plans",
+      "title": "Ground floor and third floor",
+      "captions": [
+        "First (ground) floor plan: billiard room and playroom; the garage later enlarged by one room, as noted on the survey.",
+        "Third floor plan, 1/8 inch to the foot: the third floor holds the bedrooms under the broad hipped roof."
+      ],
+      "composition": "pair-row-heading-top"
+    },
+    {
+      "role": "hero",
+      "assets": ["sheet_05"],
+      "section": "Section and elevations",
+      "title": "Raised to the second floor",
+      "caption": "Longitudinal section and south elevation, 1/8 inch to the foot: the living and dining rooms raised to the second floor, the roofs cantilevered far beyond the walls.",
+      "composition": "plate-centred-notes-right"
+    },
+    {
+      "role": "hero",
+      "assets": ["sheet_06"],
+      "section": "Section and elevations",
+      "title": "Two slipped volumes",
+      "caption": "West, east and north elevations, 1/8 inch to the foot: two slipped rectangular volumes under broad hipped roofs, brick laid with raked horizontal joints.",
+      "composition": "margin-notes-plate"
+    },
+    {
+      "role": "split",
+      "assets": ["interior_living"],
+      "section": "Interior",
+      "title": "Divided only by the fireplace and stair",
+      "text": "The ground floor holds the billiard room and playroom; the second floor is one continuous living and dining space divided only by the central fireplace and stair; the third floor holds the bedrooms. Here, the dining room on the second floor.",
+      "variant": 1
+    },
+    {
+      "role": "pair",
+      "assets": ["sheet_07", "sheet_09"],
+      "section": "Details",
+      "title": "Fireplace and art glass",
+      "captions": [
+        "Fireplace elevations, east and west, 3/8 inch to the foot: the central fireplace dividing living and dining.",
+        "Second (main) floor windows: the art-glass doors that open the living and dining rooms to the street."
+      ],
+      "composition": "pair-row-heading-top"
+    },
+    {
+      "role": "split",
+      "assets": ["sheet_08"],
+      "section": "Survey",
+      "title": "Measured in 1963",
+      "text": "Measured and drawn in 1963 by the Historic American Buildings Survey (Chicago Project, survey ILL-1005) under the National Park Service; sheets by Robert C. Giebner and Janis J. Erins. Scale 1/8 inch to the foot for plans, sections and elevations; 3/8 inch for the fireplace elevations.",
+      "caption": "Robie House windows sheet: first-floor window pattern and second-floor window details in interior view, section and exterior."
+    },
+    {
+      "role": "closing",
+      "assets": [],
+      "section": "Closing",
+      "statement": "Study of a measured survey. Individual work, 6 weeks.",
+      "text": "Drawings: Historic American Buildings Survey, Chicago Project 1963, survey ILL-1005, under the National Park Service; sheets by Robert C. Giebner and Janis J. Erins.",
+      "composition": "statement-keywords"
+    }
+  ]
+}

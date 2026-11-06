@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "style_id",
+    "paper_color",
+    "ink_color",
+    "accent_color",
+    "type_family",
+    "grid_columns",
+    "density",
+    "rules"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "style_id": {
+      "type": "string"
+    },
+    "paper_color": {
+      "type": "string"
+    },
+    "ink_color": {
+      "type": "string"
+    },
+    "accent_color": {
+      "type": "string"
+    },
+    "type_family": {
+      "type": "string"
+    },
+    "grid_columns": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "density": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,3 @@
+# Benchmark-first design task
+
+Read GDB, SlidesGen-Bench, AutoDesign/PosterBench, DECKBench code paths and `benchmarks/SPEC.md`. State what each public benchmark actually measures and why it is incomplete for our domain. Implement first a tiny falsifiable hard-gate (one valid and one deliberately invalid synthetic case); then define BLIND human preference protocol. Freeze model/host/input/purpose/page-size/attempts when comparing baselines. Report all outputs with checksums, scoring version, cost and failures. Do not equate a judge score with architectural expertise. Never use hidden/reference portfolios to tune prompts.

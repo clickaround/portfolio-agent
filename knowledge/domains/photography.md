@@ -1,0 +1,2 @@
+# Photography — draft knowledge pack (requires domain expert review)
+Core evidence: original photographic works, series sequence, image scale, edit/crop consent, captions, rights/credits. Editing a series is an act of curating: selecting, omitting, juxtaposing, pacing. Avoid adding invented scenes or overriding photographic intent with dense text; enforce color/profile and print-resolution checks. A general slide template is rarely appropriate.

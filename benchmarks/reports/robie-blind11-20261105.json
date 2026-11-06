@@ -1,0 +1,17 @@
+{
+  "run_id": "robie-blind11-20261105",
+  "blinded": true,
+  "key": {"X": "LLMPLAN4_BLEED", "Y": "B0", "Z": "LLMPLAN3"},
+  "scores_mean": {"B0": 0.72, "LLMPLAN3": 0.59, "LLMPLAN4_BLEED": 0.55},
+  "dimensions": {
+    "LLMPLAN4_BLEED": {"hierarchy": 0.62, "composition_balance": 0.50, "whitespace_intent": 0.45, "typography": 0.55, "sequence_narrative": 0.62, "asset_fidelity": 0.55, "domain_fit": 0.52, "anti_template": 0.62},
+    "B0": {"hierarchy": 0.74, "composition_balance": 0.70, "whitespace_intent": 0.66, "typography": 0.68, "sequence_narrative": 0.72, "asset_fidelity": 0.78, "domain_fit": 0.76, "anti_template": 0.74},
+    "LLMPLAN3": {"hierarchy": 0.64, "composition_balance": 0.60, "whitespace_intent": 0.55, "typography": 0.62, "sequence_narrative": 0.62, "asset_fidelity": 0.60, "domain_fit": 0.62, "anti_template": 0.50}
+  },
+  "predictions_checked": {
+    "P5 bleed openers + dark page raise composition_balance and anti_template by >= 0.1 (vs LLMPLAN3), whitespace unchanged": "anti_template 0.50->0.62 YES; composition_balance 0.60->0.50 NO (strip page p8 55 % empty, index p4, diagram heading at bottom p9); whitespace 0.55->0.45 NO"
+  },
+  "critic_praise_for_best": "designed cover (spine, framed photo + caption, keyword footer), consistent palette + header/footer, different layout on nearly every page, large unclipped drawings, no placeholder diagram pages",
+  "fixes_derived": ["strip: row count 1-3 chosen for largest cells (4 drawings -> 2x2)", "index_grid: per-row 2-4 chosen for largest thumbnails", "diagram_row: heading always on top, variant swaps columns", "panel caption in ink", "bleed_split: caption stands on the bottom margin"],
+  "status": "n=1, one LLM critic (noise ~+-0.07); candidate X carried a 3 mm bleed (pages 303 x 216 mm); log evidence/logs/blind11-robie-b0-llmplan3-llmplan4bleed.txt"
+}

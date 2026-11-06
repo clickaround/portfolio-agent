@@ -1,0 +1,13 @@
+{
+  "_note": "Grid systems a book is set on (one per book). margins in mm unless 'frac' (fraction of page width for inner/outer, of page height for top/bottom). rows = horizontal flowlines inside the margins. Sources: knowledge/editorial/layout-craft.md (UW grid handout; Van de Graaf/Rosarivo ninths; illustrarch practice).",
+  "systems": [
+    {"id": "swiss-12", "columns": 12, "gutter_mm": 6, "rows": 6, "margins": {"top": 12, "bottom": 12, "inner": 12, "outer": 12},
+     "note": "Muller-Brockmann style: many narrow columns, equal margins; most flexible (illustrarch: 12 columns on A3)."},
+    {"id": "editorial-8", "columns": 8, "gutter_mm": 5, "rows": 8, "margins": {"top": 14, "bottom": 22, "inner": 12, "outer": 18},
+     "note": "Magazine feature grid: fewer, wider columns; heavier foot margin; wider outer margin for marginal notes."},
+    {"id": "book-6-ninths", "columns": 6, "gutter_mm": 4, "rows": 9, "margins": {"frac": true, "top": 0.111, "bottom": 0.222, "inner": 0.111, "outer": 0.222},
+     "note": "Van de Graaf / Rosarivo ninths: type area 2/3 x 2/3 of the page, inner:top:outer:bottom = 1:1:2:2 (book pages, spreads)."},
+    {"id": "poster-4", "columns": 4, "gutter_mm": 8, "rows": 4, "margins": {"top": 10, "bottom": 10, "inner": 10, "outer": 10},
+     "note": "Coarse modular grid: four columns, four rows; for image-led pages with few words (illustrarch: 6 or fewer for image-heavy)."}
+  ]
+}

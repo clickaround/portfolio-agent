@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-02",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "c-label", "kind": "text", "asset_id": null, "text": "Concept", "box_mm": [12, 12, 87, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "georgiai", "color": "#1d5a6c"}},
+    {"id": "c-rule", "kind": "shape", "asset_id": null, "box_mm": [12, 22, 87, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1a1a1a"}},
+    {"id": "c-text", "kind": "text", "asset_id": null, "text": "The scheme organizes public program around a shifted courtyard and a long timber roof.", "box_mm": [12, 28, 87, 60], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 16, "style": {"font": "georgia", "color": "#1a1a1a", "line_height": 1.35}},
+    {"id": "r-label", "kind": "text", "asset_id": null, "text": "Role", "box_mm": [12, 150, 87, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "georgiai", "color": "#1d5a6c"}},
+    {"id": "r-rule", "kind": "shape", "asset_id": null, "box_mm": [12, 160, 87, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1a1a1a"}},
+    {"id": "r-text", "kind": "text", "asset_id": null, "text": "Individual work, 14 weeks.", "box_mm": [12, 165, 87, 12], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "malgun", "color": "#1a1a1a"}},
+    {"id": "tall", "kind": "image", "asset_id": "img02", "box_mm": [105, 12, 110.25, 165.38], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "sq", "kind": "image", "asset_id": "img03", "box_mm": [221.25, 12, 63.75, 63.75], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "s-label", "kind": "text", "asset_id": null, "text": "Site", "box_mm": [221.25, 150, 63.75, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "georgiai", "color": "#1d5a6c"}},
+    {"id": "s-rule", "kind": "shape", "asset_id": null, "box_mm": [221.25, 160, 63.75, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1a1a1a"}},
+    {"id": "s-text", "kind": "text", "asset_id": null, "text": "Synthetic site description for tests only.", "box_mm": [221.25, 165, 63.75, 12.4], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "malgun", "color": "#1a1a1a"}}
+  ]
+}

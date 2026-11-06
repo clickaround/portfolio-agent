@@ -1,0 +1,3 @@
+Warning: this sign-in ends between 2026-11-10 and 2026-11-13 (in 6 days at the earliest). Renewing it does not move those dates. Run claude auth login before then, or use claude setup-token for unattended jobs.
+**T003** — NEXT 줄이 T003(기억/인계 재개 실험)을 가장 먼저 지정하고, 이 태스크가 ready 목록에 있습니다.
+exit=0

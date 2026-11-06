@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1.0",
+  "doc_title": "Frederick C. Robie House",
+  "domain": "architecture",
+  "keywords": ["Prairie School", "brick", "cantilever", "measured survey"],
+  "tokens": {"paper": "#ffffff", "ink": "#1a1a1a", "accent": "#8a3b22", "display": "serif"},
+  "grid_system": "swiss-12",
+  "pages": [
+    {
+      "role": "cover",
+      "assets": ["exterior_south"],
+      "title": "Frederick C. Robie House",
+      "tagline": "A study of the 1963 measured survey, Chicago"
+    },
+    {
+      "role": "split",
+      "assets": ["exterior_street"],
+      "composition": "hero-left-two-thirds",
+      "section": "Concept",
+      "title": "Every line runs with the street",
+      "text": "A long, low house on a corner lot in Chicago's Hyde Park: two slipped rectangular volumes under broad hipped roofs, with the living and dining rooms raised to the second floor and opened to the street through a continuous band of art-glass doors. The roofs cantilever far beyond the walls and the brick is laid with raked horizontal joints."
+    },
+    {
+      "role": "hero",
+      "assets": ["interior_living"],
+      "section": "Concept",
+      "title": "The raised second floor",
+      "caption": "Interior. The second-floor living and dining space, one continuous room."
+    },
+    {
+      "role": "grid",
+      "assets": ["diagram_01", "diagram_02", "diagram_03", "diagram_04"],
+      "section": "Process",
+      "title": "Process placeholders (synthetic)",
+      "caption": "Placeholders. Four synthetic diagrams that only test the diagram row; not facts about the house."
+    },
+    {
+      "role": "grid",
+      "index": true,
+      "assets": ["sheet_02", "sheet_03", "sheet_04", "sheet_05", "sheet_06", "sheet_07"],
+      "section": "Survey",
+      "title": "Index of sheets",
+      "captions": [
+        "Ground floor plan.",
+        "Second floor plan.",
+        "Third floor plan.",
+        "Section, south elevation.",
+        "West, east, north elevations.",
+        "Fireplace elevations."
+      ]
+    },
+    {
+      "role": "split",
+      "assets": ["sheet_03"],
+      "section": "Plan",
+      "title": "One room, divided only by fireplace and stair",
+      "text": "The ground floor holds the billiard room and playroom; the second floor is one continuous living and dining space divided only by the central fireplace and stair; the third floor holds the bedrooms.\n\nSecond (main) floor plan, scale 1/8 inch to the foot."
+    },
+    {
+      "role": "pair",
+      "assets": ["sheet_02", "sheet_04"],
+      "composition": "pair-row-heading-top",
+      "section": "Plan",
+      "title": "Ground floor and third floor",
+      "captions": [
+        "Ground floor plan. The garage was later enlarged by one room and the service-yard wall lowered.",
+        "Third floor plan. The bedrooms."
+      ]
+    },
+    {
+      "role": "split",
+      "assets": ["sheet_05"],
+      "section": "Section and elevation",
+      "title": "Cut and face, south",
+      "text": "Longitudinal section above, south elevation below, both at 1/8 inch to the foot. Drawn by Janis J. Erins."
+    },
+    {
+      "role": "hero",
+      "assets": ["sheet_06"],
+      "section": "Section and elevation",
+      "title": "The other three faces",
+      "caption": "West, east and north elevations at 1/8 inch to the foot."
+    },
+    {
+      "role": "pair",
+      "assets": ["sheet_07", "sheet_08"],
+      "section": "Details",
+      "title": "Fireplace and windows",
+      "captions": [
+        "Fireplace elevations. East and west faces at 3/8 inch to the foot.",
+        "Window details. First floor window pattern and second floor window sections."
+      ]
+    },
+    {
+      "role": "hero",
+      "assets": ["sheet_09"],
+      "section": "Details",
+      "title": "Second floor windows",
+      "caption": "Second (main) floor windows. The art glass drawn at large scale."
+    },
+    {
+      "role": "closing",
+      "assets": [],
+      "section": "Survey",
+      "statement": "Measured and drawn in 1963 by the Historic American Buildings Survey.",
+      "text": "Chicago Project, survey ILL-1005, National Park Service. Sheets by Robert C. Giebner and Janis J. Erins. Study of a measured survey, individual work, 6 weeks."
+    }
+  ]
+}

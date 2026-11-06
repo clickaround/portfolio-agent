@@ -1,0 +1,23 @@
+{
+  "domain": "industrial-design",
+  "version": 1,
+  "criteria": [
+    {
+      "id": "story",
+      "question": "Does sequencing communicate the audience-specific project narrative?"
+    },
+    {
+      "id": "evidence",
+      "question": "Are visual and written claims grounded in original project assets?"
+    },
+    {
+      "id": "presentation",
+      "question": "Does the editorial presentation fit this discipline and purpose?"
+    },
+    {
+      "id": "originality",
+      "question": "Does the portfolio show distinct identity rather than generic report cards?"
+    }
+  ],
+  "review_status": "HYPOTHESIS_NEEDS_EXPERT"
+}

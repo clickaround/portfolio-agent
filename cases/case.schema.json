@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portfolio Case Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_id",
+    "domain",
+    "purpose",
+    "source_url",
+    "owner",
+    "rights_status",
+    "rights_evidence",
+    "portfolio_level",
+    "review_status"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string",
+      "minLength": 3
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "architecture",
+        "ux-product",
+        "graphic-branding",
+        "photography"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "job_application",
+        "graduate_admission",
+        "client_pitch",
+        "competition",
+        "showcase"
+      ]
+    },
+    "source_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rights_status": {
+      "type": "string",
+      "enum": [
+        "link_only",
+        "permission_pending",
+        "permission_granted_reference",
+        "permission_granted_eval",
+        "permission_granted_training",
+        "restricted",
+        "withdrawn",
+        "synthetic_created_here"
+      ]
+    },
+    "rights_evidence": {
+      "type": "string"
+    },
+    "portfolio_level": {
+      "type": "object",
+      "required": [
+        "project_count",
+        "page_count",
+        "sequence_rationale"
+      ],
+      "properties": {
+        "project_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "page_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sequence_rationale": {
+          "type": "string"
+        }
+      }
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "page_role",
+          "focus_asset",
+          "design_rationale"
+        ],
+        "properties": {
+          "page_id": {
+            "type": "string"
+          },
+          "page_role": {
+            "type": "string"
+          },
+          "focus_asset": {
+            "type": "string"
+          },
+          "design_rationale": {
+            "type": "string"
+          },
+          "grid": {
+            "type": "string"
+          },
+          "density": {
+            "type": "string"
+          },
+          "asset_roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "reviewed",
+        "rejected"
+      ]
+    },
+    "collected_at": {
+      "type": "string"
+    },
+    "source_hash": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "quality_verified": {
+      "type": "boolean"
+    }
+  }
+}

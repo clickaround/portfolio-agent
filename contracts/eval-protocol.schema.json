@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evaluation Run Contract (proposed)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "inputs",
+    "harness",
+    "model",
+    "backend",
+    "hard_gates",
+    "scores",
+    "artifacts",
+    "status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "asset_sha256"
+        ],
+        "properties": {
+          "asset_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "harness": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "backend": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "not_run",
+        "pass",
+        "fail",
+        "blocked"
+      ]
+    },
+    "hard_gates": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "PASS",
+          "FAIL",
+          "NOT_RUN",
+          "NOT_APPLICABLE"
+        ]
+      }
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cost_usd": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "latency_seconds": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "judge_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reference_case_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reproduction_log": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

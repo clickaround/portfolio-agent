@@ -1,0 +1,96 @@
+Rubric read, all 15 pages viewed. Critique follows.
+
+```
+INDEPENDENT CRITIC REPORT  —  Courtyard Housing, A4 landscape, 5 pages each
+(Judged on layout/typography only; placeholder art and filler text ignored.)
+
+=====================================================================
+CANDIDATE X  (white ground, serif display + sans body)
+=====================================================================
+hierarchy             0.75  clear hero on p1/p3/p5; p2 heading undersized vs drawing
+composition_balance   0.55  p1 image/text block stops ~95px short of the header's right margin; p3 plan leaves ~200px orphaned strip at right
+whitespace_intent     0.50  p2 lower third (below text) and p3 right strip read as leftover, not margin
+typography            0.70  consistent 2-family system; running head ~7pt; scale steps coherent
+sequence_narrative    0.65  cover/concept/plan/pair/close rhythm OK; elevation drawing reused on p2 and p4
+asset_fidelity        0.80  no stretching; plan legible at ~70% page width; source labels intact
+domain_fit            0.75  drawings dominant, plan large
+anti_template         0.50  white page + heading-left/body-right reads as a generic report
+MEAN 0.65   VERDICT: revise
+
+Top issues
+1. page: X_p3 | severity: high | category: composition_balance
+   description: Plan drawing is left-anchored (x≈70–700) leaving a dead ~200px band at the right; page reads unbalanced.
+   evidence: plan right edge ≈700 vs header/page-number margin ≈897; caption top-right spans full width, drawing does not.
+   suggested_route: local_refine (scale plan to full text width or centre it).
+2. page: X_p2 | severity: medium | category: whitespace_intent
+   description: Drawing frame has its elevation in the top half with empty frame below, then a further empty band under the text block.
+   evidence: elevation occupies y≈125–300 of a frame y≈60–405; nothing below y≈490 on the page.
+   suggested_route: pivot_layout (crop frame to content, let text sit beside the drawing).
+3. page: X_p1 | severity: medium | category: composition_balance
+   description: Hero image and tagline column end ~95px before the page's right margin set by the header.
+   evidence: image right edge ≈802, tagline right ≈808, "01 / 05" right ≈897.
+   suggested_route: local_refine (extend image to margin; align tagline to it).
+
+=====================================================================
+CANDIDATE Y  (warm off-white, orange section labels, serif headings)
+=====================================================================
+hierarchy             0.65  p3 small plan lets the heading outweigh the drawing; p4 pair has no captions; p2 body competes with heading
+composition_balance   0.50  p3 plan floats with unequal side voids (~175px left, ~130px right); p1 image/keywords stop short of right margin
+whitespace_intent     0.45  p2 gap between heading row and drawing (~165px) reads as leftover; p3 flanking voids look accidental
+typography            0.70  consistent system, orange labels give structure; running head tiny
+sequence_narrative    0.55  p2/p3/p4 share identical label+heading top-left skeleton; p4 "Studies" pair uncaptioned; drawing reused
+asset_fidelity        0.75  no distortion; plan shown at ~60% page width, reduced legibility
+domain_fit            0.60  plan undersized; drawings do not dominate p2/p3
+anti_template         0.55  ground colour and accents help, but structure is still a template
+MEAN 0.59   VERDICT: revise
+
+Top issues
+1. page: Y_p3 | severity: high | category: domain_fit
+   description: Site/plan drawing is reduced and floated mid-page with uneven voids both sides; architecture page should let the drawing lead.
+   evidence: plan spans x≈213–765 of a 38–897 text width; heading + one-line text above, nothing else on page.
+   suggested_route: pivot_layout (plan to full width, heading to a side column).
+2. page: Y_p2 | severity: medium | category: whitespace_intent
+   description: Empty band between heading/body row and the drawing frame; drawing then sits in upper half of its own frame.
+   evidence: text ends y≈155, frame starts y≈275; elevation ends y≈520 in a frame to y≈620.
+   suggested_route: local_refine (pull drawing up or crop frame; align frame top to body text).
+3. page: Y_p4 | severity: medium | category: sequence_narrative
+   description: Two uncaptioned images under a one-word heading; same skeleton as p2/p3, no reading path or explanation.
+   evidence: no caption lines under either image; heading "Studies" only.
+   suggested_route: revise_story (add captions/rationale or merge with concept page).
+
+=====================================================================
+CANDIDATE Z  (warm ground, Didone display + italic, bold sans running heads)
+=====================================================================
+hierarchy             0.85  one dominant element per page; title>heading>body>caption steps clear
+composition_balance   0.70  p2 image pushed to bottom-left with void above; p4 staggered pair leaves top band empty
+whitespace_intent     0.70  p3 sidebar and p5 read deliberate; p2 top-left void reads leftover
+typography            0.85  strongest scale contrast and consistent family use; "Image 02 / Image 03" caption and running heads very small
+sequence_narrative    0.70  cover(massing)/concept(image)/plan/two views/close varies well; p4 repeats one drawing twice
+asset_fidelity        0.75  p4 duplicates the same elevation at two scales; p1 massing render base touches frame bottom (possible crop)
+domain_fit            0.85  plan large and crisp, drawings lead every content page
+anti_template         0.85  distinctive type, asymmetric grid, consistent accent
+MEAN 0.78   VERDICT: pass (no blocker/high)
+
+Top issues
+1. page: Z_p4 | severity: medium | category: sequence_narrative
+   description: "Two views" shows the same elevation drawing twice at different sizes; the page promises variety it does not deliver.
+   evidence: left and centre frames contain identical 4-block elevation + ground line; only frame proportions differ.
+   suggested_route: revise_story (swap one for section/axonometric or make it a single hero).
+2. page: Z_p2 | severity: medium | category: whitespace_intent
+   description: Hero image anchored to bottom-left with an unused band above; text column starts well above the image top.
+   evidence: image y≈283–617; label at y≈107, heading y≈150; nothing in x 44–577 above y≈283.
+   suggested_route: local_refine (align label/heading baseline to image top, or raise image).
+3. page: Z_p1 | severity: low | category: asset_fidelity
+   description: Massing render's plinth appears clipped at the frame's bottom edge, suggesting a crop of the source image.
+   evidence: base slab bottom edge coincides with frame bottom at y≈617.
+   suggested_route: local_refine (show full image or crop with visible intent).
+
+=====================================================================
+RANKING (best → worst)
+1. Z  mean 0.78  pass
+2. X  mean 0.65  revise
+3. Y  mean 0.59  revise
+
+Note: no deterministic-gate results were provided; this ranking assumes all three passed gates.
+Per rubric limits, a single critic is not a designer; confirm with blinded pairwise expert review.
+```

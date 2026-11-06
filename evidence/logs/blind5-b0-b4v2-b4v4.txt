@@ -1,0 +1,70 @@
+**Ranking, best to worst: Y, Z, X.** None reaches `pass`; all three get `revise`.
+
+## Y (5 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.80 |
+| composition_balance | 0.65 |
+| whitespace_intent | 0.70 |
+| typography | 0.85 |
+| sequence_narrative | 0.75 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.65 |
+| anti_template | 0.80 |
+| **mean** | **0.74** |
+
+**Verdict: revise.** The mean is just under 0.75 and there is one high issue. It is the only candidate with a real editorial identity: a large serif title with an italic second line, a warm ground, a running header with a page counter, section numbering, and a typographic closing page.
+
+Top 3 issues:
+1. **page 4, high, composition_balance.** The two study images have different heights and baselines, with a large dead band above them and a tiny "Two views" title. Evidence: the left image starts at y≈160 and the right at y≈283; the top 25% of the page is empty. Route: `local_refine`.
+2. **page 3, medium, domain_fit.** The plan, which is the key architectural drawing, sits on a white card with an empty lower third, and the heading ("Plan 01") is small. The drawing could be larger and bled out. Evidence: the card ends at y≈557 of 660. Route: `pivot_layout`.
+3. **page 2, medium, whitespace_intent.** The concept image is bottom-anchored, leaving a large void at the top left. The text column has an unexplained gap between the body and the keywords. Evidence: the image starts at y≈283. Route: `local_refine`.
+
+The running-header and keyword text is also very small, a low-severity typography point. The closing page has no drawing, so it is purely typographic. Narrative-wise that works as a close.
+
+## Z (4 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.60 |
+| composition_balance | 0.55 |
+| whitespace_intent | 0.55 |
+| typography | 0.65 |
+| sequence_narrative | 0.60 |
+| asset_fidelity | 0.70 |
+| domain_fit | 0.65 |
+| anti_template | 0.45 |
+| **mean** | **0.60** |
+
+**Verdict: revise.** It is clean and consistent, with a teal rule accent and a footer. It reads as a generic report template, though, and the layouts are uneven in quality.
+
+Top 3 issues:
+1. **page 2, high, composition_balance.** The two images are mismatched in size and position, and the small one is pushed to the bottom right. The "Role" caption sits beside the image and collides visually with it. Evidence: "Role / Individual work" is at x≈422–540, y≈480–505, close to the small image at x≈645. Route: `pivot_layout`.
+2. **page 3, medium, hierarchy.** The "Plan" caption is orphaned at the bottom left, far from the drawing. The right column holds a tiny title and one line of text, so the page has no clear hero. Evidence: "Plan" at y≈540 versus the drawing ending at y≈490. Route: `local_refine`.
+3. **page 1, medium, anti_template.** The cover is a generic split with a modest title and a small image. The bordered header and footer rules look auto-generated, and the slightly smaller hero image weakens the opening. Route: `pivot_layout`.
+
+Page 4 is the best page in Z: a full-width massing hero, with a caption that is a little loose.
+
+## X (4 pages)
+
+| Dimension | Score |
+|---|---|
+| hierarchy | 0.55 |
+| composition_balance | 0.45 |
+| whitespace_intent | 0.45 |
+| typography | 0.55 |
+| sequence_narrative | 0.35 |
+| asset_fidelity | 0.65 |
+| domain_fit | 0.55 |
+| anti_template | 0.35 |
+| **mean** | **0.50** |
+
+**Verdict: revise.** It sits at the revise/fail boundary, with several high issues and a weak story.
+
+Top 3 issues:
+1. **page 4, high, sequence_narrative.** "Role" is used as the heading of the massing-image page. The "Individual work, 14 weeks" line is the headline and the keywords sit as a stray list, so the page title does not describe its image. Role information also appears on the cover. Evidence: the title "Role" over the massing image. Route: `revise_story`.
+2. **page 2, high, composition_balance.** The two images are misaligned and different sizes, floating without a shared grid. The keyword block at the bottom right is an orphaned, very pale caption. Evidence: the left image x≈37–370, the right x≈425–772 at a different y; the pale "Housing / Timber / Urban infill" text at x≈794, y≈580. Route: `pivot_layout`.
+3. **page 1, medium, hierarchy.** The cover image ends at x≈719 while the rule and title span to x≈897, so the right edge does not align. The "Role" label floats orphaned at the top right and the title sits in the lower third. Route: `local_refine`.
+
+Page 3 has a large empty left column with a tiny italic line, and the plan is cut off at the page right with the label disconnected. Overall the type scale is low-contrast.

@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-02",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "heading", "kind": "text", "asset_id": null, "text": "Concept", "box_mm": [12, 12, 160, 16], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 28, "style": {"font": "georgia", "color": "#1c1c1c"}},
+    {"id": "rule", "kind": "shape", "asset_id": null, "box_mm": [12, 32, 273, 0.3], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1c1c1c"}},
+    {"id": "portrait", "kind": "image", "asset_id": "img02", "box_mm": [12, 40, 105.3, 158], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "quote", "kind": "text", "asset_id": null, "text": "The scheme organizes public program around a shifted courtyard and a long timber roof.", "box_mm": [135, 40, 150, 44], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 22, "style": {"font": "georgiai", "color": "#2f5d62", "line_height": 1.25}},
+    {"id": "square", "kind": "image", "asset_id": "img03", "box_mm": [135, 88, 110, 110], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "caption", "kind": "text", "asset_id": null, "text": "Housing\nTimber\nUrban infill", "box_mm": [252, 182, 33, 16], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 8, "style": {"font": "malgun", "color": "#8a8a8a", "line_height": 1.4}}
+  ]
+}

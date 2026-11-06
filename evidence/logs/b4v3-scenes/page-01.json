@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "arch_01",
+  "page_id": "page-01",
+  "size_mm": [297, 210],
+  "elements": [
+    {"id": "hero", "kind": "image", "asset_id": "img01", "box_mm": [12, 12, 180, 112.5], "z_index": 1, "locked": true, "allow_overlap": false, "allow_crop": false},
+    {"id": "kw-rule", "kind": "shape", "asset_id": null, "box_mm": [198, 12, 87, 0.8], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1d5a6c"}},
+    {"id": "kw-label", "kind": "text", "asset_id": null, "text": "Architecture portfolio", "box_mm": [198, 16, 87, 8], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 10, "style": {"font": "georgiai", "color": "#1d5a6c"}},
+    {"id": "kw", "kind": "text", "asset_id": null, "text": "Housing\nCourtyard\nTimber\nUrban infill", "box_mm": [198, 92, 87, 32.5], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 12, "style": {"font": "georgia", "color": "#1a1a1a", "line_height": 1.4}},
+    {"id": "title-rule", "kind": "shape", "asset_id": null, "box_mm": [12, 134, 30, 0.8], "z_index": 1, "locked": false, "allow_overlap": false, "style": {"fill": "#1d5a6c"}},
+    {"id": "title", "kind": "text", "asset_id": null, "text": "Courtyard Housing", "box_mm": [12, 140, 186, 26], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 40, "style": {"font": "georgiab", "color": "#1a1a1a", "line_height": 1.1}},
+    {"id": "sub", "kind": "text", "asset_id": null, "text": "Individual work, 14 weeks.", "box_mm": [12, 172, 120, 10], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 12, "style": {"font": "georgiai", "color": "#6b6b6b"}},
+    {"id": "aud", "kind": "text", "asset_id": null, "text": "Prepared for graduate admissions", "box_mm": [198, 172, 87, 10], "z_index": 2, "locked": false, "allow_overlap": false, "font_size_pt": 9, "style": {"font": "malgun", "color": "#6b6b6b", "align": "left"}}
+  ]
+}

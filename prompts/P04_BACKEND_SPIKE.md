@@ -1,0 +1,3 @@
+# Backend comparison prompt — P04
+
+Run OpenPencil and GenOffice independently in separate environments on the SAME rights-approved (or synthetic) A3 2-page asset set. For each: test `import/insert source PDF`, text edit, 20% drawing enlargement, user-visible object editing, SVG/PDF export, PDF reopen/zoom/lineweight/fonts, output parity. Collect source and exported file hashes, human zoom screenshots, page dimensions, wrong edits, compatibility, exact setup cost/time. Compare B0 direct HTML control. Any claim of 'vector preservation' without inspection is FAILED/UNVERIFIED. After P04 ask independent reviewer to write ADR recommendation only, not product implementation.

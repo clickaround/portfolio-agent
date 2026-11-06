@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "doc_title": "Courtyard Housing",
+  "domain": "architecture",
+  "keywords": ["housing", "courtyard", "timber", "urban infill"],
+  "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1c1c1c",
+    "accent": "#4a5a3c",
+    "display": "serif"
+  },
+  "pages": [
+    {
+      "role": "cover",
+      "assets": ["img01"],
+      "title": "Courtyard Housing",
+      "tagline": "A shifted courtyard under a long timber roof",
+      "variant": 1
+    },
+    {
+      "role": "split",
+      "assets": ["img04"],
+      "section": "Concept",
+      "title": "A shifted courtyard, a long roof",
+      "text": "The public program is organized around a shifted courtyard. A long timber roof runs the length of the scheme. Courtyard and roof together organize the public program.",
+      "variant": 0
+    },
+    {
+      "role": "hero",
+      "assets": ["plan01"],
+      "section": "Plan",
+      "title": "Public program around the courtyard",
+      "caption": "Plan. The shifted courtyard with the public program organized around it, under the long timber roof."
+    },
+    {
+      "role": "pair",
+      "assets": ["img02", "img03"],
+      "section": "Courtyard",
+      "title": "The courtyard",
+      "captions": [
+        "Housing and public program around the courtyard.",
+        "The courtyard, shifted within the scheme."
+      ],
+      "variant": 0
+    },
+    {
+      "role": "closing",
+      "assets": [],
+      "statement": "Urban infill housing, individual work over 14 weeks: a shifted courtyard under a long timber roof."
+    }
+  ]
+}

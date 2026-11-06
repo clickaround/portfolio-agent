@@ -1,0 +1,800 @@
+{
+ "bench": "engine-regression (not ArchPortfolioBench)",
+ "date": "2026-11-05",
+ "fixtures": "SYNTHETIC",
+ "aggregate": {
+  "B0_naive": {
+   "runs": 9,
+   "gate_pass": 7,
+   "issues": 10,
+   "secs": 21.8,
+   "edit_ok": 9,
+   "edit_n": 9
+  },
+  "B1_cases": {
+   "runs": 9,
+   "gate_pass": 7,
+   "issues": 4,
+   "secs": 15.6,
+   "edit_ok": 9,
+   "edit_n": 9
+  },
+  "B2_review": {
+   "runs": 9,
+   "gate_pass": 7,
+   "issues": 4,
+   "secs": 39.9,
+   "edit_ok": 9,
+   "edit_n": 9
+  },
+  "B3_full": {
+   "runs": 9,
+   "gate_pass": 8,
+   "issues": 2,
+   "secs": 33.6,
+   "edit_ok": 9,
+   "edit_n": 9
+  }
+ },
+ "rows": [
+  {
+   "project": "arch_01",
+   "spec": "A4-landscape",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.842,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-landscape",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.849,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-landscape",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.367,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-landscape",
+   "condition": "B3_full",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.474,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-portrait",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.549,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-portrait",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.779,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-portrait",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.502,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "A4-portrait",
+   "condition": "B3_full",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 3.699,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "square210-bleed3",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.697,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "square210-bleed3",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.812,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "square210-bleed3",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.374,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_01",
+   "spec": "square210-bleed3",
+   "condition": "B3_full",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.096,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-landscape",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.45,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-landscape",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.848,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-landscape",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.354,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-landscape",
+   "condition": "B3_full",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 3.7,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-portrait",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.475,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-portrait",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.879,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-portrait",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.542,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "A4-portrait",
+   "condition": "B3_full",
+   "pages": 5,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 3.675,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "square210-bleed3",
+   "condition": "B0_naive",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 1,
+   "issue_codes": [
+    "REPEATED_LAYOUT"
+   ],
+   "seconds": 2.606,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "square210-bleed3",
+   "condition": "B1_cases",
+   "pages": 5,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 1.894,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "square210-bleed3",
+   "condition": "B2_review",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.442,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_02",
+   "spec": "square210-bleed3",
+   "condition": "B3_full",
+   "pages": 6,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 4.97,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-landscape",
+   "condition": "B0_naive",
+   "pages": 2,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 2.063,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-landscape",
+   "condition": "B1_cases",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.4,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-landscape",
+   "condition": "B2_review",
+   "pages": 2,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 3.889,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-landscape",
+   "condition": "B3_full",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 2.739,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-portrait",
+   "condition": "B0_naive",
+   "pages": 2,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 2.03,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-portrait",
+   "condition": "B1_cases",
+   "pages": 3,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 1.376,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-portrait",
+   "condition": "B2_review",
+   "pages": 2,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 4.638,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "A4-portrait",
+   "condition": "B3_full",
+   "pages": 3,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 3.26,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "square210-bleed3",
+   "condition": "B0_naive",
+   "pages": 2,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 2.062,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "square210-bleed3",
+   "condition": "B1_cases",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 1.81,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "square210-bleed3",
+   "condition": "B2_review",
+   "pages": 2,
+   "gate_pass": false,
+   "issue_count": 2,
+   "issue_codes": [
+    "PDF_TEXT_NOT_EXTRACTABLE",
+    "TEXT_OVERFLOW"
+   ],
+   "seconds": 4.824,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  },
+  {
+   "project": "arch_03",
+   "spec": "square210-bleed3",
+   "condition": "B3_full",
+   "pages": 3,
+   "gate_pass": true,
+   "issue_count": 0,
+   "issue_codes": [],
+   "seconds": 2.942,
+   "cost_usd": 0.0,
+   "local_edit": {
+    "target": [
+     "page-01",
+     "caption-01"
+    ],
+    "preserved": true,
+    "reason": null,
+    "px_outside": 0
+   }
+  }
+ ],
+ "not_run": [
+  "general-LLM vs skill baseline (needs paid API; BLOCKED)",
+  "editing-backend comparison (OpenPencil/GenOffice not executed)",
+  "blinded human aesthetic review",
+  "real-portfolio cases (no rights-cleared set)"
+ ]
+}

@@ -1,0 +1,185 @@
+{
+ "_note": "SYNTHETIC layout patterns derived from first-party guidance text in knowledge/domains/*.md. NOT extracted from any real portfolio; cannot validate real design quality.",
+ "patterns": [
+  {
+   "id": "arch-drawing-led",
+   "domain": "architecture",
+   "tags": [
+    "housing",
+    "courtyard",
+    "drawing",
+    "plan",
+    "urban"
+   ],
+   "needs_drawing": true,
+   "sequence": [
+    "cover",
+    "split",
+    "hero",
+    "grid",
+    "hero",
+    "closing"
+   ],
+   "hero_min_ratio": 0.45,
+   "source": "knowledge/domains/architecture.md (UIC/GT guidance: white space, vector linework, credits)",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1c1c1c",
+    "accent": "#b5461c",
+    "display": "serif"
+   }
+  },
+  {
+   "id": "arch-photo-led",
+   "domain": "architecture",
+   "tags": [
+    "pavilion",
+    "timber",
+    "model",
+    "photo"
+   ],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "hero",
+    "split",
+    "grid",
+    "closing"
+   ],
+   "hero_min_ratio": 0.5,
+   "source": "knowledge/domains/architecture.md",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1c1c1c",
+    "accent": "#b5461c",
+    "display": "serif"
+   }
+  },
+  {
+   "id": "ux-flow",
+   "domain": "ux-product",
+   "tags": [
+    "app",
+    "flow",
+    "screen",
+    "research"
+   ],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "split",
+    "grid",
+    "hero",
+    "grid",
+    "closing"
+   ],
+   "hero_min_ratio": 0.4,
+   "source": "knowledge/domains/ux-product.md",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#15161a",
+    "accent": "#2b5bd7",
+    "display": "sans"
+   }
+  },
+  {
+   "id": "brand-system",
+   "domain": "graphic-branding",
+   "tags": [
+    "logo",
+    "identity",
+    "brand",
+    "poster"
+   ],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "grid",
+    "hero",
+    "grid",
+    "closing"
+   ],
+   "hero_min_ratio": 0.5,
+   "source": "knowledge/domains/graphic-branding.md",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#111111",
+    "accent": "#111111",
+    "display": "sans"
+   }
+  },
+  {
+   "id": "photo-series",
+   "domain": "photography",
+   "tags": [
+    "series",
+    "portrait",
+    "landscape"
+   ],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "hero",
+    "hero",
+    "grid",
+    "hero",
+    "closing"
+   ],
+   "hero_min_ratio": 0.7,
+   "source": "knowledge/domains/photography.md",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1a1a1a",
+    "accent": "#6b6b6b",
+    "display": "serif"
+   }
+  },
+  {
+   "id": "product-story",
+   "domain": "industrial-design",
+   "tags": [
+    "product",
+    "prototype",
+    "sketch"
+   ],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "split",
+    "hero",
+    "grid",
+    "closing"
+   ],
+   "hero_min_ratio": 0.5,
+   "source": "knowledge/domains/generic",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1a1a1a",
+    "accent": "#c0392b",
+    "display": "sans"
+   }
+  },
+  {
+   "id": "generic-editorial",
+   "domain": "generic",
+   "tags": [],
+   "needs_drawing": false,
+   "sequence": [
+    "cover",
+    "split",
+    "hero",
+    "grid",
+    "closing"
+   ],
+   "hero_min_ratio": 0.45,
+   "source": "knowledge/editorial/grammar.md",
+   "tokens": {
+    "paper": "#ffffff",
+    "ink": "#1a1a1a",
+    "accent": "#1f4e5f",
+    "display": "sans"
+   }
+  }
+ ],
+ "_tokens_note": "tokens = domain default ink/accent colours and display family (serif|sans); paper is white by default and the user sets it with --paper-color / style.paper_color (knowledge/editorial/layout-craft.md)"
+}

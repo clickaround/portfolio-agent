@@ -1,0 +1,2102 @@
+{
+ "version": "0.4.0",
+ "task_statuses": [
+  "pending",
+  "in_progress",
+  "done",
+  "blocked",
+  "skipped"
+ ],
+ "evidence_policy": "Static package checks only are not task execution proof. A done task needs evidence_path, finished_at, pass_state PASS and concrete commands/artifacts; blocked/skipped separately documented.",
+ "tasks": [
+  {
+   "id": "T000",
+   "phase": "P00",
+   "title": "기존 구조 보존·정적 검사",
+   "objective": "현재 ZIP을 신규 폴더에 풀고 소스 존재를 확인, v2 validator/test 실행",
+   "dependencies": [],
+   "outputs": [
+    "evidence/P00-static.md"
+   ],
+   "verification": "python scripts/validate_package.py; python -m unittest discover -s tests -v; 두 명령 exit=0 기록",
+   "negative_test": "스키마/작업 참조가 없는 파일을 고의로 넣으면 검사 실패",
+   "owner": "lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P00-static.md",
+   "finished_at": "2026-11-04T19:27:22+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T001",
+   "phase": "P00",
+   "title": "Claude 플러그인 인식",
+   "objective": "CLI 버전과 호스트별 Skill 발견을 실제 확인",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "evidence/P00-claude.md"
+   ],
+   "verification": "claude --version, 설치 범위, plugin validate 또는 공식 지원 검사 실측; 없으면 BLOCKED",
+   "negative_test": "호스트 미설치인데 성공으로 표시하면 실패",
+   "owner": "host-owner",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P00-claude-recognition.md",
+   "finished_at": "2026-11-04T19:27:50+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T002",
+   "phase": "P00",
+   "title": "Codex 플러그인 인식",
+   "objective": "CLI 버전·Plugin marketplace와 Skill 발견을 실제 확인",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "evidence/P00-codex.md"
+   ],
+   "verification": "codex --version 및 host discover 결과/현재 공식 문법 기록; 미설치면 BLOCKED",
+   "negative_test": "root manifest JSON 통과만으로 설치 성공이라고 판단하면 실패",
+   "owner": "host-owner",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P00-codex-recognition.md",
+   "finished_at": "2026-11-04T19:27:50+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T003",
+   "phase": "P00",
+   "title": "기억/인계 재개 실험",
+   "objective": "새 세션이 NOW·HANDOFF·활성 task card만 읽고 시작할 수 있는지 리허설",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "evidence/P00-handoff.md"
+   ],
+   "verification": "독립 세션에서 동일 next-task ID를 재현하거나 호스트 부재 기록",
+   "negative_test": "old HANDOFF만 믿고 실행 증거 없이 done 변경하면 실패",
+   "owner": "reviewer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P00-resume.md",
+   "finished_at": "2026-11-04T19:28:24+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T004",
+   "phase": "P00",
+   "title": "태스크 상태 도구 검증",
+   "objective": "ready/dependency/blocked/evidence 정책 검사",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "evidence/P00-task-runner.md"
+   ],
+   "verification": "python scripts/task_status.py --ready 와 --all; 불법 done 상태를 validator가 거부",
+   "negative_test": "proof 없는 done 허용 시 실패",
+   "owner": "lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P00-task-runner.md",
+   "finished_at": "2026-11-04T19:27:22+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T100",
+   "phase": "P01",
+   "title": "분야·용도별 포트폴리오 JTBD 정의",
+   "objective": "분야별 독자/목표/작품 증거와 책자·슬라이드·디지털 매체의 차이를 분리",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "research/domain/architecture-jtbd.md"
+   ],
+   "verification": "목적별 대상 독자·판단기준·평가시나리오 최소 3개, 공식/전문 출처",
+   "negative_test": "형식·내용 구분 없이 단일 템플릿으로 정리하면 실패",
+   "owner": "domain-researcher",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T101",
+   "phase": "P01",
+   "title": "크로스 도메인 차이 조사",
+   "objective": "건축·UX·브랜딩·사진에서 정보 구조가 어떻게 다른지 사례 기준으로 비교",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "research/domain/cross-domain-taxonomy.md"
+   ],
+   "verification": "최소 4분야별 입증해야 할 내용, 페이지유형, 매체의 차이 분류",
+   "negative_test": "일반 서술형 보고서 페이지를 모든 도메인에 적용하면 실패",
+   "owner": "domain-researcher",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T102",
+   "phase": "P01",
+   "title": "링크 후보 사실 확인",
+   "objective": "기존 링크 후보의 존재·페이지 전체성·제작자·공개 약관 점검",
+   "dependencies": [
+    "T100"
+   ],
+   "outputs": [
+    "cases/catalog-audit.jsonl"
+   ],
+   "verification": "후보별 accessed_at, page_count 확인/미확인, link_only, 접근 실패 상태 기록",
+   "negative_test": "링크만 보고 좋음/허가됨 처리하면 실패",
+   "owner": "case-curator",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T103",
+   "phase": "P01",
+   "title": "사례 권리 프로토콜",
+   "objective": "browse·download·derived annotation·reference·evaluation·training 권한 별도 판정",
+   "dependencies": [
+    "T100"
+   ],
+   "outputs": [
+    "cases/RIGHTS_PROTOCOL.md"
+   ],
+   "verification": "권한 매트릭스, 삭제요청 처리, 동의/근거 보존, pending 기본값",
+   "negative_test": "link_only 이미지를 데이터셋에 무단 복사하는 경로가 있으면 실패",
+   "owner": "case-curator",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T104",
+   "phase": "P01",
+   "title": "합성 사례 구성",
+   "objective": "실제 자료 없을 때도 파이프라인 테스트 가능한 독창적 가짜 사례/미디어 목업",
+   "dependencies": [
+    "T103"
+   ],
+   "outputs": [
+    "cases/fixtures/synthetic-case.json"
+   ],
+   "verification": "가짜 사례 표기, 자체 생성/명시적 synthetic, 페이지 역할·아트디렉션 포함",
+   "negative_test": "실제 유저 작품인 것처럼 서술하면 실패",
+   "owner": "case-curator",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T105",
+   "phase": "P01",
+   "title": "허가된 실제 포트폴리오 1건 전체 서사 분석",
+   "objective": "페이지 단독이 아닌 전체 작품/페이지 순서를 분석하고 근거/권한 범위 기록",
+   "dependencies": [
+    "T102",
+    "T103"
+   ],
+   "outputs": [
+    "cases/annotations/approved-case-01.json"
+   ],
+   "verification": "명시적 권한 증거 경로 + 최소 2페이지 시퀀스 + 개별 근거; 없으면 BLOCKED_RIGHTS",
+   "negative_test": "실제 권한 없이 성공으로 처리하면 실패",
+   "owner": "case-curator",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T106",
+   "phase": "P01",
+   "title": "사례 품질 선정 기준",
+   "objective": "우수작 가설과 측정 가능한 전문가 기준을 분리",
+   "dependencies": [
+    "T100"
+   ],
+   "outputs": [
+    "cases/SELECTION_RUBRIC.md"
+   ],
+   "verification": "콘텐츠 전달력·편집 완성도·사용 목적 적합성·원본성 4축 점검",
+   "negative_test": "좋아요/스타/유명세만으로 고품질 확정하면 실패",
+   "owner": "domain-reviewer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T107",
+   "phase": "P01",
+   "title": "레퍼런스 주석 신뢰성",
+   "objective": "두 주석자의 불일치와 불확실성을 기록하는 프로토콜",
+   "dependencies": [
+    "T106"
+   ],
+   "outputs": [
+    "cases/ANNOTATION_QA.md"
+   ],
+   "verification": "일치 기준과 충돌 해결절차, 정답 불확실시 unknown 필드",
+   "negative_test": "하나의 VLM 태그를 진실로 간주하면 실패",
+   "owner": "evaluation-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T108",
+   "phase": "P01",
+   "title": "사례 검색 계약",
+   "objective": "권리 확인된 manifest만 검색, 목적·도메인·페이지 역할 필터",
+   "dependencies": [
+    "T104",
+    "T103"
+   ],
+   "outputs": [
+    "contracts/reference-retrieval.md"
+   ],
+   "verification": "허가 부족·검색 0건시 no-reference fallback, 감사로그 구조",
+   "negative_test": "오류/빈 결과를 임의의 실사례로 보충하면 실패",
+   "owner": "lead",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T109",
+   "phase": "P01",
+   "title": "데이터 분할/누출 검사",
+   "objective": "작성자·프로젝트 단위로 reference/dev/heldout 분할",
+   "dependencies": [
+    "T103"
+   ],
+   "outputs": [
+    "benchmarks/DATA_SPLIT.md"
+   ],
+   "verification": "동일 소스/작품/제작자 cross-split 금지 및 중복 해시 차단",
+   "negative_test": "유사 편집물만 다른 split에 들어가면 실패",
+   "owner": "evaluation-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T200",
+   "phase": "P02",
+   "title": "GitHub 코드 고정 및 범위 감사",
+   "objective": "15개 후보 최신/기준 SHA·라이선스·실제 entrypoint를 독립 점검",
+   "dependencies": [
+    "T000"
+   ],
+   "outputs": [
+    "research/REPO_AUDIT_V2.md"
+   ],
+   "verification": "고정 SHA와 기능 주장·검토 경로·아직 미실행 구분",
+   "negative_test": "README 주장=실행 성공이면 실패",
+   "owner": "repo-researcher",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/T200-clone-audit.md",
+   "finished_at": "2026-11-04T19:54:00+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T201",
+   "phase": "P02",
+   "title": "GDB 실제 실행 검사",
+   "objective": "GDB verify와 subset list/run 방법 확인",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-gdb.md"
+   ],
+   "verification": "gdb verify/부분 실행 로그 또는 환경 실패(버전/추가 패키지) 명시",
+   "negative_test": "모델 API 결과를 임의 생성하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T202",
+   "phase": "P02",
+   "title": "SlidesGen-Bench 검사",
+   "objective": "미학·콘텐츠·PEI 실행 의존성과 실제 런너 확인",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-slidesgen.md"
+   ],
+   "verification": "실제 코드 위치, 기능/데이터/모델 비용, smoke 또는 blocked 근거",
+   "negative_test": "사람 평가 상관계수를 포폴 성능으로 일반화하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T203",
+   "phase": "P02",
+   "title": "DECKBench/PosterBench 검사",
+   "objective": "멀티턴 편집과 근거기반 내용 QA 메트릭 추출",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-deck-poster.md"
+   ],
+   "verification": "각 평가기 실행법, 필요한 입력, 라이선스/재현 상태, 대응 스펙",
+   "negative_test": "참조 유사도=디자인 품질 단정하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T204",
+   "phase": "P02",
+   "title": "DeepSlides와 학습 코드 검토",
+   "objective": "학습기·데이터·디자인 단계·정량 비교 구분",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-deepslides.md"
+   ],
+   "verification": "그림/표와 코드 일치 여부, 학습 체크포인트 접근성 명시",
+   "negative_test": "논문 수치를 our-run으로 표기하면 실패",
+   "owner": "paper-engineer",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T205",
+   "phase": "P02",
+   "title": "AutoDesign 하네스 실행",
+   "objective": "포스터 단일 예제로 grounded source → render → audit 경로",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-autodesign.md"
+   ],
+   "verification": "포스터 스킬 실제 파일/CLI/API 필요 조건과 시도 결과",
+   "negative_test": "PDF 출력을 한 번 했다고 건축 포폴 검증 처리하면 실패",
+   "owner": "harness-engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T206",
+   "phase": "P02",
+   "title": "OpenPencil 독립 프로브",
+   "objective": "격리 환경에서 CLI/MCP/편집/출력 기능 조사",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-openpencil.md"
+   ],
+   "verification": "버전+명령+SVG/PDF 출력/레이어 수정 증거 또는 blocker",
+   "negative_test": "README 100+ 도구를 전부 확인됨으로 주장하면 실패",
+   "owner": "backend-a",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/OPENPENCIL_PROBE.md",
+   "finished_at": "2026-11-04T21:32:10+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T207",
+   "phase": "P02",
+   "title": "GenOffice 독립 프로브",
+   "objective": "격리 환경에서 CLI/MCP/PPTX/출력 및 편집 검사",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-genoffice.md"
+   ],
+   "verification": "버전/명령/오류/실제 PPTX/PDF 결과 또는 blocker",
+   "negative_test": "PDF 텍스트 편집 지원을 도면 완전 보존으로 단정하면 실패",
+   "owner": "backend-b",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "blocked",
+   "evidence_path": "evidence/GENOFFICE_PROBE.md",
+   "finished_at": "2026-11-04T21:33:06+09:00",
+   "pass_state": "BLOCKED",
+   "approval": "external-effect-only",
+   "optional_dependencies": [],
+   "block_reason": "genoffice CLI only ships with the desktop installer (system change) or a heavy monorepo+Rust build; not executed; code/README inspected only",
+   "blocked_reason": "genoffice CLI only ships with the desktop installer (system change) or a heavy monorepo+Rust build; not executed; code/README inspected only"
+  },
+  {
+   "id": "T208",
+   "phase": "P02",
+   "title": "Diagram Design 격리 시험",
+   "objective": "합성 입력 다이어그램 생성·self_check·SVG export",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "evidence/P02-diagram.md"
+   ],
+   "verification": "실제 브라우저 이미지 + self_check 결과, 미실행이면 reason",
+   "negative_test": "간단 박스 도식=건축 도면 생성이라고 주장하면 실패",
+   "owner": "diagram-owner",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T209",
+   "phase": "P02",
+   "title": "PDF 보존 라이브러리 타당성",
+   "objective": "벡터 PDF를 자르지 않고 재배치·임베딩하는 도구 옵션 조사",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "research/PDF_ENGINE_OPTIONS.md"
+   ],
+   "verification": "pypdf/pdf-lib 및 미리보기/PDF 대비 구조, 상용 라이선스 검토",
+   "negative_test": "PNG로만 출력 후 벡터 보존 PASS 처리하면 실패",
+   "owner": "pdf-engineer",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T210",
+   "phase": "P02",
+   "title": "서드파티 라이선스 게이트",
+   "objective": "각 저장소와 assets/checkpoints/transitives 상용 조건 분리",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "research/THIRD_PARTY_AUDIT.md"
+   ],
+   "verification": "사용가능/조건부/불가 상태와 라이선스 원문·예외 확인",
+   "negative_test": "HarnessRouter Slides Kit을 Apache로 처리하면 실패",
+   "owner": "license-reviewer",
+   "kind": "review",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/T210-license-gate.md",
+   "finished_at": "2026-11-04T19:54:25+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T211",
+   "phase": "P02",
+   "title": "HarnessRouter/UHP 인터페이스 조사",
+   "objective": "Skills/plugins/session/file/security/환경의 지원 수준 파악",
+   "dependencies": [
+    "T200"
+   ],
+   "outputs": [
+    "research/UHP_INTEGRATION_REVIEW.md"
+   ],
+   "verification": "UHP/core vs Slides Kit 라이선스, 실행 격리, API/키 스코프 검토",
+   "negative_test": "UHP 호환성=디자인 품질이라고 주장하면 실패",
+   "owner": "infra-owner",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T300",
+   "phase": "P03",
+   "title": "평가 목적·평가 단위 선언",
+   "objective": "페이지·스프레드·전체 book·수정 turn을 별도 정의",
+   "dependencies": [
+    "T100",
+    "T200"
+   ],
+   "outputs": [
+    "benchmarks/EVAL_UNITS.md"
+   ],
+   "verification": "독립 평가 단위·정답 종류·평가자·불확실성·편향 명시",
+   "negative_test": "단일 aesthetic score로 전체 통과시키면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T301",
+   "phase": "P03",
+   "title": "합성 fixture와 악성 사례",
+   "objective": "오버플로/NaN/중복ID/무단 crop/원본없는 asset 생성",
+   "dependencies": [
+    "T104",
+    "T300"
+   ],
+   "outputs": [
+    "benchmarks/cases/negative-cases.json"
+   ],
+   "verification": "음성/양성 사례 모두 지정; 각 failure detector의 예상 출력 기록",
+   "negative_test": "모든 입력을 통과시키는 검증기면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T302",
+   "phase": "P03",
+   "title": "Geometry/Source hard gates",
+   "objective": "오버랩·도면 crop·누락·font/자료 참조·해시 체크",
+   "dependencies": [
+    "T301"
+   ],
+   "outputs": [
+    "benchmarks/HARD_GATES.md"
+   ],
+   "verification": "양성 fixture 0 critical, 악성 fixture 예상 오류 모두 검출",
+   "negative_test": "보존된 원본 바이트만 보고 PDF 시각보존 주장하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T303",
+   "phase": "P03",
+   "title": "Human blinded A/B 프로토콜",
+   "objective": "주장·비용 숨기고 전문가 비교 설계",
+   "dependencies": [
+    "T300",
+    "T106"
+   ],
+   "outputs": [
+    "benchmarks/HUMAN_REVIEW_V2.md"
+   ],
+   "verification": "A/B blind, tie/invalid, 이유, 리뷰어 간 차이, 충분한 표본 한계",
+   "negative_test": "하나의 VLM 점수를 전문가 선호로 대체하면 실패",
+   "owner": "domain-reviewer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T304",
+   "phase": "P03",
+   "title": "Benchmark split 동결",
+   "objective": "개발 사례와 heldout이 작성자/작품/스타일 복제 없이 분리되도록 설계",
+   "dependencies": [
+    "T109",
+    "T301"
+   ],
+   "outputs": [
+    "benchmarks/DATA_SPLIT.md"
+   ],
+   "verification": "합성/허가 사례 섞임 여부, creator/project 중복 검사; 실제 데이터 없으면 NOT_READY",
+   "negative_test": "동일 사례가 ref와 heldout 양쪽에 있으면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T305",
+   "phase": "P03",
+   "title": "비교군 분해·통제",
+   "objective": "모델/호스트/백엔드/사례/QA 팩터 별도 실험 설계",
+   "dependencies": [
+    "T302",
+    "T303"
+   ],
+   "outputs": [
+    "benchmarks/ABLATIONS_V2.md"
+   ],
+   "verification": "한 번에 하나 변수만 다르는 핵심 A/B, 비용 일치 보조 비교",
+   "negative_test": "한 번에 backend+references 변경 후 원인 단정하면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T306",
+   "phase": "P03",
+   "title": "메트릭과 결과 형식 잠금",
+   "objective": "하드게이트와 가산점, 결측/불확실, 공개 지표/전문 평가 분리",
+   "dependencies": [
+    "T302"
+   ],
+   "outputs": [
+    "contracts/eval-protocol.schema.json"
+   ],
+   "verification": "필드 run_id, source SHA, weights? score-by-dim, failure, model, cost, latency, judge",
+   "negative_test": "하드게이트 FAIL인데 overall PASS면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T307",
+   "phase": "P03",
+   "title": "분포 변화/정책 점검",
+   "objective": "AI 합성 사례 기반 점수가 실사례로 일반화되는지 한계 명시",
+   "dependencies": [
+    "T305"
+   ],
+   "outputs": [
+    "benchmarks/THREATS_TO_VALIDITY.md"
+   ],
+   "verification": "domain shift, eval judge bias, reference leakage, rights, small-N 명시",
+   "negative_test": "모의 데이터에서 좋은 점수=비즈니스 성공 주장하면 실패",
+   "owner": "reviewer",
+   "kind": "review",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T400",
+   "phase": "P04",
+   "title": "A/B/C/D 아키텍처 비교",
+   "objective": "직접 HTML, PPTX 객체, 외부 에디터, 하이브리드 IR 비교",
+   "dependencies": [
+    "T300",
+    "T209",
+    "T210"
+   ],
+   "outputs": [
+    "architecture/ALTERNATIVES_V2.md"
+   ],
+   "verification": "품질·편집·벡터·비용·운영·라이선스·failure 대응에 대한 ADR 근거",
+   "negative_test": "레이아웃 엔진 구현을 검증 없이 기본 정답으로 확정하면 실패",
+   "owner": "architect",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T401",
+   "phase": "P04",
+   "title": "Vector PDF preservation probe",
+   "objective": "간단 PDF 삽입/확대/재출력 후 벡터/폰트/라벨 비교",
+   "dependencies": [
+    "T209",
+    "T302"
+   ],
+   "outputs": [
+    "evidence/P04-vector-pdf.md"
+   ],
+   "verification": "synthetic vector PDF → output PDF 경로/줌/선/텍스트 검증; 실패 원인 저장",
+   "negative_test": "rasterized screenshot만 생성하고 vector PASS하면 실패",
+   "owner": "pdf-engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T402",
+   "phase": "P04",
+   "title": "Native layer edit probe",
+   "objective": "OpenPencil 편집 가능한 1-page 요소 수정/내보내기",
+   "dependencies": [
+    "T206",
+    "T301"
+   ],
+   "outputs": [
+    "evidence/P04-openpencil-edit.md"
+   ],
+   "verification": "문서 객체 ID 추적 + 전후 파일 비교 + 재열기",
+   "negative_test": "페이지 전체 스크린샷을 editable이라 부르면 실패",
+   "owner": "backend-a",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T403",
+   "phase": "P04",
+   "title": "Office layer edit probe",
+   "objective": "GenOffice로 동일한 1-page 시안의 객체 편집/내보내기",
+   "dependencies": [
+    "T207",
+    "T301"
+   ],
+   "outputs": [
+    "evidence/P04-genoffice-edit.md"
+   ],
+   "verification": "PPTX 객체/재열기/도면 embedding 결과와 비용 기록",
+   "negative_test": "PDF 출력 성공만으로 native edit PASS 처리하면 실패",
+   "owner": "backend-b",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T404",
+   "phase": "P04",
+   "title": "Browser/HTML fallback probe",
+   "objective": "OpenPencil/GenOffice 실패 시 HTML+SVG+PDF 합성 최소 경로",
+   "dependencies": [
+    "T301"
+   ],
+   "outputs": [
+    "evidence/P04-html-fallback.md"
+   ],
+   "verification": "synthetic 1 page with distinct objects, local edit+PDF render, limitation 명시",
+   "negative_test": "전체 페이지 PNG를 무제한 fallback으로 삼으면 실패",
+   "owner": "fallback-owner",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T405",
+   "phase": "P04",
+   "title": "국소 수정 원자성",
+   "objective": "한 객체 변경 시 타 객체·다른 페이지의 unintended diff 측정",
+   "dependencies": [
+    "T301",
+    "T404"
+   ],
+   "outputs": [
+    "evidence/P04-local-edit.md"
+   ],
+   "verification": "도구별 성공/실패 분리; 사용가능한 backend 하나만으로 최소 검증 가능; editor 대안 실패/부재는 정확히 보고",
+   "negative_test": "백엔드 두 개 모두 성공하지 않으면 진행 못하는 구조면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": [
+    "T402",
+    "T403"
+   ]
+  },
+  {
+   "id": "T406",
+   "phase": "P04",
+   "title": "출력 방식 내결함 결정",
+   "objective": "실패·미설치 시 backend selection, provenance, fail closed",
+   "dependencies": [
+    "T401",
+    "T404"
+   ],
+   "outputs": [
+    "architecture/OUTPUT_DECISION.md"
+   ],
+   "verification": "최소 한 출력 경로가 hard gate 충족 또는 정확한 NO_GO 판단",
+   "negative_test": "모든 도구 실패인데 임의 품질 주장하면 실패",
+   "owner": "architect",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": [
+    "T402",
+    "T403"
+   ]
+  },
+  {
+   "id": "T407",
+   "phase": "P04",
+   "title": "보안/권한 레드팀",
+   "objective": "입력 PDF/HTML/SVG/레퍼런스에 삽입된 악성 지시·경로/링크 시험",
+   "dependencies": [
+    "T301"
+   ],
+   "outputs": [
+    "evidence/P04-threat-tests.md"
+   ],
+   "verification": "외부 지시 무시·경로 이탈 차단·필요권한 로그 증거",
+   "negative_test": "무단 파일 유출/외부URL fetch 허용하면 실패",
+   "owner": "security-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T500",
+   "phase": "P05",
+   "title": "ADR별 채택 결정",
+   "objective": "P04 실험·비용·저작권 근거로 최소 backend 및 IR 확정",
+   "dependencies": [
+    "T400",
+    "T405",
+    "T406",
+    "T407",
+    "T210"
+   ],
+   "outputs": [
+    "architecture/adr/0006-post-spike-decision.md"
+   ],
+   "verification": "채택/기각/보류와 숫자·로그 연결, 불확실 범위 문서화",
+   "negative_test": "미실험 제품을 최종 코어로 명명하면 실패",
+   "owner": "architect",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T501",
+   "phase": "P05",
+   "title": "인터페이스 동결",
+   "objective": "Case/Asset/BookPlan/LayoutIR/Editor/QA/Export 간 상태/검증 정의",
+   "dependencies": [
+    "T500",
+    "T108"
+   ],
+   "outputs": [
+    "architecture/INTERFACES_V2.md"
+   ],
+   "verification": "input/output 스키마, 실패 응답, source trace, migration 규약",
+   "negative_test": "한 에이전트가 raw HTML 임의 수정하고 trace가 사라지면 실패",
+   "owner": "architect",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T502",
+   "phase": "P05",
+   "title": "최소 모듈·폴더 재선정",
+   "objective": "결정된 구현 경계를 코드 레이아웃에 반영",
+   "dependencies": [
+    "T501"
+   ],
+   "outputs": [
+    "architecture/FINAL_FILE_STRUCTURE.md"
+   ],
+   "verification": "사용 안 하는 백엔드 제거/격리, 이름 겹침 없음",
+   "negative_test": "MCP/Agent/DB를 실증 없이 모두 필수로 만들면 실패",
+   "owner": "lead",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T600",
+   "phase": "P06",
+   "title": "원본 에셋 ingestion",
+   "objective": "synthetic/사용 허가 자산에 hash ID, 페이지, 라벨, rights 기록",
+   "dependencies": [
+    "T501",
+    "T104"
+   ],
+   "outputs": [
+    "packages/portfolio-core/"
+   ],
+   "verification": "asset references present and immutable; 오프라인 synthetic smoke",
+   "negative_test": "추출 실패한 도면을 실제 있는 것으로 쓰면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T601",
+   "phase": "P06",
+   "title": "Project brief & uncertainty",
+   "objective": "목표/대상/기여/사실출처/미상 분리, source-grounded 문구만 사용",
+   "dependencies": [
+    "T600",
+    "T100"
+   ],
+   "outputs": [
+    "packages/brief-planner/"
+   ],
+   "verification": "미상 정보 placeholder, 추측된 면적/기여 금지 테스트",
+   "negative_test": "관찰하지 않은 사용자 성과/직무를 문장에 추가하면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T602",
+   "phase": "P06",
+   "title": "스타일·사례 선택",
+   "objective": "허가된 레퍼런스 + 도메인 문법으로 BookPlan 전개",
+   "dependencies": [
+    "T601",
+    "T108"
+   ],
+   "outputs": [
+    "packages/storyboard/"
+   ],
+   "verification": "선택한 페이지 역할/핵심 그림/페이지 간 전환 설명 기록",
+   "negative_test": "일반 보고서처럼 동일 카드 반복하면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T603",
+   "phase": "P06",
+   "title": "선택 출력 규격 기반 2페이지 구도",
+   "objective": "A3 고정 대신 OutputSpec의 사용자 지정 크기/매체를 읽어서 2페이지 레이아웃 구성",
+   "dependencies": [
+    "T602",
+    "T502"
+   ],
+   "outputs": [
+    "packages/layout-grammar/"
+   ],
+   "verification": "A4, square, custom size 3종에 대한 좌표·제약·출력 로그 확보",
+   "negative_test": "A3 고정 좌표를 쓰면 테스트 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T604",
+   "phase": "P06",
+   "title": "도면 임베딩·UI 객체 분리",
+   "objective": "주요 도면/렌더링/텍스트를 원본 보존하며 독립 배치",
+   "dependencies": [
+    "T603",
+    "T406"
+   ],
+   "outputs": [
+    "packages/design-backend/"
+   ],
+   "verification": "각 객체 수정/원본 provenance, 벡터 보존 한계 표시",
+   "negative_test": "raster PNG로 바꿔 놓고 vector-fidelity PASS면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T605",
+   "phase": "P06",
+   "title": "핵심 QA 게이트 구현",
+   "objective": "geometry, truth, source, output checks, negative fixtures 적용",
+   "dependencies": [
+    "T604",
+    "T302"
+   ],
+   "outputs": [
+    "packages/quality-checks/"
+   ],
+   "verification": "hard gate fail 시 export-ready false; 악성 fixture 정밀 검출",
+   "negative_test": "미적 점수 높다고 hard gate 무시하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T606",
+   "phase": "P06",
+   "title": "Bounded targeted repair",
+   "objective": "검수 결과를 target patch로 변환, 반복 횟수·rollback 제한",
+   "dependencies": [
+    "T605",
+    "T405"
+   ],
+   "outputs": [
+    "packages/repair/"
+   ],
+   "verification": "최대 2회 수정, unrelated page untouched, 실패 시 원상 복구",
+   "negative_test": "repair시 전체 문서 재생성하면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T607",
+   "phase": "P06",
+   "title": "PDF + editable artifact 출력",
+   "objective": "A3 2페이지 출력, 출처·경고·편집 파일·QA 결합",
+   "dependencies": [
+    "T606",
+    "T406"
+   ],
+   "outputs": [
+    "examples/outputs/"
+   ],
+   "verification": "원본 미변경 + pdf 재열기 + 별도 소스/검수 bundle",
+   "negative_test": "PDF 하나만 있고 사용자가 객체 수정 못 하면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T608",
+   "phase": "P06",
+   "title": "문장/페이지 흐름 디자인 비평",
+   "objective": "건축 전문가의 페이지 역할·도면 위계·밀도 평가",
+   "dependencies": [
+    "T607",
+    "T303"
+   ],
+   "outputs": [
+    "evidence/P06-editorial-review.md"
+   ],
+   "verification": "실제 reviewer 또는 명시적 NOT_REVIEWED; ‘AI 보고서’ 안티패턴 수집",
+   "negative_test": "LLM 혼자 좋다고 말하고 전문가 평가 마쳤다 주장하면 실패",
+   "owner": "domain-reviewer",
+   "kind": "review",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T700",
+   "phase": "P07",
+   "title": "B0 direct baseline",
+   "objective": "동일 자료로 plugin 없이 A3 2페이지 생성",
+   "dependencies": [
+    "T305",
+    "T607"
+   ],
+   "outputs": [
+    "benchmarks/reports/B0.json"
+   ],
+   "verification": "같은 요구사항+API 비용+유효성 검사 실행 또는 blocked",
+   "negative_test": "우리 엔진만 다른 입력으로 유리하게 평가하면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T701",
+   "phase": "P07",
+   "title": "Reference/domain ablation",
+   "objective": "domain-only vs domain+case 등 단일 변수를 통제",
+   "dependencies": [
+    "T700"
+   ],
+   "outputs": [
+    "benchmarks/reports/reference-ablation.json"
+   ],
+   "verification": "case selection and backend fixed, cost/human preference 기록",
+   "negative_test": "backend 같이 변경 후 reference 효과 단정하면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T702",
+   "phase": "P07",
+   "title": "QA/repair ablation",
+   "objective": "동일 backend와 reference에서 repair off/on",
+   "dependencies": [
+    "T700"
+   ],
+   "outputs": [
+    "benchmarks/reports/qa-ablation.json"
+   ],
+   "verification": "hard-gate fail 감소·품질·수정횟수·비용 기록",
+   "negative_test": "반복 횟수 더 많은 설정을 비용 통제 없이 우월하다고 선언하면 실패",
+   "owner": "eval-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T703",
+   "phase": "P07",
+   "title": "Blind independent reviewers",
+   "objective": "사전 동의, 동등 배율, 랜덤 제시, 사람 평가",
+   "dependencies": [
+    "T700",
+    "T303"
+   ],
+   "outputs": [
+    "benchmarks/reports/human-results.json"
+   ],
+   "verification": "2명 독립, 차이/타이/invalid, reason 기록; 인원 없으면 BLOCKED",
+   "negative_test": "심사 전 수치를 미리 적으면 실패",
+   "owner": "evaluation-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T704",
+   "phase": "P07",
+   "title": "Robustness / budgets",
+   "objective": "파일형식·글꼴/네트워크/도구 미설치·큰입력 실패 분석",
+   "dependencies": [
+    "T702"
+   ],
+   "outputs": [
+    "benchmarks/reports/robustness.json"
+   ],
+   "verification": "actual $/time/tokens, retries and missing cases; failures traced",
+   "negative_test": "성공 1회만으로 안정적/사업화 가능 주장하면 실패",
+   "owner": "evaluation-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T800",
+   "phase": "P08",
+   "title": "HarnessRouter 필요성 결정",
+   "objective": "UHP 도입 전 direct 실행 대비 가치·비용 측정",
+   "dependencies": [
+    "T704",
+    "T211"
+   ],
+   "outputs": [
+    "architecture/adr/0007-harnessrouter.md"
+   ],
+   "verification": "직접호스트 vs UHP session/file/security/cost tradeoffs; 선택 보류 가능",
+   "negative_test": "UHP 제공자 문구를 실측 결과로 취급하면 실패",
+   "owner": "infra-owner",
+   "kind": "design",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T801",
+   "phase": "P08",
+   "title": "UHP 격리 smoke [optional]",
+   "objective": "API/파일/세션/취소/출력·컨테이너 마운트 점검",
+   "dependencies": [
+    "T800"
+   ],
+   "outputs": [
+    "evidence/P08-uhp-smoke.md"
+   ],
+   "verification": "auth/scoping/trace/conformance subset 실제 실행 또는 NOT_RUN",
+   "negative_test": "개인 비밀 키를 레포나 출력물에 기록하면 실패",
+   "owner": "infra-owner",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T802",
+   "phase": "P08",
+   "title": "학습 필요성 판단",
+   "objective": "실패 분해: 생성 vs 랭킹 vs 의미해석 vs 렌더 구분",
+   "dependencies": [
+    "T701",
+    "T702",
+    "T704"
+   ],
+   "outputs": [
+    "research/TRAINING_DECISION_V2.md"
+   ],
+   "verification": "학습/no-train 결정, 문제별 데이터권리/평가분할/비용 효과",
+   "negative_test": "사례가 있으니 무조건 LoRA학습 결론이면 실패",
+   "owner": "research-owner",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T803",
+   "phase": "P08",
+   "title": "유료 파일럿/사업성 검증",
+   "objective": "인간 편집시간·승인/지불의사·CAC/단위경제 관측",
+   "dependencies": [
+    "T703",
+    "T704"
+   ],
+   "outputs": [
+    "research/BUSINESS_GATE.md"
+   ],
+   "verification": "실제 지불 사용자, 수정시간, 품질/운영비, 실패·채널별 가설 명시",
+   "negative_test": "커뮤니티 불편 글만으로 수요 검증했다고 주장하면 실패",
+   "owner": "business-owner",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": []
+  },
+  {
+   "id": "T804",
+   "phase": "P08",
+   "title": "상용 배포 라이선스 검토",
+   "objective": "스킬/백엔드/데이터/폰트/체크포인트 재배포 재검토",
+   "dependencies": [
+    "T210"
+   ],
+   "outputs": [
+    "research/COMMERCIAL_LICENSE_RELEASE.md"
+   ],
+   "verification": "각 컴포넌트 사용범위·third-party notices·지식팩 권리 승인",
+   "negative_test": "kit 별도 라이선스 무시하면 실패",
+   "owner": "license-reviewer",
+   "kind": "review",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "optional_dependencies": [
+    "T803"
+   ]
+  },
+  {
+   "id": "T110",
+   "phase": "P01",
+   "title": "범용 도메인 팩 계약",
+   "objective": "domain pack schema and fallback checks",
+   "dependencies": [
+    "T101"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "knowledge/domains/README.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T111",
+   "phase": "P01",
+   "title": "전체 포트폴리오 페이지 시퀀스 주석",
+   "objective": "portfolio-level narrative and layout roles",
+   "dependencies": [
+    "T105"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "cases/annotations/whole-book-protocol.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T112",
+   "phase": "P01",
+   "title": "사용 권한·사례 누출 부정 테스트",
+   "objective": "rights, reference, dev, heldout split proof",
+   "dependencies": [
+    "T109"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "benchmarks/cases/rights-leak-test.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T212",
+   "phase": "P02",
+   "title": "DesignCraft Rust + MCP 설치 가능성 점검",
+   "objective": "DTP engine, dimensions and license",
+   "dependencies": [
+    "T200"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/designcraft.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/DESIGNCRAFT_SPIKE.md",
+   "finished_at": "2026-11-04T21:13:26+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T213",
+   "phase": "P02",
+   "title": "PhotoCraft/VectorCraft 분리 감사",
+   "objective": "image/vector extensions, no bundling without checks",
+   "dependencies": [
+    "T200"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/artcraft-adapters.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T214",
+   "phase": "P02",
+   "title": "FigCraft/PdfCraft/DeckCraft 감사",
+   "objective": "optional ArtCraft candidates and actual CLI/MCP evidence",
+   "dependencies": [
+    "T200"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/artcraft-secondary.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T215",
+   "phase": "P02",
+   "title": "인쇄 대체 엔진 조사",
+   "objective": "Vivliostyle, Paged.js or equivalent",
+   "dependencies": [
+    "T200"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/print-fallback.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T216",
+   "phase": "P02",
+   "title": "자동 git clone pinned 검증",
+   "objective": "clone script dry-run, checkout SHA and evidence",
+   "dependencies": [
+    "T200"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/clone-tests.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "research/reproductions/clone-tests.md",
+   "finished_at": "2026-11-04T19:54:00+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T308",
+   "phase": "P03",
+   "title": "가변 출력 규격 무결성",
+   "objective": "mm, bleed, binding, square, page/spread and invalid dimensions",
+   "dependencies": [
+    "T301"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "benchmarks/reports/format-contract.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T309",
+   "phase": "P03",
+   "title": "AI 보고서풍 반복 배치 방지",
+   "objective": "test generic reports vs designed narrative spreads",
+   "dependencies": [
+    "T303"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "benchmarks/reports/report-slop-negative.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T408",
+   "phase": "P04",
+   "title": "DesignCraft 다중 페이지 스파이크",
+   "objective": "pre-alpha Rust DTP, source PDF and print parity",
+   "dependencies": [
+    "T212",
+    "T308"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/designcraft-spike.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T409",
+   "phase": "P04",
+   "title": "정사각·맞춤형 크기 변형 스파이크",
+   "objective": "native size vs naive scaling vs reflow",
+   "dependencies": [
+    "T308",
+    "T404"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/format-reflow-spike.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T410",
+   "phase": "P04",
+   "title": "인쇄 대체 엔진 스파이크",
+   "objective": "fallback if DesignCraft fails",
+   "dependencies": [
+    "T215",
+    "T308"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "research/reproductions/print-fallback-spike.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T503",
+   "phase": "P05",
+   "title": "매체별 독립 편집기 결정",
+   "objective": "page/canvas/slides adapters vs one core editor",
+   "dependencies": [
+    "T408",
+    "T409",
+    "T410"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "architecture/adr/0007-backend-selection.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "integration-lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T609",
+   "phase": "P06",
+   "title": "출력 크기·단위 포맷 엔진",
+   "objective": "OutputSpec interpretation tested across sizes",
+   "dependencies": [
+    "T603",
+    "T308"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P06-format-parser.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T610",
+   "phase": "P06",
+   "title": "섬네일·스프레드 일관성 검사",
+   "objective": "preview/editable/print document comparison",
+   "dependencies": [
+    "T607"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P06-page-spread-parity.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T705",
+   "phase": "P07",
+   "title": "서로 다른 분야에서 출력 평가",
+   "objective": "run same engine on two domains with distinct rubrics",
+   "dependencies": [
+    "T700",
+    "T110"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "benchmarks/reports/multidomain-eval.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "specialist",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T805",
+   "phase": "P08",
+   "title": "멀티에이전트 2개 병렬 작업 비교",
+   "objective": "single agent vs two specialists, typed handoff, conflict detector",
+   "dependencies": [
+    "T704"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P08-multiagent-ablation.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "integration-lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T806",
+   "phase": "P08",
+   "title": "안전한 병렬 결과 머지·복구",
+   "objective": "one writer, missing agent and conflicting change tests",
+   "dependencies": [
+    "T805"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P08-conflict-recovery.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "integration-lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T807",
+   "phase": "P08",
+   "title": "원본 파일 보호 점검",
+   "objective": "source unchanged across image/print/design tools",
+   "dependencies": [
+    "T804"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P08-asset-safety.md"
+   ],
+   "verification": "재현 가능 입력, 명령, 실제 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 기준 충족해야 PASS",
+   "negative_test": "고의 실패 fixture 또는 다른 backend 불능 시 false PASS를 반환하면 실패",
+   "owner": "integration-lead",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  }
+ ]
+}
