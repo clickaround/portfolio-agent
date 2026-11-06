@@ -3,7 +3,7 @@
 Labels: REPRODUCED (commands below, exit 0) · CODE_INSPECTED (photocraft) · BLOCKED (photocraft binary).
 
 ## Input: two user-provided portfolios (private reference, annotations only)
-`C:/DK/real_sources/cases_private/case_A.pdf` (10 pp, 594 x 210 mm panoramic) and `case_B.pdf` (49 pp, 508 x 359 mm spreads), both image-only pages. Contact sheets viewed; annotations in `knowledge/cases/user_cases_2026-11-05.json`. Devices seen on almost every project opener that our engine could NOT make before: a photograph covering the whole page (to the bleed) with the title on a small solid panel; a render bleeding off three edges beside a text column; black pages for model / night photographs; 2 x 2 photographs tiled to the trim; one strip of 8-10 process thumbnails. White paper is the default in both books; dark pages are the exception for photographs.
+`C:/DK/real_sources/cases_private/case_A.pdf` (10 pp, 594 x 210 mm panoramic) and `case_B.pdf` (49 pp, 508 x 359 mm spreads), both image-only pages. Contact sheets viewed; annotations in `private annotations kept outside the repo (C:/DK/real_sources/cases_private/user_cases_annotations.json)`. Devices seen on almost every project opener that our engine could NOT make before: a photograph covering the whole page (to the bleed) with the title on a small solid panel; a render bleeding off three edges beside a text column; black pages for model / night photographs; 2 x 2 photographs tiled to the trim; one strip of 8-10 process thumbnails. White paper is the default in both books; dark pages are the exception for photographs.
 
 ## What changed (modules, not patches)
 | path | what |

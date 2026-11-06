@@ -1,4 +1,4 @@
-"""Full-bleed and strip compositions, derived from the user's reference portfolios (knowledge/cases/user_cases_2026-11-05.json).
+"""Full-bleed and strip compositions, derived from the user's reference portfolios (private annotations kept outside the repo (C:/DK/real_sources/cases_private/user_cases_annotations.json)).
 
 Real portfolios cover whole pages with one photograph, bleed a render off three edges beside a text column, tile 2x2 photos to
 the trim with thin gutters, and run process thumbnails as one strip. These compositions produce exactly those devices; the

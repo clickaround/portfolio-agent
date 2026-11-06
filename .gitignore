@@ -62,3 +62,6 @@ frontend/build/
 .venv/
 .ruff_cache/
 .import_linter_cache/
+
+# private reference annotations never enter the repo
+**/user_cases_*.json
