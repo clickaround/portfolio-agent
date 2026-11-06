@@ -50,3 +50,6 @@ project/evidence/logs/**/*.pdf
 project/evidence/logs/**/*.pptx
 project/evidence/logs/**/*.designcraft
 project/evidence/logs/**/*.idml
+
+# api runtime data
+backend/api/.pytest_cache/

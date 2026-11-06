@@ -38,6 +38,7 @@ person's sources -> sourcePrepAgent  prepare / levels / knockout / cutout     (o
 cd agents/portfolio-plugin
 python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
 python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q
+cd ../../backend/api && python run.py --port 8000     # API + docs at /docs ; tests: python -m pytest tests -q
 cd ../../project && python -m pytest tests -q && python scripts/validate_package.py
 ```
 Contributing rules and ownership: `project/CONTRIBUTING.md`. Where things live: `project/docs/STRUCTURE.md`. Old paths -> new: `project/PATH_MAP.md`.
