@@ -1,5 +1,4 @@
-.cache/
-.vendor/
+# python / tooling
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -8,35 +7,46 @@ __pycache__/
 .env.*
 !.env.example
 node_modules/
-artifacts/
-evidence/raw/
-runtime/users/
-runtime/projects/
-cases/raw/
-cases/rights-private/
-benchmarks/private-data/
+**/*.pyc
+Thumbs.db
 **/.DS_Store
-preview/
 
-# --- collaboration hygiene (2026-11-05) ---
-.cache_clone_out.txt
+# local / generated (never shared)
+.cache/
+.vendor/
 .remember/
-.agents/plugins/**/node_modules/
+.cache_clone_out.txt
+artifacts/
+**/preview/
+**/attempts/
+**/final/
+*.pptx.tmp
+**/runtime/users/
+**/runtime/projects/
+
+# BMAD planning tool output (kept locally, not part of the product)
+_bmad/
+_bmad-output/
+.agents/skills/
+agents/_bmad-output/
+
+# nested repo with its own history (hub of the user's other agents): treat as a submodule candidate
+agents/pascal-agents/
+
 # third-party / private material never enters the repo
 *.private.*
 cases_private/
 real_sources/
 *case_A*.pdf
 *case_B*.pdf
-# local review output
+project/evidence/raw/
+project/cases/raw/
+project/cases/rights-private/
+**/benchmarks/private-data/
 **/robie_out*/
-**/attempts/
-**/final/
-*.pptx.tmp
-Thumbs.db
 
 # large regenerable review binaries (share via a team drive / Git LFS, not git history)
-evidence/logs/**/*.pdf
-evidence/logs/**/*.pptx
-evidence/logs/**/*.designcraft
-evidence/logs/**/*.idml
+project/evidence/logs/**/*.pdf
+project/evidence/logs/**/*.pptx
+project/evidence/logs/**/*.designcraft
+project/evidence/logs/**/*.idml
