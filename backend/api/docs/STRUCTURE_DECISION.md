@@ -1,0 +1,13 @@
+# Why this structure (2026-11-06)
+
+Researched current FastAPI layouts before building further (sources below). Findings and what we took:
+
+| finding | source | decision here |
+|---|---|---|
+| Group by **domain**, not by file type; each package self-contained with `router.py`, `schemas.py` (pydantic), `service.py`, `dependencies.py`, `exceptions.py`; shared code at the `src` root. File-type folders (`routers/ models/ crud/`) scale badly in a monolith. | [zhanymkanov/fastapi-best-practices](https://github.com/zhanymkanov/fastapi-best-practices) (Netflix Dispatch layout) | `projects/ sources/ plans/ books/ reviews/ jobs/ catalog/`, each with `router/schemas/service`; global `config/exceptions/dependencies/main`. My first version (`routes/`, one `services.py`, one `models.py`) was the file-type layout: replaced. |
+| App **factory** instead of a global app, so each test gets a fresh app. | [Production-Ready FastAPI Project Structure (2026)](https://dev.to/datanestdigital/production-ready-fastapi-project-structure-2026-guide-b1g) | `create_app(settings, llm_runner)` (already). |
+| **Ports and adapters**: the domain does not depend on the outside world; the outside is reached through adapters, dependency arrows point inward; routes wire dependencies with `Depends()`. | [fastapi-hexagon](https://pypi.org/project/fastapi-hexagon/), [FastAPI Hexagonal Architecture](https://github.com/zobayer1/FastAPI-Hexagonal-Architecture), [Hexagonal architecture in Python (DEV)](https://dev.to/elpic/hexagonal-architecture-in-python-wiring-adapters-dependency-injection-and-the-application-layer-61l) | `gateways/` = the adapters (agents, host LLM); `storage/` = infrastructure; services never import agent code; only `gateways/agents.py` does (test). Full ports/Protocol classes deferred: one implementation each today, add when a second exists (e.g. a Codex host runner already fits `llm.Runner`). |
+| Plain `def` routes run in a threadpool (right for blocking work); `async def` only with non-blocking I/O; CPU-bound work belongs in processes/queues; swap dependencies in tests with `dependency_overrides`. | fastapi-best-practices (same repo) | Our work is blocking (PyMuPDF, rembg, CLI): routes are plain `def`; long steps are jobs (thread pool now, process/queue when load needs it). |
+| Stable client generation needs stable operation ids. | FastAPI docs (custom `generate_unique_id_function`) | `<tag>_<function>` ids, `openapi.json` checked in and tested for staleness. |
+
+Not adopted (yet): SQL database/Alembic (project folders on disk are the source of truth the agents read), per-domain `config.py` (one small global settings object), auth (localhost only).

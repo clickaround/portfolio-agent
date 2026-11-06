@@ -1,7 +1,123 @@
 {
  "components": {
   "schemas": {
-   "Body_upload_asset_projects__pid__assets__kind__post": {
+   "Accepted": {
+    "properties": {
+     "job": {
+      "title": "Job",
+      "type": "string"
+     },
+     "poll": {
+      "title": "Poll",
+      "type": "string"
+     },
+     "status": {
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "job",
+     "status",
+     "poll"
+    ],
+    "title": "Accepted",
+    "type": "object"
+   },
+   "AssetInfo": {
+    "properties": {
+     "file": {
+      "title": "File",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     }
+    },
+    "required": [
+     "kind",
+     "file",
+     "id"
+    ],
+    "title": "AssetInfo",
+    "type": "object"
+   },
+   "AttemptInfo": {
+    "properties": {
+     "advisory": {
+      "default": [],
+      "items": {},
+      "title": "Advisory",
+      "type": "array"
+     },
+     "attempt": {
+      "title": "Attempt",
+      "type": "string"
+     },
+     "blocking": {
+      "default": [],
+      "items": {},
+      "title": "Blocking",
+      "type": "array"
+     },
+     "files": {
+      "additionalProperties": {
+       "type": "boolean"
+      },
+      "default": {},
+      "title": "Files",
+      "type": "object"
+     },
+     "gate_pass": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Gate Pass"
+     },
+     "page_scores": {
+      "anyOf": [
+       {},
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Page Scores"
+     },
+     "pages": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Pages",
+      "type": "array"
+     },
+     "reference_basis": {
+      "anyOf": [
+       {},
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reference Basis"
+     }
+    },
+    "required": [
+     "attempt"
+    ],
+    "title": "AttemptInfo",
+    "type": "object"
+   },
+   "Body_projects_upload_asset": {
     "properties": {
      "file": {
       "contentMediaType": "application/octet-stream",
@@ -12,7 +128,7 @@
     "required": [
      "file"
     ],
-    "title": "Body_upload_asset_projects__pid__assets__kind__post",
+    "title": "Body_projects_upload_asset",
     "type": "object"
    },
    "BriefBody": {
@@ -267,6 +383,26 @@
     "title": "Job",
     "type": "object"
    },
+   "ManifestOut": {
+    "properties": {
+     "brief": {
+      "additionalProperties": true,
+      "title": "Brief",
+      "type": "object"
+     },
+     "manifest": {
+      "additionalProperties": true,
+      "title": "Manifest",
+      "type": "object"
+     }
+    },
+    "required": [
+     "manifest",
+     "brief"
+    ],
+    "title": "ManifestOut",
+    "type": "object"
+   },
    "PlanGenerateRequest": {
     "properties": {
      "compose": {
@@ -288,6 +424,24 @@
      }
     },
     "title": "PlanGenerateRequest",
+    "type": "object"
+   },
+   "PlanSaved": {
+    "properties": {
+     "pages": {
+      "title": "Pages",
+      "type": "integer"
+     },
+     "versions": {
+      "title": "Versions",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "pages",
+     "versions"
+    ],
+    "title": "PlanSaved",
     "type": "object"
    },
    "PrepareRequest": {
@@ -345,6 +499,53 @@
      "id"
     ],
     "title": "ProjectCreate",
+    "type": "object"
+   },
+   "ProjectInfo": {
+    "properties": {
+     "assets": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Assets",
+      "type": "object"
+     },
+     "attempts": {
+      "title": "Attempts",
+      "type": "integer"
+     },
+     "created": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Created"
+     },
+     "has_plan": {
+      "title": "Has Plan",
+      "type": "boolean"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "assets",
+     "has_plan",
+     "attempts"
+    ],
+    "title": "ProjectInfo",
     "type": "object"
    },
    "ReviewRecord": {
@@ -407,14 +608,14 @@
  "info": {
   "description": "HTTP service over the portfolio agents: sources -> book plan -> composed book -> fresh review.",
   "title": "Pascal API",
-  "version": "0.1.0"
+  "version": "0.2.0"
  },
  "openapi": "3.1.0",
  "paths": {
   "/catalog": {
    "get": {
     "description": "Roles, page flags, grid systems, compositions, photo-set templates, exporter backends: what a book plan may use.",
-    "operationId": "get_catalog_catalog_get",
+    "operationId": "catalog_get_catalog",
     "responses": {
      "200": {
       "content": {
@@ -427,13 +628,13 @@
     },
     "summary": "Get Catalog",
     "tags": [
-     "projects"
+     "catalog"
     ]
    }
   },
   "/health": {
    "get": {
-    "operationId": "health_health_get",
+    "operationId": "meta_health",
     "responses": {
      "200": {
       "content": {
@@ -452,7 +653,7 @@
   },
   "/jobs": {
    "get": {
-    "operationId": "list_jobs_jobs_get",
+    "operationId": "jobs_list_jobs",
     "parameters": [
      {
       "in": "query",
@@ -479,7 +680,7 @@
          "items": {
           "$ref": "#/components/schemas/Job"
          },
-         "title": "Response List Jobs Jobs Get",
+         "title": "Response Jobs List Jobs",
          "type": "array"
         }
        }
@@ -499,13 +700,13 @@
     },
     "summary": "List Jobs",
     "tags": [
-     "workflow"
+     "jobs"
     ]
    }
   },
   "/jobs/{jid}": {
    "get": {
-    "operationId": "get_job_jobs__jid__get",
+    "operationId": "jobs_get_job",
     "parameters": [
      {
       "in": "path",
@@ -541,18 +742,24 @@
     },
     "summary": "Get Job",
     "tags": [
-     "workflow"
+     "jobs"
     ]
    }
   },
   "/projects": {
    "get": {
-    "operationId": "list_projects_projects_get",
+    "operationId": "projects_list_projects",
     "responses": {
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ProjectInfo"
+         },
+         "title": "Response Projects List Projects",
+         "type": "array"
+        }
        }
       },
       "description": "Successful Response"
@@ -564,7 +771,7 @@
     ]
    },
    "post": {
-    "operationId": "create_project_projects_post",
+    "operationId": "projects_create_project",
     "requestBody": {
      "content": {
       "application/json": {
@@ -579,7 +786,9 @@
      "201": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/ProjectInfo"
+        }
        }
       },
       "description": "Successful Response"
@@ -603,7 +812,7 @@
   },
   "/projects/{pid}": {
    "delete": {
-    "operationId": "delete_project_projects__pid__delete",
+    "operationId": "projects_delete_project",
     "parameters": [
      {
       "in": "path",
@@ -636,7 +845,7 @@
     ]
    },
    "get": {
-    "operationId": "get_project_projects__pid__get",
+    "operationId": "projects_get_project",
     "parameters": [
      {
       "in": "path",
@@ -652,7 +861,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/ProjectInfo"
+        }
        }
       },
       "description": "Successful Response"
@@ -677,7 +888,7 @@
   "/projects/{pid}/assets/{kind}": {
    "post": {
     "description": "kind = images | drawings | diagrams. The file name becomes the asset id (stem).",
-    "operationId": "upload_asset_projects__pid__assets__kind__post",
+    "operationId": "projects_upload_asset",
     "parameters": [
      {
       "in": "path",
@@ -702,7 +913,7 @@
      "content": {
       "multipart/form-data": {
        "schema": {
-        "$ref": "#/components/schemas/Body_upload_asset_projects__pid__assets__kind__post"
+        "$ref": "#/components/schemas/Body_projects_upload_asset"
        }
       }
      },
@@ -712,7 +923,9 @@
      "201": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/AssetInfo"
+        }
        }
       },
       "description": "Successful Response"
@@ -736,7 +949,7 @@
   },
   "/projects/{pid}/assets/{kind}/{name}": {
    "delete": {
-    "operationId": "delete_asset_projects__pid__assets__kind___name__delete",
+    "operationId": "projects_delete_asset",
     "parameters": [
      {
       "in": "path",
@@ -789,7 +1002,7 @@
   },
   "/projects/{pid}/attempts": {
    "get": {
-    "operationId": "list_attempts_projects__pid__attempts_get",
+    "operationId": "books_list_attempts",
     "parameters": [
      {
       "in": "path",
@@ -805,7 +1018,13 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/AttemptInfo"
+         },
+         "title": "Response Books List Attempts",
+         "type": "array"
+        }
        }
       },
       "description": "Successful Response"
@@ -823,13 +1042,13 @@
     },
     "summary": "List Attempts",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/attempts/{nn}": {
    "get": {
-    "operationId": "get_attempt_projects__pid__attempts__nn__get",
+    "operationId": "books_get_attempt",
     "parameters": [
      {
       "in": "path",
@@ -854,7 +1073,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/AttemptInfo"
+        }
        }
       },
       "description": "Successful Response"
@@ -872,13 +1093,13 @@
     },
     "summary": "Get Attempt",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/attempts/{nn}/book.{ext}": {
    "get": {
-    "operationId": "get_book_projects__pid__attempts__nn__book__ext__get",
+    "operationId": "books_get_book",
     "parameters": [
      {
       "in": "path",
@@ -910,11 +1131,6 @@
     ],
     "responses": {
      "200": {
-      "content": {
-       "application/json": {
-        "schema": {}
-       }
-      },
       "description": "Successful Response"
      },
      "422": {
@@ -930,13 +1146,13 @@
     },
     "summary": "Get Book",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/attempts/{nn}/pages/{page}.png": {
    "get": {
-    "operationId": "get_page_projects__pid__attempts__nn__pages__page__png_get",
+    "operationId": "books_get_page",
     "parameters": [
      {
       "in": "path",
@@ -968,11 +1184,6 @@
     ],
     "responses": {
      "200": {
-      "content": {
-       "application/json": {
-        "schema": {}
-       }
-      },
       "description": "Successful Response"
      },
      "422": {
@@ -988,13 +1199,13 @@
     },
     "summary": "Get Page",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/attempts/{nn}/scenes/{page}": {
    "get": {
-    "operationId": "get_scene_projects__pid__attempts__nn__scenes__page__get",
+    "operationId": "books_get_scene",
     "parameters": [
      {
       "in": "path",
@@ -1046,13 +1257,13 @@
     },
     "summary": "Get Scene",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/book-plan": {
    "get": {
-    "operationId": "get_plan_projects__pid__book_plan_get",
+    "operationId": "plans_get_plan",
     "parameters": [
      {
       "in": "path",
@@ -1086,12 +1297,12 @@
     },
     "summary": "Get Plan",
     "tags": [
-     "workflow"
+     "plans"
     ]
    },
    "put": {
-    "description": "Validated against contracts/book-plan.schema.json and the planned author's asset rules; the previous plan is kept under plans/.",
-    "operationId": "put_plan_projects__pid__book_plan_put",
+    "description": "Validated against contracts/book-plan.schema.json and the planned author's asset rules (422 with the author's message); the previous plan is kept under plans/.",
+    "operationId": "plans_put_plan",
     "parameters": [
      {
       "in": "path",
@@ -1119,7 +1330,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/PlanSaved"
+        }
        }
       },
       "description": "Successful Response"
@@ -1137,14 +1350,14 @@
     },
     "summary": "Put Plan",
     "tags": [
-     "workflow"
+     "plans"
     ]
    }
   },
   "/projects/{pid}/book-plan/generate": {
    "post": {
-    "description": "The host LLM (Claude Code CLI on the subscription) writes the book plan; optionally composes right after.",
-    "operationId": "generate_plan_projects__pid__book_plan_generate_post",
+    "description": "The host LLM writes the book plan; optionally composes right after.",
+    "operationId": "plans_generate_plan",
     "parameters": [
      {
       "in": "path",
@@ -1170,7 +1383,9 @@
      "202": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
        }
       },
       "description": "Successful Response"
@@ -1188,13 +1403,13 @@
     },
     "summary": "Generate Plan",
     "tags": [
-     "workflow"
+     "plans"
     ]
    }
   },
   "/projects/{pid}/brief": {
    "get": {
-    "operationId": "get_brief_projects__pid__brief_get",
+    "operationId": "projects_get_brief",
     "parameters": [
      {
       "in": "path",
@@ -1210,7 +1425,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/BriefBody"
+        }
        }
       },
       "description": "Successful Response"
@@ -1232,7 +1449,7 @@
     ]
    },
    "put": {
-    "operationId": "put_brief_projects__pid__brief_put",
+    "operationId": "projects_put_brief",
     "parameters": [
      {
       "in": "path",
@@ -1282,7 +1499,7 @@
   },
   "/projects/{pid}/compose": {
    "post": {
-    "operationId": "compose_projects__pid__compose_post",
+    "operationId": "books_compose",
     "parameters": [
      {
       "in": "path",
@@ -1308,7 +1525,9 @@
      "202": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
        }
       },
       "description": "Successful Response"
@@ -1326,13 +1545,13 @@
     },
     "summary": "Compose",
     "tags": [
-     "workflow"
+     "books"
     ]
    }
   },
   "/projects/{pid}/cutout": {
    "post": {
-    "operationId": "cutout_projects__pid__cutout_post",
+    "operationId": "sources_cutout",
     "parameters": [
      {
       "in": "path",
@@ -1358,7 +1577,9 @@
      "202": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
        }
       },
       "description": "Successful Response"
@@ -1376,14 +1597,14 @@
     },
     "summary": "Cutout",
     "tags": [
-     "workflow"
+     "sources"
     ]
    }
   },
   "/projects/{pid}/files/{kind}/{name}": {
    "get": {
     "description": "Original or derived file (kind = images | drawings | diagrams | sources).",
-    "operationId": "get_file_projects__pid__files__kind___name__get",
+    "operationId": "projects_get_file",
     "parameters": [
      {
       "in": "path",
@@ -1441,8 +1662,7 @@
   },
   "/projects/{pid}/manifest": {
    "get": {
-    "description": "Assets (ids, roles, aspects, source_transform / cutout flags) and the parsed brief, exactly what the agents see.",
-    "operationId": "get_manifest_projects__pid__manifest_get",
+    "operationId": "projects_get_manifest",
     "parameters": [
      {
       "in": "path",
@@ -1458,7 +1678,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/ManifestOut"
+        }
        }
       },
       "description": "Successful Response"
@@ -1482,8 +1704,8 @@
   },
   "/projects/{pid}/prepare": {
    "post": {
-    "description": "Trim proposals (approve=false) or write trimmed copies; optional levels / knockout. Originals stay in sources/, every step in derived.json.",
-    "operationId": "prepare_projects__pid__prepare_post",
+    "description": "Trim proposals (approve=false) or write trimmed copies; optional levels / knockout.",
+    "operationId": "sources_prepare",
     "parameters": [
      {
       "in": "path",
@@ -1527,14 +1749,14 @@
     },
     "summary": "Prepare",
     "tags": [
-     "workflow"
+     "sources"
     ]
    }
   },
   "/projects/{pid}/review/context": {
    "post": {
-    "description": "Binds the latest attempt's frames + scenes + rubric (hashes) for a FRESH reviewer.",
-    "operationId": "review_context_projects__pid__review_context_post",
+    "description": "Binds the latest attempt's frames + scenes + rubric (hashes) for a fresh reviewer.",
+    "operationId": "reviews_review_context",
     "parameters": [
      {
       "in": "path",
@@ -1568,14 +1790,14 @@
     },
     "summary": "Review Context",
     "tags": [
-     "workflow"
+     "reviews"
     ]
    }
   },
   "/projects/{pid}/review/finalize": {
    "post": {
     "description": "Promotes the latest attempt to out/final only if blocking gates passed AND a fresh review passed.",
-    "operationId": "review_finalize_projects__pid__review_finalize_post",
+    "operationId": "reviews_review_finalize",
     "parameters": [
      {
       "in": "path",
@@ -1609,13 +1831,13 @@
     },
     "summary": "Review Finalize",
     "tags": [
-     "workflow"
+     "reviews"
     ]
    }
   },
   "/projects/{pid}/review/record": {
    "post": {
-    "operationId": "review_record_projects__pid__review_record_post",
+    "operationId": "reviews_review_record",
     "parameters": [
      {
       "in": "path",
@@ -1659,7 +1881,7 @@
     },
     "summary": "Review Record",
     "tags": [
-     "workflow"
+     "reviews"
     ]
    }
   }

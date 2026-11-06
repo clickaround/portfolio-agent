@@ -8,7 +8,7 @@ import shutil
 import time
 from pathlib import Path
 
-from .errors import ApiError, bad_request, not_found
+from ..exceptions import ApiError, bad_request, not_found
 
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
 ASSET_KINDS = ("images", "drawings", "diagrams")

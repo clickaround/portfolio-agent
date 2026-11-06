@@ -11,7 +11,7 @@ agents/                            ONE FOLDER PER AGENT
   portfolio-plugin/  plugin shell only: .claude-plugin .codex-plugin .agents/plugins plugin.json skills/ scripts/portfolio.py
 backend/
   common/            src/portfolio_agent/core (geometry, assets, guardrails ...), src/pascal_bootstrap.py, contracts/, checks/, tests/
-  api/               FastAPI service over the agents (jobs, projects, runs, review)
+  api/               FastAPI: domain packages (projects sources plans books reviews jobs catalog) + gateways/ + storage/ (docs/STRUCTURE_DECISION.md)
 frontend/            README only (editor later)
 project/             AGENTS GOALS PLANS CONTRIBUTING PATH_MAP docs architecture tasks research evidence memory cases formats integrations agent-roles scripts tests
 .cache/              ignored: vendor clones, signed binaries (.cache/bin), blind keys

@@ -1,0 +1,15 @@
+from typing import Optional
+
+from pydantic import BaseModel, Field
+
+from ..books.schemas import ComposeRequest
+
+
+class PlanSaved(BaseModel):
+    pages: int
+    versions: int
+
+
+class PlanGenerateRequest(BaseModel):
+    instructions: str = Field("", description="extra direction for the host LLM (tone, page count, what to emphasise)")
+    compose: Optional[ComposeRequest] = Field(None, description="when set, compose right after the plan is written")

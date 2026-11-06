@@ -1,6 +1,7 @@
 """End-to-end API tests on the synthetic fixtures (no real sources, no LLM): project -> upload -> manifest -> plan -> compose job -> pages/PDF -> review.
 Also: path safety, upload limits, schema errors, the host-LLM runner (fake), and the OpenAPI contract file."""
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -14,7 +15,7 @@ sys.path.insert(0, str(API / "src"))
 from fastapi.testclient import TestClient  # noqa: E402
 
 from pascal_api.main import create_app  # noqa: E402
-from pascal_api.settings import Settings  # noqa: E402
+from pascal_api.config import Settings  # noqa: E402
 
 FIX = API.parents[1] / "agents" / "portfolioAgent" / "examples" / "synthetic_projects" / "photo_01" / "images"
 
@@ -201,14 +202,23 @@ class TestContract(unittest.TestCase):
         p = subprocess.run([sys.executable, str(API / "scripts" / "export_openapi.py"), "--check"], capture_output=True, text=True)
         self.assertEqual(p.returncode, 0, p.stderr or p.stdout)
 
-    def test_architecture_api_depends_on_agents_only_through_services(self):
+    def test_only_the_gateway_imports_the_agents(self):
         bad = []
         for f in (API / "src" / "pascal_api").rglob("*.py"):
-            if f.name in ("services.py", "_boot.py", "main.py"):
+            if f.name in ("agents.py", "_boot.py"):
                 continue
-            if "portfolio_agent" in f.read_text(encoding="utf-8").replace("pascal_api", ""):
-                bad.append(f.name)
-        self.assertEqual(bad, [], "routes talk to services.py; only services (and the app's /health) import portfolio_agent")
+            if re.search(r"^\s*(from|import)\s+portfolio_agent", f.read_text(encoding="utf-8"), re.M):
+                bad.append(str(f.relative_to(API)))
+        self.assertEqual(bad, [], "gateways/agents.py is the ONLY module that imports portfolio_agent; everything else goes through it")
+
+    def test_every_domain_package_has_router_and_no_cross_router_imports(self):
+        src = API / "src" / "pascal_api"
+        for dom in ("projects", "sources", "plans", "books", "reviews", "jobs", "catalog"):
+            self.assertTrue((src / dom / "router.py").is_file(), dom)
+            text = (src / dom / "router.py").read_text(encoding="utf-8")
+            for other in ("projects", "sources", "plans", "books", "reviews", "jobs", "catalog"):
+                if other != dom:
+                    self.assertNotIn(f"from ..{other}.router", text, f"{dom} must not import {other}'s router")
 
 
 if __name__ == "__main__":

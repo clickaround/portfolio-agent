@@ -1,10 +1,10 @@
 # backend/api - Pascal API
 
-FastAPI service over the agents. **Thin on purpose**: routes -> `services.py` -> one agent call each. No layout/engine logic here.
+FastAPI service over the agents. **Thin on purpose**: router -> service -> gateway -> one agent call. No layout/engine logic here.
 
 ```
 python backend/api/run.py --port 8000          # docs: http://127.0.0.1:8000/docs   contract: backend/api/openapi.json
-python -m pytest backend/api/tests -q          # 10 end-to-end tests on the synthetic fixtures (no LLM, no real sources)
+python -m pytest backend/api/tests -q          # 11 tests (end-to-end flow + architecture) on the synthetic fixtures (no LLM, no real sources)
 python backend/api/scripts/export_openapi.py   # regenerate openapi.json after changing models/routes (a test fails when it is stale)
 ```
 Env: `PASCAL_DATA_DIR` (default `<workspace>/.cache/pascal-data`), `PASCAL_CLAUDE_BIN`, `PASCAL_MAX_UPLOAD_MB` (100), `PASCAL_LLM_TIMEOUT_S` (900), `PASCAL_WORKERS` (2), `PASCAL_CORS_ORIGINS`. No auth yet: bind to localhost only.
@@ -26,8 +26,20 @@ Env: `PASCAL_DATA_DIR` (default `<workspace>/.cache/pascal-data`), `PASCAL_CLAUD
 
 Errors are `{"error": {"code", "message"}}`. A failed job is data (`status: failed`, `error`), never a crashed worker.
 
+## Structure (domain packages + gateway; design notes in `docs/STRUCTURE_DECISION.md`)
+```
+src/pascal_api/
+  main.py  config.py  exceptions.py  dependencies.py  _boot.py     global: app factory, settings, errors, shared Depends()
+  gateways/   agents.py (the ONLY importer of portfolio_agent)  llm.py (host-LLM runner)      driven adapters to the outside world
+  storage/    projects.py (project folders)  jobs.py (background jobs, persisted)             infrastructure
+  projects/ sources/ plans/ books/ reviews/ jobs/ catalog/       ONE PACKAGE PER DOMAIN: router.py  schemas.py  service.py
+tests/        test_api.py (flow, safety, fake host LLM, restart, openapi contract, architecture rules)
+```
+Dependency direction: `router -> service -> gateways/storage`; routers never import another domain's router; only `gateways/agents.py` imports agent code (tested).
+
 ## Rules
-- Routes import `services.py` only; `services.py` is the only module that imports `portfolio_agent` (tested).
+- `gateways/agents.py` is the only module that imports `portfolio_agent` (tested); a new agent call = one gateway function.
+- A new capability = a new domain package (`router.py`, `schemas.py`, `service.py`) registered in `main.py`.
 - The API never calls a paid HTTP LLM API. The host LLM is the Claude Code CLI via `llm.py` (injectable runner: tests, Codex).
 - File names are sanitised, extensions allow-listed, paths resolved inside the project folder, uploads size-limited and cleaned up on overflow.
 - The book plan carries editorial decisions and flags, never coordinates (same contract as the CLI).
