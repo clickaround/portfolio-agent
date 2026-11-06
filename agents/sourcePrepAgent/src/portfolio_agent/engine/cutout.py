@@ -17,8 +17,8 @@ from pathlib import Path
 
 from PIL import Image
 
-from portfolio_agent.core.assets import sha256
-from portfolio_agent.core.paths import CACHE_DIR
+from portfolio_agent.core.sources.assets import sha256
+from portfolio_agent.core.workspace import CACHE_DIR
 
 PAD_FRAC = 0.04     # breathing room around the subject's alpha bbox
 IMG = (".png", ".jpg", ".jpeg", ".tif", ".tiff", ".webp")

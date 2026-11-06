@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from portfolio_agent.core.assets import sha256
+from portfolio_agent.core.sources.assets import sha256
 
 INK = 200          # grey level below which a pixel counts as ink
 PAD_FRAC = 0.012   # breathing room around the ink bbox

@@ -4,7 +4,7 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parent.parent
-spec=importlib.util.spec_from_file_location('geometry_validator',ROOT.parents[1]/'backend/common/checks/check_layout.py')
+spec=importlib.util.find_spec('portfolio_agent.core.checks.layout')
 mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)
 
 class LayoutSmokeTests(unittest.TestCase):

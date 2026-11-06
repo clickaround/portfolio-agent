@@ -11,8 +11,8 @@ import jsonschema
 
 from portfolio_agent import layout
 from portfolio_agent.layout import modular
-from portfolio_agent.core.contracts import Plan, Scene
-from portfolio_agent.core.paths import BOOK_PLAN_SCHEMA
+from portfolio_agent.core.model.contracts import Plan, Scene
+from portfolio_agent.core.workspace import BOOK_PLAN_SCHEMA
 from portfolio_agent.layout.typesystem import TypeSystem
 
 SCHEMA = BOOK_PLAN_SCHEMA

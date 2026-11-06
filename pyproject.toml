@@ -1,0 +1,94 @@
+# Workspace root (uv). One lockfile (uv.lock), one virtualenv (.venv), every Python member installed editable:
+#   uv sync                      install everything (add `--extra cutout` for rembg)
+#   uv run pytest                run every Python test suite
+#   uv run portfolio ...         the CLI (same as agents/portfolio-plugin/scripts/portfolio.py)
+#   uv run python backend/apps/api/run.py --port 8000
+#   uv run lint-imports          architecture contracts below
+#   uv run ruff check .
+# The root is "virtual": it has no [project] of its own.
+
+[tool.uv.workspace]
+members = [
+  "backend/packages/*",      # shared kernel(s): portfolio-core
+  "backend/apps/*",          # runnable services: api
+  "agents/portfolioAgent",   # the book
+  "agents/sourcePrepAgent",  # people's sources -> clean assets
+  "agents/reviewAgent",      # independent review
+]
+
+[tool.uv.sources]
+portfolio-core = { workspace = true }
+portfolio-book-agent = { workspace = true }
+portfolio-sourceprep-agent = { workspace = true }
+portfolio-review-agent = { workspace = true }
+pascal-api = { workspace = true }
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "httpx>=0.27",
+  "ruff>=0.6",
+  "import-linter>=2.1",
+  "pascal-api",
+  "portfolio-book-agent",
+  "portfolio-sourceprep-agent",
+  "portfolio-review-agent",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+  "backend/packages/portfolio-core/tests",
+  "backend/apps/api/tests",
+  "agents/portfolioAgent/tests",
+  "agents/sourcePrepAgent/tests",
+  "agents/reviewAgent/tests",
+]
+addopts = "-p no:cacheprovider"
+
+[tool.ruff]
+line-length = 180            # the agents' code is written in wide lines
+target-version = "py311"
+extend-exclude = ["agents/pascal-agents", "agents/portfolio-plugin/skills", "_bmad", "_bmad-output", ".cache", "frontend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008", "E501", "E401", "E701", "E702", "E402"]
+
+[tool.ruff.lint.per-file-ignores]
+# Legacy agent/kernel code predates the linter: real errors (E/F) are enforced, style migrations (import order, pyupgrade, bugbear) only for new code (backend/apps).
+"agents/**" = ["I", "UP", "B", "F401", "F841", "E741"]
+"backend/packages/**" = ["I", "UP", "B", "F401", "F841", "E741"]
+"project/**" = ["I", "UP", "B", "E", "F"]   # B008: FastAPI Depends defaults; E5/E7: long prompt strings and the legacy one-line style of the agents' code (new code is linted fully in backend/apps/api)
+
+# ---- architecture contracts (import-linter) ------------------------------------------------------------------------------
+[tool.importlinter]
+root_packages = ["portfolio_agent", "pascal_api"]
+include_external_packages = false
+
+[[tool.importlinter.contracts]]
+name = "portfolio_agent layers: core <- layout <- authors/backends <- engine <- cli"
+type = "layers"
+layers = [
+  "portfolio_agent.cli",
+  "portfolio_agent.engine",
+  "portfolio_agent.authors",
+  "portfolio_agent.layout",
+  "portfolio_agent.core",
+]
+
+[[tool.importlinter.contracts]]
+name = "core is the shared kernel: it imports no agent code"
+type = "forbidden"
+source_modules = ["portfolio_agent.core"]
+forbidden_modules = ["portfolio_agent.layout", "portfolio_agent.authors", "portfolio_agent.engine", "portfolio_agent.cli", "pascal_api"]
+allow_indirect_imports = true
+
+[[tool.importlinter.contracts]]
+name = "the API reaches the agents only through gateways/agents.py"
+type = "forbidden"
+source_modules = [
+  "pascal_api.projects", "pascal_api.sources", "pascal_api.plans", "pascal_api.books",
+  "pascal_api.reviews", "pascal_api.jobs", "pascal_api.catalog", "pascal_api.storage", "pascal_api.config",
+]
+forbidden_modules = ["portfolio_agent.layout", "portfolio_agent.authors", "portfolio_agent.engine", "portfolio_agent.cli"]
+allow_indirect_imports = true   # the gateway itself is allowed to import them; everything else only via the gateway

@@ -9,9 +9,10 @@ import fitz
 import jsonschema
 
 ROOT = Path(__file__).resolve().parent.parent
+from portfolio_agent.core.workspace import SCENE_SCHEMA  # noqa: E402
 from portfolio_agent.engine import registry  # noqa: E402
 
-SCHEMA = json.loads((ROOT.parents[1] / "backend" / "common" / "contracts" / "scene-document.schema.json").read_text(encoding="utf-8"))
+SCHEMA = json.loads(SCENE_SCHEMA.read_text(encoding="utf-8"))
 SERIF_ITALIC = r"C:\Windows\Fonts\georgiai.ttf"
 HAVE_FONT = Path(SERIF_ITALIC).is_file()
 

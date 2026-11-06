@@ -17,16 +17,19 @@ frontend/             editor (later): README only
 project/              governance, not code: AGENTS GOALS PLANS docs architecture plans prompts tasks research evidence memory cases formats integrations + task/package tooling + their tests
 .cache/               ignored: vendor clones, signed binaries, blind keys
 ```
-Python import name stays `portfolio_agent` (PEP 420 namespace across `backend/common/src` + each agent's `src`), so layering rules and ~90 imports stay valid. Every entry point and test calls one bootstrap (`backend/common/src/pascal_bootstrap.py`) that puts all source roots on `sys.path`.
+Python import name stays `portfolio_agent` (PEP 420 namespace across `backend/packages/portfolio-core/src` + each agent's `src`), so layering rules and ~90 imports stay valid. Every entry point and test calls one bootstrap (`(removed: real packages via uv)`) that puts all source roots on `sys.path`.
 
 ## Steps (tests green after each)
 1. Move `.git` to the workspace root; flatten `portfolio-agent/*` into the root (index paths unchanged) - tests run as before.
 2. `project/`: governance docs, design-package folders, tooling + tests.
-3. `backend/common/`: `core/`, `contracts/`, legacy checkers; fix `core/paths.py` (named roots) and the bootstrap.
+3. `backend/packages/portfolio-core/`: `core/`, `contracts/`, legacy checkers; fix `core/paths.py` (named roots) and the bootstrap.
 4. `agents/portfolio-plugin/`: plugin root (manifests, skills, entry scripts) + `portfolioAgent/`.
 5. `sourcePrepAgent/` and `reviewAgent/` carved out of `engine/`; cutout test split from `test_bleed.py`.
 6. Rewrite path references (skills, AGENTS/CONTRIBUTING/STRUCTURE, scripts, tests, evidence pointers via a rewrite table), update `.gitignore`, architecture tests for the new layout.
 7. Full test run, commit "Split into agents/backend/frontend", memory + docs.
 
 ## Amendment 2026-11-06 (owner): agents one level up
-`portfolioAgent/`, `sourcePrepAgent/`, `reviewAgent/` sit directly under `agents/` next to `pascal-agents/`; the old hub became `agents/portfolio-plugin/` (plugin shell only). `backend/api/` added (FastAPI).
+`portfolioAgent/`, `sourcePrepAgent/`, `reviewAgent/` sit directly under `agents/` next to `pascal-agents/`; the old hub became `agents/portfolio-plugin/` (plugin shell only). `backend/apps/api/` added (FastAPI).
+
+## Amendment 2026-11-06 (owner: backend must be designed properly)
+Backend became a uv workspace: `backend/packages/portfolio-core` (shared kernel, split by responsibility), `backend/apps/api`; agents are workspace members; import-linter contracts replace the sys.path bootstrap. See `backend/docs/STRUCTURE_DECISION.md`.

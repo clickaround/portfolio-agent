@@ -7,33 +7,33 @@ def loadmod(name,path):
 
 class V2StructuralTests(unittest.TestCase):
  def test_bad_boolean_page_rejected(self):
-  g=loadmod('geometry_v2a','../backend/common/checks/check_layout.py')
+  g=loadmod('geometry_v2a','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/layout.py')
   self.assertIn('BAD_PAGE_SIZE',[x['code'] for x in g.check_scene({'size_mm':[True,297],'elements':[]})])
  def test_nan_bbox_rejected(self):
-  g=loadmod('geometry_v2b','../backend/common/checks/check_layout.py')
+  g=loadmod('geometry_v2b','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/layout.py')
   doc={'size_mm':[420,297],'elements':[{'id':'x','kind':'text','box_mm':[0,float('nan'),10,10]}]}
   self.assertIn('BAD_BBOX',[x['code'] for x in g.check_scene(doc)])
  def test_unscoped_overlap_rejected(self):
-  g=loadmod('geometry_v2c','../backend/common/checks/check_layout.py')
+  g=loadmod('geometry_v2c','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/layout.py')
   doc={'size_mm':[420,297],'elements':[{'id':'x','kind':'text','box_mm':[0,0,10,10],'allow_overlap':True}]}
   self.assertIn('UNSCOPED_OVERLAP_WAIVER',[x['code'] for x in g.check_scene(doc)])
  def test_missing_asset_id_and_unknown_ref(self):
-  g=loadmod('geometry_v2d','../backend/common/checks/check_layout.py')
+  g=loadmod('geometry_v2d','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/layout.py')
   doc={'size_mm':[420,297],'elements':[{'id':'x','kind':'image','box_mm':[0,0,10,10],'asset_id':'not-there'}]}
   self.assertIn('UNKNOWN_ASSET_ID',[x['code'] for x in g.check_scene(doc,{'another'})])
  def test_annotated_overlap_allowed(self):
-  g=loadmod('geometry_v2e','../backend/common/checks/check_layout.py')
+  g=loadmod('geometry_v2e','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/layout.py')
   doc={'size_mm':[420,297],'elements':[{'id':'x','kind':'text','box_mm':[0,0,10,10]},{'id':'y','kind':'text','box_mm':[1,1,2,2]}], 'intentional_overlaps':[{'elements':['x','y'],'reason':'design intent: foreground title over backdrop'}]}
   self.assertEqual(g.check_scene(doc),[])
  def test_edit_only_target(self):
-  d=loadmod('edit_v2','../backend/common/checks/check_edit_diff.py')
+  d=loadmod('edit_v2','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/edit_diff.py')
   src={'project_id':'p','page_id':'1','size_mm':[420,297],'elements':[{'id':'x','box_mm':[10,10,10,10]}, {'id':'y','box_mm':[20,20,20,20]}]}
   dst=json.loads(json.dumps(src));dst['elements'][0]['box_mm'][2]=12
   self.assertEqual(d.diff_scene(src,dst,['x']),[])
   dst['elements'][1]['box_mm'][0]=25
   self.assertEqual(d.diff_scene(src,dst,['x'])[0]['code'],'UNEXPECTED_EDIT')
  def test_source_hash(self):
-  mod=loadmod('hash_v2','../backend/common/checks/check_asset_hash.py')
+  mod=loadmod('hash_v2','../backend/packages/portfolio-core/src/portfolio_agent/core/checks/asset_hash.py')
   with tempfile.TemporaryDirectory() as tmp:
    p=Path(tmp)/'test.svg';p.write_bytes(b'<svg></svg>');h=hashlib.sha256(p.read_bytes()).hexdigest()
    m={'assets':[{'id':'x','relative_path':'test.svg','sha256':h}]}

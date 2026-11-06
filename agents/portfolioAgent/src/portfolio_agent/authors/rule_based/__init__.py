@@ -4,7 +4,7 @@ Candidate D / fallback author (ADR-0007). Options (all booleans, ablation switch
     cases  : retrieve a layout pattern from knowledge/patterns (off = naive all-grid plan)
     review : paginate overflowing text to new pages and search layout variants to reach the hero-size floor
 """
-from portfolio_agent.core.contracts import Plan, Scene
+from portfolio_agent.core.model.contracts import Plan, Scene
 from portfolio_agent.authors import knowledge
 from portfolio_agent import layout
 from portfolio_agent.layout.typesystem import TypeSystem

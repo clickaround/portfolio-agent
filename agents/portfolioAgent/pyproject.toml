@@ -1,0 +1,26 @@
+[project]
+name = "portfolio-book-agent"
+version = "0.1.0"
+description = "portfolioAgent: host-LLM book plan -> grid/bleed/photo-set layout -> guardrails -> PDF/PPTX/PNG, plus the `portfolio` CLI"
+requires-python = ">=3.11"
+dependencies = [
+  "portfolio-core",
+  "portfolio-sourceprep-agent",   # the CLI exposes prepare / cutout
+  "portfolio-review-agent",       # ... and review-context / record-review / finalize
+  "python-pptx>=0.6.23",
+  "pillow>=10.0",
+  "numpy>=1.26",
+  "pymupdf>=1.24",
+  "jsonschema>=4.21",
+]
+
+[project.scripts]
+portfolio = "portfolio_agent.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Code is installed editable from the repository; knowledge/, backends/ and examples/ are folders of this agent, not wheel data.
+[tool.hatch.build.targets.wheel]
+packages = ["src/portfolio_agent"]

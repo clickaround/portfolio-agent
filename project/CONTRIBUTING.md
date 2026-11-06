@@ -4,21 +4,21 @@ Read `project/AGENTS.md` (mission, evidence labels, licence gate), the workspace
 
 ## Run
 ```
-cd agents/portfolio-plugin
-python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
-python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q      # ~6 min; fast: backend/common/tests + portfolioAgent/tests/test_photoset.py
-cd ../../backend/api && python -m pytest tests -q          # HTTP API (10 tests)
-cd ../../frontend && npm install && npm run typecheck && npm run lint && npm test && npm run build
-cd ../project && python -m pytest tests -q && python scripts/validate_package.py
+uv sync                                    # at the repository root, once
+uv run portfolio compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
+uv run pytest                              # ~6 min; fast: uv run pytest backend agents/portfolioAgent/tests/test_photoset.py
+uv run lint-imports && uv run ruff check . # architecture contracts + lint
+cd frontend && npm install && npm run typecheck && npm run lint && npm test && npm run build
+cd project && uv run pytest tests -q && uv run python scripts/validate_package.py
 ```
 Fixtures: `agents/portfolioAgent/examples/synthetic_projects/*` (synthetic). Real sources stay outside the repo.
 
 ## Rules
 1. **One agent = one folder** (`agents/<name>Agent/`: `AGENTS.md`, `src/`, `tests/`). A new capability goes to the agent that owns the responsibility, or becomes a new agent folder; never a patch spread over several.
-2. **Layers** (enforced by `backend/common/tests/test_architecture.py`): `core (backend/common) <- layout <- authors/*, backends/* <- engine <- cli`. `sourcePrepAgent` and `reviewAgent` import `core` only. `portfolio_agent` and `portfolio_agent.engine` are PEP 420 namespaces: never add an `__init__.py` there.
-3. **Shared code lives in `backend/common`** and is changed with every agent's tests green. Agent-specific code never goes there.
+2. **Layers** (enforced by `uv run lint-imports` and `backend/packages/portfolio-core/tests/test_architecture.py`): `core (backend/packages/portfolio-core) <- layout <- authors/*, backends/* <- engine <- cli`. `sourcePrepAgent` and `reviewAgent` import `core` only. `portfolio_agent` and `portfolio_agent.engine` are PEP 420 namespaces: never add an `__init__.py` there.
+3. **Shared code lives in `backend/packages/portfolio-core`** and is changed with every agent's tests green. Agent-specific code never goes there.
 4. **Variety is data, not code**: grid systems, compositions, photo sets are JSON in `portfolioAgent/knowledge/patterns/`; tests check cells never overlap.
-5. **The host LLM decides editorial things, rules execute**: the book plan (`backend/common/contracts/book-plan.schema.json`) carries roles, assets, words, flags; never coordinates.
+5. **The host LLM decides editorial things, rules execute**: the book plan (`backend/packages/portfolio-core/src/portfolio_agent/core/schemas/book-plan.schema.json`) carries roles, assets, words, flags; never coordinates.
 6. **Guardrails**: new check = a code in `core/guardrails/policy.py` (BLOCKING or ADVISORY) + the check in `gates.py` + a falsifying test.
 7. **Provenance**: source bytes are never modified; every transform keeps the original in `sources/` and a record in `derived.json`.
 8. **Reuse before writing**: MIT/Apache may be copied with attribution; AGPL/GPL/no-licence read-only. Every reuse goes in `project/research/REUSE_MAP_*.md` as "from -> to". Third-party binaries live in `.cache/bin` (ignored), verified by SHA256SUMS + signature.
@@ -29,7 +29,7 @@ Fixtures: `agents/portfolioAgent/examples/synthetic_projects/*` (synthetic). Rea
 | area | paths |
 |---|---|
 | Layout engine | `agents/portfolioAgent/src/portfolio_agent/layout`, `.../knowledge/patterns` |
-| Guardrails + shared core | `backend/common` |
+| Guardrails + shared core | `backend/packages/portfolio-core` |
 | Source preparation | `agents/sourcePrepAgent` |
 | Review + benchmarks | `agents/reviewAgent` |
 | Skills (host-facing) | `agents/portfolio-plugin/skills/portfolio-*` (`skills/diagram-design` is a verbatim MIT copy: re-copy, do not edit) |

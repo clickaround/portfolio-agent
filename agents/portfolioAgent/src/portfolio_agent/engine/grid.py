@@ -2,7 +2,7 @@
 
 Pure computation from the spec and the manifest; no layout decisions. The host still chooses which span each asset uses.
 """
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 from portfolio_agent.core.geometry import columns  # noqa: F401 (shared with the rule-based author)
 
 

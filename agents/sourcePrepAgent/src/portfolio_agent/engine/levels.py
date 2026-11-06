@@ -10,7 +10,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from portfolio_agent.core.assets import sha256
+from portfolio_agent.core.sources.assets import sha256
 
 IMG = (".png", ".jpg", ".jpeg", ".tif", ".tiff")
 

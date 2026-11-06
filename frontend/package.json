@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "test": "react-router typegen && vitest run",
     "test:watch": "vitest",
-    "api:types": "openapi-typescript ../backend/api/openapi.json -o app/types/api.d.ts --default-non-nullable false"
+    "api:types": "openapi-typescript ../backend/apps/api/openapi.json -o app/types/api.d.ts --default-non-nullable false"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",

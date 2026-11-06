@@ -8,7 +8,7 @@ Writes benchmarks/reports/<run-id>.json in the PROTO_V3 output shape; fields tha
 import sys, json, time, shutil, datetime, subprocess
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT.parents[1] / "backend" / "common" / "src")); import pascal_bootstrap; pascal_bootstrap.setup(); sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from portfolio_agent.engine import pipeline, edit, registry  # noqa: E402
 
 FIX = ROOT.parent / "portfolioAgent/examples/synthetic_projects"
@@ -96,7 +96,7 @@ def ap08(proj):
         dc = dict(exit=r["exit"], files={k: bool(v) for k, v in r["files"].items()})
     except Exception as ex:  # adapter optional
         dc = dict(error=repr(ex)[:160])
-    from portfolio_agent.core import diagnostics
+    from portfolio_agent.core.quality import diagnostics
     diag = diagnostics.analyse(d / "book.pdf", load_scenes(d))
     pei_pptx = diagnostics.pei_estimate(d / "book.pptx")
     pei_dc = diagnostics.pei_estimate(d / "dc" / "book.pptx", has_vector_in_native=True, has_masters_or_styles=True) if dc and dc.get("files", {}).get("pptx") else None

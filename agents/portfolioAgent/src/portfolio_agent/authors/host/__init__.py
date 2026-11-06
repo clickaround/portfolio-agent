@@ -7,7 +7,7 @@ options: {"scenes_dir": path to page-*.json}
 import json
 from pathlib import Path
 import jsonschema
-from portfolio_agent.core.paths import SCENE_SCHEMA
+from portfolio_agent.core.workspace import SCENE_SCHEMA
 
 HERO_FLOOR = 0.35  # same floor as the rule-based author so conditions are comparable
 

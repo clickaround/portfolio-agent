@@ -57,3 +57,8 @@ backend/api/.pytest_cache/
 frontend/node_modules/
 frontend/.react-router/
 frontend/build/
+
+# python workspace (uv): the environment and tool caches are local; uv.lock IS committed
+.venv/
+.ruff_cache/
+.import_linter_cache/

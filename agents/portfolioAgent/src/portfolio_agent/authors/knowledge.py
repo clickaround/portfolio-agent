@@ -1,6 +1,6 @@
 """Case/pattern retrieval. Scores domain, keyword overlap and asset-mix fit. Returns rationale (auditable)."""
 import json
-from portfolio_agent.core.paths import PATTERNS_FILE
+from portfolio_agent.core.workspace import PATTERNS_FILE
 P = json.loads(PATTERNS_FILE.read_text(encoding="utf-8"))["patterns"]
 
 def retrieve(brief, manifest, k=1):

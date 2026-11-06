@@ -9,7 +9,7 @@ import hashlib
 import os
 from pathlib import Path
 import fitz
-from portfolio_agent.core.conventions import is_title
+from portfolio_agent.core.model.conventions import is_title
 from portfolio_agent.core.geometry import PT_PER_MM as MM
 
 FONT_DIRS = [r"C:\Windows\Fonts", os.path.expanduser("~/AppData/Local/Microsoft/Windows/Fonts"), "/usr/share/fonts", "/Library/Fonts", os.path.expanduser("~/Library/Fonts")]

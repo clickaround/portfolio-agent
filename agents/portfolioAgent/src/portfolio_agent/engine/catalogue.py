@@ -4,7 +4,7 @@ page.composition / plan.grid_system."""
 import json
 from pathlib import Path
 
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 from portfolio_agent.core.guardrails import gates
 from portfolio_agent.layout import modular
 from portfolio_agent.layout.typesystem import TypeSystem

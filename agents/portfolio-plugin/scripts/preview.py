@@ -3,7 +3,7 @@
 import sys, os, html
 from pathlib import Path
 os.environ.setdefault("PYTHONUTF8", "1"); sys.dont_write_bytecode = True
-ROOT = Path(__file__).resolve().parent.parent; sys.path.insert(0, str(ROOT.parents[1] / "backend" / "common" / "src")); import pascal_bootstrap; pascal_bootstrap.setup()
+ROOT = Path(__file__).resolve().parent.parent
 import fitz
 from portfolio_agent.engine import pipeline
 out = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parents[1] / ".cache" / "preview"; out.mkdir(parents=True, exist_ok=True); sections = []

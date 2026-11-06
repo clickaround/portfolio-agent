@@ -13,8 +13,8 @@ import json
 import time
 from pathlib import Path
 
-from portfolio_agent.core.assets import sha256
-from portfolio_agent.core.paths import CRITIC_RUBRIC
+from portfolio_agent.core.sources.assets import sha256
+from portfolio_agent.core.workspace import CRITIC_RUBRIC
 
 RUBRIC = CRITIC_RUBRIC
 DIMENSIONS = ("hierarchy", "composition_balance", "whitespace_intent", "typography", "sequence_narrative", "asset_fidelity", "domain_fit", "anti_template")

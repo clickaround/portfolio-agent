@@ -4,21 +4,21 @@ Old documents and evidence logs keep the old paths in their text; use this table
 
 | old (under portfolio-agent/) | now |
 |---|---|
-| `runtime/portfolio_agent/core/**` | `backend/common/src/portfolio_agent/core/**` |
+| `runtime/portfolio_agent/core/**` | `backend/packages/portfolio-core/src/portfolio_agent/core/**` |
 | `runtime/portfolio_agent/layout/**`, `authors/**`, `cli.py` | `agents/portfolioAgent/src/portfolio_agent/...` |
 | `runtime/portfolio_agent/engine/{pipeline,catalogue,grid,guides,spec,candidates,edit,ingest_view,registry}.py` | `agents/portfolioAgent/src/portfolio_agent/engine/` |
 | `runtime/portfolio_agent/engine/{prepare,levels,cutout}.py` | `agents/sourcePrepAgent/src/portfolio_agent/engine/` |
 | `runtime/portfolio_agent/engine/review.py` | `agents/reviewAgent/src/portfolio_agent/engine/review.py` |
-| `runtime/ARCHITECTURE.md` | `backend/common/ARCHITECTURE.md` |
-| `contracts/` | `backend/common/contracts/` |
-| `scripts/check_{layout,edit_diff,asset_hash}.py` | `backend/common/checks/` |
+| `runtime/ARCHITECTURE.md` | `backend/packages/portfolio-core/ARCHITECTURE.md` |
+| `contracts/` | `backend/packages/portfolio-core/src/portfolio_agent/core/schemas/` |
+| `scripts/check_{layout,edit_diff,asset_hash}.py` | `backend/packages/portfolio-core/src/portfolio_agent/core/checks/` |
 | `scripts/portfolio.py`, `contact_sheet.py`, `guides_overlay.py`, `preview.py`, `import_pascal_layouts.py` | `agents/portfolio-plugin/scripts/` |
 | `scripts/{task_status,task_update,validate_package,clone_repos,audit_repos,validate_contracts,format_check}.py` | `project/scripts/` |
 | `skills/`, `.claude-plugin/`, `.codex-plugin/`, `plugin.json`, `.agents/plugins/` | `agents/portfolio-plugin/` |
 | `backends/` (local, designcraft, ...), `knowledge/`, `examples/` | `agents/portfolioAgent/` |
 | `knowledge/editorial/critic-rubric.md` | `agents/reviewAgent/knowledge/critic-rubric.md` |
 | `benchmarks/` | `agents/reviewAgent/benchmarks/` |
-| `tests/test_{architecture}.py` | `backend/common/tests/` |
+| `tests/test_{architecture}.py` | `backend/packages/portfolio-core/tests/` |
 | `tests/test_{bleed,domains,grid,harness,layout,layout_craft,modular,photoset,runtime,references,scene_v02}.py` | `agents/portfolioAgent/tests/` |
 | (cut-out test, split from test_bleed) | `agents/sourcePrepAgent/tests/test_cutout.py` |
 | `tests/test_{package,v2,v3,task_evidence}.py` | `project/tests/` |
@@ -26,3 +26,15 @@ Old documents and evidence logs keep the old paths in their text; use this table
 | `agents/` (roles, contracts) | `project/agent-roles/` |
 | `core/` (docs only) | `project/core-ir/` |
 | `.cache/` | `.cache/` at the workspace root |
+
+## Second step (2026-11-06): backend as a uv workspace, agents one level up
+| before | now |
+|---|---|
+| `agents/portfolio-agents/{portfolioAgent,sourcePrepAgent,reviewAgent}` | `agents/{portfolioAgent,sourcePrepAgent,reviewAgent}`; the plugin shell is `agents/portfolio-plugin` |
+| `backend/common` | `backend/packages/portfolio-core` |
+| `backend/api` | `backend/apps/api` |
+| `core/assets.py`, `core/contracts.py`, `core/conventions.py` | `core/sources/assets.py`, `core/model/contracts.py`, `core/model/conventions.py` |
+| `core/diagnostics.py`, `core/page_metrics.py` | `core/quality/diagnostics.py`, `core/quality/page_metrics.py` |
+| `core/paths.py` + `core/legacy_checks.py` + `checks/*.py` scripts | `core/workspace.py` + `core/checks/{layout,edit_diff,asset_hash}.py` (modules) |
+| `contracts/*.schema.json` | `core/schemas/*.schema.json` (inside the kernel package) |
+| `pascal_bootstrap.py`, `_boot.py`, `conftest.py` path hacks | removed: `uv sync` installs every member editable |

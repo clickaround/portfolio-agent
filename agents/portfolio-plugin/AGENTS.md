@@ -13,13 +13,13 @@ Mission, evidence labels, licence gate: `../../project/AGENTS.md` (read first). 
 | `../pascal-agents/DiagramAgent` | diagrams: concept (diagram-design) + overlays on real drawings | `diagram-set/v1` |
 | `../pascal-agents/pptAgent` | deck design system, palettes | `DESIGN.md`, `layout/v1` |
 
-Shared code: `../../backend/common` (`portfolio_agent.core`, JSON `contracts/`). HTTP API over the agents: `../../backend/api`.
+Shared code: `../../backend/packages/portfolio-core` (`portfolio_agent.core`, JSON `contracts/`). HTTP API over the agents: `../../backend/apps/api`.
 
 ## Run (from this folder)
 ```
 python scripts/portfolio.py prepare|cutout <project> ...        # sourcePrepAgent
 python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3   # portfolioAgent
 python scripts/portfolio.py review-context|record-review|finalize <out> ...      # reviewAgent
-python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q
+uv run pytest
 ```
-Import name stays `portfolio_agent` (PEP 420 namespace over the agents' `src/` roots; `backend/common/src/pascal_bootstrap.py` sets `sys.path`). Never add `__init__.py` to `portfolio_agent/` or `portfolio_agent/engine/`.
+Setup once at the repository root: `uv sync`. Then `uv run portfolio ...` (or `uv run python scripts/portfolio.py ...`), `uv run pytest`. Import name stays `portfolio_agent` (PEP 420 namespace across `portfolio-core` and the agents); never add `__init__.py` to `portfolio_agent/` or `portfolio_agent/engine/`.

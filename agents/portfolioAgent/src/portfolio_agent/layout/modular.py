@@ -7,7 +7,7 @@ through the type system. Overlap/fit are still judged by the guardrails afterwar
 """
 import json
 from portfolio_agent.core.geometry import fit
-from portfolio_agent.core.paths import PATTERNS_DIR
+from portfolio_agent.core.workspace import PATTERNS_DIR
 from . import compositions as C
 from . import treelayout as TL
 

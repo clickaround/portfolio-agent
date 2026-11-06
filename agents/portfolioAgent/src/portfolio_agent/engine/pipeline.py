@@ -3,7 +3,7 @@ import json
 import shutil
 import time
 from pathlib import Path
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 from portfolio_agent.core.guardrails import gates, repair, references
 from . import registry
 from .spec import default_spec, from_design_plan  # noqa: F401  (re-exported: engine's public API)
@@ -47,7 +47,7 @@ def run_author(project_dir, out_dir, author, options, spec=None, domain=None, pp
     issues = gates.qa_book(scenes, manifest, plan, spec, project_dir, be) + gates.qa_pdf(str(out / "book.pdf"), scenes, spec) + gates.grounding_issues(scenes, project_dir)
     page_scores = {}
     if ex.get("files", {}).get("png"):   # advisory visual metrics on the rendered previews (AeSlides via pptAgent)
-        from portfolio_agent.core import page_metrics
+        from portfolio_agent.core.quality import page_metrics
         for sc, png in zip(scenes, sorted(Path(ex["files"]["png"]).glob("page-*.png"))):
             pi, sc_scores = page_metrics.page_issues(str(png), sc["page_id"])
             issues += pi

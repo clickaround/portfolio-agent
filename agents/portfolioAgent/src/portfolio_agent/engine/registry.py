@@ -7,7 +7,7 @@ and a broken backend cannot break the others.
 import importlib
 import importlib.util
 import sys
-from portfolio_agent.core.paths import BACKENDS_DIR
+from portfolio_agent.core.workspace import BACKENDS_DIR
 
 _cache = {}
 

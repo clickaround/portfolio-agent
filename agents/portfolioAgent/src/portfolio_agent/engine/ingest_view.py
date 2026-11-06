@@ -1,5 +1,5 @@
 """Read-only view of a project for host authors: asset ids/roles/aspects and the parsed brief."""
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 
 
 def view(project_dir):

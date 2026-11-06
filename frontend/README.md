@@ -1,6 +1,6 @@
 # frontend - Pascal portfolio workbench
 
-React Router **framework mode as a SPA** on the current stack. Talks to `backend/api` only (typed client from `backend/api/openapi.json`); never imports agent code.
+React Router **framework mode as a SPA** on the current stack. Talks to `backend/apps/api` only (typed client from `backend/apps/api/openapi.json`); never imports agent code.
 
 | | version (2026-11-06) | notes |
 |---|---|---|
@@ -14,7 +14,7 @@ React Router **framework mode as a SPA** on the current stack. Talks to `backend
 
 ```
 npm install
-npm run dev            # http://localhost:5173 (API: python ../backend/api/run.py --port 8000; VITE_API_URL to change)
+npm run dev            # http://localhost:5173 (API: python ../backend/apps/api/run.py --port 8000; VITE_API_URL to change)
 npm run api:types      # regenerate app/types/api.d.ts after the backend contract changed
 npm run typecheck && npm run lint && npm test && npm run build
 ```

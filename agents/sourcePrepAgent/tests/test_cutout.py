@@ -17,7 +17,7 @@ class TestCutout(unittest.TestCase):
         if not (Path.home() / ".u2net" / "u2net.onnx").is_file():
             self.skipTest("u2net model not cached (offline)")
         from portfolio_agent.engine import cutout
-        from portfolio_agent.core.assets import ingest
+        from portfolio_agent.core.sources.assets import ingest
         from PIL import Image
         with tempfile.TemporaryDirectory() as td:
             proj = Path(td) / "proj"

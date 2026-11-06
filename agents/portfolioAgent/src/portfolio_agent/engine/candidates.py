@@ -6,7 +6,7 @@ from pathlib import Path
 import fitz
 import numpy as np
 from PIL import Image
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 from . import pipeline
 
 STYLES = {  # composition constraints, not coordinates

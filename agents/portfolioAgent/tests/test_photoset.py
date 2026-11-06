@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-from portfolio_agent.core.assets import ingest  # noqa: E402
+from portfolio_agent.core.sources.assets import ingest  # noqa: E402
 from portfolio_agent.core.guardrails import gates  # noqa: E402
 from portfolio_agent.engine.spec import default_spec  # noqa: E402
 from portfolio_agent.layout import book, photoset  # noqa: E402

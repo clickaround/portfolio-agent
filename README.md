@@ -6,7 +6,7 @@ Four product folders. Start here, then open the one you need.
 |---|---|---|
 | `agents/` | **One folder per agent**: `portfolioAgent/` (the book: plan -> layout -> gates -> export), `sourcePrepAgent/` (sources -> clean assets), `reviewAgent/` (fresh review, blind runs, benchmarks), `pascal-agents/` (the owner's other hub: `pptAgent`, `DiagramAgent`, `drawingbookAgent`; own nested repo), and `portfolio-plugin/` (plugin shell: `.claude-plugin`, `skills/`, `scripts/portfolio.py`). | agent owners |
 | `backend/` | `common/` = code and contracts shared by every agent (`portfolio_agent.core`, JSON `contracts/`, `checks/`, layer rules + architecture test); `api/` = FastAPI service over the agents. | everyone (careful: breaks all agents) |
-| `frontend/` | The portfolio workbench: React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn, structure `app/{common,features,lib}` (owner's convention). Talks to `backend/api` only. `npm run dev`; scope + conventions in `frontend/README.md`. | UI owners |
+| `frontend/` | The portfolio workbench: React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn, structure `app/{common,features,lib}` (owner's convention). Talks to `backend/apps/api` only. `npm run dev`; scope + conventions in `frontend/README.md`. | UI owners |
 | `project/` | Governance, not code: mission (`AGENTS.md`), goals/plans, `docs/`, `architecture/` (ADRs), `tasks/` (DAG), `research/` (pinned repos, REUSE_MAP, paper notes), `evidence/` (what was run and seen), `memory/NOW.md` (handoff), `cases/` rights protocol, task/package tooling + tests, `PATH_MAP.md`. | everyone |
 
 Also: `.cache/` (ignored: vendor clones, signed binaries, blind keys), `_bmad*` (planning tool output, ignored).
@@ -35,10 +35,11 @@ person's sources -> sourcePrepAgent  prepare / levels / knockout / cutout     (o
 
 ## Run
 ```
-cd agents/portfolio-plugin
-python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
-python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q
-cd ../../backend/api && python run.py --port 8000     # API + docs at /docs ; tests: python -m pytest tests -q
-cd ../../project && python -m pytest tests -q && python scripts/validate_package.py
+uv sync                                   # once, at this folder (installs the core + agents + api editable, one .venv, one uv.lock)
+uv run portfolio compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
+uv run pytest                             # every Python suite (core, api, 3 agents; ~6 min)  |  uv run lint-imports  |  uv run ruff check .
+uv run pascal-api --port 8000             # API + docs at /docs
+cd frontend && npm install && npm run dev
+cd project && uv run pytest tests -q && uv run python scripts/validate_package.py
 ```
 Contributing rules and ownership: `project/CONTRIBUTING.md`. Where things live: `project/docs/STRUCTURE.md`. Old paths -> new: `project/PATH_MAP.md`.

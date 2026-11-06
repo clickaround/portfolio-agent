@@ -5,7 +5,7 @@ NOT RUN here: general-LLM baseline, editing-backend comparison (OpenPencil/GenOf
 import sys, json, time, shutil, datetime
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT.parents[1] / "backend" / "common" / "src")); import pascal_bootstrap; pascal_bootstrap.setup(); sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from portfolio_agent.engine import pipeline, edit
 
 PROJECTS = ["arch_01", "arch_02", "arch_03"]

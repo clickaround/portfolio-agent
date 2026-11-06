@@ -2,7 +2,7 @@ import sys, json, tempfile, shutil, unittest
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 from portfolio_agent.engine import pipeline, edit, registry  # noqa: E402
-from portfolio_agent.core import assets
+from portfolio_agent.core.sources import assets
 from portfolio_agent.core.guardrails import gates  # noqa: E402
 
 FIX = ROOT / "examples/synthetic_projects"
@@ -90,7 +90,7 @@ class RuntimeTests(unittest.TestCase):
     def test_designcraft_backend_if_installed(self):
         import fitz
         be = registry.get_backend("designcraft")
-        from portfolio_agent.core import contracts
+        from portfolio_agent.core.model import contracts
         self.assertIsInstance(be, contracts.Exporter)
         try:
             import importlib

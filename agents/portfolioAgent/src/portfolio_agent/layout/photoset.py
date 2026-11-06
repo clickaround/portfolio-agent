@@ -11,7 +11,7 @@ Templates are data: a new arrangement is one JSON entry, never code (tests check
 import json
 
 from portfolio_agent.core.geometry import fit
-from portfolio_agent.core.paths import PATTERNS_DIR
+from portfolio_agent.core.workspace import PATTERNS_DIR
 
 FILE = PATTERNS_DIR / "photosets.json"
 
