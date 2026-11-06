@@ -19,7 +19,7 @@ npm run api:types      # regenerate app/types/api.d.ts after the backend contrac
 npm run typecheck && npm run lint && npm test && npm run build
 ```
 
-## Structure (the owner's convention from the reference project, kept)
+## Structure (the owner's feature-folder convention)
 ```
 app/
   root.tsx  routes.ts  app.css  entry (framework default)
@@ -41,4 +41,3 @@ Rules (enforced by ESLint `import-x/no-restricted-paths`): a feature never impor
 ## Scope (owner decision: backend first, frontend scaffold now)
 Built: app shell, projects list/create (`clientLoader` + `clientAction`), project page, typed API client, tests, build. Next features, one folder each under `app/features/`: **sources** (upload, manifest, prepare/cut-out before/after), **plan** (page list with the flags from `/catalog`, "write with the host LLM" job), **book** (compose job log, page grid, gates panel, PDF), **review** (context -> reviewer -> record -> finalize). No coordinate editing: the host LLM decides editorial things, rules execute.
 
-`frontend/frontend/` is the owner's reference project (own nested repo, git-ignored here); only its structure was adopted - not Supabase, Drizzle, Cloudflare, payments.

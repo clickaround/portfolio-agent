@@ -54,8 +54,6 @@ project/evidence/logs/**/*.idml
 # api runtime data
 backend/api/.pytest_cache/
 
-# frontend: the owner's reference project (own nested repo, Nomad Coders "wemake"); kept for its structure only
-frontend/frontend/
 frontend/node_modules/
 frontend/.react-router/
 frontend/build/

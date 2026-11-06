@@ -1,6 +1,6 @@
 import { type RouteConfig, index, layout, prefix, route } from "@react-router/dev/routes";
 
-// File-based route CONFIG (same convention as the owner's reference project): every page is a file under features/<feature>/pages.
+// File-based route CONFIG (the owner's feature-folder convention): every page is a file under features/<feature>/pages.
 // Planned features (see README): sources, plan, book, review - each gets its own folder and its routes under projects/:projectId.
 export default [
   layout("common/layouts/app-layout.tsx", [
