@@ -5,13 +5,14 @@ import sys as _s; _s.stdout.reconfigure(encoding="utf-8", errors="replace")
 import json, math, re, sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent   # project/ (governance docs, tasks, research)
-HUB=ROOT.parent/'agents'/'portfolio-agents'   # plugin root: .claude-plugin, skills, agents
-REVIEW=HUB/'reviewAgent'
+HUB=ROOT.parent/'agents'/'portfolio-plugin'   # plugin root: .claude-plugin, skills, scripts
+AGENTS=ROOT.parent/'agents'
 REQUIRED=['README_START_HERE.md','README.md','AGENTS.md','CLAUDE.md','GOALS.md','PLANS.md',
  'memory/NOW.md','memory/HANDOFF.md','research/SOURCES.md','research/repos.lock.json',
  'tasks/backlog.json','docs/PROBLEM_DECOMPOSITION.md',
  'docs/V2_AUDIT_REPORT.md','docs/TASK_RUNBOOK.md']
-HUB_REQUIRED=['plugin.json','.claude-plugin/plugin.json','.agents/plugins/marketplace.json','AGENTS.md','portfolioAgent/AGENTS.md','sourcePrepAgent/AGENTS.md','reviewAgent/AGENTS.md','reviewAgent/benchmarks/SPEC.md']
+HUB_REQUIRED=['plugin.json','.claude-plugin/plugin.json','.agents/plugins/marketplace.json','AGENTS.md']
+AGENT_REQUIRED=['portfolioAgent/AGENTS.md','sourcePrepAgent/AGENTS.md','reviewAgent/AGENTS.md','reviewAgent/benchmarks/SPEC.md']
 SCHEMA='https://agent-plugins.org/schemas/1.0.0/plugin.schema.json'
 
 def read_json(path):
@@ -30,7 +31,9 @@ def validate(root=ROOT):
  for path in REQUIRED:
   if not (root/path).is_file():errors.append('MISSING_FILE '+path)
  for path in HUB_REQUIRED:
-  if not (HUB/path).is_file():errors.append('MISSING_FILE agents/portfolio-agents/'+path)
+  if not (HUB/path).is_file():errors.append('MISSING_FILE agents/portfolio-plugin/'+path)
+ for path in AGENT_REQUIRED:
+  if not (AGENTS/path).is_file():errors.append('MISSING_FILE agents/'+path)
  for f in _walk(root,'.json'):
   try:read_json(f)
   except Exception as e:errors.append('INVALID_JSON '+str(f.relative_to(root))+' '+str(e))

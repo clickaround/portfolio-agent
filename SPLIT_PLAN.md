@@ -23,7 +23,10 @@ Python import name stays `portfolio_agent` (PEP 420 namespace across `backend/co
 1. Move `.git` to the workspace root; flatten `portfolio-agent/*` into the root (index paths unchanged) - tests run as before.
 2. `project/`: governance docs, design-package folders, tooling + tests.
 3. `backend/common/`: `core/`, `contracts/`, legacy checkers; fix `core/paths.py` (named roots) and the bootstrap.
-4. `agents/portfolio-agents/`: plugin root (manifests, skills, entry scripts) + `portfolioAgent/`.
+4. `agents/portfolio-plugin/`: plugin root (manifests, skills, entry scripts) + `portfolioAgent/`.
 5. `sourcePrepAgent/` and `reviewAgent/` carved out of `engine/`; cutout test split from `test_bleed.py`.
 6. Rewrite path references (skills, AGENTS/CONTRIBUTING/STRUCTURE, scripts, tests, evidence pointers via a rewrite table), update `.gitignore`, architecture tests for the new layout.
 7. Full test run, commit "Split into agents/backend/frontend", memory + docs.
+
+## Amendment 2026-11-06 (owner): agents one level up
+`portfolioAgent/`, `sourcePrepAgent/`, `reviewAgent/` sit directly under `agents/` next to `pascal-agents/`; the old hub became `agents/portfolio-plugin/` (plugin shell only). `backend/api/` added (FastAPI).

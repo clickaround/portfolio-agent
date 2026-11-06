@@ -2,18 +2,19 @@
 
 portfolio_agent is a PEP 420 namespace package spread over source roots (see pascal_bootstrap.py):
   backend/common/src                           core (+ guardrails)                     <- shared by every agent
-  agents/portfolio-agents/portfolioAgent/src   layout, authors, engine (pipeline ...), cli
-  agents/portfolio-agents/sourcePrepAgent/src  engine.prepare / levels / cutout
-  agents/portfolio-agents/reviewAgent/src      engine.review
+  agents/portfolioAgent/src                    layout, authors, engine (pipeline ...), cli
+  agents/sourcePrepAgent/src                   engine.prepare / levels / cutout
+  agents/reviewAgent/src                       engine.review
 """
 from pathlib import Path
 
 COMMON = Path(__file__).resolve().parents[3]          # backend/common
 WORKSPACE = COMMON.parents[1]
-HUB = WORKSPACE / "agents" / "portfolio-agents"       # the plugin root
-PORTFOLIO_AGENT = HUB / "portfolioAgent"
-SOURCEPREP_AGENT = HUB / "sourcePrepAgent"
-REVIEW_AGENT = HUB / "reviewAgent"
+AGENTS_DIR = WORKSPACE / "agents"
+PLUGIN = AGENTS_DIR / "portfolio-plugin"              # plugin root: .claude-plugin, skills/, scripts/portfolio.py
+PORTFOLIO_AGENT = AGENTS_DIR / "portfolioAgent"
+SOURCEPREP_AGENT = AGENTS_DIR / "sourcePrepAgent"
+REVIEW_AGENT = AGENTS_DIR / "reviewAgent"
 PROJECT = WORKSPACE / "project"                       # governance docs, tasks, research, evidence (not code)
 CACHE_DIR = WORKSPACE / ".cache"                      # ignored: vendor clones, signed binaries, blind keys
 

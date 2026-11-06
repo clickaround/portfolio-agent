@@ -4,15 +4,15 @@ Read `project/AGENTS.md` (mission, evidence labels, licence gate), the workspace
 
 ## Run
 ```
-cd agents/portfolio-agents
+cd agents/portfolio-plugin
 python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
-python -m pytest ../../backend/common/tests portfolioAgent/tests sourcePrepAgent/tests reviewAgent/tests -q      # ~6 min; fast: backend/common/tests + portfolioAgent/tests/test_photoset.py
+python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q      # ~6 min; fast: backend/common/tests + portfolioAgent/tests/test_photoset.py
 cd ../../project && python -m pytest tests -q && python scripts/validate_package.py
 ```
-Fixtures: `agents/portfolio-agents/portfolioAgent/examples/synthetic_projects/*` (synthetic). Real sources stay outside the repo.
+Fixtures: `agents/portfolioAgent/examples/synthetic_projects/*` (synthetic). Real sources stay outside the repo.
 
 ## Rules
-1. **One agent = one folder** (`agents/portfolio-agents/<agent>/`: `AGENTS.md`, `src/`, `tests/`). A new capability goes to the agent that owns the responsibility, or becomes a new agent folder; never a patch spread over several.
+1. **One agent = one folder** (`agents/<name>Agent/`: `AGENTS.md`, `src/`, `tests/`). A new capability goes to the agent that owns the responsibility, or becomes a new agent folder; never a patch spread over several.
 2. **Layers** (enforced by `backend/common/tests/test_architecture.py`): `core (backend/common) <- layout <- authors/*, backends/* <- engine <- cli`. `sourcePrepAgent` and `reviewAgent` import `core` only. `portfolio_agent` and `portfolio_agent.engine` are PEP 420 namespaces: never add an `__init__.py` there.
 3. **Shared code lives in `backend/common`** and is changed with every agent's tests green. Agent-specific code never goes there.
 4. **Variety is data, not code**: grid systems, compositions, photo sets are JSON in `portfolioAgent/knowledge/patterns/`; tests check cells never overlap.
@@ -26,12 +26,12 @@ Fixtures: `agents/portfolio-agents/portfolioAgent/examples/synthetic_projects/*`
 ## Ownership (proposed; edit when the team forms)
 | area | paths |
 |---|---|
-| Layout engine | `agents/portfolio-agents/portfolioAgent/src/portfolio_agent/layout`, `.../knowledge/patterns` |
+| Layout engine | `agents/portfolioAgent/src/portfolio_agent/layout`, `.../knowledge/patterns` |
 | Guardrails + shared core | `backend/common` |
-| Source preparation | `agents/portfolio-agents/sourcePrepAgent` |
-| Review + benchmarks | `agents/portfolio-agents/reviewAgent` |
-| Skills (host-facing) | `agents/portfolio-agents/skills/portfolio-*` (`skills/diagram-design` is a verbatim MIT copy: re-copy, do not edit) |
-| Backends (exporters) | `agents/portfolio-agents/portfolioAgent/backends` |
+| Source preparation | `agents/sourcePrepAgent` |
+| Review + benchmarks | `agents/reviewAgent` |
+| Skills (host-facing) | `agents/portfolio-plugin/skills/portfolio-*` (`skills/diagram-design` is a verbatim MIT copy: re-copy, do not edit) |
+| Backends (exporters) | `agents/portfolioAgent/backends` |
 | Diagrams, decks | `agents/pascal-agents/*` (own repo; coordinate with its owners) |
 | Governance, research | `project/` |
 

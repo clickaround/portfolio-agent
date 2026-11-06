@@ -11,8 +11,8 @@ import pascal_bootstrap
 
 WORKSPACE = pascal_bootstrap.setup()
 SOURCE_ROOTS = pascal_bootstrap.SOURCE_ROOTS
-HUB = WORKSPACE / "agents" / "portfolio-agents"
-BACKENDS = HUB / "portfolioAgent" / "backends"
+AGENTS = WORKSPACE / "agents"
+BACKENDS = AGENTS / "portfolioAgent" / "backends"
 TOP_LEVEL_ALLOWED = {
     "agents", "backend", "frontend", "project",          # the four product folders (SPLIT_PLAN.md)
     "_bmad", "_bmad-output",                              # BMAD planning tool output
@@ -122,8 +122,8 @@ class AgentFolderTests(unittest.TestCase):
     def test_source_prep_and_review_agents_import_only_core(self):
         bad = []
         for agent in ("sourcePrepAgent", "reviewAgent"):
-            for p in sorted((HUB / agent / "src").rglob("*.py")):
-                mod = ".".join(p.relative_to(HUB / agent / "src").with_suffix("").parts)
+            for p in sorted((AGENTS / agent / "src").rglob("*.py")):
+                mod = ".".join(p.relative_to(AGENTS / agent / "src").with_suffix("").parts)
                 for imp in imports_of(p, mod):
                     if imp.startswith("portfolio_agent") and layer_of(imp) not in ("core", None):
                         bad.append(f"{agent}: {mod} imports {imp}")
@@ -131,8 +131,8 @@ class AgentFolderTests(unittest.TestCase):
 
     def test_agent_folders_are_self_describing(self):
         for agent in ("portfolioAgent", "sourcePrepAgent", "reviewAgent"):
-            self.assertTrue((HUB / agent / "AGENTS.md").is_file(), f"{agent}/AGENTS.md (identity, contract, how to test) is required")
-            self.assertTrue((HUB / agent / "tests").is_dir(), f"{agent}/tests")
+            self.assertTrue((AGENTS / agent / "AGENTS.md").is_file(), f"{agent}/AGENTS.md (identity, contract, how to test) is required")
+            self.assertTrue((AGENTS / agent / "tests").is_dir(), f"{agent}/tests")
 
 
 class FolderTests(unittest.TestCase):
