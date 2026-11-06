@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -12,4 +11,4 @@ class PlanSaved(BaseModel):
 
 class PlanGenerateRequest(BaseModel):
     instructions: str = Field("", description="extra direction for the host LLM (tone, page count, what to emphasise)")
-    compose: Optional[ComposeRequest] = Field(None, description="when set, compose right after the plan is written")
+    compose: ComposeRequest | None = Field(None, description="when set, compose right after the plan is written")

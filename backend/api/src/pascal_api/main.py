@@ -36,7 +36,7 @@ def _operation_id(route: APIRoute) -> str:
 
 def create_app(settings: Settings | None = None, llm_runner=None) -> FastAPI:
     settings = settings or get_settings()
-    app = FastAPI(title="Pascal API", version=VERSION, generate_unique_id_function=_operation_id,
+    app = FastAPI(title="Pascal API", version=VERSION, generate_unique_id_function=_operation_id, separate_input_output_schemas=False,
                   description="HTTP service over the portfolio agents: sources -> book plan -> composed book -> fresh review.")
     app.state.settings = settings
     app.state.store = ProjectStore(settings.data_dir)

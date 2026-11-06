@@ -12,7 +12,7 @@ agents/                            ONE FOLDER PER AGENT
 backend/
   common/            src/portfolio_agent/core (geometry, assets, guardrails ...), src/pascal_bootstrap.py, contracts/, checks/, tests/
   api/               FastAPI: domain packages (projects sources plans books reviews jobs catalog) + gateways/ + storage/ (docs/STRUCTURE_DECISION.md)
-frontend/            README only (editor later)
+frontend/            React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn: app/{common,features/<f>/{pages,components},lib}, routes.ts; typed client from backend/api/openapi.json
 project/             AGENTS GOALS PLANS CONTRIBUTING PATH_MAP docs architecture tasks research evidence memory cases formats integrations agent-roles scripts tests
 .cache/              ignored: vendor clones, signed binaries (.cache/bin), blind keys
 ```

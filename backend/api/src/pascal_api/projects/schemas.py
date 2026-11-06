@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -13,11 +13,17 @@ class BriefBody(BaseModel):
     markdown: str
 
 
+class AssetCounts(BaseModel):
+    images: int
+    drawings: int
+    diagrams: int
+
+
 class ProjectInfo(BaseModel):
     id: str
     title: str = ""
-    created: Optional[str] = None
-    assets: dict[str, int]
+    created: str | None = None
+    assets: AssetCounts
     has_plan: bool
     attempts: int
 

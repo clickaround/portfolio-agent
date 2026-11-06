@@ -7,11 +7,11 @@ Domain services call these functions; they never import an agent. Each function 
 import json
 from pathlib import Path
 
-from .. import _boot  # noqa: F401  (sys.path first)
-from ..exceptions import unprocessable
-
 from portfolio_agent.core import assets as core_assets  # noqa: E402
 from portfolio_agent.core import paths as P  # noqa: E402
+
+from .. import _boot  # noqa: F401  (sys.path first)
+from ..exceptions import unprocessable
 
 
 # ---- portfolioAgent: ingest / catalogue ---------------------------------------------------------------------------
@@ -47,12 +47,12 @@ def validate_plan(project_dir: Path, plan: dict) -> dict:
     try:
         jsonschema.validate(plan, json.loads(P.BOOK_PLAN_SCHEMA.read_text(encoding="utf-8")))
     except jsonschema.ValidationError as e:
-        raise unprocessable("plan_schema", f"book plan schema violation at {'/'.join(map(str, e.absolute_path)) or '(root)'}: {e.message[:300]}")
+        raise unprocessable("plan_schema", f"book plan schema violation at {'/'.join(map(str, e.absolute_path)) or '(root)'}: {e.message[:300]}") from e
     manifest, _ = core_assets.ingest(project_dir)
     try:
         planned.check(plan, manifest)
     except planned.BookPlanError as e:
-        raise unprocessable("plan_assets", str(e))
+        raise unprocessable("plan_assets", str(e)) from e
     return manifest
 
 
@@ -72,7 +72,8 @@ def _issue(i: dict) -> dict:
 
 # ---- sourcePrepAgent ------------------------------------------------------------------------------------------------
 def prepare(project_dir: Path, approve: bool, levels: bool, knockout: bool, knockout_files: list) -> dict:
-    from portfolio_agent.engine import levels as lv, prepare as prep
+    from portfolio_agent.engine import levels as lv
+    from portfolio_agent.engine import prepare as prep
     rec = prep.prepare(project_dir, approve=approve)
     sheet = None
     if rec["proposals"]:
@@ -102,7 +103,7 @@ def _review(fn_name: str, out_dir: Path, *args):
     try:
         return getattr(review, fn_name)(out_dir, *args)
     except review.ReviewError as e:
-        raise unprocessable("review", str(e))
+        raise unprocessable("review", str(e)) from e
 
 
 def review_context(out_dir: Path) -> dict:

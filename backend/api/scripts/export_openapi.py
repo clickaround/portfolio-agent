@@ -8,8 +8,8 @@ from pathlib import Path
 API = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(API / "src"))
 
-from pascal_api.main import create_app  # noqa: E402
 from pascal_api.config import Settings  # noqa: E402
+from pascal_api.main import create_app  # noqa: E402
 
 
 def spec() -> dict:

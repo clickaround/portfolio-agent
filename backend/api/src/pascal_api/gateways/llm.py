@@ -1,8 +1,8 @@
 """Host-LLM runner. The API never calls an Anthropic HTTP API (no billing): the book plan is written by the Claude Code CLI (`claude -p`) on the owner's
 subscription, exactly like the terminal workflow. The runner is injectable so tests (and other hosts, e.g. Codex) can replace it."""
 import subprocess
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable
 
 # runner(prompt, cwd, timeout_s, allowed_tools) -> (returncode, text)
 Runner = Callable[[str, Path, int, str], tuple]

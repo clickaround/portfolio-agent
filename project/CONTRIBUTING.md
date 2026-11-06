@@ -8,7 +8,8 @@ cd agents/portfolio-plugin
 python scripts/portfolio.py compose <project> <book-plan.json> <out> --width-mm 297 --height-mm 210 --bleed-mm 3
 python -m pytest ../../backend/common/tests ../portfolioAgent/tests ../sourcePrepAgent/tests ../reviewAgent/tests -q      # ~6 min; fast: backend/common/tests + portfolioAgent/tests/test_photoset.py
 cd ../../backend/api && python -m pytest tests -q          # HTTP API (10 tests)
-cd ../../project && python -m pytest tests -q && python scripts/validate_package.py
+cd ../../frontend && npm install && npm run typecheck && npm run lint && npm test && npm run build
+cd ../project && python -m pytest tests -q && python scripts/validate_package.py
 ```
 Fixtures: `agents/portfolioAgent/examples/synthetic_projects/*` (synthetic). Real sources stay outside the repo.
 

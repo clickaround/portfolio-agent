@@ -14,8 +14,8 @@ sys.path.insert(0, str(API / "src"))
 
 from fastapi.testclient import TestClient  # noqa: E402
 
-from pascal_api.main import create_app  # noqa: E402
 from pascal_api.config import Settings  # noqa: E402
+from pascal_api.main import create_app  # noqa: E402
 
 FIX = API.parents[1] / "agents" / "portfolioAgent" / "examples" / "synthetic_projects" / "photo_01" / "images"
 
@@ -166,7 +166,8 @@ class TestApi(unittest.TestCase):
             target = Path(prompt.split("Write ONE JSON file: ")[1].split(" - a book plan")[0])
             ids = [a for a in ("img01", "img02", "img03", "img04", "img05", "img06")]
             if len(calls) == 1:                                   # first answer is wrong (unknown asset), the API must retry with the error
-                p = plan_for(ids); p["pages"][1]["assets"][0] = "ghost"
+                p = plan_for(ids)
+                p["pages"][1]["assets"][0] = "ghost"
             else:
                 p = plan_for(ids)
             target.write_text(json.dumps(p), encoding="utf-8")

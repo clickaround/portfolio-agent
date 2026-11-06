@@ -24,6 +24,29 @@
     "title": "Accepted",
     "type": "object"
    },
+   "AssetCounts": {
+    "properties": {
+     "diagrams": {
+      "title": "Diagrams",
+      "type": "integer"
+     },
+     "drawings": {
+      "title": "Drawings",
+      "type": "integer"
+     },
+     "images": {
+      "title": "Images",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "images",
+     "drawings",
+     "diagrams"
+    ],
+    "title": "AssetCounts",
+    "type": "object"
+   },
    "AssetInfo": {
     "properties": {
      "file": {
@@ -504,11 +527,7 @@
    "ProjectInfo": {
     "properties": {
      "assets": {
-      "additionalProperties": {
-       "type": "integer"
-      },
-      "title": "Assets",
-      "type": "object"
+      "$ref": "#/components/schemas/AssetCounts"
      },
      "attempts": {
       "title": "Attempts",

@@ -1,0 +1,33 @@
+[project]
+name = "pascal-api"
+version = "0.2.0"
+description = "HTTP service over the portfolio agents (sources -> book plan -> composed book -> fresh review)"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "python-multipart>=0.0.9",
+  "pydantic>=2.7",
+  "jsonschema>=4.21",
+  # used by the agents behind the gateway (see agents/*/AGENTS.md)
+  "pymupdf>=1.24",
+  "pillow>=10.0",
+  "numpy>=1.26",
+  "python-pptx>=0.6.23",
+]
+
+[project.optional-dependencies]
+cutout = ["rembg>=2.0.60", "onnxruntime>=1.18"]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.6"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 180            # the agents' code is written in wide lines; keep the API consistent with them
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B008", "E501"]    # B008: FastAPI Depends()/File() defaults are the framework idiom; E501: prompt strings are long on purpose

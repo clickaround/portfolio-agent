@@ -1,4 +1,4 @@
-from typing import Any, Literal, Optional
+from typing import Any, Literal
 
 from pydantic import BaseModel
 
@@ -9,11 +9,11 @@ class Job(BaseModel):
     project: str
     status: Literal["queued", "running", "succeeded", "failed"]
     created: str
-    started: Optional[str] = None
-    finished: Optional[str] = None
+    started: str | None = None
+    finished: str | None = None
     log: list[str] = []
-    result: Optional[Any] = None
-    error: Optional[str] = None
+    result: Any | None = None
+    error: str | None = None
 
 
 class Accepted(BaseModel):

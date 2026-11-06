@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Tailwind v4 is CSS-first: design tokens live here (shadcn variables included), not in tailwind.config.ts */
+@theme {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
+  --color-paper: #f4f2ee;
+  --color-ink: #1b1b1b;
+  --color-accent: #b44a2b;
+  --color-rule: #d6d3cc;
+}
+
+body {
+  @apply bg-paper font-sans text-ink antialiased;
+}
