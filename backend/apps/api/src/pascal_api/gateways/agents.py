@@ -22,6 +22,30 @@ def workspace_root() -> Path:
     return P.WORKSPACE
 
 
+def render_designcraft_pdf(native: Path, pdf: Path) -> None:
+    """Render an edited document using the locally installed DesignCraft CLI."""
+    import subprocess
+    candidates = sorted((P.CACHE_DIR / "bin" / "designcraft" / "x").glob("*/designcraft-cli.exe"))
+    if not candidates:
+        raise RuntimeError("DesignCraft CLI is not installed locally")
+    result = subprocess.run([str(candidates[0]), "run", "--in", str(native.resolve()), "--export", str(pdf.resolve())],
+                            cwd=str(native.parent), capture_output=True, text=True, timeout=300, encoding="utf-8", errors="replace")
+    if result.returncode != 0 or not pdf.is_file():
+        raise RuntimeError(f"DesignCraft PDF render failed: {(result.stderr or result.stdout)[-500:]}")
+
+
+def validate_native_analysis(attempt: Path) -> dict:
+    """Validate import provenance without creating or modifying a review."""
+    from portfolio_agent.engine import review
+    pending = attempt / "ledger-pending.json"
+    if pending.exists() or pending.is_symlink():
+        raise ValueError("Attempt ledger is pending")
+    qa = json.loads((attempt / "qa.json").read_text(encoding="utf-8"))
+    if not isinstance(qa.get("native_edit"), dict):
+        raise ValueError("Attempt is not an imported native edit")
+    return review._native_evidence(attempt, qa)
+
+
 def open_designcraft(source: Path, project_dir: Path) -> dict:
     """Open a separate editable copy; the reviewed attempt remains immutable."""
     import shutil

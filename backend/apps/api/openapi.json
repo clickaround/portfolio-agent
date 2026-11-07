@@ -24,6 +24,71 @@
     "title": "Accepted",
     "type": "object"
    },
+   "AnalysisIssue": {
+    "properties": {
+     "evidence": {
+      "title": "Evidence",
+      "type": "string"
+     },
+     "issue": {
+      "title": "Issue",
+      "type": "string"
+     },
+     "recommendation": {
+      "title": "Recommendation",
+      "type": "string"
+     }
+    },
+    "required": [
+     "issue",
+     "recommendation",
+     "evidence"
+    ],
+    "title": "AnalysisIssue",
+    "type": "object"
+   },
+   "AnalysisOutput": {
+    "properties": {
+     "pages": {
+      "items": {
+       "$ref": "#/components/schemas/AnalysisPage"
+      },
+      "title": "Pages",
+      "type": "array"
+     },
+     "summary": {
+      "title": "Summary",
+      "type": "string"
+     }
+    },
+    "required": [
+     "summary",
+     "pages"
+    ],
+    "title": "AnalysisOutput",
+    "type": "object"
+   },
+   "AnalysisPage": {
+    "properties": {
+     "page": {
+      "title": "Page",
+      "type": "integer"
+     },
+     "suggestions": {
+      "items": {
+       "$ref": "#/components/schemas/AnalysisIssue"
+      },
+      "title": "Suggestions",
+      "type": "array"
+     }
+    },
+    "required": [
+     "page",
+     "suggestions"
+    ],
+    "title": "AnalysisPage",
+    "type": "object"
+   },
    "AssetCounts": {
     "properties": {
      "diagrams": {
@@ -117,6 +182,16 @@
       ],
       "title": "Gate Pass"
      },
+     "ledger_pending": {
+      "default": false,
+      "title": "Ledger Pending",
+      "type": "boolean"
+     },
+     "native_edit": {
+      "default": false,
+      "title": "Native Edit",
+      "type": "boolean"
+     },
      "page_scores": {
       "anyOf": [
        {},
@@ -148,6 +223,20 @@
      "attempt"
     ],
     "title": "AttemptInfo",
+    "type": "object"
+   },
+   "Body_books_import_designcraft": {
+    "properties": {
+     "file": {
+      "contentMediaType": "application/octet-stream",
+      "title": "File",
+      "type": "string"
+     }
+    },
+    "required": [
+     "file"
+    ],
+    "title": "Body_books_import_designcraft",
     "type": "object"
    },
    "Body_projects_upload_asset": {
@@ -698,6 +787,170 @@
      "review"
     ],
     "title": "ReviewRecord",
+    "type": "object"
+   },
+   "SuggestionRecord": {
+    "properties": {
+     "analysis_mode": {
+      "const": "text_only",
+      "title": "Analysis Mode",
+      "type": "string"
+     },
+     "attempt": {
+      "title": "Attempt",
+      "type": "string"
+     },
+     "cost_usd": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Cost Usd"
+     },
+     "created_at": {
+      "title": "Created At",
+      "type": "string"
+     },
+     "input_hashes": {
+      "additionalProperties": true,
+      "title": "Input Hashes",
+      "type": "object"
+     },
+     "instructions_sha256": {
+      "title": "Instructions Sha256",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "model": {
+      "title": "Model",
+      "type": "string"
+     },
+     "output": {
+      "$ref": "#/components/schemas/AnalysisOutput"
+     },
+     "output_sha256": {
+      "title": "Output Sha256",
+      "type": "string"
+     },
+     "prompt_sha256": {
+      "title": "Prompt Sha256",
+      "type": "string"
+     },
+     "raw_output": {
+      "title": "Raw Output",
+      "type": "string"
+     },
+     "source_kind": {
+      "enum": [
+       "synthetic",
+       "real",
+       "unknown"
+      ],
+      "title": "Source Kind",
+      "type": "string"
+     },
+     "source_kind_basis": {
+      "const": "user_reported",
+      "title": "Source Kind Basis",
+      "type": "string"
+     },
+     "suggestion_id": {
+      "title": "Suggestion Id",
+      "type": "string"
+     },
+     "text_truncated": {
+      "title": "Text Truncated",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "suggestion_id",
+     "attempt",
+     "created_at",
+     "source_kind",
+     "source_kind_basis",
+     "analysis_mode",
+     "limitations",
+     "text_truncated",
+     "model",
+     "cost_usd",
+     "input_hashes",
+     "instructions_sha256",
+     "prompt_sha256",
+     "output_sha256",
+     "output",
+     "raw_output"
+    ],
+    "title": "SuggestionRecord",
+    "type": "object"
+   },
+   "SuggestionRequest": {
+    "properties": {
+     "instructions": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Instructions",
+      "type": "string"
+     },
+     "source_kind": {
+      "default": "unknown",
+      "enum": [
+       "synthetic",
+       "real",
+       "unknown"
+      ],
+      "title": "Source Kind",
+      "type": "string"
+     }
+    },
+    "title": "SuggestionRequest",
+    "type": "object"
+   },
+   "SuggestionSummary": {
+    "properties": {
+     "created_at": {
+      "title": "Created At",
+      "type": "string"
+     },
+     "source_kind": {
+      "enum": [
+       "synthetic",
+       "real",
+       "unknown"
+      ],
+      "title": "Source Kind",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "fresh",
+       "stale"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "suggestion_id": {
+      "title": "Suggestion Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "suggestion_id",
+     "created_at",
+     "source_kind",
+     "status"
+    ],
+    "title": "SuggestionSummary",
     "type": "object"
    },
    "ValidationError": {
@@ -1287,6 +1540,68 @@
     ]
    }
   },
+  "/projects/{pid}/attempts/{nn}/import-designcraft": {
+   "post": {
+    "description": "Create a separate attempt from a user-supplied edited DesignCraft file.",
+    "operationId": "books_import_designcraft",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_books_import_designcraft"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Import Designcraft",
+    "tags": [
+     "books"
+    ]
+   }
+  },
   "/projects/{pid}/attempts/{nn}/open-designcraft": {
    "post": {
     "description": "Launch the local editor on a separate copy, only from the configured local web UI.",
@@ -1404,6 +1719,58 @@
     ]
    }
   },
+  "/projects/{pid}/attempts/{nn}/recover-ledger": {
+   "post": {
+    "description": "Reconcile a saved import's pending ledger entry using the per-project job lock.",
+    "operationId": "books_recover_ledger",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Recover Ledger",
+    "tags": [
+     "books"
+    ]
+   }
+  },
   "/projects/{pid}/attempts/{nn}/scenes/{page}": {
    "get": {
     "operationId": "books_get_scene",
@@ -1457,6 +1824,180 @@
      }
     },
     "summary": "Get Scene",
+    "tags": [
+     "books"
+    ]
+   }
+  },
+  "/projects/{pid}/attempts/{nn}/suggestions": {
+   "get": {
+    "operationId": "books_list_attempt_suggestions",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/SuggestionSummary"
+         },
+         "title": "Response Books List Attempt Suggestions",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "List Attempt Suggestions",
+    "tags": [
+     "books"
+    ]
+   },
+   "post": {
+    "operationId": "books_create_suggestions",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SuggestionRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Create Suggestions",
+    "tags": [
+     "books"
+    ]
+   }
+  },
+  "/projects/{pid}/attempts/{nn}/suggestions/{suggestion_id}": {
+   "get": {
+    "operationId": "books_get_attempt_suggestion",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "suggestion_id",
+      "required": true,
+      "schema": {
+       "title": "Suggestion Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SuggestionRecord"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Get Attempt Suggestion",
     "tags": [
      "books"
     ]

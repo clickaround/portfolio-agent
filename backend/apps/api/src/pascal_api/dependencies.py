@@ -24,6 +24,10 @@ def get_llm(request: Request):
     return request.app.state.llm_runner
 
 
+def get_analysis_llm(request: Request):
+    return request.app.state.analysis_runner
+
+
 def project_dir(pid: str, store: ProjectStore = Depends(get_store)) -> Path:
     """Path parameter {pid} -> an existing, validated project folder (400 bad id, 404 unknown)."""
     return store.dir(pid)

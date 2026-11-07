@@ -199,6 +199,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/projects/{pid}/attempts/{nn}/import-designcraft": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Import Designcraft
+         * @description Create a separate attempt from a user-supplied edited DesignCraft file.
+         */
+        post: operations["books_import_designcraft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/projects/{pid}/attempts/{nn}/open-designcraft": {
         parameters: {
             query?: never;
@@ -236,6 +256,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/projects/{pid}/attempts/{nn}/recover-ledger": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Recover Ledger
+         * @description Reconcile a saved import's pending ledger entry using the per-project job lock.
+         */
+        post: operations["books_recover_ledger"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/projects/{pid}/attempts/{nn}/scenes/{page}": {
         parameters: {
             query?: never;
@@ -245,6 +285,41 @@ export interface paths {
         };
         /** Get Scene */
         get: operations["books_get_scene"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/projects/{pid}/attempts/{nn}/suggestions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Attempt Suggestions */
+        get: operations["books_list_attempt_suggestions"];
+        put?: never;
+        /** Create Suggestions */
+        post: operations["books_create_suggestions"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/projects/{pid}/attempts/{nn}/suggestions/{suggestion_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Attempt Suggestion */
+        get: operations["books_get_attempt_suggestion"];
         put?: never;
         post?: never;
         delete?: never;
@@ -473,6 +548,29 @@ export interface components {
             /** Status */
             status: string;
         };
+        /** AnalysisIssue */
+        AnalysisIssue: {
+            /** Evidence */
+            evidence: string;
+            /** Issue */
+            issue: string;
+            /** Recommendation */
+            recommendation: string;
+        };
+        /** AnalysisOutput */
+        AnalysisOutput: {
+            /** Pages */
+            pages: components["schemas"]["AnalysisPage"][];
+            /** Summary */
+            summary: string;
+        };
+        /** AnalysisPage */
+        AnalysisPage: {
+            /** Page */
+            page: number;
+            /** Suggestions */
+            suggestions: components["schemas"]["AnalysisIssue"][];
+        };
         /** AssetCounts */
         AssetCounts: {
             /** Diagrams */
@@ -515,6 +613,16 @@ export interface components {
             };
             /** Gate Pass */
             gate_pass?: boolean | null;
+            /**
+             * Ledger Pending
+             * @default false
+             */
+            ledger_pending?: boolean;
+            /**
+             * Native Edit
+             * @default false
+             */
+            native_edit?: boolean;
             /** Page Scores */
             page_scores?: unknown | null;
             /**
@@ -524,6 +632,11 @@ export interface components {
             pages?: string[];
             /** Reference Basis */
             reference_basis?: unknown | null;
+        };
+        /** Body_books_import_designcraft */
+        Body_books_import_designcraft: {
+            /** File */
+            file: string;
         };
         /** Body_projects_upload_asset */
         Body_projects_upload_asset: {
@@ -770,6 +883,82 @@ export interface components {
             review: {
                 [key: string]: unknown;
             };
+        };
+        /** SuggestionRecord */
+        SuggestionRecord: {
+            /**
+             * Analysis Mode
+             * @constant
+             */
+            analysis_mode: "text_only";
+            /** Attempt */
+            attempt: string;
+            /** Cost Usd */
+            cost_usd: number | null;
+            /** Created At */
+            created_at: string;
+            /** Input Hashes */
+            input_hashes: {
+                [key: string]: unknown;
+            };
+            /** Instructions Sha256 */
+            instructions_sha256: string;
+            /** Limitations */
+            limitations: string[];
+            /** Model */
+            model: string;
+            output: components["schemas"]["AnalysisOutput"];
+            /** Output Sha256 */
+            output_sha256: string;
+            /** Prompt Sha256 */
+            prompt_sha256: string;
+            /** Raw Output */
+            raw_output: string;
+            /**
+             * Source Kind
+             * @enum {string}
+             */
+            source_kind: "synthetic" | "real" | "unknown";
+            /**
+             * Source Kind Basis
+             * @constant
+             */
+            source_kind_basis: "user_reported";
+            /** Suggestion Id */
+            suggestion_id: string;
+            /** Text Truncated */
+            text_truncated: boolean;
+        };
+        /** SuggestionRequest */
+        SuggestionRequest: {
+            /**
+             * Instructions
+             * @default
+             */
+            instructions?: string;
+            /**
+             * Source Kind
+             * @default unknown
+             * @enum {string}
+             */
+            source_kind?: "synthetic" | "real" | "unknown";
+        };
+        /** SuggestionSummary */
+        SuggestionSummary: {
+            /** Created At */
+            created_at: string;
+            /**
+             * Source Kind
+             * @enum {string}
+             */
+            source_kind: "synthetic" | "real" | "unknown";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "fresh" | "stale";
+            /** Suggestion Id */
+            suggestion_id: string;
         };
         /** ValidationError */
         ValidationError: {
@@ -1169,6 +1358,42 @@ export interface operations {
             };
         };
     };
+    books_import_designcraft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_books_import_designcraft"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     books_open_designcraft: {
         parameters: {
             query?: never;
@@ -1238,6 +1463,38 @@ export interface operations {
             };
         };
     };
+    books_recover_ledger: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     books_get_scene: {
         parameters: {
             query?: never;
@@ -1258,6 +1515,107 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_list_attempt_suggestions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuggestionSummary"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_create_suggestions: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuggestionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_get_attempt_suggestion: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+                suggestion_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuggestionRecord"];
                 };
             };
             /** @description Validation Error */

@@ -25,6 +25,8 @@ class DesignCraftStatus(BaseModel):
 
 class AttemptInfo(BaseModel):
     attempt: str
+    native_edit: bool = False
+    ledger_pending: bool = False
     gate_pass: bool | None = None
     blocking: list[Any] = []
     advisory: list[Any] = []
@@ -39,3 +41,50 @@ class EditorOpened(BaseModel):
     opened: bool
     edit_path: str
     message: str
+
+
+class SuggestionRequest(BaseModel):
+    instructions: str = Field(default="", max_length=4000)
+    source_kind: Literal["synthetic", "real", "unknown"] = "unknown"
+
+
+class SuggestionSummary(BaseModel):
+    suggestion_id: str
+    created_at: str
+    source_kind: Literal["synthetic", "real", "unknown"]
+    status: Literal["fresh", "stale"]
+
+
+class AnalysisIssue(BaseModel):
+    issue: str
+    recommendation: str
+    evidence: str
+
+
+class AnalysisPage(BaseModel):
+    page: int
+    suggestions: list[AnalysisIssue]
+
+
+class AnalysisOutput(BaseModel):
+    summary: str
+    pages: list[AnalysisPage]
+
+
+class SuggestionRecord(BaseModel):
+    suggestion_id: str
+    attempt: str
+    created_at: str
+    source_kind: Literal["synthetic", "real", "unknown"]
+    source_kind_basis: Literal["user_reported"]
+    analysis_mode: Literal["text_only"]
+    limitations: list[str]
+    text_truncated: bool
+    model: str
+    cost_usd: float | None
+    input_hashes: dict[str, Any]
+    instructions_sha256: str
+    prompt_sha256: str
+    output_sha256: str
+    output: AnalysisOutput
+    raw_output: str

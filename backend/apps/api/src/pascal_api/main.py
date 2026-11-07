@@ -16,7 +16,7 @@ from .catalog.router import router as catalog_router
 from .config import Settings, get_settings
 from .exceptions import ApiError
 from .gateways import agents
-from .gateways.llm import make_claude_runner
+from .gateways.llm import make_claude_runner, make_read_only_claude_runner
 from .jobs.router import router as jobs_router
 from .plans.router import router as plans_router
 from .projects.router import router as projects_router
@@ -33,7 +33,7 @@ def _operation_id(route: APIRoute) -> str:
     return f"{route.tags[0] if route.tags else 'api'}_{route.name}"
 
 
-def create_app(settings: Settings | None = None, llm_runner=None) -> FastAPI:
+def create_app(settings: Settings | None = None, llm_runner=None, analysis_runner=None) -> FastAPI:
     settings = settings or get_settings()
     app = FastAPI(title="Pascal API", version=VERSION, generate_unique_id_function=_operation_id, separate_input_output_schemas=False,
                   description="HTTP service over the portfolio agents: sources -> book plan -> composed book -> fresh review.")
@@ -41,6 +41,7 @@ def create_app(settings: Settings | None = None, llm_runner=None) -> FastAPI:
     app.state.store = ProjectStore(settings.data_dir)
     app.state.jobs = JobStore(settings.data_dir, settings.workers)
     app.state.llm_runner = llm_runner or make_claude_runner(settings.claude_bin)
+    app.state.analysis_runner = analysis_runner or make_read_only_claude_runner(settings.claude_bin)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins), allow_methods=["*"], allow_headers=["*"])
 
     @app.exception_handler(ApiError)
