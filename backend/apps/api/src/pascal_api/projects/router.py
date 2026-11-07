@@ -60,7 +60,7 @@ def delete_asset(pid: str, kind: str, name: str, store: ProjectStore = Depends(g
     store.asset_path(pid, kind, name).unlink()
 
 
-@router.get("/projects/{pid}/files/{kind}/{name}")
+@router.get("/projects/{pid}/files/{kind}/{name:path}")
 def get_file(pid: str, kind: str, name: str, store: ProjectStore = Depends(get_store)):
     """Original or derived file (kind = images | drawings | diagrams | sources)."""
-    return FileResponse(store.asset_path(pid, kind, name))
+    return FileResponse(store.source_file_path(pid, kind, name))

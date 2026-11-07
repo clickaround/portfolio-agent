@@ -1,5 +1,8 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-07 DesignCraft review follow-up
+- Pending ledger markers across attempts block new compose/import and review until recovered. Nested source comparison links are served with path and symlink/reparse checks. Suggestion details clear on refresh and show text truncation; Korean error strings repaired. UI regression tests cover save capture to import and stale/truncated suggestions. These changes do not prove visual parity or edited-file derivation.
+
 ## 2026-11-07 DesignCraft edit round trip and agent connection
 - Book embeds the pinned official DesignCraft WASM editor. A best-effort same-origin Save observer retains the browser download and offers importing that saved file; manually upload the downloaded `.designcraft` if observation fails. Import renders the actual edited native file with the local DesignCraft CLI into a separate numbered attempt, PDF and previews. A failed ledger append leaves a blocking pending marker with a retry action/API. Original source attempt is only a comparison reference; native derivation from it is not proven.
 - reviewAgent binds the edited native/PDF/previews and source-manifest hashes, rechecks source files, blocks pending ledgers and requires explicit human attestations after page/source comparison before finalizing. Neither automated visual/source fidelity nor aesthetic quality is proven. Font substitution can occur.

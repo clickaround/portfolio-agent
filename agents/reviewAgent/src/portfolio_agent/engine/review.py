@@ -31,11 +31,11 @@ def _attempt_dir(out):
     att = sorted((Path(out) / "attempts").glob("[0-9][0-9]"))
     if not att:
         raise ReviewError("no attempts yet: run `compose`/`run` first")
-    latest = att[-1]
-    pending = latest / "ledger-pending.json"
-    if pending.exists() or pending.is_symlink():
-        raise ReviewError(f"attempt {latest.name} ledger is pending: reconcile {pending} before review")
-    return latest
+    for attempt in att:
+        pending = attempt / "ledger-pending.json"
+        if pending.exists() or pending.is_symlink():
+            raise ReviewError(f"attempt {attempt.name} ledger is pending: reconcile {pending} before review")
+    return att[-1]
 
 
 def _bound_files(att):

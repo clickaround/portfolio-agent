@@ -13,7 +13,7 @@ Also: `.cache/` (ignored: vendor clones, signed binaries, blind keys), `_bmad*` 
 
 `agents/pascal-agents/` is a separate, optional repository and is not present in a fresh clone. See [pinned setup and verification](project/docs/PASCAL_AGENTS_SETUP.md); an existing checkout and its changes are never reset by this project.
 
-For the original DesignCraft web editor inside the Book page, run `python project/scripts/install_designcraft_web.py` before starting or building the frontend. The installer verifies the official v0.17.0 archive and keeps it out of Git. See [installation and limits](project/docs/DESIGNCRAFT_WEB_INSTALL.md). Select DesignCraft when composing, open the web editor, then send an attempt into it. The web editor downloads saved files; it does not yet sync changes back into the portfolio project. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
+For the original DesignCraft web editor inside the Book page, run `python project/scripts/install_designcraft_web.py` before starting or building the frontend. The installer verifies the official v0.17.0 archive and keeps it out of Git. See [installation and limits](project/docs/DESIGNCRAFT_WEB_INSTALL.md). Select DesignCraft when composing, open the web editor, then send an attempt into it. Save and import the downloaded file into a new attempt; the page also offers a best-effort automatic save capture. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
 
 ## Data that is NOT in the repo (by design)
 | path | content |

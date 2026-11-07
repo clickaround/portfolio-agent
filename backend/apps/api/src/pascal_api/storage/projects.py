@@ -95,6 +95,26 @@ class ProjectStore:
             raise not_found(f"{kind}/{name}")
         return p
 
+    def source_file_path(self, pid: str, kind: str, name: str) -> Path:
+        if kind not in FILE_KINDS:
+            raise bad_request("bad_kind", f"kind must be one of {FILE_KINDS}")
+        parts = name.split("/")
+        if not parts or any(part in ("", ".", "..") or "\\" in part or ":" in part for part in parts):
+            raise bad_request("bad_filename", "invalid source path")
+        root = self.dir(pid).resolve()
+        current = root
+        for part in [kind, *parts]:
+            current = current / part
+            try:
+                st = current.lstat()
+            except OSError:
+                raise not_found(f"{kind}/{name}") from None
+            if current.is_symlink() or getattr(st, "st_file_attributes", 0) & 0x400:
+                raise not_found(f"{kind}/{name}")
+        if not current.is_file() or root not in current.resolve().parents:
+            raise not_found(f"{kind}/{name}")
+        return current
+
     def attempts_dir(self, pid: str) -> Path:
         return self.dir(pid) / "out" / "attempts"
 

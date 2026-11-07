@@ -192,6 +192,9 @@ def import_attempt(project: Path, parent: str, staging: Path, log) -> dict:
     native = staging / "book.designcraft"
     pdf = staging / "book.pdf"
     try:
+        for marker in (project / "out" / "attempts").glob("[0-9][0-9]/ledger-pending.json"):
+            if marker.exists() or marker.is_symlink():
+                raise ValueError(f"attempt {marker.parent.name} ledger is pending: reconcile {marker}")
         parent_native = project / "out" / "attempts" / parent / "book.designcraft"
         parent_hash = _sha(parent_native)
         source_evidence = _source_evidence(project, parent, staging)

@@ -25,7 +25,7 @@ export async function clientAction({ request, params }: Route.ClientActionArgs) 
   try {
     if (f.get("intent") === "suggest-designcraft") {
       const kind = String(f.get("source_kind"));
-      if (!["synthetic", "real", "unknown"].includes(kind)) return { error: "?? ??? ?????." };
+      if (!["synthetic", "real", "unknown"].includes(kind)) return { error: "자료 종류를 선택하세요." };
       const result = await suggestDesignCraft(params.projectId, String(f.get("attempt")), { instructions: String(f.get("instructions") ?? ""), source_kind: kind as "synthetic" | "real" | "unknown" });
       return { job: result.job };
     }

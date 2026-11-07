@@ -18,6 +18,12 @@ CONDITIONS = {
 }
 
 
+def _require_reconciled_ledger(out):
+    for marker in (Path(out) / "attempts").glob("[0-9][0-9]/ledger-pending.json"):
+        if marker.exists() or marker.is_symlink():
+            raise ValueError(f"attempt {marker.parent.name} ledger is pending: reconcile {marker}")
+
+
 def run_author(project_dir, out_dir, author, options, spec=None, domain=None, pptx=True, do_repair=True, backend="local", also=(), label=None):
     """Generic run: any Author, any measurer/exporter backend (default local), optional extra exporters (e.g. 'designcraft')."""
     t0 = time.perf_counter()
@@ -25,6 +31,7 @@ def run_author(project_dir, out_dir, author, options, spec=None, domain=None, pp
     be = registry.get_backend(backend)
     be.configure(spec.get("style"))
     out = Path(out_dir)
+    _require_reconciled_ledger(out)
     (out / "scenes").mkdir(parents=True, exist_ok=True)
     manifest, brief = assets.ingest(project_dir)
     if domain:
@@ -75,6 +82,7 @@ def run_author(project_dir, out_dir, author, options, spec=None, domain=None, pp
 def _record_attempt(out, report, files):
     """Immutable, numbered attempts (AutoDesign guardrail 2): every run of the same out dir is kept; `final/` is written only by review.finalize."""
     adir = out / "attempts"
+    _require_reconciled_ledger(out)
     adir.mkdir(exist_ok=True)
     n = len([p for p in adir.iterdir() if p.is_dir()]) + 1
     att = adir / f"{n:02d}"

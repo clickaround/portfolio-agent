@@ -1,0 +1,32 @@
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { createRoutesStub } from "react-router";
+import { afterEach, expect, it, vi } from "vitest";
+import BookPage from "./book-page";
+import { importDesignCraft } from "../mutations";
+
+let save: ((blob: Blob, name: string) => void) | undefined;
+vi.mock("../editor-bridge", () => ({ observeDesignCraftSaves: (_frame: unknown, callback: typeof save) => { save = callback; return () => {}; } }));
+vi.mock("../mutations", () => ({ composeBook: vi.fn(), openDesignCraft: vi.fn(), importDesignCraft: vi.fn().mockResolvedValue({ job: "import-job" }), recoverLedger: vi.fn(), suggestDesignCraft: vi.fn() }));
+vi.mock("~/common/components/job-progress", () => ({ JobProgress: () => null }));
+afterEach(() => { vi.unstubAllGlobals(); save = undefined; });
+
+it("imports the editor's saved blob for the attempt sent to the iframe", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockImplementation((url: string) => Promise.resolve(url.includes("index.html") ? new Response("designcraft_canvas") : new Response("original"))));
+  vi.stubGlobal("DataTransfer", class { items = { add: () => {} }; });
+  vi.stubGlobal("DragEvent", class extends Event { constructor(type: string, options: EventInit) { super(type, options); } });
+  const props = { loaderData: { projectId: "demo", attempts: [{ attempt: "02", files: { "book.designcraft": true }, pages: [] }] }, actionData: undefined, params: { projectId: "demo" }, matches: [] };
+  const Router = createRoutesStub([{ path: "/", Component: () => <BookPage {...props as unknown as Parameters<typeof BookPage>[0]} /> }]);
+  render(<Router initialEntries={["/"]} />);
+  fireEvent.click(screen.getByRole("button", { name: "Open web editor for attempt 02" }));
+  const iframe = await screen.findByTitle("DesignCraft") as HTMLIFrameElement;
+  const editorDocument = document.implementation.createHTMLDocument();
+  editorDocument.body.innerHTML = '<canvas id="designcraft_canvas"></canvas>';
+  Object.defineProperty(iframe, "contentDocument", { value: editorDocument });
+  Object.defineProperty(iframe, "contentWindow", { value: window });
+  fireEvent.load(iframe);
+  fireEvent.click(screen.getByRole("button", { name: "Send file to web editor" }));
+  await screen.findByText(/시도 02 파일을 편집기에 전달했습니다/);
+  act(() => save!(new Blob(["edited"]), "edited.designcraft"));
+  fireEvent.click(screen.getByRole("button", { name: "Import saved DesignCraft" }));
+  await waitFor(() => expect(importDesignCraft).toHaveBeenCalledWith("demo", "02", expect.objectContaining({ name: "edited.designcraft", size: 6 })));
+});

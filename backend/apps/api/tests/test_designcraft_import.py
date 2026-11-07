@@ -52,6 +52,60 @@ def parent_manifest(project, attempt, path="images/original.png", expected=None)
     (attempt / "manifest.json").write_text(json.dumps({"assets": [{"relative_path": path, "sha256": digest}]}), encoding="utf-8")
 
 
+def test_nested_source_file_can_be_opened_for_review(tmp_path):
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
+    project = app.state.store.create("demo")
+    nested = project / "images" / "sub"
+    nested.mkdir()
+    (nested / "original.png").write_bytes(b"source")
+    with TestClient(app) as client:
+        response = client.get("/projects/demo/files/images/sub/original.png")
+        assert response.status_code == 200
+        assert response.content == b"source"
+        assert client.get("/projects/demo/files/images/sub/%2e%2e/%2e%2e/meta.json").status_code in (400, 404)
+
+
+def test_nested_source_file_refuses_symlink_escape(tmp_path):
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
+    project = app.state.store.create("demo")
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "secret.png").write_bytes(b"secret")
+    try:
+        (project / "images" / "link").symlink_to(outside, target_is_directory=True)
+    except OSError:
+        pytest.skip("creating symlinks is unavailable")
+    with TestClient(app) as client:
+        assert client.get("/projects/demo/files/images/link/secret.png").status_code == 404
+
+
+def test_pending_ledger_blocks_new_attempts(tmp_path):
+    from portfolio_agent.engine import pipeline
+
+    attempts = tmp_path / "out" / "attempts"
+    old = attempts / "01"
+    old.mkdir(parents=True)
+    (old / "ledger-pending.json").write_text('{}')
+    with pytest.raises(ValueError, match="ledger is pending"):
+        pipeline._record_attempt(tmp_path / "out", {}, {})
+    assert not (attempts / "02").exists()
+
+
+def test_pending_ledger_blocks_new_native_import(tmp_path):
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
+    project = app.state.store.create("demo")
+    old = project / "out" / "attempts" / "01"
+    old.mkdir(parents=True)
+    (old / "book.designcraft").write_bytes(b"original")
+    (old / "ledger-pending.json").write_text('{}')
+    with TestClient(app) as client:
+        response = client.post("/projects/demo/attempts/01/import-designcraft", files={"file": ("edit.designcraft", native_zip(), "application/octet-stream")})
+        result = wait(client, response.json()["job"])
+        assert result["status"] == "failed"
+        assert "ledger is pending" in result["error"]
+        assert not (old.parent / "02").exists()
+
+
 def test_import_renders_new_attempt_but_blocks_unverified_finalization(tmp_path):
     app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
     project = app.state.store.create("demo")

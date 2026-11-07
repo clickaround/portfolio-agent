@@ -50,6 +50,15 @@ def test_finalize_removes_previous_missing_format(tmp_path):
     assert not (final / 'book.pptx').exists()
 
 
+def test_previous_pending_ledger_blocks_review_of_newer_attempt(tmp_path):
+    old = tmp_path / 'attempts' / '01'
+    old.mkdir(parents=True)
+    (old / 'ledger-pending.json').write_text('{}')
+    (tmp_path / 'attempts' / '02').mkdir()
+    with pytest.raises(review.ReviewError, match='ledger is pending'):
+        review.review_context(tmp_path)
+
+
 def test_rebinding_context_invalidates_previous_review(tmp_path):
     _, path = make_review(tmp_path)
     review.record_review(tmp_path, path)

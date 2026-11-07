@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-07 review fixes: block new attempts and reviews while any prior ledger needs recovery; safely serve nested source files; hide stale suggestion details on refresh and disclose truncated text; repair messages and add editor-to-import UI coverage. Source-to-edited-document derivation and visual quality still require human review.
+
 - 2026-11-07 DesignCraft: original Rust/WASM editor embedded in Book UI; synthetic compose and browser send reproduced, with font substitution warning. Historical: Web Save originally downloaded only (superseded above); native output not covered by local QA. Bench runners fixed and tested, optional agent setup pinned, CI added (remote run unverified); standalone wheel synthetic compose only verified. Full Python 111 passed/1 skipped, frontend 10 tests and build passed. See `memory/HANDOFF.md`.
 
 - 2026-11-07: fixed duplicate-upload data loss, TIFF ingest, plan backup collisions, stale review bindings/final output formats, and review UI frame confirmation; same-project background jobs serialize within one API process. Backend 29 and review integrity 11 tests passed; frontend typecheck/lint/8 tests/build passed. Existing reviews require rebinding. Sync API writes, multiple processes, and finalization copy atomicity remain open. See `memory/HANDOFF.md`.
