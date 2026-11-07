@@ -6,7 +6,7 @@ import importX from "eslint-plugin-import-x";
 
 // Unidirectional architecture: shared (common, lib, hooks) -> features -> routes.ts (the app).
 //   a feature never imports another feature; shared folders never import features.
-const features = ["projects"]; // add a feature folder here when you add app/features/<name>
+const features = ["projects", "sources", "plans", "books", "reviews"]; // add a feature folder here when you add app/features/<name>
 const shared = ["common", "lib", "hooks", "types"];
 
 export default tseslint.config(

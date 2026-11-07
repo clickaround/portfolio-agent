@@ -70,14 +70,20 @@ class ProjectStore:
         d = self.dir(pid) / kind
         target = d / safe_filename(filename)
         written = 0
-        with target.open("wb") as f:
-            while chunk := stream.read(1 << 20):
-                written += len(chunk)
-                if written > max_bytes:
-                    f.close()
-                    target.unlink(missing_ok=True)
-                    raise ApiError(413, "too_large", f"upload exceeds {max_bytes // (1 << 20)} MB")
-                f.write(chunk)
+        try:
+            f = target.open("xb")
+        except FileExistsError as exc:
+            raise ApiError(409, "asset_exists", f"asset {target.name!r} already exists") from exc
+        try:
+            with f:
+                while chunk := stream.read(1 << 20):
+                    written += len(chunk)
+                    if written > max_bytes:
+                        raise ApiError(413, "too_large", f"upload exceeds {max_bytes // (1 << 20)} MB")
+                    f.write(chunk)
+        except BaseException:
+            target.unlink(missing_ok=True)
+            raise
         return target
 
     def asset_path(self, pid: str, kind: str, name: str) -> Path:

@@ -7,7 +7,8 @@ export const api = createClient<paths>({
   fetch: (request) => globalThis.fetch(request), // late-bound so tests can stub fetch
 });
 
-/** The API answers errors as {error: {code, message}}; they become exceptions the route ErrorBoundary (or an action) can show. */
+/** Shared connection to backend/apps/api. Per-feature calls live in features/<f>/queries.ts (reads) and mutations.ts (writes).
+ *  The API answers errors as {error: {code, message}}; they become exceptions the route ErrorBoundary (or an action) can show. */
 export class ApiError extends Error {
   code: string;
   status: number;

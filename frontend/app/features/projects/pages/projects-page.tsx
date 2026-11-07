@@ -1,18 +1,23 @@
 import { Form, Link, redirect } from "react-router";
+import { Badge } from "~/common/components/ui/badge";
 import { Button } from "~/common/components/ui/button";
-import { api, ApiError, unwrap } from "~/lib/api-client";
+import { Card, CardDescription, CardHeader, CardTitle } from "~/common/components/ui/card";
+import { Input } from "~/common/components/ui/input";
+import { ApiError } from "~/lib/api/client";
+import { createProject } from "../mutations";
+import { getProjects } from "../queries";
 import type { Route } from "./+types/projects-page";
 
 export const meta: Route.MetaFunction = () => [{ title: "Projects | Pascal" }];
 
 export async function clientLoader() {
-  return unwrap(await api.GET("/projects"));
+  return getProjects();
 }
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   const id = String((await request.formData()).get("id") ?? "").trim();
   try {
-    unwrap(await api.POST("/projects", { body: { id, title: id } }));
+    await createProject({ id, title: id });
   } catch (e) {
     if (e instanceof ApiError) return { error: e.message };
     throw e;
@@ -22,29 +27,32 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 export default function ProjectsPage({ loaderData, actionData }: Route.ComponentProps) {
   return (
-    <section className="mx-auto max-w-3xl space-y-6 p-6">
-      <h1 className="font-serif text-3xl">Projects</h1>
+    <section className="mx-auto max-w-3xl space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-4xl font-bold tracking-tight">Projects</h1>
+        <p className="text-muted-foreground">Put in your sources; the agents arrange them into a portfolio.</p>
+      </div>
       <Form method="post" className="flex gap-2">
-        <input
-          name="id"
-          aria-label="project id"
-          placeholder="new-project-id (a-z, 0-9, - _)"
-          pattern="[a-z0-9][a-z0-9_\-]{0,63}"
-          required
-          className="flex-1 rounded-md border border-rule bg-white px-3 py-1.5"
-        />
+        <Input name="id" aria-label="project id" placeholder="new-project-id (a-z, 0-9, - _)" pattern="[a-z0-9][a-z0-9_\-]{0,63}" required />
         <Button type="submit">Create</Button>
       </Form>
-      {actionData?.error && <p role="alert" className="text-accent">{actionData.error}</p>}
-      <ul className="divide-y divide-rule rounded-md border border-rule bg-white">
+      {actionData?.error && <p role="alert" className="text-red-400">{actionData.error}</p>}
+      <div className="space-y-3">
         {loaderData.map((p) => (
-          <li key={p.id} className="flex items-center justify-between p-3">
-            <Link className="font-medium hover:text-accent" to={`/projects/${p.id}`}>{p.title || p.id}</Link>
-            <span className="text-sm text-ink/60">{p.assets.images + p.assets.drawings + p.assets.diagrams} assets · {p.attempts} attempts</span>
-          </li>
+          <Link key={p.id} to={`/projects/${p.id}`} className="block">
+            <Card className="transition-colors hover:bg-accent/40">
+              <CardHeader className="flex-row items-center justify-between space-y-0">
+                <div className="space-y-1">
+                  <CardTitle>{p.title || p.id}</CardTitle>
+                  <CardDescription>{p.assets.images + p.assets.drawings + p.assets.diagrams} assets · {p.attempts} attempts</CardDescription>
+                </div>
+                {p.has_plan && <Badge variant="secondary">plan</Badge>}
+              </CardHeader>
+            </Card>
+          </Link>
         ))}
-        {loaderData.length === 0 && <li className="p-3 text-ink/60">No projects yet.</li>}
-      </ul>
+        {loaderData.length === 0 && <p className="text-muted-foreground">No projects yet.</p>}
+      </div>
     </section>
   );
 }

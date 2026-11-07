@@ -65,3 +65,6 @@ frontend/build/
 
 # private reference annotations never enter the repo
 **/user_cases_*.json
+
+# Owner's original wemake project kept for reference (third-party course code, never committed or redistributed)
+frontend/frontend/

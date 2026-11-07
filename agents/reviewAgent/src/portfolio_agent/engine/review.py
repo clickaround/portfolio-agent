@@ -33,6 +33,18 @@ def _attempt_dir(out):
     return att[-1]
 
 
+def _bound_files(att):
+    return {name: sha256(att / name) for name in ("book.pdf", "book.pptx", "qa.json") if (att / name).is_file()}
+
+
+def _validate_binding(att, ctx):
+    frames = {p.name: sha256(p) for p in sorted((att / "preview").glob("page-*.png"))}
+    scenes = {p.name: sha256(p) for p in sorted((att / "scenes").glob("*.json"))}
+    if (ctx.get("frames") != frames or ctx.get("scenes") != scenes
+            or ctx.get("outputs") != _bound_files(att) or ctx.get("rubric_sha256") != sha256(RUBRIC)):
+        raise ReviewError("reviewed files changed or binding is incomplete: bind and review again")
+
+
 def review_context(out_dir):
     """Bind the latest attempt's frames + scenes + rubric. Returns the context (also written next to the attempt)."""
     out = Path(out_dir)
@@ -41,7 +53,7 @@ def review_context(out_dir):
     if not frames:
         raise ReviewError("attempt has no preview frames (backend without png capability?)")
     scenes = {p.name: sha256(p) for p in sorted((att / "scenes").glob("*.json"))}
-    ctx = {"attempt": att.name, "frames": frames, "scenes": scenes, "rubric_sha256": sha256(RUBRIC), "rubric": str(RUBRIC),
+    ctx = {"attempt": att.name, "frames": frames, "scenes": scenes, "outputs": _bound_files(att), "rubric_sha256": sha256(RUBRIC), "rubric": str(RUBRIC),
            "frame_dir": str(att / "preview"), "created": time.strftime("%Y-%m-%dT%H:%M:%S"),
            "instructions": "Give every frame + the rubric to a reviewer that did NOT author this attempt. It must return the review JSON with these hashes copied verbatim."}
     body = json.dumps(ctx, indent=1, sort_keys=True)
@@ -59,6 +71,7 @@ def record_review(out_dir, review_path):
         raise ReviewError("run review-context first")
     ctx = json.loads(ctx_path.read_text(encoding="utf-8"))
     rv = json.loads(Path(review_path).read_text(encoding="utf-8"))
+    _validate_binding(att, ctx)
     if rv.get("review_context_sha256") != sha256(ctx_path):
         raise ReviewError("review is bound to a different review-context (stale or tampered)")
     if rv.get("reviewer_mode") not in FRESH_MODES:
@@ -92,13 +105,17 @@ def finalize(out_dir):
     """Promote the latest attempt to final/ only if blocking gates passed AND a fresh review passed. Otherwise refuse with the reason."""
     out = Path(out_dir)
     att = _attempt_dir(out)
+    ctx_path = att / "review-context.json"
+    rv_path = att / "review.json"
+    if not ctx_path.is_file() or not rv_path.is_file():
+        raise ReviewError(f"attempt {att.name} has no recorded fresh review (review-context -> reviewer -> record-review)")
+    rv = json.loads(rv_path.read_text(encoding="utf-8"))
+    if rv.get("review_context_sha256") != sha256(ctx_path):
+        raise ReviewError("review is bound to a different review-context")
+    _validate_binding(att, json.loads(ctx_path.read_text(encoding="utf-8")))
     qa = json.loads((att / "qa.json").read_text(encoding="utf-8"))
     if not qa.get("gate_pass"):
         raise ReviewError(f"attempt {att.name} failed blocking gates: {[i['code'] for i in qa.get('blocking_issues', [])]}")
-    rv_path = att / "review.json"
-    if not rv_path.is_file():
-        raise ReviewError(f"attempt {att.name} has no recorded fresh review (review-context -> reviewer -> record-review)")
-    rv = json.loads(rv_path.read_text(encoding="utf-8"))
     if rv["verdict"] != "pass":
         raise ReviewError(f"attempt {att.name} review verdict is {rv['verdict']!r} (mean {rv['mean']}, blockers {len(rv.get('blockers', []))})")
     final = out / "final"
@@ -107,6 +124,8 @@ def finalize(out_dir):
     for name in ("book.pdf", "book.pptx"):
         if (att / name).is_file():
             shutil.copy2(att / name, final / name)
+        else:
+            (final / name).unlink(missing_ok=True)
     rec = {"attempt": att.name, "review_mean": rv["mean"], "reviewer_mode": rv["reviewer_mode"], "advisory": [i["code"] for i in qa.get("advisory_issues", [])],
            "finalized": time.strftime("%Y-%m-%dT%H:%M:%S"), "reference_basis": qa.get("reference_basis", {}).get("tag")}
     (final / "FINAL.json").write_text(json.dumps(rec, indent=1), encoding="utf-8")

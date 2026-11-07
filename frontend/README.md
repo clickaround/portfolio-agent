@@ -24,11 +24,17 @@ npm run typecheck && npm run lint && npm test && npm run build
 app/
   root.tsx  routes.ts  app.css  entry (framework default)
   common/{components/ui, layouts, pages}      shared UI + layouts (shadcn)
-  features/<feature>/{pages, components, layouts}   one folder per feature; routes.ts lists its pages
-  lib/ (api-client.ts, utils.ts)  hooks/  types/api.d.ts (generated)
+  features/<feature>/{queries.ts, mutations.ts, schema.ts, pages/, components/, layouts/}   one folder per feature; routes.ts lists its pages
+  lib/api/client.ts (shared connection to backend/apps/api, ApiError, unwrap)  lib/utils.ts  hooks/  types/api.d.ts (generated)
 test/setup.ts
 ```
 Rules (enforced by ESLint `import-x/no-restricted-paths`): a feature never imports another feature; `common`, `lib`, `hooks`, `types` never import features. Features are composed in `routes.ts` and `common/`.
+
+## Frontend <-> backend connection (per feature, never inside a page)
+- `queries.ts` = every READ (GET) of the feature, one exported function per endpoint (`getProjects`, `getProject`, ...). Pages call them from `clientLoader`.
+- `mutations.ts` = every WRITE (POST/PUT/DELETE) (`createProject`, `saveBrief`, `uploadAsset`, ...). Pages call them from `clientAction`.
+- `schema.ts` = form/input validation and shared shapes of the feature (add when needed). Types come from `~/types/api` (generated), never hand-written.
+- Shared plumbing only in `app/lib/api/client.ts`. A page never calls `api.GET/POST` directly.
 
 ## Page conventions (v8 form of the owner's `.cursorrules`)
 - Pages are files under `features/<f>/pages`, registered in `app/routes.ts` (`index`, `route`, `layout`, `prefix`).
@@ -41,3 +47,22 @@ Rules (enforced by ESLint `import-x/no-restricted-paths`): a feature never impor
 ## Scope (owner decision: backend first, frontend scaffold now)
 Built: app shell, projects list/create (`clientLoader` + `clientAction`), project page, typed API client, tests, build. Next features, one folder each under `app/features/`: **sources** (upload, manifest, prepare/cut-out before/after), **plan** (page list with the flags from `/catalog`, "write with the host LLM" job), **book** (compose job log, page grid, gates panel, PDF), **review** (context -> reviewer -> record -> finalize). No coordinate editing: the host LLM decides editorial things, rules execute.
 
+
+## Origin
+The shell (navigation, shadcn `ui/` components, theme tokens, `input-pair`/`select-pair`, feature-folder layout) comes from the owner's wemake project, upgraded to Vite 8, Tailwind 4, React Router 8 and React 19. Supabase, Drizzle, Cloudflare and payments were dropped. Decorative ui components (blur-fade, calendar, chart, drawer, flickering-grid, magic-card, marquee, neon-gradient-card, retro-grid, ripple, scroll-based-velocity) and the sidebar were not carried over. The wemake domain pages are replaced by Pascal features that talk to the backend through each feature's `queries.ts` and `mutations.ts`.
+
+## Routes
+`app/routes.ts` follows the wemake style (route config, pages inside `features/<feature>/pages`). A project is a workspace: `projects/:projectId` is a layout route (header and tabs) with one page per step, each owned by its feature.
+
+| URL | feature |
+|---|---|
+| `/projects` | projects (list, create) |
+| `/projects/:id` | projects (overview) |
+| `/projects/:id/sources` | sources (upload, scan, approve, cut-out, delete) |
+| `/projects/:id/plan` | plans (host LLM plan job, edit and save) |
+| `/projects/:id/book` | books (compose job, attempts, page previews, PDF/PPTX) |
+| `/projects/:id/review` | reviews (bind context, record verdict, finalize) |
+
+Long operations answer a job id; `common/components/job-progress.tsx` polls it and the page revalidates when it ends.
+
+The app is a static SPA. A production host must answer every path with `index.html` (history fallback), otherwise a reload of `/projects/x/plan` is a 404. `npx vite preview` already does this.

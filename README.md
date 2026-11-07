@@ -5,7 +5,7 @@ Four product folders. Start here, then open the one you need.
 | folder | what it is | who touches it |
 |---|---|---|
 | `agents/` | **One folder per agent**: `portfolioAgent/` (the book: plan -> layout -> gates -> export), `sourcePrepAgent/` (sources -> clean assets), `reviewAgent/` (fresh review, blind runs, benchmarks), `pascal-agents/` (the owner's other hub: `pptAgent`, `DiagramAgent`, `drawingbookAgent`; own nested repo), and `portfolio-plugin/` (plugin shell: `.claude-plugin`, `skills/`, `scripts/portfolio.py`). | agent owners |
-| `backend/` | `common/` = code and contracts shared by every agent (`portfolio_agent.core`, JSON `contracts/`, `checks/`, layer rules + architecture test); `api/` = FastAPI service over the agents. | everyone (careful: breaks all agents) |
+| `backend/` | `packages/portfolio-core/` = code and contracts shared by every agent (`portfolio_agent.core`: model, sources, quality, guardrails, checks, schemas; layer rules + architecture test); `apps/api/` = FastAPI service over the agents. | everyone (careful: breaks all agents) |
 | `frontend/` | The portfolio workbench: React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn, structure `app/{common,features,lib}` (owner's convention). Talks to `backend/apps/api` only. `npm run dev`; scope + conventions in `frontend/README.md`. | UI owners |
 | `project/` | Governance, not code: mission (`AGENTS.md`), goals/plans, `docs/`, `architecture/` (ADRs), `tasks/` (DAG), `research/` (pinned repos, REUSE_MAP, paper notes), `evidence/` (what was run and seen), `memory/NOW.md` (handoff), `cases/` rights protocol, task/package tooling + tests, `PATH_MAP.md`. | everyone |
 

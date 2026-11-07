@@ -498,6 +498,68 @@
     "title": "PrepareRequest",
     "type": "object"
    },
+   "PrepareResult": {
+    "properties": {
+     "approved": {
+      "title": "Approved",
+      "type": "boolean"
+     },
+     "derived": {
+      "title": "Derived",
+      "type": "integer"
+     },
+     "knockout": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Knockout"
+     },
+     "levels": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Levels"
+     },
+     "proposals": {
+      "title": "Proposals",
+      "type": "integer"
+     },
+     "sheet": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sheet"
+     }
+    },
+    "required": [
+     "proposals",
+     "approved",
+     "derived"
+    ],
+    "title": "PrepareResult",
+    "type": "object"
+   },
    "ProjectCreate": {
     "properties": {
      "brief": {
@@ -1750,7 +1812,9 @@
      "200": {
       "content": {
        "application/json": {
-        "schema": {}
+        "schema": {
+         "$ref": "#/components/schemas/PrepareResult"
+        }
        }
       },
       "description": "Successful Response"

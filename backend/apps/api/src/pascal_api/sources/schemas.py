@@ -13,3 +13,12 @@ class PrepareRequest(BaseModel):
 class CutoutRequest(BaseModel):
     files: list[str] = Field(min_length=1, description="file names under images/ chosen by the host/person")
     engine: Literal["rembg", "photocraft"] = "rembg"
+
+
+class PrepareResult(BaseModel):
+    proposals: int
+    approved: bool
+    derived: int
+    sheet: str | None = None
+    levels: list[str] | None = None
+    knockout: list[str] | None = None

@@ -14,6 +14,7 @@ class JobStore:
         self.dir.mkdir(parents=True, exist_ok=True)
         self.pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="pascal-job")
         self.lock = threading.Lock()
+        self.project_locks = {}
         self.jobs = {}
         for p in self.dir.glob("*.json"):
             try:
@@ -33,9 +34,10 @@ class JobStore:
              "started": None, "finished": None, "log": [], "result": None, "error": None}
         with self.lock:
             self.jobs[j["id"]] = j
+            project_lock = self.project_locks.setdefault(project, threading.Lock())
             self._save(j)
 
-        def run():
+        def run_project_job():
             def log(msg):
                 with self.lock:
                     j["log"].append(time.strftime("%H:%M:%S") + " " + str(msg))
@@ -55,6 +57,10 @@ class JobStore:
                 with self.lock:
                     j["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S")
                     self._save(j)
+
+        def run():
+            with project_lock:
+                run_project_job()
 
         self.pool.submit(run)
         return dict(j)

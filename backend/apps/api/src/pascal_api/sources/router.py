@@ -7,12 +7,12 @@ from ..dependencies import get_jobs, project_dir
 from ..gateways import agents
 from ..jobs.schemas import Accepted
 from ..storage.jobs import JobStore
-from .schemas import CutoutRequest, PrepareRequest
+from .schemas import CutoutRequest, PrepareRequest, PrepareResult
 
 router = APIRouter(tags=["sources"])
 
 
-@router.post("/projects/{pid}/prepare")
+@router.post("/projects/{pid}/prepare", response_model=PrepareResult)
 def prepare(body: PrepareRequest, d: Path = Depends(project_dir)):
     """Trim proposals (approve=false) or write trimmed copies; optional levels / knockout."""
     return agents.prepare(d, body.approve, body.levels, body.knockout, body.knockout_files)

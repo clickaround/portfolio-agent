@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image
 import fitz
 
-IMG = {".png", ".jpg", ".jpeg", ".webp"}
+IMG = {".png", ".jpg", ".jpeg", ".webp", ".tif", ".tiff"}
 
 def sha256(p):
     h = hashlib.sha256()

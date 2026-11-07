@@ -666,6 +666,21 @@ export interface components {
              */
             levels?: boolean;
         };
+        /** PrepareResult */
+        PrepareResult: {
+            /** Approved */
+            approved: boolean;
+            /** Derived */
+            derived: number;
+            /** Knockout */
+            knockout?: string[] | null;
+            /** Levels */
+            levels?: string[] | null;
+            /** Proposals */
+            proposals: number;
+            /** Sheet */
+            sheet?: string | null;
+        };
         /** ProjectCreate */
         ProjectCreate: {
             /**
@@ -1498,7 +1513,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["PrepareResult"];
                 };
             };
             /** @description Validation Error */

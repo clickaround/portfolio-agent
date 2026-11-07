@@ -2,6 +2,7 @@
 import json
 import shutil
 import time
+import uuid
 from pathlib import Path
 
 from ..exceptions import ApiError
@@ -20,7 +21,7 @@ def write(d: Path, plan: dict) -> dict:
     (d / "plans").mkdir(exist_ok=True)
     cur = d / "book-plan.json"
     if cur.is_file():
-        shutil.copy2(cur, d / "plans" / f"book-plan-{time.strftime('%Y%m%d-%H%M%S')}.json")
+        shutil.copy2(cur, d / "plans" / f"book-plan-{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex}.json")
     cur.write_text(json.dumps(plan, indent=1, ensure_ascii=False), encoding="utf-8")
     return {"pages": len(plan["pages"]), "versions": len(list((d / "plans").glob("book-plan-*.json")))}
 
