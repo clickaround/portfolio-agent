@@ -1,5 +1,12 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-07 DesignCraft web integration and structure audit
+- Official DesignCraft v0.17.0 Rust/WASM web UI is installed with `python project/scripts/install_designcraft_web.py` (pinned official archive hash, untracked public assets). Book UI can select native export, open the embedded editor, and send a selected attempt by same-origin synthetic drop. On this machine, synthetic arch_03 compose and real browser opening were reproduced; screenshot is `.cache/designcraft-ui-smoke-20261107/frontend-editor-final.png`.
+- Web Save downloads a file and does not sync edits back to the project. The web editor may substitute fonts; DesignCraft crop differences and notes are surfaced as unverified in the UI. Desktop editor opens a separate editable copy. Existing local-output gates do not validate DesignCraft output. Native documents are kept per attempt and bound to new review hashes.
+- Benchmark AP-08 schema path and AP-03 page-count decision repaired; runner outputs are isolated and failed checks return nonzero. Only an AP subset with synthetic input was executed; human design-quality review remains open. Optional pascal-agents checkout is pinned and documented in `docs/PASCAL_AGENTS_SETUP.md`; `.github/workflows/ci.yml` added, remote CI execution not yet verified.
+- Experimental separate runtime-data wheel supports a synthetic standalone local compose; see `packaging/README.md`. Full API/plugin/DesignCraft installed-wheel parity and reproducible dependency pinning remain unverified. Third-party web bundle stays out of Git, and the parent-to-editor synthetic drag event is not an official DesignCraft bridge.
+- Verification: full `uv run pytest -q` 111 passed, 1 skipped (7 subtests); backend 34 passed; benchmark/installer 7 passed; frontend typecheck, lint, 10 tests and build passed; Ruff and import-linter passed. Browser verified the actual embedded editor opens the synthetic file and close cancellation retains it.
+
 ## 2026-11-07 review fixes
 - Duplicate asset names now return 409 without overwriting originals; TIFF is ingested; plan backups use unique names. Backend regression tests cover these cases.
 - Review contexts bind preview, scenes, PDF/PPTX, QA and rubric hashes; recording/finalization reject changes. Old contexts need a new bind and review. Finalization removes formats absent from the new attempt.

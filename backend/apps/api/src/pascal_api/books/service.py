@@ -19,9 +19,11 @@ def compose(d: Path, req: ComposeRequest, log) -> dict:
 def attempt_info(att: Path) -> dict:
     qa = json.loads((att / "qa.json").read_text(encoding="utf-8")) if (att / "qa.json").is_file() else {}
     pages = sorted(p.name for p in (att / "preview").glob("page-*.png")) if (att / "preview").is_dir() else []
-    files = {n: (att / n).is_file() for n in ("book.pdf", "book.pptx", "plan.json", "qa.json", "episode.json", "review.json", "review-context.json")}
+    files = {n: (att / n).is_file() for n in ("book.pdf", "book.pptx", "book.designcraft", "plan.json", "qa.json", "episode.json", "review.json", "review-context.json")}
+    dc = qa.get("extra_exporters", {}).get("designcraft", {}) or {}
+    designcraft = {"status": "unverified", "notes": dc.get("notes") or []} if files["book.designcraft"] else None
     return {"attempt": att.name, "gate_pass": qa.get("gate_pass"), "blocking": qa.get("blocking_issues", []), "advisory": qa.get("advisory_issues", []),
-            "page_scores": qa.get("page_scores"), "pages": pages, "files": files, "reference_basis": qa.get("reference_basis")}
+            "page_scores": qa.get("page_scores"), "pages": pages, "files": files, "reference_basis": qa.get("reference_basis"), "designcraft": designcraft}
 
 
 def scene(att: Path, page: int) -> dict:

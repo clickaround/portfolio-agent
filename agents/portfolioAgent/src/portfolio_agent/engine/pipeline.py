@@ -2,6 +2,7 @@
 import json
 import shutil
 import time
+import uuid
 from pathlib import Path
 from portfolio_agent.core.sources import assets
 from portfolio_agent.core.guardrails import gates, repair, references
@@ -43,7 +44,12 @@ def run_author(project_dir, out_dir, author, options, spec=None, domain=None, pp
     ex = be.export(scenes, manifest, project_dir, out / "book", spec, formats)
     extra = {}
     for name in also:
-        extra[name] = registry.get_backend(name).export(scenes, manifest, project_dir, out / name / "book", spec, sorted(registry.get_backend(name).capabilities))
+        export_base = out / ".exports" / uuid.uuid4().hex / name / "book"
+        extra[name] = registry.get_backend(name).export(scenes, manifest, project_dir, export_base, spec, sorted(registry.get_backend(name).capabilities))
+        if extra[name].get("exit", 0) != 0:
+            raise RuntimeError(f"{name} export failed: {extra[name].get('notes', [])}")
+        if name == "designcraft" and not extra[name].get("files", {}).get("native"):
+            raise RuntimeError("designcraft export did not produce an editable document")
     issues = gates.qa_book(scenes, manifest, plan, spec, project_dir, be) + gates.qa_pdf(str(out / "book.pdf"), scenes, spec) + gates.grounding_issues(scenes, project_dir)
     page_scores = {}
     if ex.get("files", {}).get("png"):   # advisory visual metrics on the rendered previews (AeSlides via pptAgent)
@@ -77,6 +83,9 @@ def _record_attempt(out, report, files):
     for name in ("plan.json", "qa.json", "manifest.json", "run.json", "book.pdf", "book.pptx"):
         if (out / name).is_file():
             shutil.copy2(out / name, att / name)
+    native = report.get("extra_exporters", {}).get("designcraft", {}).get("files", {}).get("native")
+    if native and Path(native).is_file():
+        shutil.copy2(native, att / "book.designcraft")
     if files.get("png") and Path(files["png"]).is_dir():
         shutil.copytree(files["png"], att / "preview")
     entry = {"attempt": att.name, "time": time.strftime("%Y-%m-%dT%H:%M:%S"), "author": report["author"], "condition": report["condition"],

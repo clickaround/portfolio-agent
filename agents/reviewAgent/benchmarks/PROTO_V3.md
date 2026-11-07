@@ -18,5 +18,7 @@ Off-page geometry, missing important evidence, source fact fabrication, export c
 ## Output
 `reports/<run-id>.json` with `source_case_ids` (restricted), `output_format`, `renderer`, `host`, `model`, `sha`, `prompt_version`, `hard_gates`, `scores`, `human_preferences`, `cost`, `latency`, `evidence_paths`, `blinded` and `status`.
 
+Each runner uses a unique directory under `.cache/bench_ap/` or `.cache/bench/`; it does not delete a previous run. The AP runner writes a unique `reports/apbench-<run-id>.json`; the engine regression runner writes a unique `results/engine-regression-<run-id>.json`. These synthetic subsets record fixture hashes, Git revision and dirty state, Python and PyMuPDF versions. Existing historical reports are retained and may contain paths from the former layout; for example their `evidence/logs/` references now live under `project/evidence/logs/`. A failed measured AP-03 or a task crash produces a nonzero runner exit; this is not an assertion that unmeasured tasks or human review passed.
+
 ## Data splits
 Separate by creator/project, not just page. Do not retrieve heldout examples into the prompt. Rights clearance controls which use types are allowed. Synthetic fixtures are only engineering checks.

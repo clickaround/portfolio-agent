@@ -2,7 +2,7 @@
 """Engine regression bench (NOT the designed ArchPortfolioBench; see archportfoliobench_ap.py). 2x2 factorial: case-retrieval {off,on} x review/repair {off,on}, over projects x output specs.
 Measures objective hard gates, local-edit preservation, runtime, cost. Does NOT measure aesthetic quality (needs blinded human review).
 NOT RUN here: general-LLM baseline, editing-backend comparison (OpenPencil/GenOffice), human review."""
-import sys, json, time, shutil, datetime
+import sys, json, time, datetime, uuid, hashlib, subprocess, platform
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -11,8 +11,16 @@ from portfolio_agent.engine import pipeline, edit
 PROJECTS = ["arch_01", "arch_02", "arch_03"]
 SPECS = {"A4-landscape": dict(width_mm=297, height_mm=210), "A4-portrait": dict(width_mm=210, height_mm=297), "square210-bleed3": dict(width_mm=210, height_mm=210, bleed_mm=3)}
 
+def create_run_dir(root):
+    run = Path(root) / (datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex)
+    run.mkdir(parents=True, exist_ok=False)
+    return run
+
+def result_exit_code(rows):
+    return int(any("crashed" in row for row in rows))
+
 def main():
-    out = ROOT.parents[1] / ".cache/bench"; shutil.rmtree(out, ignore_errors=True); rows = []
+    out = create_run_dir(ROOT.parents[1] / ".cache/bench"); rows = []
     for p in PROJECTS:
         for sn, sv in SPECS.items():
             for cond in pipeline.CONDITIONS:
@@ -33,9 +41,16 @@ def main():
         if "crashed" in r: continue
         a = agg.setdefault(r["condition"], dict(runs=0, gate_pass=0, issues=0, secs=0.0, edit_ok=0, edit_n=0)); a["runs"] += 1; a["gate_pass"] += r["gate_pass"]; a["issues"] += r["issue_count"]; a["secs"] += r["seconds"]
         if r["local_edit"]["preserved"] is not None: a["edit_n"] += 1; a["edit_ok"] += bool(r["local_edit"]["preserved"])
+    fixture_root = ROOT.parent / "portfolioAgent/examples/synthetic_projects"
+    git = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], capture_output=True, text=True)
+    dirty = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain"], capture_output=True, text=True)
+    import fitz
+    hashes = {p.relative_to(fixture_root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(fixture_root.rglob("*")) if p.is_file()}
     res = dict(bench="engine-regression (not ArchPortfolioBench)", date=str(datetime.date.today()), fixtures="SYNTHETIC", aggregate={k: dict(v, secs=round(v["secs"], 1)) for k, v in agg.items()}, rows=rows,
+               reproducibility={"fixture_sha256": hashes, "git_sha": git.stdout.strip() or None, "git_dirty": bool(dirty.stdout.strip()) if dirty.returncode == 0 else None, "python": platform.python_version(), "pymupdf": getattr(fitz, "__version__", None), "output_path": str(out)},
                not_run=["general-LLM vs skill baseline (needs paid API; BLOCKED)", "editing-backend comparison (OpenPencil/GenOffice not executed)", "blinded human aesthetic review", "real-portfolio cases (no rights-cleared set)"])
-    (ROOT / "benchmarks/results").mkdir(exist_ok=True); (ROOT / "benchmarks/results/engine-regression.json").write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
+    (ROOT / "benchmarks/results").mkdir(exist_ok=True); (ROOT / "benchmarks/results" / f"engine-regression-{out.name}.json").write_text(json.dumps(res, indent=1, ensure_ascii=False), encoding="utf-8")
     print(json.dumps(res["aggregate"], indent=1)); crashed = [r for r in rows if "crashed" in r]; print("crashed:", len(crashed), [c["crashed"] for c in crashed][:3])
+    return result_exit_code(rows)
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": sys.exit(main())

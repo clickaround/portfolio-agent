@@ -5,14 +5,35 @@ What this is: deterministic checks of creation/editing behaviour of ONE system (
 What this is NOT: the pre-registered B0-B5 host comparison (needs Claude/Codex host runs), AP-01/02/04/09/10, blind human preference, real cases.
 Writes benchmarks/reports/<run-id>.json in the PROTO_V3 output shape; fields that were not measured are null, never guessed.
 """
-import sys, json, time, shutil, datetime, subprocess
+import sys, json, time, shutil, datetime, subprocess, uuid, hashlib, platform
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from portfolio_agent.engine import pipeline, edit, registry  # noqa: E402
+from portfolio_agent.core.workspace import SCENE_SCHEMA
 
 FIX = ROOT.parent / "portfolioAgent/examples/synthetic_projects"
 OUT = ROOT.parents[1] / ".cache/bench_ap"
+
+
+def create_run_dir(root):
+    run = Path(root) / (datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex)
+    run.mkdir(parents=True, exist_ok=False)
+    return run
+
+
+def fixture_hashes(root):
+    return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path(root).rglob("*")) if p.is_file()}
+
+
+def ap03_pass(gate_pass, sizes, pages):
+    return bool(gate_pass and sizes == {(420, 297)} and pages == 2)
+
+
+def result_exit_code(results):
+    return int(any("crashed" in r or r.get("passed") is False or r.get("pdf_opens") is False
+                   or ("scene_json_schema_valid" in r and r["scene_json_schema_valid"] is not True)
+                   or r.get("other_pages_identical") is False for r in results))
 
 
 def load_scenes(d):
@@ -30,11 +51,11 @@ def ap03(proj):
     rep = pipeline.run(FIX / proj, d, "B3_full", spec, pptx=False)
     import fitz
     doc = fitz.open(d / "book.pdf"); sizes = {(round(p.rect.width / 72 * 25.4), round(p.rect.height / 72 * 25.4)) for p in doc}; n = doc.page_count; doc.close()
-    return dict(task="AP-03", project=proj, passed=rep["gate_pass"] and sizes == {(420, 297)}, pages=n, two_page_requirement_met=(n == 2), gate_codes=sorted({i["code"] for i in rep["gate_issues"]}))
+    return dict(task="AP-03", project=proj, passed=ap03_pass(rep["gate_pass"], sizes, n), pages=n, two_page_requirement_met=(n == 2), gate_codes=sorted({i["code"] for i in rep["gate_issues"]}))
 
 
 def _base(proj, cond="B3_full"):
-    d = OUT / proj / "base"; shutil.rmtree(d, ignore_errors=True)
+    d = OUT / proj / ("base-" + uuid.uuid4().hex)
     pipeline.run(FIX / proj, d, cond, pipeline.default_spec(), pptx=False); return d
 
 
@@ -75,7 +96,7 @@ def ap07(proj):
 
 def ap08(proj):
     """Export PDF + editable artifact: files open, PPTX objects are editable (text boxes/pictures, named by element id), scene JSON validates against contracts/scene-document.schema.json."""
-    d = OUT / proj / "ap08"; shutil.rmtree(d, ignore_errors=True)
+    d = OUT / proj / "ap08"
     rep = pipeline.run(FIX / proj, d, "B3_full", pipeline.default_spec(), pptx=True)
     import fitz, jsonschema
     from pptx import Presentation
@@ -83,7 +104,7 @@ def ap08(proj):
     prs = Presentation(str(d / "book.pptx")); shapes = [s for sl in prs.slides for s in sl.shapes]
     named = sum(1 for s in shapes if s.name and not s.name.startswith(("Picture", "TextBox", "Rectangle")))
     texts = sum(1 for s in shapes if s.has_text_frame and s.text_frame.text.strip())
-    schema = json.loads((ROOT.parents[1] / "backend/common/contracts/scene-document.schema.json").read_text(encoding="utf-8"))
+    schema = json.loads(SCENE_SCHEMA.read_text(encoding="utf-8"))
     valid = True
     try:
         for sc in load_scenes(d): jsonschema.validate(sc, schema)
@@ -105,22 +126,28 @@ def ap08(proj):
 
 
 def main():
-    shutil.rmtree(OUT, ignore_errors=True); t0 = time.time(); results = []
+    global OUT
+    OUT = create_run_dir(OUT)
+    t0 = time.time(); results = []
     for proj in ("arch_01", "arch_02", "arch_03"):
         for fn in (ap03, ap05, ap06, ap07, ap08):
             try: results.append(fn(proj))
             except Exception as e: results.append(dict(task=fn.__name__.upper(), project=proj, crashed=repr(e)[:300]))
-    run_id = datetime.datetime.now().strftime("apbench-%Y%m%d-%H%M%S")
+    run_id = "apbench-" + OUT.name
     try: sha = subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() or None
     except Exception: sha = None
+    dirty = subprocess.run(["git", "-C", str(ROOT), "status", "--porcelain"], capture_output=True, text=True)
+    import fitz
     report = dict(run_id=run_id, bench="ArchPortfolioBench (engine-only subset)", source_case_ids=[], fixtures="SYNTHETIC", output_format="A4/A3 landscape PDF + PPTX + scene JSON (+DesignCraft if installed)", renderer="portfolio_agent local compositor (PyMuPDF)",
                   host=None, model=None, sha=sha, prompt_version=None, hard_gates={"checked": ["G1 source hash", "G3 clip/overflow/overlap (via qa)"], "not_checked": ["G2 human zoom review", "G4 fact links", "G5 recipient policy"]},
-                  scores=None, human_preferences=None, cost_usd=0.0, latency_s=round(time.time() - t0, 1), evidence_paths=[], blinded=False,
+                  scores=None, human_preferences=None, cost_usd=0.0, latency_s=round(time.time() - t0, 1), evidence_paths=[str(OUT)], blinded=False,
+                  reproducibility={"fixture_sha256": fixture_hashes(FIX), "python": platform.python_version(), "pymupdf": getattr(fitz, "__version__", None), "git_dirty": bool(dirty.stdout.strip()) if dirty.returncode == 0 else None, "scene_schema_sha256": hashlib.sha256(SCENE_SCHEMA.read_bytes()).hexdigest()},
                   status="PARTIAL - engine tasks only; B0-B5 host conditions, AP-01/02/04/09/10, blind human review NOT RUN", results=results)
-    (ROOT / "benchmarks/reports").mkdir(exist_ok=True); p = ROOT / f"benchmarks/reports/{run_id}.json"; p.write_text(json.dumps(report, indent=1, ensure_ascii=False), encoding="utf-8")
+    (ROOT / "benchmarks/reports").mkdir(parents=True, exist_ok=True); p = ROOT / f"benchmarks/reports/{run_id}.json"; p.write_text(json.dumps(report, indent=1, ensure_ascii=False), encoding="utf-8")
     for r in results: print(json.dumps({k: v for k, v in r.items() if k != "attempts"}, ensure_ascii=False)[:260])
     print("report:", p)
+    return result_exit_code(results)
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

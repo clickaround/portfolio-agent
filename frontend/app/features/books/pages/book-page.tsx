@@ -1,4 +1,5 @@
-import { Form, useNavigation, useRevalidator } from "react-router";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Form, useBeforeUnload, useBlocker, useNavigation, useRevalidator, type BlockerFunction } from "react-router";
 import { JobProgress } from "~/common/components/job-progress";
 import { Badge } from "~/common/components/ui/badge";
 import { Button } from "~/common/components/ui/button";
@@ -6,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/common/components/ui
 import { Input } from "~/common/components/ui/input";
 import { ApiError } from "~/lib/api/client";
 import { bookUrl, pageUrl } from "~/lib/api/urls";
-import { composeBook } from "../mutations";
+import { composeBook, openDesignCraft } from "../mutations";
 import { getAttempts } from "../queries";
 import type { Route } from "./+types/book-page";
 
@@ -20,12 +21,17 @@ export async function clientAction({ request, params }: Route.ClientActionArgs) 
   const f = await request.formData();
   const num = (k: string, d: number) => (Number.isFinite(Number(f.get(k))) && f.get(k) !== "" ? Number(f.get(k)) : d);
   try {
+    if (f.get("intent") === "open-designcraft") {
+      const opened = await openDesignCraft(params.projectId, String(f.get("attempt")));
+      return { message: `DesignCraft 편집기를 열었습니다. 수정본 위치: ${opened.edit_path}. 원본 시도와 별도이며 다시 검토해야 합니다.` };
+    }
     const out = await composeBook(params.projectId, {
       width_mm: num("width_mm", 297),
       height_mm: num("height_mm", 210),
       margin_mm: num("margin_mm", 12),
       bleed_mm: num("bleed_mm", 0),
       header: f.get("header") === "on",
+      also: f.get("designcraft") === "on" ? ["designcraft"] : [],
     });
     return { job: out.job };
   } catch (e) {
@@ -53,6 +59,50 @@ function GateList({ label, tone, items }: { label: string; tone: string; items?:
 
 export default function BookPage({ loaderData, actionData }: Route.ComponentProps) {
   const { revalidate } = useRevalidator();
+  const editor = useRef<HTMLIFrameElement>(null);
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [editorMessage, setEditorMessage] = useState("");
+  const [pendingAttempt, setPendingAttempt] = useState<string | null>(null);
+  const [editorHasDocument, setEditorHasDocument] = useState(false);
+  const blocker = useBlocker(useCallback<BlockerFunction>(({ currentLocation, nextLocation }) => editorOpen && currentLocation.pathname !== nextLocation.pathname, [editorOpen]));
+  useBeforeUnload(useCallback((event) => {
+    if (editorOpen) { event.preventDefault(); event.returnValue = ""; }
+  }, [editorOpen]));
+  useEffect(() => {
+    if (blocker.state === "blocked") {
+      if (window.confirm("편집기의 변경사항을 다운로드로 저장했나요? 이동하면 저장하지 않은 내용이 사라질 수 있습니다.")) blocker.proceed();
+      else blocker.reset();
+    }
+  }, [blocker]);
+  async function openWebEditor(attempt: string) {
+    setPendingAttempt(attempt);
+    setEditorOpen(true);
+    try {
+      const response = await fetch("/designcraft-editor/index.html");
+      if (!response.ok || !(await response.text()).includes("designcraft_canvas")) throw new Error("웹 편집기가 설치되지 않았습니다. python project/scripts/install_designcraft_web.py 실행 후 새로고침하세요.");
+      setEditorMessage("편집기 로딩이 끝나면 아래 보내기 버튼을 누르세요.");
+    } catch (error) {
+      setEditorMessage(error instanceof Error ? error.message : "웹 편집기를 불러오지 못했습니다.");
+    }
+  }
+  async function sendToEditor(attempt: string) {
+    try {
+      if (editorHasDocument && !window.confirm("다른 파일을 열기 전에 편집 내용을 다운로드로 저장했나요? 저장하지 않은 내용이 사라질 수 있습니다.")) return;
+      const doc = editor.current?.contentDocument;
+      const canvas = doc?.querySelector("#designcraft_canvas");
+      const loading = doc?.querySelector<HTMLElement>("#designcraft_loading");
+      if (!canvas || (loading && getComputedStyle(loading).display !== "none")) throw new Error("편집기를 먼저 열고 로딩이 끝날 때까지 기다려 주세요.");
+      const res = await fetch(bookUrl(loaderData.projectId, attempt, "designcraft"));
+      if (!res.ok) throw new Error(`편집 파일을 가져오지 못했습니다 (HTTP ${res.status}).`);
+      const data = new DataTransfer();
+      data.items.add(new File([await res.blob()], `attempt-${attempt}.designcraft`, { type: "application/octet-stream" }));
+      for (const type of ["dragenter", "dragover", "drop"]) canvas.dispatchEvent(new DragEvent(type, { bubbles: true, cancelable: true, dataTransfer: data, clientX: 400, clientY: 300 }));
+      setEditorHasDocument(true);
+      setEditorMessage(`시도 ${attempt} 파일을 편집기에 전달했습니다. 편집기에서 파일이 열렸는지 확인해 주세요.`);
+    } catch (error) {
+      setEditorMessage(error instanceof Error ? error.message : "편집기에 파일을 전달하지 못했습니다.");
+    }
+  }
   const busy = useNavigation().state !== "idle";
   const attempts = [...loaderData.attempts].reverse();
   return (
@@ -69,10 +119,12 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
           ))}
         </div>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="header" defaultChecked /> running header</label>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" name="designcraft" /> DesignCraft 편집 파일 생성</label>
         <Button type="submit" disabled={busy}>Compose book</Button>
       </Form>
 
       {actionData && "error" in actionData && <p role="alert" className="text-red-400">{actionData.error}</p>}
+      {actionData && "message" in actionData && <p role="status" className="text-sm">{actionData.message}</p>}
       {actionData?.job && <JobProgress key={actionData.job} jobId={actionData.job} onDone={() => revalidate()} />}
 
       {attempts.length === 0 && <p className="text-muted-foreground">No attempts yet. Save a plan, then compose.</p>}
@@ -85,10 +137,17 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
             <Badge variant="outline">{(a.advisory ?? []).length} advisory</Badge>
             {a.files?.["book.pdf"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pdf")}>PDF</a>}
             {a.files?.["book.pptx"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pptx")}>PPTX</a>}
+            {a.files?.["book.designcraft"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "designcraft")}>DesignCraft 파일 받기</a>}
+            {a.files?.["book.designcraft"] && <Button type="button" aria-label={`Open web editor for attempt ${a.attempt}`} variant="outline" onClick={() => void openWebEditor(a.attempt)}>웹 편집기로 보내기</Button>}
+            {a.files?.["book.designcraft"] && <Form method="post"><input type="hidden" name="intent" value="open-designcraft" /><input type="hidden" name="attempt" value={a.attempt} /><Button type="submit" variant="outline" disabled={busy}>DesignCraft에서 편집</Button></Form>}
           </CardHeader>
           <CardContent className="space-y-4">
             <GateList label="Blocking" tone="text-red-400" items={a.blocking} />
             <GateList label="Advisory" tone="text-muted-foreground" items={a.advisory} />
+            {a.designcraft && <div className="rounded-md border p-3 text-sm" role="note">
+              <p>DesignCraft 결과는 별도 검증되지 않았습니다. 위 게이트 결과는 기본 PDF 기준입니다.</p>
+              {(a.designcraft.notes ?? []).length > 0 && <ul className="mt-2 list-disc pl-5">{a.designcraft.notes?.map((note, i) => <li key={i}>{note}</li>)}</ul>}
+            </div>}
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {(a.pages ?? []).map((_, i) => (
                 <img key={i} src={pageUrl(loaderData.projectId, a.attempt, i + 1)} alt={`attempt ${a.attempt} page ${i + 1}`} loading="lazy" className="w-full rounded border bg-white" />
@@ -97,6 +156,15 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
           </CardContent>
         </Card>
       ))}
+      {editorOpen && <section className="space-y-3" aria-label="DesignCraft 웹 편집기">
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 className="text-xl font-semibold">DesignCraft 웹 편집기</h2>
+          <Button type="button" aria-label="Send file to web editor" variant="outline" onClick={() => pendingAttempt && void sendToEditor(pendingAttempt)}>시도 {pendingAttempt} 보내기</Button>
+          <Button type="button" variant="outline" onClick={() => { if (window.confirm("편집 내용을 다운로드로 저장했나요? 닫으면 저장하지 않은 내용이 사라질 수 있습니다.")) { setEditorOpen(false); setEditorHasDocument(false); } }}>편집기 닫기</Button>
+        </div>
+        <p role="status" className="text-sm">{editorMessage} 편집기의 저장은 파일 다운로드이며 원본 프로젝트에 자동 반영되지 않습니다. 원본 글꼴이 없으면 대체 글꼴이 적용될 수 있습니다.</p>
+        <iframe ref={editor} title="DesignCraft" src="/designcraft-editor/index.html" className="h-[75vh] min-h-[600px] w-full rounded-md border bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
+      </section>}
     </section>
   );
 }

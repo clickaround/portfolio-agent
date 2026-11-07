@@ -34,7 +34,7 @@ def _attempt_dir(out):
 
 
 def _bound_files(att):
-    return {name: sha256(att / name) for name in ("book.pdf", "book.pptx", "qa.json") if (att / name).is_file()}
+    return {name: sha256(att / name) for name in ("book.pdf", "book.pptx", "book.designcraft", "qa.json") if (att / name).is_file()}
 
 
 def _validate_binding(att, ctx):

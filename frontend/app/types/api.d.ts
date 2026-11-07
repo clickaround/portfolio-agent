@@ -199,6 +199,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/projects/{pid}/attempts/{nn}/open-designcraft": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Open Designcraft
+         * @description Launch the local editor on a separate copy, only from the configured local web UI.
+         */
+        post: operations["books_open_designcraft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/projects/{pid}/attempts/{nn}/pages/{page}.png": {
         parameters: {
             query?: never;
@@ -485,6 +505,7 @@ export interface components {
              * @default []
              */
             blocking?: unknown[];
+            designcraft?: components["schemas"]["DesignCraftStatus"] | null;
             /**
              * Files
              * @default {}
@@ -577,6 +598,29 @@ export interface components {
              * @description file names under images/ chosen by the host/person
              */
             files: string[];
+        };
+        /** DesignCraftStatus */
+        DesignCraftStatus: {
+            /**
+             * Notes
+             * @description Exporter warnings such as unsupported crop or font substitution.
+             */
+            notes?: string[];
+            /**
+             * Status
+             * @description Native DesignCraft output has not been independently rendered and verified; gate_pass applies to the local output.
+             * @constant
+             */
+            status: "unverified";
+        };
+        /** EditorOpened */
+        EditorOpened: {
+            /** Edit Path */
+            edit_path: string;
+            /** Message */
+            message: string;
+            /** Opened */
+            opened: boolean;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -1113,6 +1157,44 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_open_designcraft: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                };
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EditorOpened"];
+                };
             };
             /** @description Validation Error */
             422: {

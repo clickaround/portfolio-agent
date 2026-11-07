@@ -15,7 +15,7 @@ BACKENDS = AGENTS / "portfolioAgent" / "backends"
 TOP_LEVEL_ALLOWED = {
     "agents", "backend", "frontend", "project",          # the four product folders (SPLIT_PLAN.md)
     "_bmad", "_bmad-output",                              # BMAD planning tool output
-    ".agents", ".cache", ".git", ".remember", ".pytest_cache", ".claude", ".vscode", ".idea", ".venv", ".ruff_cache", ".import_linter_cache",
+    ".agents", ".cache", ".git", ".github", ".remember", ".pytest_cache", ".claude", ".vscode", ".idea", ".venv", ".ruff_cache", ".import_linter_cache",
 }
 NAMESPACE_DIRS = {"portfolio_agent", "engine"}            # PEP 420: spread over several agents, so no __init__.py
 

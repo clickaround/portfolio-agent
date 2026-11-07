@@ -57,6 +57,7 @@ backend/api/.pytest_cache/
 frontend/node_modules/
 frontend/.react-router/
 frontend/build/
+frontend/public/designcraft-editor/
 
 # python workspace (uv): the environment and tool caches are local; uv.lock IS committed
 .venv/

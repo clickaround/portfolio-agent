@@ -11,6 +11,10 @@ Four product folders. Start here, then open the one you need.
 
 Also: `.cache/` (ignored: vendor clones, signed binaries, blind keys), `_bmad*` (planning tool output, ignored).
 
+`agents/pascal-agents/` is a separate, optional repository and is not present in a fresh clone. See [pinned setup and verification](project/docs/PASCAL_AGENTS_SETUP.md); an existing checkout and its changes are never reset by this project.
+
+For the original DesignCraft web editor inside the Book page, run `python project/scripts/install_designcraft_web.py` before starting or building the frontend. The installer verifies the official v0.17.0 archive and keeps it out of Git. See [installation and limits](project/docs/DESIGNCRAFT_WEB_INSTALL.md). Select DesignCraft when composing, open the web editor, then send an attempt into it. The web editor downloads saved files; it does not yet sync changes back into the portfolio project. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
+
 ## Data that is NOT in the repo (by design)
 | path | content |
 |---|---|
@@ -42,4 +46,5 @@ uv run pascal-api --port 8000             # API + docs at /docs
 cd frontend && npm install && npm run dev
 cd project && uv run pytest tests -q && uv run python scripts/validate_package.py
 ```
+The Python packages currently depend on this checkout's data directories and are used as editable workspace installs; standalone wheel distribution has not been established. CI covers the tracked workspace, not the optional separate `pascal-agents` checkout or its uncommitted changes.
 Contributing rules and ownership: `project/CONTRIBUTING.md`. Where things live: `project/docs/STRUCTURE.md`. Old paths -> new: `project/PATH_MAP.md`.

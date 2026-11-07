@@ -1,7 +1,7 @@
 # Repository structure (2026-11-06, agents / backend / frontend split)
 
 ```
-.git  pyproject.toml (uv workspace root)  uv.lock  README.md AGENTS.md CLAUDE.md SPLIT_PLAN.md
+.git .github/workflows/ci.yml  pyproject.toml (uv workspace root)  uv.lock  README.md AGENTS.md CLAUDE.md SPLIT_PLAN.md
 agents/                            ONE FOLDER PER AGENT (each is a workspace member with its own pyproject.toml)
   portfolioAgent/    src/portfolio_agent/{layout,authors,cli.py,engine/{pipeline,catalogue,grid,guides,spec,candidates,edit,ingest_view,registry}.py}
                      backends/{local,designcraft,...}  knowledge/{patterns,editorial,domains}  examples/  tests/  AGENTS.md

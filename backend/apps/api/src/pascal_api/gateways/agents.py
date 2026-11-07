@@ -22,6 +22,22 @@ def workspace_root() -> Path:
     return P.WORKSPACE
 
 
+def open_designcraft(source: Path, project_dir: Path) -> dict:
+    """Open a separate editable copy; the reviewed attempt remains immutable."""
+    import shutil
+    import subprocess
+    import uuid
+    candidates = sorted((P.CACHE_DIR / "bin" / "designcraft" / "x").glob("*/designcraft.exe"))
+    if not candidates:
+        raise unprocessable("editor_unavailable", "DesignCraft desktop application is not installed locally")
+    target_dir = project_dir / "out" / "edits" / uuid.uuid4().hex
+    target_dir.mkdir(parents=True)
+    target = target_dir / "book.designcraft"
+    shutil.copy2(source, target)
+    subprocess.Popen([str(candidates[0]), str(target)], cwd=str(target_dir))
+    return {"opened": True, "edit_path": str(target), "message": "Saved edits stay in the DesignCraft copy and require a new review."}
+
+
 def backends() -> list:
     return sorted(p.parent.name for p in P.BACKENDS_DIR.glob("*/adapter.py"))
 

@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-07 DesignCraft: original Rust/WASM editor embedded in Book UI; synthetic compose and browser send reproduced, with font substitution warning. Web Save downloads only (no sync back); native output not covered by local QA. Bench runners fixed and tested, optional agent setup pinned, CI added (remote run unverified); standalone wheel synthetic compose only verified. Full Python 111 passed/1 skipped, frontend 10 tests and build passed. See `memory/HANDOFF.md`.
+
 - 2026-11-07: fixed duplicate-upload data loss, TIFF ingest, plan backup collisions, stale review bindings/final output formats, and review UI frame confirmation; same-project background jobs serialize within one API process. Backend 29 and review integrity 11 tests passed; frontend typecheck/lint/8 tests/build passed. Existing reviews require rebinding. Sync API writes, multiple processes, and finalization copy atomicity remain open. See `memory/HANDOFF.md`.
 
 - 2026-11-05 BMAD: DiagramAgent 영어 범례는 기존 load_style이 이미 지원함을 확인. 긴 범례 배경 폭을 조정하고 실제 로더 및 Chromium 경계 테스트 추가, DiagramAgent 전체 33 tests 통과, 영/한 PNG 확인. 독립 검토 지적 수정 후 재검토 완료. portfolio-agent 전체 테스트는 장시간 진전이 없어 중단, 결과 미확정.

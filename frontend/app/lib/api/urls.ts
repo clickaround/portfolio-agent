@@ -3,4 +3,4 @@ export const API_URL: string = import.meta.env.VITE_API_URL ?? "http://127.0.0.1
 
 export const assetUrl = (projectId: string, relativePath: string) => `${API_URL}/projects/${projectId}/files/${relativePath.split("/").map(encodeURIComponent).join("/")}`;
 export const pageUrl = (projectId: string, attempt: string, page: number) => `${API_URL}/projects/${projectId}/attempts/${attempt}/pages/${page}.png`;
-export const bookUrl = (projectId: string, attempt: string, ext: "pdf" | "pptx") => `${API_URL}/projects/${projectId}/attempts/${attempt}/book.${ext}`;
+export const bookUrl = (projectId: string, attempt: string, ext: "pdf" | "pptx" | "designcraft") => `${API_URL}/projects/${projectId}/attempts/${attempt}/book.${ext}`;

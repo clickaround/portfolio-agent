@@ -88,6 +88,16 @@
       "title": "Blocking",
       "type": "array"
      },
+     "designcraft": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/DesignCraftStatus"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
      "files": {
       "additionalProperties": {
        "type": "boolean"
@@ -302,6 +312,52 @@
      "files"
     ],
     "title": "CutoutRequest",
+    "type": "object"
+   },
+   "DesignCraftStatus": {
+    "properties": {
+     "notes": {
+      "description": "Exporter warnings such as unsupported crop or font substitution.",
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "status": {
+      "const": "unverified",
+      "description": "Native DesignCraft output has not been independently rendered and verified; gate_pass applies to the local output.",
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status"
+    ],
+    "title": "DesignCraftStatus",
+    "type": "object"
+   },
+   "EditorOpened": {
+    "properties": {
+     "edit_path": {
+      "title": "Edit Path",
+      "type": "string"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     },
+     "opened": {
+      "title": "Opened",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "opened",
+     "edit_path",
+     "message"
+    ],
+    "title": "EditorOpened",
     "type": "object"
    },
    "HTTPValidationError": {
@@ -1226,6 +1282,70 @@
      }
     },
     "summary": "Get Book",
+    "tags": [
+     "books"
+    ]
+   }
+  },
+  "/projects/{pid}/attempts/{nn}/open-designcraft": {
+   "post": {
+    "description": "Launch the local editor on a separate copy, only from the configured local web UI.",
+    "operationId": "books_open_designcraft",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "additionalProperties": true,
+        "title": "Body",
+        "type": "object"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/EditorOpened"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Open Designcraft",
     "tags": [
      "books"
     ]
