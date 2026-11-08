@@ -74,7 +74,15 @@ impl DesignApp {
             ctx.request_repaint_after(std::time::Duration::from_millis(250));
         }
         if self.restyle {
-            theme::apply(ctx, &theme::Tokens::for_brightness(self.ui.brightness));
+            #[cfg(target_arch = "wasm32")]
+            let tokens = if self.ui.brightness == theme::Brightness::Dark {
+                theme::Tokens::pascal_dark()
+            } else {
+                theme::Tokens::for_brightness(self.ui.brightness)
+            };
+            #[cfg(not(target_arch = "wasm32"))]
+            let tokens = theme::Tokens::for_brightness(self.ui.brightness);
+            theme::apply(ctx, &tokens);
             self.restyle = false;
         }
     }

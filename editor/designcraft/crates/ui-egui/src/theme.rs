@@ -99,6 +99,39 @@ fn hex(s: u32) -> Color32 {
 }
 
 impl Tokens {
+    /// The embedded web editor uses the surrounding Pascal workbench palette.
+    pub fn pascal_dark() -> Self {
+        let mut t = Self::for_brightness(Brightness::Dark);
+        t.app_bar = hex(0x0c0a09);
+        t.panel = hex(0x1c1917);
+        t.panel_darker = hex(0x151211);
+        t.input = hex(0x27272a);
+        t.input_border = hex(0x52525b);
+        t.divider = hex(0x27272a);
+        t.text = hex(0xf2f2f2);
+        t.text_dim = hex(0xa1a1aa);
+        t.text_disabled = hex(0x71717a);
+        t.icon = hex(0xd4d4d8);
+        t.hover = hex(0x343136);
+        t.tool_active = hex(0x3b1b24);
+        t.accent = hex(0xe11d48);
+        t.accent_strong = hex(0xbe123c);
+        t.row_selected = hex(0x5b2435);
+        t.pasteboard = hex(0x302d2b);
+        t.ruler = hex(0x242122);
+        t.ruler_tick = hex(0xa1a1aa);
+        t.tab_inactive = hex(0x171513);
+        t.button = hex(0x27272a);
+        t.border = hex(0x27272a);
+        t.field_border = hex(0x52525b);
+        t.well = hex(0x27272a);
+        t.well_rim = hex(0x52525b);
+        t.ruler_text = hex(0xa1a1aa);
+        t.section_divider = hex(0x27272a);
+        t.tab_strip = hex(0x151211);
+        t
+    }
+
     pub fn for_brightness(b: Brightness) -> Self {
         let dark = Tokens {
             dark: true,
@@ -267,6 +300,19 @@ impl Tokens {
                 ..dark
             },
         }
+    }
+}
+
+#[cfg(test)]
+mod pascal_palette_tests {
+    use super::{Tokens, hex};
+
+    #[test]
+    fn web_editor_palette_matches_the_workbench() {
+        let t = Tokens::pascal_dark();
+        assert_eq!(t.app_bar, hex(0x0c0a09));
+        assert_eq!(t.panel, hex(0x1c1917));
+        assert_eq!(t.accent, hex(0xe11d48));
     }
 }
 
