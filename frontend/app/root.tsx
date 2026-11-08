@@ -1,3 +1,4 @@
+import { useState, type CSSProperties } from "react";
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "react-router";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
@@ -33,10 +34,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className={cn("px-5 py-20 md:px-20 md:py-32", { "animate-pulse transition-opacity": isLoading })}>
-      <Navigation />
-      <Outlet />
+    <div style={{ "--sidebar-width": collapsed ? "4rem" : "15rem" } as CSSProperties}>
+      <Navigation collapsed={collapsed} onToggle={() => setCollapsed((value) => !value)} />
+      <div className={cn("px-5 pb-10 pt-20 md:pl-[calc(var(--sidebar-width)+2rem)] md:pr-8 md:pt-10", { "animate-pulse transition-opacity": isLoading })}>
+        <Outlet />
+      </div>
     </div>
   );
 }

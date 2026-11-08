@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowUp } from "lucide-react";
 import { JobProgress } from "~/common/components/job-progress";
 import { Button } from "~/common/components/ui/button";
 import { chatEditor } from "./mutations";
@@ -41,11 +42,11 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
     finally { setIsApplying(false); }
   }
   return <aside aria-label="에이전트 대화" hidden={!isOpen} style={{ display: isOpen ? undefined : "none" }} className="flex h-full min-h-0 w-full flex-col bg-background">
-    <header className="border-b p-4"><h2 className="font-semibold">포트폴리오 에이전트</h2><p className="mt-1 text-xs text-muted-foreground">Claude · 시도 {attempt}</p></header>
+    <header className="border-b px-5 py-4"><h2 className="font-semibold">포트폴리오 에이전트</h2><p className="mt-1 text-xs text-muted-foreground">Claude · 시도 {attempt}</p></header>
     <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite">
       <p className="text-xs text-muted-foreground">대화와 이 시도의 저장된 PDF 텍스트가 Claude로 전송됩니다. 저장하지 않은 변경과 이미지·배치는 볼 수 없습니다.</p>
       {messages.length === 0 && <p className="text-sm text-muted-foreground">포트폴리오 문구나 구성에 대해 물어보세요.</p>}
-      {messages.map((message, index) => <div key={index} className={`rounded-lg p-3 text-sm ${message.role === "user" ? "ml-6 bg-primary text-primary-foreground" : "mr-6 bg-muted"}`}>
+      {messages.map((message, index) => <div key={index} className={`rounded-2xl p-3 text-sm ${message.role === "user" ? "ml-6 bg-muted" : "mr-6"}`}>
         <p className="whitespace-pre-wrap break-words">{message.content}</p>
         {message.truncated && <p className="mt-2 text-xs">저장된 문서의 텍스트 일부만 전달됐습니다.</p>}
         {message.proposedText && <div className="mt-3 space-y-2 border-t pt-2"><p className="whitespace-pre-wrap break-words">{message.proposedText}</p><Button type="button" size="sm" variant="outline" disabled={!canEdit || isApplying} onClick={() => void insert(message.proposedText!)}>텍스트 상자로 넣기</Button></div>}
@@ -60,10 +61,12 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
       {error && <p role="alert" className="text-sm text-red-500">{error}</p>}
       <div ref={end} />
     </div>
-    <form className="space-y-2 border-t p-3" onSubmit={(event) => { event.preventDefault(); void send(); }}>
+    <form className="p-3" onSubmit={(event) => { event.preventDefault(); void send(); }}>
       <label htmlFor="editor-chat-input" className="sr-only">에이전트에게 메시지</label>
-      <textarea id="editor-chat-input" className="min-h-20 w-full resize-y rounded-md border bg-background p-2 text-sm" placeholder="메시지를 입력하세요" maxLength={4000} value={input} onChange={(event) => setInput(event.target.value)} />
-      <Button type="submit" className="w-full" disabled={!input.trim() || isSending || Boolean(job)}>보내기</Button>
+      <div className="rounded-2xl border bg-card p-3">
+        <textarea id="editor-chat-input" className="min-h-16 w-full resize-y bg-transparent text-sm outline-none" placeholder="메시지를 입력하세요" maxLength={4000} value={input} onChange={(event) => setInput(event.target.value)} />
+        <div className="flex justify-end"><Button type="submit" size="icon" className="rounded-full" aria-label="보내기" disabled={!input.trim() || isSending || Boolean(job)}><ArrowUp className="size-4" /></Button></div>
+      </div>
     </form>
   </aside>;
 }

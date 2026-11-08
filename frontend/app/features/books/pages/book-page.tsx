@@ -297,7 +297,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
           </CardContent>
         </Card>
       ))}
-      {editorOpen && <section className={initialAttempt ? "fixed inset-0 z-50 flex flex-col gap-2 bg-background p-3" : "space-y-3"} aria-label="DesignCraft 웹 편집기">
+      {editorOpen && <section className={initialAttempt ? "fixed inset-0 top-14 z-50 flex flex-col gap-2 bg-background p-3 md:left-[var(--sidebar-width)] md:top-0" : "space-y-3"} aria-label="DesignCraft 웹 편집기">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">DesignCraft 웹 편집기</h2>
           {initialAttempt && <Link className="rounded-md border px-3 py-2 text-sm" to={`/projects/${loaderData.projectId}/book`}>책으로 돌아가기</Link>}
