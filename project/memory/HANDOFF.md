@@ -1,5 +1,8 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-08 resizable editor panels
+- The full-screen editor now places the Claude chat on the left and the DesignCraft canvas on the right. Drag the divider (or use its arrow keys) to resize; closing the chat retains its state. Resize bounds adapt to the available width. Browser checks covered drag in both directions, keyboard adjustment, narrow viewport and preserving input across collapse.
+
 ## 2026-11-08 editor chat panel
 - Full-screen editor has a collapsible right-hand Claude chat panel with per-session conversation context. Requests send up to 25,000 characters extracted from the selected attempt's saved PDF and up to 20 conversation messages; the panel discloses that current unsaved edits, images and layout are not visible. Explicitly chosen text proposals can be inserted through the bounded Rust command bridge, then saved/imported normally. The runner is Claude CLI only, not a GPT provider; no autonomous visual layout editing is implemented.
 - Synthetic real-browser/Claude test: two conversational turns used attempt 05's saved text; selected `The Shifted Courtyard`, inserted it, saved and imported attempt 06; extracted text from the 5-page PDF contained the proposal. This is an engineering test, not a human design-quality assessment. Screenshot: `.cache/pascal-chat-panel.png`.

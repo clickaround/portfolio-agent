@@ -40,7 +40,7 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
     catch (cause) { setError(cause instanceof Error ? cause.message : "텍스트를 넣지 못했습니다."); }
     finally { setIsApplying(false); }
   }
-  return <aside aria-label="에이전트 대화" hidden={!isOpen} style={{ display: isOpen ? undefined : "none" }} className="flex h-2/5 min-h-0 w-full shrink-0 flex-col border-t bg-background md:h-full md:w-96 md:border-l md:border-t-0">
+  return <aside aria-label="에이전트 대화" hidden={!isOpen} style={{ display: isOpen ? undefined : "none" }} className="flex h-full min-h-0 w-full flex-col bg-background">
     <header className="border-b p-4"><h2 className="font-semibold">포트폴리오 에이전트</h2><p className="mt-1 text-xs text-muted-foreground">Claude · 시도 {attempt}</p></header>
     <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite">
       <p className="text-xs text-muted-foreground">대화와 이 시도의 저장된 PDF 텍스트가 Claude로 전송됩니다. 저장하지 않은 변경과 이미지·배치는 볼 수 없습니다.</p>

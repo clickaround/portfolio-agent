@@ -10,6 +10,7 @@ import { bookUrl, pageUrl } from "~/lib/api/urls";
 import { observeDesignCraftSaves } from "../editor-bridge";
 import { executeEditorCommand } from "../editor-command";
 import { EditorChatPanel } from "../editor-chat-panel";
+import { ResizableEditorSplit } from "../resizable-editor-split";
 import { composeBook, importDesignCraft, openDesignCraft, recoverLedger, rewriteEditorText, suggestDesignCraft } from "../mutations";
 import { getAttempts } from "../queries";
 import { AgentSuggestions } from "../suggestions";
@@ -312,10 +313,10 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
         {!initialAttempt && <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>}
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}
-        <div className={initialAttempt ? "flex min-h-0 flex-1 flex-col overflow-hidden rounded-md border md:flex-row" : ""}>
-          <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className={initialAttempt ? "min-h-[35vh] w-full flex-1 bg-white md:min-h-0" : "h-[75vh] min-h-[600px] w-full rounded-md border bg-white"} sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
-          {initialAttempt && <EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} isOpen={isChatOpen} />}
-        </div>
+        {initialAttempt ? <ResizableEditorSplit isOpen={isChatOpen}
+          panel={<EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} isOpen={isChatOpen} />}
+          editor={<iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-full w-full bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
+        /> : <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-[75vh] min-h-[600px] w-full rounded-md border bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
       </section>}
     </section>
   );
