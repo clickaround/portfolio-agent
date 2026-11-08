@@ -77,7 +77,7 @@ pub fn start() {
                     if has_query_flag(&query(), "sample") {
                         let _ = app.run("file.newSample", serde_json::json!({}));
                     }
-                    Ok(Box::new(WebShell { app, inbox, graphics: creator_graphics, context: cc.egui_ctx.clone() }))
+                    Ok(Box::new(WebShell { app, inbox, graphics: creator_graphics, context: cc.egui_ctx.clone(), compact: false }))
                 }),
             )
             .await;
@@ -350,6 +350,7 @@ struct WebShell {
     inbox: Inbox,
     graphics: GraphicsState,
     context: egui::Context,
+    compact: bool,
 }
 
 /// Only the embedding workbench on the same origin may issue explicitly allowed edits.
@@ -390,7 +391,14 @@ fn install_pascal_bridge(runner: &eframe::WebRunner) -> Result<(), wasm_bindgen:
 impl eframe::App for WebShell {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         let graphics = self.graphics.clone();
-        let _ = graphics.run_if_healthy(|| self.app.logic(ctx));
+        let _ = graphics.run_if_healthy(|| {
+            let compact = ctx.content_rect().width() < 600.0;
+            if compact && !self.compact {
+                let _ = self.app.run("window.collapseToIcons", serde_json::json!({}));
+            }
+            self.compact = compact;
+            self.app.logic(ctx);
+        });
     }
 
     fn raw_input_hook(&mut self, ctx: &egui::Context, raw: &mut egui::RawInput) {
