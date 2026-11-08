@@ -13,9 +13,9 @@ SOURCE_ROOTS = [WORKSPACE / "backend" / "packages" / "portfolio-core" / "src", *
 AGENTS = WORKSPACE / "agents"
 BACKENDS = AGENTS / "portfolioAgent" / "backends"
 TOP_LEVEL_ALLOWED = {
-    "agents", "backend", "frontend", "project",          # the four product folders (SPLIT_PLAN.md)
+    "agents", "backend", "frontend", "editor", "project",  # documented product folders
     "_bmad", "_bmad-output",                              # BMAD planning tool output
-    ".agents", ".cache", ".git", ".github", ".remember", ".pytest_cache", ".claude", ".vscode", ".idea", ".venv", ".ruff_cache", ".import_linter_cache",
+    ".agents", ".cache", ".git", ".github", ".remember", ".pytest_cache", ".claude", ".vscode", ".idea", ".venv", ".ruff_cache", ".import_linter_cache", ".playwright-mcp",
 }
 NAMESPACE_DIRS = {"portfolio_agent", "engine"}            # PEP 420: spread over several agents, so no __init__.py
 
@@ -137,7 +137,8 @@ class AgentFolderTests(unittest.TestCase):
 class FolderTests(unittest.TestCase):
     def test_top_level_folders_are_documented(self):
         actual = {p.name for p in WORKSPACE.iterdir() if p.is_dir() and any(p.iterdir())}   # an empty leftover dir (locked by an editor on Windows) is harmless
-        self.assertEqual(sorted(actual - TOP_LEVEL_ALLOWED), [], "new top-level folder: it must be one of agents/backend/frontend/project (see SPLIT_PLAN.md)")
+        self.assertEqual(sorted(actual - TOP_LEVEL_ALLOWED), [], "new top-level folder: document it and update the workspace folder rule")
+        self.assertIn("`editor/`", (WORKSPACE / "README.md").read_text(encoding="utf-8"))
 
     def test_every_package_dir_has_init_except_namespace_dirs(self):
         missing = []

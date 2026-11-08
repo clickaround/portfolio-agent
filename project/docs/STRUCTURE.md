@@ -13,6 +13,7 @@ backend/             (see backend/README.md and backend/docs/STRUCTURE_DECISION.
   packages/portfolio-core/   shared kernel: src/portfolio_agent/core/{model,sources,quality,guardrails,checks,schemas,geometry.py,workspace.py}, tests/
   apps/api/                  FastAPI: domain packages (projects sources plans books reviews jobs catalog) + gateways/ + storage/
 frontend/            React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn: app/{common,features/<f>/{pages,components},lib}, routes.ts; typed client from backend/apps/api/openapi.json
+editor/              DesignCraft-derived editable Rust source and web build; see editor/README.md for provenance and license notices
 project/             AGENTS GOALS PLANS CONTRIBUTING PATH_MAP docs architecture tasks research evidence memory cases formats integrations agent-roles scripts tests
 .cache/ .venv/       ignored: vendor clones + signed binaries + blind keys; the uv environment
 ```
