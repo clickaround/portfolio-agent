@@ -199,6 +199,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/projects/{pid}/attempts/{nn}/editor-chat": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Chat Editor */
+        post: operations["books_chat_editor"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/projects/{pid}/attempts/{nn}/import-designcraft": {
         parameters: {
             query?: never;
@@ -742,6 +759,21 @@ export interface components {
              * @constant
              */
             status: "unverified";
+        };
+        /** EditorChatMessage */
+        EditorChatMessage: {
+            /** Content */
+            content: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "user" | "assistant";
+        };
+        /** EditorChatRequest */
+        EditorChatRequest: {
+            /** Messages */
+            messages: components["schemas"]["EditorChatMessage"][];
         };
         /** EditorOpened */
         EditorOpened: {
@@ -1373,6 +1405,42 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_chat_editor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+                nn: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EditorChatRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
             };
             /** @description Validation Error */
             422: {

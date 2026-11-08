@@ -53,4 +53,9 @@ it("opens the selected attempt automatically in the full-screen workspace", asyn
   fireEvent.load(iframe);
   expect(await screen.findByText(/시도 02 파일을 편집기에 전달했습니다/)).toBeInTheDocument();
   expect(screen.getByRole("link", { name: "책으로 돌아가기" })).toHaveAttribute("href", "/projects/demo/book");
+  expect(screen.getByRole("complementary", { name: "에이전트 대화" })).toBeVisible();
+  fireEvent.click(screen.getByRole("button", { name: "대화 닫기" }));
+  expect(screen.getByLabelText("에이전트 대화")).not.toBeVisible();
+  fireEvent.click(screen.getByRole("button", { name: "대화 열기" }));
+  expect(screen.getByRole("complementary", { name: "에이전트 대화" })).toBeVisible();
 });

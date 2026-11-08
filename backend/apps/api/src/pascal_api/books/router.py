@@ -15,7 +15,7 @@ from ..jobs.schemas import Accepted
 from ..storage.jobs import JobStore
 from ..storage.projects import ProjectStore
 from . import native_import, service, suggestions
-from .schemas import AttemptInfo, ComposeRequest, EditorOpened, EditorTextRequest, SuggestionRecord, SuggestionRequest, SuggestionSummary
+from .schemas import AttemptInfo, ComposeRequest, EditorChatRequest, EditorOpened, EditorTextRequest, SuggestionRecord, SuggestionRequest, SuggestionSummary
 
 router = APIRouter(tags=["books"])
 
@@ -131,6 +131,22 @@ def editor_text(pid: str, body: EditorTextRequest, request: Request, store: Proj
     store.dir(pid)
     return Accepted.of(jobs.submit("editor-text", pid,
                                    lambda log: suggestions.rewrite_editor_text(body.text, body.instructions, runner, settings.llm_timeout_s, log)))
+
+
+@router.post("/projects/{pid}/attempts/{nn}/editor-chat", status_code=202, response_model=Accepted)
+def chat_editor(pid: str, nn: str, body: EditorChatRequest, request: Request, store: ProjectStore = Depends(get_store),
+                settings: Settings = Depends(get_settings), jobs: JobStore = Depends(get_jobs), runner=Depends(get_analysis_llm)):
+    origin = request.headers.get("origin")
+    if origin is not None and origin not in settings.cors_origins:
+        raise ApiError(403, "origin_not_allowed", "Browser origin is not configured for this API")
+    attempt = store.attempt_dir(pid, nn)
+    if not (attempt / "book.pdf").is_file():
+        raise not_found("saved PDF")
+    if body.messages[-1].role != "user":
+        raise ApiError(400, "bad_message", "The last message must come from the user")
+    messages = [item.model_dump() for item in body.messages]
+    return Accepted.of(jobs.submit("editor-chat", pid,
+                                   lambda log: suggestions.editor_chat(attempt, messages, runner, settings.llm_timeout_s, log)))
 
 
 @router.get("/projects/{pid}/attempts/{nn}/suggestions", response_model=list[SuggestionSummary])

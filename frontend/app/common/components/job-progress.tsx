@@ -6,7 +6,7 @@ import { Badge } from "./ui/badge";
 type Job = Awaited<ReturnType<typeof getJob>>;
 
 /** Polls a backend job until it finishes, shows its status and log, then calls onDone once (pages use it to revalidate their loaders). */
-export function JobProgress({ jobId, onDone }: { jobId: string; onDone?: (job: Job) => void }) {
+export function JobProgress({ jobId, onDone, onError, compact = false }: { jobId: string; onDone?: (job: Job) => void; onError?: (message: string) => void; compact?: boolean }) {
   const [job, setJob] = useState<Job | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
 
@@ -25,7 +25,8 @@ export function JobProgress({ jobId, onDone }: { jobId: string; onDone?: (job: J
         }
       } catch (e) {
         if (!stop) setFailure(e instanceof Error ? e.message : "job lookup failed");
-        if (stop || (e instanceof ApiError && e.status >= 400 && e.status < 500)) return;
+        if (stop) return;
+        if (e instanceof ApiError && e.status >= 400 && e.status < 500) { onError?.(e.message); return; }
       }
       timer = setTimeout(tick, 1500);
     };
@@ -38,6 +39,7 @@ export function JobProgress({ jobId, onDone }: { jobId: string; onDone?: (job: J
   }, [jobId]);
 
   if (failure) return <p role="alert" className="text-sm text-red-400">{failure}</p>;
+  if (compact) return <p className="text-sm text-muted-foreground" role="status">답변을 작성하고 있습니다…</p>;
   return (
     <div className="space-y-2 rounded-md border p-3 text-sm" aria-live="polite">
       <div className="flex items-center gap-2">

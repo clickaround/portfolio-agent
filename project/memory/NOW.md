@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-08: Full-screen editor includes a collapsible Claude conversation panel, reads the chosen attempt's saved PDF text and lets users insert a proposed text frame. Synthetic real-Claude multi-turn chat and edited-PDF round trip reproduced. It cannot see unsaved changes/images/layout; GPT provider and visual editing remain unimplemented. See `memory/HANDOFF.md`.
+
 - 2026-11-08: Editable attempts have a full-screen `/projects/:projectId/editor/:attempt` route and automatic file transfer after WASM loads. Synthetic browser editing -> save -> import -> 5-page PDF and direct re-open were reproduced. Missing fonts and human visual review remain open; see `memory/HANDOFF.md`.
 
 - 2026-11-08: Our DesignCraft-derived Rust editor source lives in `editor/designcraft`; build and attribution instructions in `editor/README.md`. A synthetic real-Claude rewrite -> user selection -> source-built WASM text-frame edit -> save/import -> PDF flow was verified. This is a narrow text integration; visual AI editing and InDesign-level parity remain open. See `memory/HANDOFF.md`.

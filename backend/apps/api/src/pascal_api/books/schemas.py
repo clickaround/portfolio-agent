@@ -53,6 +53,15 @@ class EditorTextRequest(BaseModel):
     instructions: str = Field(default="", max_length=1000)
 
 
+class EditorChatMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str = Field(min_length=1, max_length=4000)
+
+
+class EditorChatRequest(BaseModel):
+    messages: list[EditorChatMessage] = Field(min_length=1, max_length=20)
+
+
 class SuggestionSummary(BaseModel):
     suggestion_id: str
     created_at: str

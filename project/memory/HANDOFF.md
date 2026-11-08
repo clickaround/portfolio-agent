@@ -1,5 +1,9 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-08 editor chat panel
+- Full-screen editor has a collapsible right-hand Claude chat panel with per-session conversation context. Requests send up to 25,000 characters extracted from the selected attempt's saved PDF and up to 20 conversation messages; the panel discloses that current unsaved edits, images and layout are not visible. Explicitly chosen text proposals can be inserted through the bounded Rust command bridge, then saved/imported normally. The runner is Claude CLI only, not a GPT provider; no autonomous visual layout editing is implemented.
+- Synthetic real-browser/Claude test: two conversational turns used attempt 05's saved text; selected `The Shifted Courtyard`, inserted it, saved and imported attempt 06; extracted text from the 5-page PDF contained the proposal. This is an engineering test, not a human design-quality assessment. Screenshot: `.cache/pascal-chat-panel.png`.
+
 ## 2026-11-08 full-screen editor workflow
 - Book now links editable attempts to `/projects/:projectId/editor/:attempt`, which validates the selected attempt and opens the source-built DesignCraft canvas full screen. Once the WASM editor loads, the selected file is sent automatically. A direct browser test on synthetic project `verified` opened attempt 01, edited, saved and imported as attempt 05; all 5 PDF pages rendered and the test marker was extracted. Direct reopen of attempt 05 was also checked. The initial wrapped-component bug was found and fixed in the next iteration. Missing fonts still show the upstream replacement dialog, so final appearance needs review.
 

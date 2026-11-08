@@ -9,6 +9,7 @@ import { ApiError } from "~/lib/api/client";
 import { bookUrl, pageUrl } from "~/lib/api/urls";
 import { observeDesignCraftSaves } from "../editor-bridge";
 import { executeEditorCommand } from "../editor-command";
+import { EditorChatPanel } from "../editor-chat-panel";
 import { composeBook, importDesignCraft, openDesignCraft, recoverLedger, rewriteEditorText, suggestDesignCraft } from "../mutations";
 import { getAttempts } from "../queries";
 import { AgentSuggestions } from "../suggestions";
@@ -99,6 +100,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
   const [textJob, setTextJob] = useState<string | null>(null);
   const [isRequestingText, setIsRequestingText] = useState(false);
   const [textProposal, setTextProposal] = useState("");
+  const [isChatOpen, setIsChatOpen] = useState(true);
   useEffect(() => () => { editorBridge.current?.(); if (autoTimer.current !== null) window.clearTimeout(autoTimer.current); }, []);
   useEffect(() => {
     if (!initialAttempt) return;
@@ -213,6 +215,11 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
       setEditorMessage(error instanceof Error ? error.message : "텍스트 상자를 추가하지 못했습니다.");
     } finally { setIsEditing(false); }
   }
+  async function insertChatText(text: string) {
+    if (!editor.current || !editorHasDocument) throw new Error("먼저 문서를 여세요.");
+    await executeEditorCommand(editor.current, "frame.create", { rect: [72, 72, 300, 150], content: "text", text });
+    setEditorMessage("제안한 텍스트 상자를 추가했습니다. 위치와 내용을 확인한 뒤 저장하세요.");
+  }
   async function requestTextRewrite() {
     if (!editorText.trim() || requestingText.current) return;
     requestingText.current = true;
@@ -293,18 +300,22 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">DesignCraft 웹 편집기</h2>
           {initialAttempt && <Link className="rounded-md border px-3 py-2 text-sm" to={`/projects/${loaderData.projectId}/book`}>책으로 돌아가기</Link>}
+          {initialAttempt && <Button type="button" variant="outline" onClick={() => setIsChatOpen((open) => !open)}>{isChatOpen ? "대화 닫기" : "대화 열기"}</Button>}
           <Button type="button" aria-label="Send file to web editor" variant="outline" disabled={isSending} onClick={() => pendingAttempt && void sendToEditor(pendingAttempt)}>시도 {pendingAttempt} 보내기</Button>
-          <label className="text-sm">새 텍스트 <Input aria-label="새 텍스트" value={editorText} onChange={(event) => setEditorText(event.target.value)} /></label>
+          {!initialAttempt && <><label className="text-sm">새 텍스트 <Input aria-label="새 텍스트" value={editorText} onChange={(event) => setEditorText(event.target.value)} /></label>
           <Button type="button" variant="outline" disabled={!editorText.trim() || isRequestingText || Boolean(textJob)} onClick={() => void requestTextRewrite()}>에이전트에 문구 제안 요청</Button>
-          <Button type="button" variant="outline" disabled={!editorHasDocument || !editorText.trim() || isEditing} onClick={() => void insertTextFrame()}>텍스트 상자 추가</Button>
+          <Button type="button" variant="outline" disabled={!editorHasDocument || !editorText.trim() || isEditing} onClick={() => void insertTextFrame()}>텍스트 상자 추가</Button></>}
           {savedFile && <Button type="button" aria-label="Import saved DesignCraft" variant="outline" disabled={isImporting || Boolean(importJob)} onClick={() => void importSavedFile()}>시도 {savedFile.attempt} 저장본 가져오기</Button>}
           {!initialAttempt && <Button type="button" variant="outline" onClick={() => { if (window.confirm("편집 내용을 다운로드로 저장했나요? 닫으면 저장하지 않은 내용이 사라질 수 있습니다.")) { editorBridge.current?.(); editorBridge.current = null; activeAttempt.current = null; setEditorOpen(false); setEditorHasDocument(false); } }}>편집기 닫기</Button>}
         </div>
         <p role="status" className="text-sm">{editorMessage} 편집기에서 다른 파일을 직접 연 경우 저장본이 표시된 원본 시도에 속하는지 직접 확인하세요. 글꼴이 대체될 수 있습니다.</p>
-        <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>
+        {!initialAttempt && <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>}
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}
-        <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className={initialAttempt ? "min-h-0 w-full flex-1 rounded-md border bg-white" : "h-[75vh] min-h-[600px] w-full rounded-md border bg-white"} sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
+        <div className={initialAttempt ? "flex min-h-0 flex-1 flex-col overflow-hidden rounded-md border md:flex-row" : ""}>
+          <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className={initialAttempt ? "min-h-[35vh] w-full flex-1 bg-white md:min-h-0" : "h-[75vh] min-h-[600px] w-full rounded-md border bg-white"} sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
+          {initialAttempt && <EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} isOpen={isChatOpen} />}
+        </div>
       </section>}
     </section>
   );

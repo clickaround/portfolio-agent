@@ -69,6 +69,54 @@ def test_editor_text_agent_returns_a_reviewable_rewrite(tmp_path):
         assert "A portfolio title" in calls[0][0]
 
 
+def test_editor_chat_uses_saved_pdf_and_returns_a_proposal(tmp_path):
+    prompts = []
+    def runner(prompt, cwd, timeout, tools):
+        prompts.append((prompt, tools))
+        return 0, json.dumps({"reply": "Try a shorter heading.", "proposed_text": "River Library"})
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()), analysis_runner=runner)
+    project = app.state.store.create("demo")
+    attempt = project / "out" / "attempts" / "01"
+    attempt.mkdir(parents=True)
+    doc = fitz.open()
+    doc.new_page().insert_text((72, 72), "A public library by the river")
+    doc.save(attempt / "book.pdf")
+    doc.close()
+    with TestClient(app) as client:
+        response = client.post("/projects/demo/attempts/01/editor-chat", json={"messages": [{"role": "user", "content": "Suggest a title"}]})
+        assert response.status_code == 202
+        job = wait(client, response.json()["job"])
+        assert job["status"] == "succeeded", job
+        assert job["result"]["proposed_text"] == "River Library"
+        assert "A public library by the river" in prompts[0][0]
+        assert prompts[0][1] == ""
+
+
+def test_editor_chat_rejects_changed_pdf_and_untrusted_origin(tmp_path):
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ("http://localhost:5173",)))
+    project = app.state.store.create("demo")
+    attempt = project / "out" / "attempts" / "01"
+    attempt.mkdir(parents=True)
+    doc = fitz.open()
+    doc.new_page().insert_text((72, 72), "Saved content")
+    doc.save(attempt / "book.pdf")
+    doc.close()
+    def runner(prompt, cwd, timeout, tools):
+        with (attempt / "book.pdf").open("ab") as stream:
+            stream.write(b"changed")
+        return 0, json.dumps({"reply": "Done", "proposed_text": None})
+    app.state.analysis_runner = runner
+    with TestClient(app) as client:
+        url = "/projects/demo/attempts/01/editor-chat"
+        body = {"messages": [{"role": "user", "content": "Summarize"}]}
+        assert client.post(url, json=body, headers={"origin": "https://evil.example"}).status_code == 403
+        assert client.post(url, json={"messages": [{"role": "assistant", "content": "Not a user request"}]}).status_code == 400
+        response = client.post(url, json=body)
+        job = wait(client, response.json()["job"])
+        assert job["status"] == "failed"
+        assert "changed" in job["error"]
+
+
 def test_nested_source_file_can_be_opened_for_review(tmp_path):
     app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
     project = app.state.store.create("demo")

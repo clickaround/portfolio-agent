@@ -426,6 +426,48 @@
     "title": "DesignCraftStatus",
     "type": "object"
    },
+   "EditorChatMessage": {
+    "properties": {
+     "content": {
+      "maxLength": 4000,
+      "minLength": 1,
+      "title": "Content",
+      "type": "string"
+     },
+     "role": {
+      "enum": [
+       "user",
+       "assistant"
+      ],
+      "title": "Role",
+      "type": "string"
+     }
+    },
+    "required": [
+     "role",
+     "content"
+    ],
+    "title": "EditorChatMessage",
+    "type": "object"
+   },
+   "EditorChatRequest": {
+    "properties": {
+     "messages": {
+      "items": {
+       "$ref": "#/components/schemas/EditorChatMessage"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Messages",
+      "type": "array"
+     }
+    },
+    "required": [
+     "messages"
+    ],
+    "title": "EditorChatRequest",
+    "type": "object"
+   },
    "EditorOpened": {
     "properties": {
      "edit_path": {
@@ -1556,6 +1598,67 @@
      }
     },
     "summary": "Get Book",
+    "tags": [
+     "books"
+    ]
+   }
+  },
+  "/projects/{pid}/attempts/{nn}/editor-chat": {
+   "post": {
+    "operationId": "books_chat_editor",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     },
+     {
+      "in": "path",
+      "name": "nn",
+      "required": true,
+      "schema": {
+       "title": "Nn",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EditorChatRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Chat Editor",
     "tags": [
      "books"
     ]

@@ -33,3 +33,7 @@ export async function suggestDesignCraft(projectId: string, attempt: string, inp
 export async function rewriteEditorText(projectId: string, text: string) {
   return unwrap(await api.POST("/projects/{pid}/editor-text", { params: { path: { pid: projectId } }, body: { text, instructions: "Improve clarity and concision without adding facts." } }));
 }
+
+export async function chatEditor(projectId: string, attempt: string, messages: { role: "user" | "assistant"; content: string }[]) {
+  return unwrap(await api.POST("/projects/{pid}/attempts/{nn}/editor-chat", { params: { path: { pid: projectId, nn: attempt } }, body: { messages } }));
+}
