@@ -1,5 +1,10 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-08 Pascal editor source integration
+- `editor/designcraft/` contains our editable DesignCraft v0.17 source copy pinned to upstream `a4017a3cda704850fcb6ed9f8513fdb2e7fb04c1`; retain its dual licenses, NOTICE, font notices and ASSETS.md. Upstream `docs/brand/` trademarks were excluded. `editor/README.md` documents the Rust/WASM build and safe local publication.
+- The Rust web shell now accepts a same-origin parent-only allowlist of editing commands. The Book screen can request a text-only Claude rewrite of explicit user-entered text; the user selects the proposal, creates a text frame, saves and imports it. Synthetic actual browser E2E used real Claude and the source-built WASM: proposal `A small public library on a riverbank.` appeared in 5-page attempt 04 PDF under `.cache/designcraft-roundtrip-verified-20261107`. Model and cost are unknown. This establishes a narrow text path, not autonomous visual design, asset-aware edits or InDesign parity.
+- Build on this machine used isolated Rust 1.95.0 and trunk 0.22.1 in `.cache/tools/rust` plus Visual Studio C++; generated wasm stays ignored at `frontend/public/pascal-editor` (SHA-256 `60acdd03ee2f7af1fc4142c65d1b499d45f61f505c4dd188d397374d46ccbe37`). Synthetic attempt 04 PDF SHA-256 `8338dbe5647941cbe9436578d597b878cf7dfd83910a5e5674dae30343ffc59a`. Missing font substitutions were observed and human visual/source review remains necessary.
+
 ## 2026-11-07 DesignCraft review follow-up
 - Pending ledger markers across attempts block new compose/import and review until recovered. Nested source comparison links are served with path and symlink/reparse checks. Suggestion details clear on refresh and show text truncation; Korean error strings repaired. UI regression tests cover save capture to import and stale/truncated suggestions. These changes do not prove visual parity or edited-file derivation.
 

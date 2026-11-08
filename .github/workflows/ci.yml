@@ -5,6 +5,39 @@ on:
   pull_request:
 
 jobs:
+  editor:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Rust and the WASM target
+        run: |
+          rustup toolchain install 1.95.0 --profile minimal --target wasm32-unknown-unknown
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          rustup override set 1.95.0
+      - name: Install verified Trunk
+        run: |
+          Invoke-WebRequest -Uri 'https://github.com/trunk-rs/trunk/releases/download/v0.22.1/trunk-x86_64-pc-windows-msvc.zip' -OutFile trunk.zip
+          if ((Get-FileHash trunk.zip -Algorithm SHA256).Hash -ne '1CC65012A9DF60B02DB948F5A3F0601E594CE952EFB1CFD23147C9021C9F7D75') { throw 'Trunk SHA256 mismatch' }
+          Expand-Archive trunk.zip -DestinationPath trunk
+      - name: Test editor command policy
+        working-directory: editor/designcraft
+        run: cargo test --locked -p designcraft-web --bin designcraft-web pascal_bridge
+      - name: Build our Rust editor
+        working-directory: editor/designcraft/apps/designcraft-web
+        run: |
+          & "$env:GITHUB_WORKSPACE/trunk/trunk.exe" build --release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python ../../../../project/scripts/install_pascal_editor.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pascal-editor
+          path: frontend/public/pascal-editor/
+          include-hidden-files: true
+          if-no-files-found: error
+
   python:
     runs-on: windows-latest
     steps:
@@ -28,6 +61,7 @@ jobs:
 
   frontend:
     runs-on: windows-latest
+    needs: editor
     defaults:
       run:
         working-directory: frontend
@@ -41,8 +75,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install pinned DesignCraft web editor
-        run: python ../project/scripts/install_designcraft_web.py
+      - uses: actions/download-artifact@v4
+        with:
+          name: pascal-editor
+          path: frontend/public/pascal-editor/
       - run: npm ci
       - run: npm run typecheck
       - run: npm run lint

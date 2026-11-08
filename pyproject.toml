@@ -48,7 +48,7 @@ addopts = "-p no:cacheprovider"
 [tool.ruff]
 line-length = 180            # the agents' code is written in wide lines
 target-version = "py311"
-extend-exclude = ["agents/pascal-agents", "agents/portfolio-plugin/skills", "_bmad", "_bmad-output", ".cache", "frontend"]
+extend-exclude = ["agents/pascal-agents", "agents/portfolio-plugin/skills", "editor/designcraft/packaging", "_bmad", "_bmad-output", ".cache", "frontend"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]

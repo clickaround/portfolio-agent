@@ -2,11 +2,13 @@ import { act, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { createRoutesStub } from "react-router";
 import { afterEach, expect, it, vi } from "vitest";
 import BookPage from "./book-page";
-import { importDesignCraft } from "../mutations";
+import { importDesignCraft, rewriteEditorText } from "../mutations";
+import { executeEditorCommand } from "../editor-command";
 
 let save: ((blob: Blob, name: string) => void) | undefined;
 vi.mock("../editor-bridge", () => ({ observeDesignCraftSaves: (_frame: unknown, callback: typeof save) => { save = callback; return () => {}; } }));
-vi.mock("../mutations", () => ({ composeBook: vi.fn(), openDesignCraft: vi.fn(), importDesignCraft: vi.fn().mockResolvedValue({ job: "import-job" }), recoverLedger: vi.fn(), suggestDesignCraft: vi.fn() }));
+vi.mock("../editor-command", () => ({ executeEditorCommand: vi.fn().mockResolvedValue({ id: 1 }) }));
+vi.mock("../mutations", () => ({ composeBook: vi.fn(), openDesignCraft: vi.fn(), importDesignCraft: vi.fn().mockResolvedValue({ job: "import-job" }), recoverLedger: vi.fn(), rewriteEditorText: vi.fn().mockResolvedValue({ job: "text-job" }), suggestDesignCraft: vi.fn() }));
 vi.mock("~/common/components/job-progress", () => ({ JobProgress: () => null }));
 afterEach(() => { vi.unstubAllGlobals(); save = undefined; });
 
@@ -26,6 +28,11 @@ it("imports the editor's saved blob for the attempt sent to the iframe", async (
   fireEvent.load(iframe);
   fireEvent.click(screen.getByRole("button", { name: "Send file to web editor" }));
   await screen.findByText(/시도 02 파일을 편집기에 전달했습니다/);
+  fireEvent.change(screen.getByLabelText("새 텍스트"), { target: { value: "Portfolio title" } });
+  fireEvent.click(screen.getByRole("button", { name: "에이전트에 문구 제안 요청" }));
+  await waitFor(() => expect(rewriteEditorText).toHaveBeenCalledWith("demo", "Portfolio title"));
+  fireEvent.click(screen.getByRole("button", { name: "텍스트 상자 추가" }));
+  await waitFor(() => expect(executeEditorCommand).toHaveBeenCalledWith(iframe, "frame.create", expect.objectContaining({ text: "Portfolio title", content: "text" })));
   act(() => save!(new Blob(["edited"]), "edited.designcraft"));
   fireEvent.click(screen.getByRole("button", { name: "Import saved DesignCraft" }));
   await waitFor(() => expect(importDesignCraft).toHaveBeenCalledWith("demo", "02", expect.objectContaining({ name: "edited.designcraft", size: 6 })));

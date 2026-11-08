@@ -29,3 +29,7 @@ export async function recoverLedger(projectId: string, attempt: string) {
 export async function suggestDesignCraft(projectId: string, attempt: string, input: { instructions: string; source_kind: "synthetic" | "real" | "unknown" }) {
   return unwrap(await api.POST("/projects/{pid}/attempts/{nn}/suggestions", { params: { path: { pid: projectId, nn: attempt } }, body: input }));
 }
+
+export async function rewriteEditorText(projectId: string, text: string) {
+  return unwrap(await api.POST("/projects/{pid}/editor-text", { params: { path: { pid: projectId } }, body: { text, instructions: "Improve clarity and concision without adding facts." } }));
+}

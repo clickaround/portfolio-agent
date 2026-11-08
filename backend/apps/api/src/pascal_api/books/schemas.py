@@ -48,6 +48,11 @@ class SuggestionRequest(BaseModel):
     source_kind: Literal["synthetic", "real", "unknown"] = "unknown"
 
 
+class EditorTextRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=4000)
+    instructions: str = Field(default="", max_length=1000)
+
+
 class SuggestionSummary(BaseModel):
     suggestion_id: str
     created_at: str

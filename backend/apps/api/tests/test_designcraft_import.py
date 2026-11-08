@@ -52,6 +52,23 @@ def parent_manifest(project, attempt, path="images/original.png", expected=None)
     (attempt / "manifest.json").write_text(json.dumps({"assets": [{"relative_path": path, "sha256": digest}]}), encoding="utf-8")
 
 
+def test_editor_text_agent_returns_a_reviewable_rewrite(tmp_path):
+    calls = []
+    def runner(prompt, cwd, timeout, tools):
+        calls.append((prompt, tools))
+        return 0, json.dumps({"text": "Clear portfolio title"})
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()), analysis_runner=runner)
+    app.state.store.create("demo")
+    with TestClient(app) as client:
+        response = client.post("/projects/demo/editor-text", json={"text": "A portfolio title", "instructions": "Make concise"})
+        assert response.status_code == 202
+        job = wait(client, response.json()["job"])
+        assert job["status"] == "succeeded"
+        assert job["result"]["text"] == "Clear portfolio title"
+        assert calls[0][1] == ""
+        assert "A portfolio title" in calls[0][0]
+
+
 def test_nested_source_file_can_be_opened_for_review(tmp_path):
     app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()))
     project = app.state.store.create("demo")
@@ -159,11 +176,12 @@ def test_ledger_failure_preserves_attempt_and_recoverable_entry(tmp_path):
     parent_manifest(project, old)
     with TestClient(app) as client, patch("pascal_api.gateways.agents.render_designcraft_pdf", side_effect=fake_render), \
          patch("pascal_api.books.native_import._append_ledger", side_effect=OSError("disk full")):
-        response = client.post("/projects/demo/attempts/01/import-designcraft", files={"file": ("edited.designcraft", native_zip(), "application/octet-stream")})
+        original_upload = native_zip()
+        response = client.post("/projects/demo/attempts/01/import-designcraft", files={"file": ("edited.designcraft", original_upload, "application/octet-stream")})
         result = wait(client, response.json()["job"])
         assert result["status"] == "failed" and "ledger pending" in result["error"]
         attempt = old.parent / "02"
-        assert (attempt / "book.designcraft").read_bytes() == native_zip()
+        assert (attempt / "book.designcraft").read_bytes() == original_upload
         assert json.loads((attempt / "ledger-pending.json").read_text(encoding="utf-8"))["attempt"] == "02"
         assert (old / "book.designcraft").read_bytes() == b"original"
         assert client.get("/projects/demo/attempts/02").json()["ledger_pending"] is True

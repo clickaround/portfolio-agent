@@ -449,6 +449,27 @@
     "title": "EditorOpened",
     "type": "object"
    },
+   "EditorTextRequest": {
+    "properties": {
+     "instructions": {
+      "default": "",
+      "maxLength": 1000,
+      "title": "Instructions",
+      "type": "string"
+     },
+     "text": {
+      "maxLength": 4000,
+      "minLength": 1,
+      "title": "Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "text"
+    ],
+    "title": "EditorTextRequest",
+    "type": "object"
+   },
    "HTTPValidationError": {
     "properties": {
      "detail": {
@@ -2340,6 +2361,58 @@
     "summary": "Cutout",
     "tags": [
      "sources"
+    ]
+   }
+  },
+  "/projects/{pid}/editor-text": {
+   "post": {
+    "operationId": "books_editor_text",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "pid",
+      "required": true,
+      "schema": {
+       "title": "Pid",
+       "type": "string"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EditorTextRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Accepted"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Editor Text",
+    "tags": [
+     "books"
     ]
    }
   },

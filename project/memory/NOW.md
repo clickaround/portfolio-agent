@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-08: Our DesignCraft-derived Rust editor source lives in `editor/designcraft`; build and attribution instructions in `editor/README.md`. A synthetic real-Claude rewrite -> user selection -> source-built WASM text-frame edit -> save/import -> PDF flow was verified. This is a narrow text integration; visual AI editing and InDesign-level parity remain open. See `memory/HANDOFF.md`.
+
 - 2026-11-07 review fixes: block new attempts and reviews while any prior ledger needs recovery; safely serve nested source files; hide stale suggestion details on refresh and disclose truncated text; repair messages and add editor-to-import UI coverage. Source-to-edited-document derivation and visual quality still require human review.
 
 - 2026-11-07 DesignCraft: original Rust/WASM editor embedded in Book UI; synthetic compose and browser send reproduced, with font substitution warning. Historical: Web Save originally downloaded only (superseded above); native output not covered by local QA. Bench runners fixed and tested, optional agent setup pinned, CI added (remote run unverified); standalone wheel synthetic compose only verified. Full Python 111 passed/1 skipped, frontend 10 tests and build passed. See `memory/HANDOFF.md`.

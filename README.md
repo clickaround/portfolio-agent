@@ -1,19 +1,20 @@
 # Workspace map
 
-Four product folders. Start here, then open the one you need.
+Product folders. Start here, then open the one you need.
 
 | folder | what it is | who touches it |
 |---|---|---|
 | `agents/` | **One folder per agent**: `portfolioAgent/` (the book: plan -> layout -> gates -> export), `sourcePrepAgent/` (sources -> clean assets), `reviewAgent/` (fresh review, blind runs, benchmarks), `pascal-agents/` (the owner's other hub: `pptAgent`, `DiagramAgent`, `drawingbookAgent`; own nested repo), and `portfolio-plugin/` (plugin shell: `.claude-plugin`, `skills/`, `scripts/portfolio.py`). | agent owners |
 | `backend/` | `packages/portfolio-core/` = code and contracts shared by every agent (`portfolio_agent.core`: model, sources, quality, guardrails, checks, schemas; layer rules + architecture test); `apps/api/` = FastAPI service over the agents. | everyone (careful: breaks all agents) |
 | `frontend/` | The portfolio workbench: React Router 8 (framework mode, SPA) + Vite 8 + Tailwind 4 + shadcn, structure `app/{common,features,lib}` (owner's convention). Talks to `backend/apps/api` only. `npm run dev`; scope + conventions in `frontend/README.md`. | UI owners |
+| `editor/` | Our editable DesignCraft-derived Rust source and WebAssembly editor build. See `editor/README.md` for attribution, integration scope and build instructions. | editor owners |
 | `project/` | Governance, not code: mission (`AGENTS.md`), goals/plans, `docs/`, `architecture/` (ADRs), `tasks/` (DAG), `research/` (pinned repos, REUSE_MAP, paper notes), `evidence/` (what was run and seen), `memory/NOW.md` (handoff), `cases/` rights protocol, task/package tooling + tests, `PATH_MAP.md`. | everyone |
 
 Also: `.cache/` (ignored: vendor clones, signed binaries, blind keys), `_bmad*` (planning tool output, ignored).
 
 `agents/pascal-agents/` is a separate, optional repository and is not present in a fresh clone. See [pinned setup and verification](project/docs/PASCAL_AGENTS_SETUP.md); an existing checkout and its changes are never reset by this project.
 
-For the original DesignCraft web editor inside the Book page, run `python project/scripts/install_designcraft_web.py` before starting or building the frontend. The installer verifies the official v0.17.0 archive and keeps it out of Git. See [installation and limits](project/docs/DESIGNCRAFT_WEB_INSTALL.md). Select DesignCraft when composing, open the web editor, then send an attempt into it. Save and import the downloaded file into a new attempt; the page also offers a best-effort automatic save capture. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
+The Book page uses our DesignCraft-derived editor built from source; see [editor build instructions](editor/README.md). Select DesignCraft when composing, open the web editor, then send an attempt into it. Save and import the downloaded file into a new attempt; the page also offers a best-effort automatic save capture. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
 
 ## Data that is NOT in the repo (by design)
 | path | content |

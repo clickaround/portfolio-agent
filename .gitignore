@@ -15,6 +15,7 @@ Thumbs.db
 .cache/
 .vendor/
 .remember/
+.playwright-mcp/
 .cache_clone_out.txt
 artifacts/
 **/preview/
@@ -58,6 +59,7 @@ frontend/node_modules/
 frontend/.react-router/
 frontend/build/
 frontend/public/designcraft-editor/
+frontend/public/pascal-editor/
 
 # python workspace (uv): the environment and tool caches are local; uv.lock IS committed
 .venv/

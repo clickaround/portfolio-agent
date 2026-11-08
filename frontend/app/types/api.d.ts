@@ -421,6 +421,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/projects/{pid}/editor-text": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Editor Text */
+        post: operations["books_editor_text"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/projects/{pid}/files/{kind}/{name}": {
         parameters: {
             query?: never;
@@ -734,6 +751,16 @@ export interface components {
             message: string;
             /** Opened */
             opened: boolean;
+        };
+        /** EditorTextRequest */
+        EditorTextRequest: {
+            /**
+             * Instructions
+             * @default
+             */
+            instructions?: string;
+            /** Text */
+            text: string;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -1845,6 +1872,41 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["CutoutRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    books_editor_text: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pid: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EditorTextRequest"];
             };
         };
         responses: {

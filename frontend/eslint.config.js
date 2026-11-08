@@ -10,7 +10,7 @@ const features = ["projects", "sources", "plans", "books", "reviews"]; // add a 
 const shared = ["common", "lib", "hooks", "types"];
 
 export default tseslint.config(
-  { ignores: ["build", ".react-router", "frontend", "node_modules", "app/types/api.d.ts", "public/designcraft-editor/**"] },
+  { ignores: ["build", ".react-router", "frontend", "node_modules", "app/types/api.d.ts", "public/designcraft-editor/**", "public/pascal-editor/**"] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

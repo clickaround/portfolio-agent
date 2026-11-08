@@ -15,7 +15,7 @@ from ..jobs.schemas import Accepted
 from ..storage.jobs import JobStore
 from ..storage.projects import ProjectStore
 from . import native_import, service, suggestions
-from .schemas import AttemptInfo, ComposeRequest, EditorOpened, SuggestionRecord, SuggestionRequest, SuggestionSummary
+from .schemas import AttemptInfo, ComposeRequest, EditorOpened, EditorTextRequest, SuggestionRecord, SuggestionRequest, SuggestionSummary
 
 router = APIRouter(tags=["books"])
 
@@ -120,6 +120,17 @@ def create_suggestions(pid: str, nn: str, body: SuggestionRequest, request: Requ
     project, attempt = store.dir(pid), store.attempt_dir(pid, nn)
     return Accepted.of(jobs.submit("native-suggestions", pid,
                                    lambda log: suggestions.generate(project, attempt, body.instructions, body.source_kind, runner, settings.llm_timeout_s, log)))
+
+
+@router.post("/projects/{pid}/editor-text", status_code=202, response_model=Accepted)
+def editor_text(pid: str, body: EditorTextRequest, request: Request, store: ProjectStore = Depends(get_store),
+                settings: Settings = Depends(get_settings), jobs: JobStore = Depends(get_jobs), runner=Depends(get_analysis_llm)):
+    origin = request.headers.get("origin")
+    if origin is not None and origin not in settings.cors_origins:
+        raise ApiError(403, "origin_not_allowed", "Browser origin is not configured for this API")
+    store.dir(pid)
+    return Accepted.of(jobs.submit("editor-text", pid,
+                                   lambda log: suggestions.rewrite_editor_text(body.text, body.instructions, runner, settings.llm_timeout_s, log)))
 
 
 @router.get("/projects/{pid}/attempts/{nn}/suggestions", response_model=list[SuggestionSummary])
