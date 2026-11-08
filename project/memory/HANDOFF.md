@@ -1,5 +1,8 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-08 full-screen editor workflow
+- Book now links editable attempts to `/projects/:projectId/editor/:attempt`, which validates the selected attempt and opens the source-built DesignCraft canvas full screen. Once the WASM editor loads, the selected file is sent automatically. A direct browser test on synthetic project `verified` opened attempt 01, edited, saved and imported as attempt 05; all 5 PDF pages rendered and the test marker was extracted. Direct reopen of attempt 05 was also checked. The initial wrapped-component bug was found and fixed in the next iteration. Missing fonts still show the upstream replacement dialog, so final appearance needs review.
+
 ## 2026-11-08 Pascal editor source integration
 - `editor/designcraft/` contains our editable DesignCraft v0.17 source copy pinned to upstream `a4017a3cda704850fcb6ed9f8513fdb2e7fb04c1`; retain its dual licenses, NOTICE, font notices and ASSETS.md. Upstream `docs/brand/` trademarks were excluded. `editor/README.md` documents the Rust/WASM build and safe local publication.
 - The Rust web shell now accepts a same-origin parent-only allowlist of editing commands. The Book screen can request a text-only Claude rewrite of explicit user-entered text; the user selects the proposal, creates a text frame, saves and imports it. Synthetic actual browser E2E used real Claude and the source-built WASM: proposal `A small public library on a riverbank.` appeared in 5-page attempt 04 PDF under `.cache/designcraft-roundtrip-verified-20261107`. Model and cost are unknown. This establishes a narrow text path, not autonomous visual design, asset-aware edits or InDesign parity.

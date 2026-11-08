@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Form, useBeforeUnload, useBlocker, useNavigation, useRevalidator, type BlockerFunction } from "react-router";
+import { Form, Link, useBeforeUnload, useBlocker, useNavigation, useRevalidator, type BlockerFunction } from "react-router";
 import { JobProgress } from "~/common/components/job-progress";
 import { Badge } from "~/common/components/ui/badge";
 import { Button } from "~/common/components/ui/button";
@@ -76,7 +76,7 @@ function GateList({ label, tone, items }: { label: string; tone: string; items?:
   );
 }
 
-export default function BookPage({ loaderData, actionData }: Route.ComponentProps) {
+export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<Route.ComponentProps, "loaderData" | "actionData"> & { initialAttempt?: string }) {
   const { revalidate } = useRevalidator();
   const editor = useRef<HTMLIFrameElement>(null);
   const editorBridge = useRef<(() => void) | null>(null);
@@ -84,9 +84,11 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
   const submittedFile = useRef<File | null>(null);
   const sending = useRef(false);
   const requestingText = useRef(false);
-  const [editorOpen, setEditorOpen] = useState(false);
+  const autoTimer = useRef<number | null>(null);
+  const autoSent = useRef(false);
+  const [editorOpen, setEditorOpen] = useState(Boolean(initialAttempt));
   const [editorMessage, setEditorMessage] = useState("");
-  const [pendingAttempt, setPendingAttempt] = useState<string | null>(null);
+  const [pendingAttempt, setPendingAttempt] = useState<string | null>(initialAttempt ?? null);
   const [editorHasDocument, setEditorHasDocument] = useState(false);
   const [savedFile, setSavedFile] = useState<{ file: File; attempt: string } | null>(null);
   const [importJob, setImportJob] = useState<string | null>(null);
@@ -97,7 +99,15 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
   const [textJob, setTextJob] = useState<string | null>(null);
   const [isRequestingText, setIsRequestingText] = useState(false);
   const [textProposal, setTextProposal] = useState("");
-  useEffect(() => () => editorBridge.current?.(), []);
+  useEffect(() => () => { editorBridge.current?.(); if (autoTimer.current !== null) window.clearTimeout(autoTimer.current); }, []);
+  useEffect(() => {
+    if (!initialAttempt) return;
+    let cancelled = false;
+    fetch("/pascal-editor/index.html").then(async (response) => {
+      if (!response.ok || !(await response.text()).includes("designcraft_canvas")) throw new Error("우리 웹 편집기가 설치되지 않았습니다. editor/README.md의 빌드 절차를 실행하세요.");
+    }).catch((error: unknown) => { if (!cancelled) setEditorMessage(error instanceof Error ? error.message : "웹 편집기를 불러오지 못했습니다."); });
+    return () => { cancelled = true; };
+  }, [initialAttempt]);
   const blocker = useBlocker(useCallback<BlockerFunction>(({ currentLocation, nextLocation }) => editorOpen && currentLocation.pathname !== nextLocation.pathname, [editorOpen]));
   useBeforeUnload(useCallback((event) => {
     if (editorOpen) { event.preventDefault(); event.returnValue = ""; }
@@ -155,6 +165,25 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
         setSavedFile({ file: new File([blob], name, { type: "application/octet-stream" }), attempt });
         setEditorMessage(`시도 ${attempt}의 저장본을 받았습니다. 프로젝트로 가져오기를 누르면 새 검토 시도를 만듭니다.`);
       });
+      if (initialAttempt && !autoSent.current) {
+        if (autoTimer.current !== null) window.clearTimeout(autoTimer.current);
+        let retries = 0;
+        const waitForEditor = () => {
+          if (autoSent.current) return;
+          const doc = editor.current?.contentDocument;
+          const canvas = doc?.querySelector("#designcraft_canvas");
+          const loading = doc?.querySelector<HTMLElement>("#designcraft_loading");
+          if (canvas && (!loading || getComputedStyle(loading).display === "none")) {
+            autoSent.current = true;
+            void sendToEditor(initialAttempt);
+          } else if (++retries < 60) {
+            autoTimer.current = window.setTimeout(waitForEditor, 500);
+          } else {
+            setEditorMessage("편집기가 열리지 않았습니다. 빌드 상태를 확인하고 다시 시도하세요.");
+          }
+        };
+        waitForEditor();
+      }
     } catch {
       setEditorMessage("자동 저장 연결을 사용할 수 없습니다. 다운로드한 파일을 직접 가져오세요.");
     }
@@ -200,7 +229,7 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
   const attempts = [...loaderData.attempts].reverse();
   return (
     <section className="space-y-8">
-      <Form method="post" className="space-y-3">
+      <Form method="post" className={initialAttempt ? "hidden" : "space-y-3"}>
         <h2 className="text-xl font-semibold">Compose</h2>
         <p className="text-sm text-muted-foreground">Each run makes a new numbered attempt from the saved plan. Sizes are in millimetres.</p>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -223,7 +252,7 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
       {importJob && <JobProgress key={importJob} jobId={importJob} onDone={(job) => { if (job.status === "succeeded") { setSavedFile((current) => current?.file === submittedFile.current ? null : current); setEditorMessage("편집본을 새 시도로 가져왔습니다. Review에서 원본과 대조해 확인하세요."); } else setEditorMessage(`편집본을 가져오지 못했습니다: ${job.error ?? "작업 실패"}. 다운로드한 파일은 보존됩니다.`); revalidate(); setImportJob(null); }} />}
 
       {attempts.length === 0 && <p className="text-muted-foreground">No attempts yet. Save a plan, then compose.</p>}
-      {attempts.map((a) => (
+      {!initialAttempt && attempts.map((a) => (
         <Card key={a.attempt}>
           <CardHeader className="flex-row flex-wrap items-center gap-3 space-y-0">
             <CardTitle>Attempt {a.attempt}</CardTitle>
@@ -234,7 +263,8 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
             {a.files?.["book.pdf"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pdf")}>PDF</a>}
             {a.files?.["book.pptx"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pptx")}>PPTX</a>}
             {a.files?.["book.designcraft"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "designcraft")}>DesignCraft 파일 받기</a>}
-            {a.files?.["book.designcraft"] && <Button type="button" aria-label={`Open web editor for attempt ${a.attempt}`} variant="outline" disabled={isSending} onClick={() => void openWebEditor(a.attempt)}>웹 편집기로 보내기</Button>}
+            {a.files?.["book.designcraft"] && <Link className="rounded-md border px-3 py-2 text-sm" to={`/projects/${loaderData.projectId}/editor/${a.attempt}`}>웹 편집기 열기</Link>}
+            {a.files?.["book.designcraft"] && <Button type="button" aria-label={`Open web editor for attempt ${a.attempt}`} variant="outline" disabled={isSending} onClick={() => void openWebEditor(a.attempt)}>인라인 편집</Button>}
             {a.files?.["book.designcraft"] && <Form method="post"><input type="hidden" name="intent" value="open-designcraft" /><input type="hidden" name="attempt" value={a.attempt} /><Button type="submit" variant="outline" disabled={busy}>DesignCraft에서 편집</Button></Form>}
           </CardHeader>
           <CardContent className="space-y-4">
@@ -259,22 +289,25 @@ export default function BookPage({ loaderData, actionData }: Route.ComponentProp
           </CardContent>
         </Card>
       ))}
-      {editorOpen && <section className="space-y-3" aria-label="DesignCraft 웹 편집기">
+      {editorOpen && <section className={initialAttempt ? "fixed inset-0 z-50 flex flex-col gap-2 bg-background p-3" : "space-y-3"} aria-label="DesignCraft 웹 편집기">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">DesignCraft 웹 편집기</h2>
+          {initialAttempt && <Link className="rounded-md border px-3 py-2 text-sm" to={`/projects/${loaderData.projectId}/book`}>책으로 돌아가기</Link>}
           <Button type="button" aria-label="Send file to web editor" variant="outline" disabled={isSending} onClick={() => pendingAttempt && void sendToEditor(pendingAttempt)}>시도 {pendingAttempt} 보내기</Button>
           <label className="text-sm">새 텍스트 <Input aria-label="새 텍스트" value={editorText} onChange={(event) => setEditorText(event.target.value)} /></label>
           <Button type="button" variant="outline" disabled={!editorText.trim() || isRequestingText || Boolean(textJob)} onClick={() => void requestTextRewrite()}>에이전트에 문구 제안 요청</Button>
           <Button type="button" variant="outline" disabled={!editorHasDocument || !editorText.trim() || isEditing} onClick={() => void insertTextFrame()}>텍스트 상자 추가</Button>
           {savedFile && <Button type="button" aria-label="Import saved DesignCraft" variant="outline" disabled={isImporting || Boolean(importJob)} onClick={() => void importSavedFile()}>시도 {savedFile.attempt} 저장본 가져오기</Button>}
-          <Button type="button" variant="outline" onClick={() => { if (window.confirm("편집 내용을 다운로드로 저장했나요? 닫으면 저장하지 않은 내용이 사라질 수 있습니다.")) { editorBridge.current?.(); editorBridge.current = null; activeAttempt.current = null; setEditorOpen(false); setEditorHasDocument(false); } }}>편집기 닫기</Button>
+          {!initialAttempt && <Button type="button" variant="outline" onClick={() => { if (window.confirm("편집 내용을 다운로드로 저장했나요? 닫으면 저장하지 않은 내용이 사라질 수 있습니다.")) { editorBridge.current?.(); editorBridge.current = null; activeAttempt.current = null; setEditorOpen(false); setEditorHasDocument(false); } }}>편집기 닫기</Button>}
         </div>
         <p role="status" className="text-sm">{editorMessage} 편집기에서 다른 파일을 직접 연 경우 저장본이 표시된 원본 시도에 속하는지 직접 확인하세요. 글꼴이 대체될 수 있습니다.</p>
         <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}
-        <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-[75vh] min-h-[600px] w-full rounded-md border bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
+        <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className={initialAttempt ? "min-h-0 w-full flex-1 rounded-md border bg-white" : "h-[75vh] min-h-[600px] w-full rounded-md border bg-white"} sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />
       </section>}
     </section>
   );
 }
+
+export default BookWorkspace;

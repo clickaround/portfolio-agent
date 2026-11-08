@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-08: Editable attempts have a full-screen `/projects/:projectId/editor/:attempt` route and automatic file transfer after WASM loads. Synthetic browser editing -> save -> import -> 5-page PDF and direct re-open were reproduced. Missing fonts and human visual review remain open; see `memory/HANDOFF.md`.
+
 - 2026-11-08: Our DesignCraft-derived Rust editor source lives in `editor/designcraft`; build and attribution instructions in `editor/README.md`. A synthetic real-Claude rewrite -> user selection -> source-built WASM text-frame edit -> save/import -> PDF flow was verified. This is a narrow text integration; visual AI editing and InDesign-level parity remain open. See `memory/HANDOFF.md`.
 
 - 2026-11-07 review fixes: block new attempts and reviews while any prior ledger needs recovery; safely serve nested source files; hide stale suggestion details on refresh and disclose truncated text; repair messages and add editor-to-import UI coverage. Source-to-edited-document derivation and visual quality still require human review.

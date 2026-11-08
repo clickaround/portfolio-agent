@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { createRoutesStub } from "react-router";
 import { afterEach, expect, it, vi } from "vitest";
-import BookPage from "./book-page";
+import BookPage, { BookWorkspace } from "./book-page";
 import { importDesignCraft, rewriteEditorText } from "../mutations";
 import { executeEditorCommand } from "../editor-command";
 
@@ -36,4 +36,21 @@ it("imports the editor's saved blob for the attempt sent to the iframe", async (
   act(() => save!(new Blob(["edited"]), "edited.designcraft"));
   fireEvent.click(screen.getByRole("button", { name: "Import saved DesignCraft" }));
   await waitFor(() => expect(importDesignCraft).toHaveBeenCalledWith("demo", "02", expect.objectContaining({ name: "edited.designcraft", size: 6 })));
+});
+
+it("opens the selected attempt automatically in the full-screen workspace", async () => {
+  vi.stubGlobal("fetch", vi.fn().mockImplementation((url: string) => Promise.resolve(new Response(url.includes("index.html") ? "designcraft_canvas" : "original"))));
+  vi.stubGlobal("DataTransfer", class { items = { add: () => {} }; });
+  vi.stubGlobal("DragEvent", class extends Event { constructor(type: string, options: EventInit) { super(type, options); } });
+  const props = { loaderData: { projectId: "demo", attempts: [{ attempt: "02", files: { "book.designcraft": true }, pages: [] }] }, actionData: undefined, params: { projectId: "demo" }, matches: [] };
+  const Router = createRoutesStub([{ path: "/", Component: () => <BookWorkspace {...props as unknown as Parameters<typeof BookWorkspace>[0]} initialAttempt="02" /> }]);
+  render(<Router initialEntries={["/"]} />);
+  const iframe = await screen.findByTitle("DesignCraft") as HTMLIFrameElement;
+  const editorDocument = document.implementation.createHTMLDocument();
+  editorDocument.body.innerHTML = '<canvas id="designcraft_canvas"></canvas>';
+  Object.defineProperty(iframe, "contentDocument", { value: editorDocument });
+  Object.defineProperty(iframe, "contentWindow", { value: window });
+  fireEvent.load(iframe);
+  expect(await screen.findByText(/시도 02 파일을 편집기에 전달했습니다/)).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "책으로 돌아가기" })).toHaveAttribute("href", "/projects/demo/book");
 });
