@@ -6,7 +6,7 @@ import { Badge } from "./ui/badge";
 type Job = Awaited<ReturnType<typeof getJob>>;
 
 /** Polls a backend job until it finishes, shows its status and log, then calls onDone once (pages use it to revalidate their loaders). */
-export function JobProgress({ jobId, onDone, onError, compact = false }: { jobId: string; onDone?: (job: Job) => void; onError?: (message: string) => void; compact?: boolean }) {
+export function JobProgress({ jobId, onDone, onError, compact = false, progressLabel = "답변을 작성하고 있습니다…" }: { jobId: string; onDone?: (job: Job) => void; onError?: (message: string) => void; compact?: boolean; progressLabel?: string }) {
   const [job, setJob] = useState<Job | null>(null);
   const [failure, setFailure] = useState<string | null>(null);
 
@@ -39,7 +39,7 @@ export function JobProgress({ jobId, onDone, onError, compact = false }: { jobId
   }, [jobId]);
 
   if (failure) return <p role="alert" className="text-sm text-red-400">{failure}</p>;
-  if (compact) return <p className="text-sm text-muted-foreground" role="status">답변을 작성하고 있습니다…</p>;
+  if (compact) return <p className="text-sm text-muted-foreground" role="status">{progressLabel}</p>;
   return (
     <div className="space-y-2 rounded-md border p-3 text-sm" aria-live="polite">
       <div className="flex items-center gap-2">

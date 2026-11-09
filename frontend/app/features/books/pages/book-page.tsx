@@ -95,6 +95,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
   const [editorHasDocument, setEditorHasDocument] = useState(false);
   const [savedFile, setSavedFile] = useState<{ file: File; attempt: string } | null>(null);
   const [importJob, setImportJob] = useState<string | null>(null);
+  const [importedAttempt, setImportedAttempt] = useState<string | null>(null);
   const [isImporting, setIsImporting] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [editorText, setEditorText] = useState("");
@@ -196,6 +197,8 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
   }
   async function importSavedFile() {
     if (!savedFile) return;
+    setImportedAttempt(null);
+    setEditorError("");
     setIsImporting(true);
     try {
       const result = await importDesignCraft(loaderData.projectId, savedFile.attempt, savedFile.file);
@@ -315,7 +318,8 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
         {!initialAttempt && <p role="status" className="text-sm">{editorMessage} 편집기에서 다른 파일을 직접 연 경우 저장본이 표시된 원본 시도에 속하는지 직접 확인하세요. 글꼴이 대체될 수 있습니다.</p>}
         {initialAttempt && editorError && <div role="alert" className="flex items-center gap-2 text-sm text-red-400">{editorError}<Button type="button" variant="outline" size="sm" disabled={isSending} onClick={() => void sendToEditor(initialAttempt)}>다시 시도</Button></div>}
         {initialAttempt && savedFile && <div className="flex items-center gap-2 text-sm"><span>편집본을 저장했습니다.</span><Button type="button" size="sm" variant="outline" disabled={isImporting || Boolean(importJob)} onClick={() => void importSavedFile()}>프로젝트에 가져오기</Button></div>}
-        {initialAttempt && importJob && <JobProgress compact key={importJob} jobId={importJob} onDone={(job) => { if (job.status === "succeeded") { setSavedFile((current) => current?.file === submittedFile.current ? null : current); } else setEditorError(`편집본을 가져오지 못했습니다: ${job.error ?? "작업 실패"}.`); revalidate(); setImportJob(null); }} />}
+        {initialAttempt && importJob && <JobProgress compact progressLabel="편집본을 가져오고 있습니다…" key={importJob} jobId={importJob} onDone={(job) => { const result = job.result as { attempt?: unknown } | null; if (job.status === "succeeded" && typeof result?.attempt === "string" && /^\d+$/.test(result.attempt)) { setSavedFile((current) => current?.file === submittedFile.current ? null : current); setImportedAttempt(result.attempt); } else setEditorError(job.status === "succeeded" ? "가져온 시도 번호를 확인하지 못했습니다. 프로젝트에서 확인하세요." : `편집본을 가져오지 못했습니다: ${job.error ?? "작업 실패"}.`); revalidate(); setImportJob(null); }} />}
+        {initialAttempt && importedAttempt && <div role="status" className="flex flex-wrap items-center gap-2 text-sm"><span>편집본을 시도 {importedAttempt}으로 가져왔습니다. 사람 검토가 필요합니다.</span><Link className="underline" to={`/projects/${loaderData.projectId}/review`}>검토 화면 열기</Link></div>}
         {!initialAttempt && <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>}
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}

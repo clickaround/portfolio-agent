@@ -9,7 +9,7 @@ let save: ((blob: Blob, name: string) => void) | undefined;
 vi.mock("../editor-bridge", () => ({ observeDesignCraftSaves: (_frame: unknown, callback: typeof save) => { save = callback; return () => {}; } }));
 vi.mock("../editor-command", () => ({ executeEditorCommand: vi.fn().mockResolvedValue({ id: 1 }) }));
 vi.mock("../mutations", () => ({ composeBook: vi.fn(), openDesignCraft: vi.fn(), importDesignCraft: vi.fn().mockResolvedValue({ job: "import-job" }), recoverLedger: vi.fn(), rewriteEditorText: vi.fn().mockResolvedValue({ job: "text-job" }), suggestDesignCraft: vi.fn() }));
-vi.mock("~/common/components/job-progress", () => ({ JobProgress: () => null }));
+vi.mock("~/common/components/job-progress", () => ({ JobProgress: ({ jobId, onDone }: { jobId: string; onDone: (job: unknown) => void }) => jobId === "import-job" ? <button onClick={() => onDone({ status: "succeeded", result: { attempt: "03" } })}>가져오기 완료 시뮬레이션</button> : null }));
 afterEach(() => { vi.unstubAllGlobals(); save = undefined; });
 
 it("imports the editor's saved blob for the attempt sent to the iframe", async () => {
@@ -60,4 +60,7 @@ it("opens the selected attempt automatically in the full-screen workspace", asyn
   act(() => save!(new Blob(["edited"]), "edited.designcraft"));
   fireEvent.click(screen.getByRole("button", { name: "프로젝트에 가져오기" }));
   await waitFor(() => expect(importDesignCraft).toHaveBeenCalledWith("demo", "02", expect.objectContaining({ name: "edited.designcraft" })));
+  fireEvent.click(await screen.findByRole("button", { name: "가져오기 완료 시뮬레이션" }));
+  expect(await screen.findByText(/편집본을 시도 03으로 가져왔습니다/)).toBeVisible();
+  expect(screen.getByRole("link", { name: "검토 화면 열기" })).toHaveAttribute("href", "/projects/demo/review");
 });
