@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-09: `project/architecture/agent-editor/PROTOCOL-HARNESS.md` records the requested direction: a harness orchestrates source preparation and portfolio generation, shows an editable result in DesignCraft, then reads the live document for approved iterative edits. API, shared protocol, harness, and optional MCP adapter are distinct; the target harness and edit loop are not yet implemented.
+
 - 2026-11-09: Added opt-in bounded live DesignCraft structural inspection to editor chat; the Rust bridge strips the top-level local path. Synthetic browser + actual WASM + API + fake runner reproduced unsaved text in the request; released WASM installed locally. Claude weekly limit prevented actual model validation. Visual feedback, version-safe edits and the complete agent loop remain unimplemented. See `research/AGENT_EDITOR_PAPERS_2026-11-09.md`.
 
 - 2026-11-09: BMAD feature architecture draft and detailed agent/editor solution are in `project/architecture/agent-editor/`. A fresh synthetic browser editor-chat request failed because the Claude weekly limit was reached; live design edits and this run's text insertion remain unverified. Current chat reads saved PDF text only. No new agent/editor capability was implemented.
