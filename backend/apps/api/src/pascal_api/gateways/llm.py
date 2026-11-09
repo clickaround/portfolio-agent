@@ -12,7 +12,10 @@ def make_claude_runner(claude_bin: str = "claude") -> Runner:
     def run(prompt: str, cwd: Path, timeout_s: int, allowed_tools: str = "Read,Write"):
         p = subprocess.run([claude_bin, "-p", prompt, "--allowedTools", allowed_tools, "--output-format", "text"], cwd=str(cwd), capture_output=True, text=True,
                            encoding="utf-8", errors="replace", timeout=timeout_s, stdin=subprocess.DEVNULL)
-        return p.returncode, (p.stdout or "") + (p.stderr or "")
+        output = (p.stdout or "") + (p.stderr or "")
+        if p.returncode != 0 and any(marker in output.lower() for marker in ("weekly limit", "usage limit")):
+            return p.returncode, "CLAUDE_USAGE_LIMIT"
+        return p.returncode, output
     return run
 
 

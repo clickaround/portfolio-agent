@@ -7,8 +7,11 @@ import { chatEditor } from "./mutations";
 interface Message { role: "user" | "assistant"; content: string; proposedText?: string; truncated?: boolean }
 interface ChatResult { reply?: unknown; proposed_text?: unknown; text_truncated?: unknown }
 
-export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, onSnapshot, isOpen = true }: { projectId: string; attempt: string; canEdit: boolean; onInsert: (text: string) => Promise<void>; onSnapshot?: () => Promise<unknown>; isOpen?: boolean }) {
-  const [messages, setMessages] = useState<Message[]>([]);
+export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, onSnapshot, generationPrompt, isOpen = true }: { projectId: string; attempt: string; canEdit: boolean; onInsert: (text: string) => Promise<void>; onSnapshot?: () => Promise<unknown>; generationPrompt?: string; isOpen?: boolean }) {
+  const [messages, setMessages] = useState<Message[]>(() => generationPrompt ? [
+    { role: "user", content: generationPrompt },
+    { role: "assistant", content: "포트폴리오가 생성됐습니다. 편집기에서 확인하고 변경할 부분을 알려 주세요." },
+  ] : []);
   const [input, setInput] = useState("");
   const [job, setJob] = useState<string | null>(null);
   const [error, setError] = useState("");

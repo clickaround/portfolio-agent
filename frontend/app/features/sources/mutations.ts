@@ -1,16 +1,9 @@
 import { api, unwrap } from "~/lib/api/client";
+import { uploadProjectAsset } from "~/lib/api/assets";
 import type { AssetKind } from "./schema";
 
 export async function uploadAsset(projectId: string, kind: AssetKind, file: File) {
-  const body = new FormData();
-  body.append("file", file);
-  return unwrap(
-    await api.POST("/projects/{pid}/assets/{kind}", {
-      params: { path: { pid: projectId, kind } },
-      body: body as never, // multipart: the generated type wants {file: string}; the browser sends the File
-      bodySerializer: (b) => b as never,
-    }),
-  );
+  return uploadProjectAsset(projectId, kind, file);
 }
 
 export async function deleteAsset(projectId: string, kind: AssetKind, name: string) {

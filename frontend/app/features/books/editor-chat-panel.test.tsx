@@ -42,3 +42,9 @@ it("does not send a request if the requested live snapshot fails", async () => {
   expect(await screen.findByRole("alert")).toHaveTextContent("편집기 상태를 읽지 못했습니다.");
   expect(chatEditor).not.toHaveBeenCalled();
 });
+
+it("keeps the user's generation request visible when the editor opens", () => {
+  render(<EditorChatPanel projectId="demo" attempt="05" canEdit onInsert={vi.fn()} generationPrompt="도면을 중심으로 구성해 줘" />);
+  expect(screen.getByText("도면을 중심으로 구성해 줘")).toBeInTheDocument();
+  expect(screen.getByText(/포트폴리오가 생성됐습니다/)).toBeInTheDocument();
+});

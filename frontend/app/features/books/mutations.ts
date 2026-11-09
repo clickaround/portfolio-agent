@@ -2,6 +2,13 @@ import { api, unwrap } from "~/lib/api/client";
 
 export type ComposeInput = { width_mm: number; height_mm: number; margin_mm: number; bleed_mm: number; header: boolean; also?: string[] };
 
+export async function generatePortfolio(projectId: string, input: { instructions: string; width_mm: number; height_mm: number }) {
+  return unwrap(await api.POST("/projects/{pid}/book-plan/generate", {
+    params: { path: { pid: projectId } },
+    body: { instructions: input.instructions, compose: { width_mm: input.width_mm, height_mm: input.height_mm, also: ["designcraft"] } },
+  }));
+}
+
 /** Composes a new attempt from the plan in a background job. */
 export async function composeBook(projectId: string, input: ComposeInput) {
   return unwrap(await api.POST("/projects/{pid}/compose", { params: { path: { pid: projectId } }, body: input }));

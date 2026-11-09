@@ -12,7 +12,7 @@ function limits(width: number): [number, number] {
 }
 
 /** The chat remains mounted when collapsed, so its conversation and pending job survive. */
-export function ResizableEditorSplit({ panel, editor, isOpen }: { panel: ReactNode; editor: ReactNode; isOpen: boolean }) {
+export function ResizableEditorSplit({ panel, editor, isOpen, flush = false }: { panel: ReactNode; editor: ReactNode; isOpen: boolean; flush?: boolean }) {
   const container = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
   const [width, setWidth] = useState(() => typeof window !== "undefined" && window.innerWidth < 600 ? 45 : 30);
@@ -43,7 +43,7 @@ export function ResizableEditorSplit({ panel, editor, isOpen }: { panel: ReactNo
     if (delta) { event.preventDefault(); setWidth((current) => Math.round(clamp(current + delta, minimum, maximum))); }
     else if (event.key === "Home" || event.key === "End") { event.preventDefault(); setWidth(Math.round(event.key === "Home" ? minimum : maximum)); }
   }
-  return <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-md border">
+  return <div className={`flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden ${flush ? "" : "rounded-md border"}`}>
     {isOpen && <div className="flex gap-1 border-b bg-card p-1 md:hidden">
       <button type="button" aria-pressed={mobileView === "chat"} onClick={() => setMobileView("chat")} className="flex-1 rounded-md px-3 py-2 text-sm aria-pressed:bg-muted">대화</button>
       <button type="button" aria-pressed={mobileView === "editor"} onClick={() => setMobileView("editor")} className="flex-1 rounded-md px-3 py-2 text-sm aria-pressed:bg-muted">편집기</button>

@@ -11,6 +11,7 @@ export default [
   ]),
   ...prefix("projects", [
     index("features/projects/pages/projects-page.tsx"),
+    route(":projectId/workspace", "features/books/pages/workspace-page.tsx"),
     route(":projectId/editor/:attempt", "features/books/pages/editor-page.tsx"),
     // The layout owns the :projectId segment, so its tab links ("sources", "plan", ...) resolve under /projects/:projectId.
     route(":projectId", "features/projects/layouts/project-layout.tsx", [

@@ -1,4 +1,5 @@
 import { BookWorkspace } from "./book-page";
+import { useLocation } from "react-router";
 import { getAttempts } from "../queries";
 import type { Route } from "./+types/editor-page";
 
@@ -12,5 +13,8 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 }
 
 export default function EditorPage({ loaderData }: Route.ComponentProps) {
-  return <BookWorkspace key={`${loaderData.projectId}:${loaderData.attempt}`} loaderData={loaderData} actionData={undefined} initialAttempt={loaderData.attempt} />;
+  const location = useLocation();
+  const state = location.state as { generationPrompt?: unknown } | null;
+  const generationPrompt = typeof state?.generationPrompt === "string" ? state.generationPrompt.slice(0, 4000) : undefined;
+  return <BookWorkspace key={`${loaderData.projectId}:${loaderData.attempt}`} loaderData={loaderData} actionData={undefined} initialAttempt={loaderData.attempt} generationPrompt={generationPrompt} />;
 }

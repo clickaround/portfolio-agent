@@ -73,6 +73,7 @@ The shell (navigation, shadcn `ui/` components, theme tokens, `input-pair`/`sele
 |---|---|
 | `/projects` | projects (list, create) |
 | `/projects/:id` | projects (overview) |
+| `/projects/:id/workspace` | always-open DesignCraft with source upload and a plan-and-compose request; opens the verified generated attempt when safe |
 | `/projects/:id/sources` | sources (upload, scan, approve, cut-out, delete) |
 | `/projects/:id/plan` | plans (host LLM plan job, edit and save) |
 | `/projects/:id/book` | books (compose job, attempts, page previews, PDF/PPTX) |

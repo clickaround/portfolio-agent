@@ -58,7 +58,12 @@ def generate(d: Path, runner, timeout_s: int, instructions: str, log) -> dict:
         target.unlink(missing_ok=True)
         log(f"host LLM attempt {attempt}")
         code, text = runner(prompt(d, manifest, brief_md, instructions, target, err), d, timeout_s, "Read,Write")
-        log(f"host LLM exit {code}: {text.strip()[-200:]}")
+        log(f"host LLM exit {code}")
+        if code != 0:
+            target.unlink(missing_ok=True)
+            if text == "CLAUDE_USAGE_LIMIT":
+                raise RuntimeError("Claude 사용 한도에 도달했습니다. 한도 초기화 후 다시 시도하세요.")
+            raise RuntimeError(f"포트폴리오 계획을 생성하지 못했습니다 (실행기 종료 코드 {code}).")
         if not target.is_file():
             err = "the file was not written"
             continue

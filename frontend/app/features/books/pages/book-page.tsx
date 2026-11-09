@@ -78,7 +78,7 @@ function GateList({ label, tone, items }: { label: string; tone: string; items?:
   );
 }
 
-export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<Route.ComponentProps, "loaderData" | "actionData"> & { initialAttempt?: string }) {
+export function BookWorkspace({ loaderData, actionData, initialAttempt, generationPrompt }: Pick<Route.ComponentProps, "loaderData" | "actionData"> & { initialAttempt?: string; generationPrompt?: string }) {
   const { revalidate } = useRevalidator();
   const editor = useRef<HTMLIFrameElement>(null);
   const editorBridge = useRef<(() => void) | null>(null);
@@ -302,7 +302,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
           </CardContent>
         </Card>
       ))}
-      {editorOpen && <section className={initialAttempt ? "fixed inset-0 top-14 z-50 flex flex-col gap-2 bg-background p-3 md:left-[var(--sidebar-width)] md:top-0" : "space-y-3"} aria-label="DesignCraft 웹 편집기">
+      {editorOpen && <section className={initialAttempt ? "fixed inset-0 top-14 z-50 flex flex-col gap-2 bg-background md:left-[var(--sidebar-width)] md:top-0" : "space-y-3"} aria-label="DesignCraft 웹 편집기">
         {!initialAttempt && <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-xl font-semibold">DesignCraft 웹 편집기</h2>
           <Button type="button" aria-label="Send file to web editor" variant="outline" disabled={isSending} onClick={() => pendingAttempt && void sendToEditor(pendingAttempt)}>시도 {pendingAttempt} 보내기</Button>
@@ -319,8 +319,8 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
         {!initialAttempt && <p className="text-sm text-muted-foreground">문구 제안을 요청하면 입력한 텍스트가 Claude 서비스로 전송됩니다. 제안은 확인 후 직접 적용합니다.</p>}
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}
-        {initialAttempt ? <ResizableEditorSplit isOpen
-          panel={<EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} onSnapshot={() => { if (!editor.current || !editorHasDocument) return Promise.reject(new Error("편집기에 문서를 열어 주세요.")); return executeEditorCommand(editor.current, "document.inspect", {}); }} />}
+        {initialAttempt ? <ResizableEditorSplit isOpen flush
+          panel={<EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} generationPrompt={generationPrompt} onSnapshot={() => { if (!editor.current || !editorHasDocument) return Promise.reject(new Error("편집기에 문서를 열어 주세요.")); return executeEditorCommand(editor.current, "document.inspect", {}); }} />}
           editor={<iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-full w-full bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
         /> : <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-[75vh] min-h-[600px] w-full rounded-md border bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
       </section>}

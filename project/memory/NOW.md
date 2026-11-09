@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-09: The project workspace now shows DesignCraft from the outset, uploads sources, submits one plan+DesignCraft compose job and opens the exact generated attempt when safe. A saved/dirty editor is not silently replaced. Full-width desktop and mobile panel behavior plus the upload→fake-plan→actual compose→WASM flow were reproduced; actual Claude was not available. See `project/evidence/2026-11-09_AGENT_WORKSPACE_E2E.md`.
+
 - 2026-11-09: `project/architecture/agent-editor/PROTOCOL-HARNESS.md` records the requested direction: a harness orchestrates source preparation and portfolio generation, shows an editable result in DesignCraft, then reads the live document for approved iterative edits. API, shared protocol, harness, and optional MCP adapter are distinct; the target harness and edit loop are not yet implemented.
 
 - 2026-11-09: Added opt-in bounded live DesignCraft structural inspection to editor chat; the Rust bridge strips the top-level local path. Synthetic browser + actual WASM + API + fake runner reproduced unsaved text in the request; released WASM installed locally. Claude weekly limit prevented actual model validation. Visual feedback, version-safe edits and the complete agent loop remain unimplemented. See `research/AGENT_EDITOR_PAPERS_2026-11-09.md`.

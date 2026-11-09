@@ -663,6 +663,7 @@
      "instructions": {
       "default": "",
       "description": "extra direction for the host LLM (tone, page count, what to emphasise)",
+      "maxLength": 4000,
       "title": "Instructions",
       "type": "string"
      }

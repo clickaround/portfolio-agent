@@ -31,6 +31,7 @@ export default function ProjectLayout({ loaderData }: Route.ComponentProps) {
           <Badge variant="outline">{loaderData.attempts} attempts</Badge>
         </div>
         <nav className="flex flex-wrap gap-2">
+          <Link to={`/projects/${loaderData.id}/workspace`} className={cn(buttonVariants({ size: "sm" }))}>에이전트 작업 공간</Link>
           {tabs.map((t) => (
             <NavLink key={t.label} to={t.to} end={t.end} className={({ isActive }) => cn(buttonVariants({ variant: isActive ? "secondary" : "ghost", size: "sm" }))}>
               {t.label}
