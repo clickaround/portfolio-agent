@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-09: BMAD feature architecture draft and detailed agent/editor solution are in `project/architecture/agent-editor/`. A fresh synthetic browser editor-chat request failed because the Claude weekly limit was reached; live design edits and this run's text insertion remain unverified. Current chat reads saved PDF text only. No new agent/editor capability was implemented.
+
 - 2026-11-09: Home and Supabase email/password and GitHub/Kakao login/signup UI are implemented, but no Pascal Supabase project is configured and no live authentication has been verified. The existing API is unauthenticated, local-only, and does not isolate users. A separate account/project is needed; do not reuse or delete the four existing projects. See `memory/HANDOFF.md`.
 
 - 2026-11-08: Full-screen editor uses left-hand Claude chat and right-hand DesignCraft with a draggable and keyboard-adjustable divider. Browser verified both directions, narrow view and collapse state. See `memory/HANDOFF.md`.
