@@ -135,3 +135,10 @@ No push, deploy, purchase, secret access or large-scale scraping without explici
 
 ## 10. Where to look
 Design intent: `project/AGENTS.md`, `project/GOALS.md`, `project/PLANS.md`, `project/architecture/` (ADRs, notably ADR-0008, ADR-0009). Folder decisions: `backend/docs/STRUCTURE_DECISION.md`, `project/docs/STRUCTURE.md`, `project/PATH_MAP.md`. Agent instructions: `agents/portfolio-plugin/AGENTS.md`, each `agents/*/AGENTS.md`, `frontend/AGENTS.md`, `frontend/README.md`, `backend/apps/api/README.md`. Evidence: `project/evidence/` (notably `BLEED_AND_CUTOUT_2026-11-05.md`), blind-run reports in `agents/reviewAgent/benchmarks/reports/`, history in `project/memory/NOW.md`.
+
+## 2026-11-09 account UI handoff
+
+- CODE_INSPECTED / local UI: Home, login, signup and OAuth callback are present. The browser Supabase client uses `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` (see `frontend/.env.example`); missing configuration disables authentication. Configure allowed callback URLs and providers in a dedicated project.
+- BLOCKED: No dedicated Pascal Supabase project exists. Existing projects contain user data and the user said all are needed. Supabase quoted an additional project at USD 10/month in the existing organization; the user is considering a separate account, and did not authorize that cost. Do not create, modify or delete a hosted project without the appropriate explicit choice and any required cost confirmation.
+- SECURITY LIMIT: Login does not protect the existing FastAPI, local files, jobs or project data. It is local-only. Multiuser operation requires backend token validation, ownership enforcement across all endpoints and files/jobs, persistent project/user storage, and cross-user tests. Do not claim that the login UI provides tenant isolation.
+- No live signup, email delivery, OAuth provider, or user isolation verification has been performed. The original wemake reference is ignored third-party course code; account UI is independently implemented for the current SPA.

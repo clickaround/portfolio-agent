@@ -4,6 +4,7 @@ import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
 import { cn } from "./lib/utils";
+import { SessionProvider } from "./lib/auth/session";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -36,12 +37,12 @@ export default function App() {
   const isLoading = navigation.state === "loading";
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <div style={{ "--sidebar-width": collapsed ? "4rem" : "15rem" } as CSSProperties}>
+    <SessionProvider><div style={{ "--sidebar-width": collapsed ? "4rem" : "15rem" } as CSSProperties}>
       <Navigation collapsed={collapsed} onToggle={() => setCollapsed((value) => !value)} />
       <div className={cn("px-5 pb-10 pt-20 md:pl-[calc(var(--sidebar-width)+2rem)] md:pr-8 md:pt-10", { "animate-pulse transition-opacity": isLoading })}>
         <Outlet />
       </div>
-    </div>
+    </div></SessionProvider>
   );
 }
 

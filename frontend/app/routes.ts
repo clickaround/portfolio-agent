@@ -4,6 +4,11 @@ import { type RouteConfig, index, prefix, route } from "@react-router/dev/routes
 // A project is a workspace: one layout (header + tabs) and one page per workflow step, each page owned by its feature.
 export default [
   index("common/pages/home-page.tsx"),
+  ...prefix("auth", [
+    route("login", "features/auth/pages/login-page.tsx"),
+    route("join", "features/auth/pages/join-page.tsx"),
+    route("callback", "features/auth/pages/callback-page.tsx"),
+  ]),
   ...prefix("projects", [
     index("features/projects/pages/projects-page.tsx"),
     route(":projectId/editor/:attempt", "features/books/pages/editor-page.tsx"),

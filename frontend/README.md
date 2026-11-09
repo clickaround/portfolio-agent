@@ -19,6 +19,21 @@ npm run api:types      # regenerate app/types/api.d.ts after the backend contrac
 npm run typecheck && npm run lint && npm test && npm run build
 ```
 
+## Account screens
+
+The login, sign-up, and GitHub/Kakao OAuth screens use a dedicated Supabase project.
+Copy `.env.example` to `.env.local` and set the project's URL and **publishable**
+key; never put a service-role or secret key in the frontend. Add
+`http://localhost:5173/auth/callback` and the actual deployed callback URL to the
+project's allowed redirect URLs, and configure each social provider separately.
+Without these settings the form stays disabled and explains why.
+
+**Local API limitation:** Supabase login is not connected to the FastAPI's local
+project store, and does not protect project data. The API has no user authentication
+or tenant isolation and must remain bound to localhost. Do not expose it to multiple
+users until authenticated, per-user project and file authorization is implemented
+and tested. Existing local project data is not automatically migrated.
+
 ## Structure (the owner's feature-folder convention)
 ```
 app/

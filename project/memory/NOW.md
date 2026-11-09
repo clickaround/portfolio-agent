@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-09: Home and Supabase email/password and GitHub/Kakao login/signup UI are implemented, but no Pascal Supabase project is configured and no live authentication has been verified. The existing API is unauthenticated, local-only, and does not isolate users. A separate account/project is needed; do not reuse or delete the four existing projects. See `memory/HANDOFF.md`.
+
 - 2026-11-08: Full-screen editor uses left-hand Claude chat and right-hand DesignCraft with a draggable and keyboard-adjustable divider. Browser verified both directions, narrow view and collapse state. See `memory/HANDOFF.md`.
 
 - 2026-11-08: Full-screen editor includes a collapsible Claude conversation panel, reads the chosen attempt's saved PDF text and lets users insert a proposed text frame. Synthetic real-Claude multi-turn chat and edited-PDF round trip reproduced. It cannot see unsaved changes/images/layout; GPT provider and visual editing remain unimplemented. See `memory/HANDOFF.md`.

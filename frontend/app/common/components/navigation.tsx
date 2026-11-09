@@ -1,7 +1,9 @@
-import { FolderOpen, Home, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { FolderOpen, Home, LogIn, LogOut, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import { Button } from "./ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { authClient } from "~/lib/auth/client";
+import { useSession } from "~/lib/auth/session";
 
 function Links({ close }: { close?: boolean }) {
   const { pathname } = useLocation();
@@ -20,6 +22,10 @@ function Links({ close }: { close?: boolean }) {
 }
 
 export default function Navigation({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) {
+  const { user, loading } = useSession();
+  const account = (short: boolean) => user
+    ? <button type="button" aria-label="로그아웃" className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-accent" onClick={() => { void authClient?.auth.signOut(); }}><LogOut className="size-4 shrink-0" />{!short && <span className="truncate">로그아웃 · {user.email}</span>}</button>
+    : <Link to="/auth/login" aria-label="로그인" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-accent"><LogIn className="size-4 shrink-0" />{!short && <span>로그인</span>}</Link>;
   return <>
     <aside aria-label="사이드바" className="fixed inset-y-0 left-0 z-[60] hidden w-[var(--sidebar-width)] flex-col border-r bg-card md:flex">
       <div className="flex h-16 items-center justify-between px-3">
@@ -32,10 +38,11 @@ export default function Navigation({ collapsed, onToggle }: { collapsed: boolean
         <Link to="/" aria-label="홈" className="rounded-lg p-3 hover:bg-accent"><Home className="size-4" /></Link>
         <Link to="/projects" aria-label="프로젝트" className="rounded-lg p-3 hover:bg-accent"><FolderOpen className="size-4" /></Link>
       </nav> : <div className="px-2"><Links /><p className="px-3 pt-6 text-xs text-muted-foreground">대화 기록은 아직 저장되지 않습니다</p></div>}
+      {!loading && <div className="mt-auto p-2">{account(collapsed)}</div>}
     </aside>
     <div className="fixed inset-x-0 top-0 z-[60] flex h-14 items-center border-b bg-background px-3 md:hidden">
       <Sheet><SheetTrigger asChild><Button variant="ghost" size="icon" aria-label="사이드바 열기"><Menu className="size-5" /></Button></SheetTrigger>
-        <SheetContent side="left"><SheetHeader><SheetTitle>Pascal</SheetTitle></SheetHeader><div className="mt-6"><Links close /></div></SheetContent>
+        <SheetContent side="left"><SheetHeader><SheetTitle>Pascal</SheetTitle></SheetHeader><div className="mt-6"><Links close />{!loading && <div className="mt-4">{account(false)}</div>}</div></SheetContent>
       </Sheet>
       <Link to="/" className="ml-2 font-semibold">Pascal</Link>
     </div>
