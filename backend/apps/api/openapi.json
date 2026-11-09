@@ -452,6 +452,19 @@
    },
    "EditorChatRequest": {
     "properties": {
+     "live_document": {
+      "anyOf": [
+       {
+        "maxLength": 32000,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Optional user-provided live editor structure, not a rendered image.",
+      "title": "Live Document"
+     },
      "messages": {
       "items": {
        "$ref": "#/components/schemas/EditorChatMessage"

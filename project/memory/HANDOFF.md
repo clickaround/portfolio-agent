@@ -147,4 +147,11 @@ Design intent: `project/AGENTS.md`, `project/GOALS.md`, `project/PLANS.md`, `pro
 
 - `project/architecture/agent-editor/ARCHITECTURE-SPINE.md` and `SOLUTION-DESIGN.md` specify the proposed agent/editor boundaries, source provenance, snapshot and proposal contracts, approval, atomic revision checks, idempotency, security, quality and phased tests. These are draft contracts, not implemented capabilities. BMAD spine lint: 0 findings; independent reviewer not run.
 - REPRODUCED: browser submitted a synthetic prompt for `verified` attempt `05`; job `b3f18bcccd64` failed with Claude runner exit 1. A direct synthetic tool-free CLI check reported the weekly usage limit. No model response or insertion was verified in this run. Current code only supports saved-PDF-text chat and user-triggered text-frame insertion.
-- Next: implement the first bounded read-only editor snapshot with stable IDs and live revision, then test it against actual WASM before adding one approved text edit. Do not equate UI rendering, old synthetic results, or the passing spine linter with real-time agent/editor capability.
+- At that point the next step was a bounded read-only editor snapshot; see the newer entry below for the implemented subset and its limits. Do not equate UI rendering, old synthetic results, or the passing spine linter with real-time agent/editor capability.
+
+## 2026-11-09 research and live structure slice
+
+- Implemented a bounded `document.inspect` bridge, removing its top-level path and rejecting responses over 30 KB; user opt-in includes JSON in the existing saved-PDF chat. This is a snapshot, not a revision protocol; no image pixels are sent and there is no visual AI feedback.
+- REPRODUCED: actual WASM on synthetic project 05 returned five pages and no top-level path. After adding synthetic text without saving, a browser request sent the new text in its snapshot to an isolated API with a fake runner. The release build was installed locally. Actual Claude remains at its weekly usage limit and did not produce a response in this run.
+- Tests: frontend typecheck/lint/build and 31 tests; API 57 tests; targeted Rust bridge tests; OpenAPI and Ruff. Research references and non-reproduction caveats: `project/research/AGENT_EDITOR_PAPERS_2026-11-09.md`.
+- Next: stable document/session IDs and atomic revision comparison; then one approved bounded edit and actual before/after render. A visual model and image transport, multi-user authorization, durable conversation, full editing loop, and real quality review remain open.

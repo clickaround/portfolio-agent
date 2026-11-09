@@ -146,7 +146,7 @@ def chat_editor(pid: str, nn: str, body: EditorChatRequest, request: Request, st
         raise ApiError(400, "bad_message", "The last message must come from the user")
     messages = [item.model_dump() for item in body.messages]
     return Accepted.of(jobs.submit("editor-chat", pid,
-                                   lambda log: suggestions.editor_chat(attempt, messages, runner, settings.llm_timeout_s, log)))
+                                   lambda log: suggestions.editor_chat(attempt, messages, runner, settings.llm_timeout_s, log, body.live_document)))
 
 
 @router.get("/projects/{pid}/attempts/{nn}/suggestions", response_model=list[SuggestionSummary])

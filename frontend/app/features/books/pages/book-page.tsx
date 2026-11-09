@@ -320,7 +320,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt }: Pick<R
         {textJob && <JobProgress key={textJob} jobId={textJob} onDone={(job) => { const result = job.result as { text?: unknown } | null; if (job.status === "succeeded" && typeof result?.text === "string") setTextProposal(result.text); else setEditorMessage(job.error ?? "문구 제안을 받지 못했습니다."); setTextJob(null); }} />}
         {textProposal && <div className="space-y-2 rounded-md border p-3 text-sm"><p>에이전트 제안: {textProposal}</p><Button type="button" variant="outline" onClick={() => { setEditorText(textProposal); setTextProposal(""); }}>제안 사용</Button></div>}
         {initialAttempt ? <ResizableEditorSplit isOpen
-          panel={<EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} />}
+          panel={<EditorChatPanel projectId={loaderData.projectId} attempt={initialAttempt} canEdit={editorHasDocument} onInsert={insertChatText} onSnapshot={() => { if (!editor.current || !editorHasDocument) return Promise.reject(new Error("편집기에 문서를 열어 주세요.")); return executeEditorCommand(editor.current, "document.inspect", {}); }} />}
           editor={<iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-full w-full bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
         /> : <iframe ref={editor} onLoad={connectEditorSave} title="DesignCraft" src="/pascal-editor/index.html" className="h-[75vh] min-h-[600px] w-full rounded-md border bg-white" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups" />}
       </section>}

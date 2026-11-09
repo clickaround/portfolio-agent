@@ -370,7 +370,10 @@ fn install_pascal_bridge(runner: &eframe::WebRunner) -> Result<(), wasm_bindgen:
         let Some(raw) = raw.as_string() else { return };
         let Ok((id, command, params)) = crate::pascal_bridge::parse_request(&raw) else { return };
         let response = if let Some(mut shell) = runner.app_mut::<WebShell>() {
-            let result = shell.app.run(&command, params);
+            let result = shell
+                .app
+                .run(&command, params)
+                .and_then(|value| if command == "document.inspect" { crate::pascal_bridge::sanitize_inspection(&value) } else { Ok(value) });
             shell.context.request_repaint();
             match result {
                 Ok(result) => serde_json::json!({"type": "pascal-editor-result", "id": id, "ok": true, "result": result}),

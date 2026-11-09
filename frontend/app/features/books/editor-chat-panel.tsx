@@ -7,13 +7,14 @@ import { chatEditor } from "./mutations";
 interface Message { role: "user" | "assistant"; content: string; proposedText?: string; truncated?: boolean }
 interface ChatResult { reply?: unknown; proposed_text?: unknown; text_truncated?: unknown }
 
-export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen = true }: { projectId: string; attempt: string; canEdit: boolean; onInsert: (text: string) => Promise<void>; isOpen?: boolean }) {
+export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, onSnapshot, isOpen = true }: { projectId: string; attempt: string; canEdit: boolean; onInsert: (text: string) => Promise<void>; onSnapshot?: () => Promise<unknown>; isOpen?: boolean }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [job, setJob] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [isApplying, setIsApplying] = useState(false);
+  const [includeLive, setIncludeLive] = useState(false);
   const pending = useRef(false);
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => { end.current?.scrollIntoView?.({ block: "nearest" }); }, [messages, job]);
@@ -25,10 +26,18 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
     setIsSending(true);
     setError("");
     const next: Message[] = [...messages, { role: "user", content }];
-    setMessages(next);
-    setInput("");
     try {
-      const response = await chatEditor(projectId, attempt, next.slice(-20).map(({ role, content }) => ({ role, content })));
+      let liveDocument: string | undefined;
+      if (includeLive) {
+        if (!canEdit || !onSnapshot) throw new Error("편집기에 문서를 연 뒤 다시 시도하세요.");
+        const snapshot = await onSnapshot();
+        if (!snapshot || typeof snapshot !== "object" || Array.isArray(snapshot)) throw new Error("편집기 상태를 읽지 못했습니다.");
+        liveDocument = JSON.stringify(snapshot);
+      }
+      setMessages(next);
+      setInput("");
+      const history = next.slice(-20).map(({ role, content }) => ({ role, content }));
+      const response = liveDocument === undefined ? await chatEditor(projectId, attempt, history) : await chatEditor(projectId, attempt, history, liveDocument);
       setJob(response.job);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "메시지를 보내지 못했습니다.");
@@ -44,7 +53,7 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
   return <aside aria-label="에이전트 대화" hidden={!isOpen} style={{ display: isOpen ? undefined : "none" }} className="flex h-full min-h-0 w-full flex-col bg-background">
     <header className="border-b px-5 py-4"><h2 className="font-semibold">포트폴리오 에이전트</h2><p className="mt-1 text-xs text-muted-foreground">Claude · 시도 {attempt}</p></header>
     <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite">
-      <p className="text-xs text-muted-foreground">대화와 이 시도의 저장된 PDF 텍스트가 Claude로 전송됩니다. 저장하지 않은 변경과 이미지·배치는 볼 수 없습니다.</p>
+      <p className="text-xs text-muted-foreground">대화와 저장된 PDF 텍스트가 Claude로 전송됩니다. 현재 편집 상태를 포함하면 요청 시점의 페이지·요소 정보와 짧은 텍스트도 전송됩니다. 이미지는 볼 수 없고 이후 편집은 자동 반영되지 않습니다.</p>
       {messages.length === 0 && <p className="text-sm text-muted-foreground">포트폴리오 문구나 구성에 대해 물어보세요.</p>}
       {messages.map((message, index) => <div key={index} className={`rounded-2xl p-3 text-sm ${message.role === "user" ? "ml-6 bg-muted" : "mr-6"}`}>
         <p className="whitespace-pre-wrap break-words">{message.content}</p>
@@ -62,6 +71,7 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, isOpen 
       <div ref={end} />
     </div>
     <form className="p-3" onSubmit={(event) => { event.preventDefault(); void send(); }}>
+      {onSnapshot && <label className="mb-2 flex items-center gap-2 text-xs text-muted-foreground"><input type="checkbox" checked={includeLive} disabled={!canEdit} onChange={(event) => setIncludeLive(event.target.checked)} />현재 편집 상태 포함</label>}
       <label htmlFor="editor-chat-input" className="sr-only">에이전트에게 메시지</label>
       <div className="rounded-2xl border bg-card p-3">
         <textarea id="editor-chat-input" className="min-h-16 w-full resize-y bg-transparent text-sm outline-none" placeholder="메시지를 입력하세요" maxLength={4000} value={input} onChange={(event) => setInput(event.target.value)} />

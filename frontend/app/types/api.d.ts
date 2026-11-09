@@ -772,6 +772,11 @@ export interface components {
         };
         /** EditorChatRequest */
         EditorChatRequest: {
+            /**
+             * Live Document
+             * @description Optional user-provided live editor structure, not a rendered image.
+             */
+            live_document?: string | null;
             /** Messages */
             messages: components["schemas"]["EditorChatMessage"][];
         };

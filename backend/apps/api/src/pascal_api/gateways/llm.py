@@ -24,5 +24,7 @@ def make_read_only_claude_runner(claude_bin: str = "claude") -> Runner:
         p = subprocess.run([claude_bin, "-p", "--restricted", "--tools", "",
                             "--permission-prompts", "none", "--output-format", "text"], cwd=str(cwd), capture_output=True,
                            text=True, encoding="utf-8", errors="replace", timeout=timeout_s, input=prompt)
+        if p.returncode != 0 and any(marker in (p.stdout + p.stderr).lower() for marker in ("weekly limit", "usage limit")):
+            return p.returncode, "CLAUDE_USAGE_LIMIT"
         return p.returncode, p.stdout if p.returncode == 0 else p.stderr
     return run

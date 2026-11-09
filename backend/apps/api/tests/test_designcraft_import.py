@@ -92,6 +92,50 @@ def test_editor_chat_uses_saved_pdf_and_returns_a_proposal(tmp_path):
         assert prompts[0][1] == ""
 
 
+def test_editor_chat_includes_explicit_live_document_context(tmp_path):
+    prompts = []
+    def runner(prompt, cwd, timeout, tools):
+        prompts.append(prompt)
+        return 0, json.dumps({"reply": "There are two pages.", "proposed_text": None})
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()), analysis_runner=runner)
+    project = app.state.store.create("demo")
+    attempt = project / "out" / "attempts" / "01"
+    attempt.mkdir(parents=True)
+    doc = fitz.open()
+    doc.new_page()
+    doc.save(attempt / "book.pdf")
+    doc.close()
+    with TestClient(app) as client:
+        body = {"messages": [{"role": "user", "content": "What is selected?"}],
+                "live_document": '{"pageCount":2,"dirty":true,"selection":{"items":[7]}}'}
+        response = client.post("/projects/demo/attempts/01/editor-chat", json=body)
+        assert response.status_code == 202
+        job = wait(client, response.json()["job"])
+        assert job["status"] == "succeeded", job
+        assert "live_document" in prompts[0]
+        assert "pageCount" in prompts[0] and "dirty" in prompts[0]
+        assert job["result"]["live_document_used"] is True
+        body["live_document"] = "x" * 32001
+        assert client.post("/projects/demo/attempts/01/editor-chat", json=body).status_code == 422
+
+
+def test_editor_chat_reports_model_usage_limit_without_raw_output(tmp_path):
+    def runner(prompt, cwd, timeout, tools):
+        return 1, "CLAUDE_USAGE_LIMIT"
+    app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ()), analysis_runner=runner)
+    attempt = app.state.store.create("demo") / "out" / "attempts" / "01"
+    attempt.mkdir(parents=True)
+    doc = fitz.open()
+    doc.new_page()
+    doc.save(attempt / "book.pdf")
+    doc.close()
+    with TestClient(app) as client:
+        response = client.post("/projects/demo/attempts/01/editor-chat", json={"messages": [{"role": "user", "content": "Hello"}]})
+        job = wait(client, response.json()["job"])
+        assert job["status"] == "failed"
+        assert "사용 한도" in job["error"]
+
+
 def test_editor_chat_rejects_changed_pdf_and_untrusted_origin(tmp_path):
     app = create_app(Settings(tmp_path, "claude", 1, 30, 1, ("http://localhost:5173",)))
     project = app.state.store.create("demo")

@@ -60,6 +60,7 @@ class EditorChatMessage(BaseModel):
 
 class EditorChatRequest(BaseModel):
     messages: list[EditorChatMessage] = Field(min_length=1, max_length=20)
+    live_document: str | None = Field(default=None, max_length=32000, description="Optional user-provided live editor structure, not a rendered image.")
 
 
 class SuggestionSummary(BaseModel):

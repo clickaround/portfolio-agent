@@ -23,3 +23,22 @@ it("sends the conversation and applies a suggested text only after a click", asy
     { role: "user", content: "제목을 제안해줘" }, { role: "assistant", content: "제안입니다" }, { role: "user", content: "한국어로 바꿔줘" },
   ]));
 });
+
+it("sends the current editor structure only when explicitly selected", async () => {
+  const snapshot = vi.fn().mockResolvedValue({ pageCount: 2, dirty: true, selection: { items: [7] } });
+  render(<EditorChatPanel projectId="demo" attempt="02" canEdit onInsert={vi.fn()} onSnapshot={snapshot} />);
+  fireEvent.click(screen.getByLabelText("현재 편집 상태 포함"));
+  fireEvent.change(screen.getByLabelText("에이전트에게 메시지"), { target: { value: "선택된 항목은?" } });
+  fireEvent.click(screen.getByRole("button", { name: "보내기" }));
+  await waitFor(() => expect(chatEditor).toHaveBeenLastCalledWith("demo", "02", [{ role: "user", content: "선택된 항목은?" }], JSON.stringify({ pageCount: 2, dirty: true, selection: { items: [7] } })));
+});
+
+it("does not send a request if the requested live snapshot fails", async () => {
+  vi.mocked(chatEditor).mockClear();
+  render(<EditorChatPanel projectId="demo" attempt="02" canEdit onInsert={vi.fn()} onSnapshot={vi.fn().mockRejectedValue(new Error("편집기 상태를 읽지 못했습니다."))} />);
+  fireEvent.click(screen.getByLabelText("현재 편집 상태 포함"));
+  fireEvent.change(screen.getByLabelText("에이전트에게 메시지"), { target: { value: "선택된 항목은?" } });
+  fireEvent.click(screen.getByRole("button", { name: "보내기" }));
+  expect(await screen.findByRole("alert")).toHaveTextContent("편집기 상태를 읽지 못했습니다.");
+  expect(chatEditor).not.toHaveBeenCalled();
+});
