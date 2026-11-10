@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-10: Expanded draft conversation and LLM data model in `project/architecture/database/LLM_CONVERSATION_DESIGN.md`: ordered message parts, runs/attempts/model calls, provenance, tools, approvals and editor receipts. This is a design only; no SQL, persisted conversation, durable queue or autonomous editor loop is implemented.
+
 - 2026-11-10: Database design draft in `project/architecture/database/README.md` details user-owned projects, conversations/messages, immutable asset/document versions, agent run inputs, reviews, RLS, storage and failure/recovery contracts. No cloud schema or migration has been applied; SQL/RLS and production behavior remain to be implemented and tested.
 
 - 2026-11-10: GitHub OAuth app and Supabase GitHub provider configured. Real browser sign-in via GitHub completed and an authenticated local project was created. Callback and homepage were verified only for local development; Kakao and production domain remain unconfigured. See `project/evidence/2026-11-10_GITHUB_AUTH.md`.

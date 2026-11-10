@@ -2,6 +2,8 @@
 
 상태: **설계 초안 · SQL 미적용**. 기준일: 2026-11-10. 프로젝트·대화 영속화부터 에이전트와 DesignCraft 편집 이력까지 공통으로 사용하는 데이터 계약이다. [기존 웹 데이터 설계](../WEB_DATA_DESIGN.md)와 [에이전트 하네스](../agent-editor/PROTOCOL-HARNESS.md)를 구체화한다. 현재 구현과 목표 구조는 다르다.
 
+대화·LLM 호출·도구 실행에 대한 최신 상세 계약은 [LLM_CONVERSATION_DESIGN.md](LLM_CONVERSATION_DESIGN.md)를 따른다. 아래 표의 대화 관련 필드는 개요이며 상세 계약에서 `message_parts`, `run_attempts`, `model_calls`, `tool_invocations` 등으로 보완한다.
+
 ## 현재 사실과 결정
 
 - 현재 Supabase Auth 이메일/GitHub 로그인은 실제 검증됐지만, 앱 데이터는 사용자별 서버 로컬 파일이다. 대화는 브라우저 메모리에 있고, 클라우드 저장은 구현되지 않았다.
@@ -17,8 +19,8 @@ erDiagram
   CONVERSATIONS ||--o{ MESSAGES : contains
   PROJECTS ||--o{ ASSETS : contains
   ASSETS ||--o{ ASSET_VERSIONS : versions
-  MESSAGES ||--o{ MESSAGE_ATTACHMENTS : attaches
-  ASSET_VERSIONS ||--o{ MESSAGE_ATTACHMENTS : referenced
+  MESSAGES ||--o{ MESSAGE_PARTS : contains
+  ASSET_VERSIONS ||--o{ MESSAGE_PARTS : referenced
   PROJECTS ||--o{ AGENT_RUNS : runs
   AGENT_RUNS ||--o{ RUN_INPUTS : records
   PROJECTS ||--o{ DOCUMENTS : owns
@@ -35,12 +37,11 @@ erDiagram
 |---|---|---|
 | `projects` | `id`, `owner_id → auth.users`, `slug`, `title`, `brief`, `created_at`, `updated_at`, `deleted_at` | `(owner_id, slug)` 유일. 소유권 변경은 일반 사용자에게 금지. `(owner_id, updated_at desc, id)` 목록 인덱스. 로컬 slug와 전역 UUID를 구분한다. |
 | `conversations` | `id`, `project_id`, `title`, `created_by → auth.users`, `created_at`, `updated_at`, `archived_at` | `unique(project_id,id)`를 제공해 자식의 복합 FK 대상이 된다. `(project_id,updated_at desc,id)` 인덱스. |
-| `messages` | `id`, `project_id`, `conversation_id`, `sequence bigint`, `role`(user/assistant/system/tool), `content`, `status`(pending/completed/failed), `created_at`, `client_request_id` | `unique(conversation_id,sequence)`, `unique(conversation_id,client_request_id)`; nullable 요청 ID는 중복 방지에 사용 시 필수로 전달. 사용자 메시지와 답변을 순서대로 다시 연다. 본문 크기 제한은 API에서 강제. |
+| `messages` / `message_parts` | 메시지 ID·대화 ID·순서·작성자·상태와 각 part의 텍스트·첨부·제안 | 메시지 내 순서를 보존하고 사용자가 assistant 메시지를 위조하지 못하게 한다. 상세 제약은 대화 설계 참조. |
 | `assets` | `id`, `project_id`, `kind`, `display_name`, `created_at`, `deleted_at` | 자료의 논리 ID. `unique(project_id,id)`; `(project_id,created_at desc,id)` 인덱스. 원본을 덮어쓰지 않는다. |
 | `asset_versions` | `id`, `project_id`, `asset_id`, `version_no`, `state`, `storage_provider`, `bucket`, `object_key`, `sha256`, `byte_size`, `mime_type`, `parent_version_id`, `created_at` | `unique(asset_id,version_no)`, `unique(storage_provider,bucket,object_key)`, `unique(project_id,id)`. parent는 같은 asset/project의 이전 버전이어야 한다. state는 pending/ready/failed; ready는 해시·크기 필수. 실제 객체의 해시 검증은 서버 책임. |
-| `message_attachments` | `project_id`, `message_id`, `asset_version_id`, `ordinal`, `sent_scope` | 두 참조 모두 복합 FK로 동일 project를 강제. 메시지별 ordinal 유일; `ready` 버전만 첨부하는 것은 단일 트랜잭션 서버 명령으로 검증. `sent_scope`는 실제 공급자에 전달된 범위와 구별. |
-| `agent_runs` | `id`, `project_id`, `conversation_id?`, `request_message_id?`, `agent_kind`, `provider?`, `model?`, `status`, `idempotency_key`, `started_at`, `finished_at`, `error_code?` | 참조는 모두 같은 프로젝트; `(project_id,idempotency_key)` 유일. queued/running/succeeded/failed/cancelled/unknown_outcome 구분. 모델·비용 미확인은 null; 성공은 실제 산출물 확인 후 기록. |
-| `run_inputs` | `project_id`, `run_id`, `asset_version_id?`, `document_version_id?`, `purpose`, `transmitted_scope`, `consent_reference?` | 복합 FK로 같은 프로젝트를 강제하고 정확히 하나의 입력 참조만 허용. 실제 전송 범위 기록; 콘텐츠를 보내지 않았다면 보냈다고 주장하지 않는다. |
+| `agent_runs` / `run_attempts` / `model_calls` | 논리 요청, 재시도, 실제 모델 호출을 별도 기록 | 요청 중복 방지와 결과 불명 상태를 구분. 실제 모델·비용 미확인은 null. 대화 없이 시작되는 생성 작업과 그 입력 계약은 별도 정의가 필요하다. |
+| `model_call_inputs` / `context_snapshots` / `tool_invocations` | 실제 전달된 자료·편집 상태와 도구 호출·결과 | 동일 프로젝트 및 대화 범위를 검증. 전송한 범위와 미전송 자료를 구별. 상세 계약 참조. |
 | `documents` | `id`, `project_id`, `title`, `created_at` | `unique(project_id,id)`; 논리 문서와 버전을 분리. |
 | `document_versions` | `id`, `project_id`, `document_id`, `version_no`, `parent_version_id?`, `source_run_id?`, `state`, `created_at` | 문서 내 버전 유일, parent는 같은 문서·프로젝트. 비교용 parent만으로 파일 파생이 증명된다고 표현하지 않는다. ready 조건은 필수 산출물의 실제 확인 결과로 판단. |
 | `version_artifacts` | `id`, `project_id`, `document_version_id`, `kind`(native/pdf/preview/manifest), `storage_provider`, `bucket`, `object_key`, `sha256`, `byte_size`, `mime_type`, `page_no?` | 단일 버전·종류·페이지 조합 유일. native와 PDF는 개별 바이트·해시를 보존. 객체 키 전역 유일. 미확인 파일을 ready로 확정하지 않는다. |
