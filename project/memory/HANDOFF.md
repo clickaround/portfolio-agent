@@ -1,5 +1,10 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-10 authentication and current limits
+- Dedicated Supabase project `lwescxtcempjhfxqlfyb` is connected by the `portfolio-supabase` OAuth MCP. GitHub OAuth app `Portfolio Agent` is configured, and email signup plus GitHub login were tested through a browser. GitHub login reached the local projects page and created a synthetic project. See `project/evidence/2026-11-10_GITHUB_AUTH.md` and `project/evidence/2026-11-10_AUTH_LIVE_CHECK.md`.
+- Backend verifies Supabase sessions and separates project files and jobs in per-user local directories when the two Supabase settings are configured; frontend authenticates API and binary requests. Cross-user access to project metadata and source image was denied using two real test accounts. Without those settings, local development mode is unauthenticated; do not expose it externally. Local `.env.local` files contain public project config and are ignored by git.
+- Projects, uploads and PDFs are still stored on the backend's local disk, not Supabase Database/Storage or Cloudflare R2. Cross-device persistence and production readiness require database/storage design and implementation. GitHub OAuth homepage and redirect testing are local-only; set and verify the real production domain before deployment. Kakao OAuth remains disabled. Actual Claude generation and real-user PDF/job cross-account access remain unverified. Preserve existing test accounts and local artifacts; do not delete or migrate user data automatically.
+
 ## 2026-11-08 resizable editor panels
 - The full-screen editor now places the Claude chat on the left and the DesignCraft canvas on the right. Drag the divider (or use its arrow keys) to resize; closing the chat retains its state. Resize bounds adapt to the available width. Browser checks covered drag in both directions, keyboard adjustment, narrow viewport and preserving input across collapse.
 
