@@ -1,10 +1,11 @@
 import createClient from "openapi-fetch";
 import type { paths } from "~/types/api";
+import { authenticatedFetch } from "~/lib/auth/fetch";
 
 /** Typed client generated from backend/api/openapi.json (`npm run api:types`): paths, params and bodies are checked by the compiler. */
 export const api = createClient<paths>({
   baseUrl: import.meta.env.VITE_API_URL ?? "http://127.0.0.1:8000",
-  fetch: (request) => globalThis.fetch(request), // late-bound so tests can stub fetch
+  fetch: (request) => authenticatedFetch(request),
 });
 
 /** Shared connection to backend/apps/api. Per-feature calls live in features/<f>/queries.ts (reads) and mutations.ts (writes).

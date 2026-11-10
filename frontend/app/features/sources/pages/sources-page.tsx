@@ -1,3 +1,4 @@
+import { AuthenticatedImage } from "~/common/components/authenticated-resource";
 import { Form, useNavigation, useRevalidator } from "react-router";
 import { JobProgress } from "~/common/components/job-progress";
 import { Badge } from "~/common/components/ui/badge";
@@ -80,7 +81,7 @@ export default function SourcesPage({ loaderData, actionData }: Route.ComponentP
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {assets.map((a) => (
               <Card key={a.id} className="overflow-hidden">
-                <img src={assetUrl(loaderData.projectId, a.relative_path)} alt={a.id} loading="lazy" className="aspect-square w-full bg-muted object-contain" />
+                <AuthenticatedImage src={assetUrl(loaderData.projectId, a.relative_path)} alt={a.id} loading="lazy" className="aspect-square w-full bg-muted object-contain" />
                 <div className="space-y-2 p-3 text-sm">
                   <label className="flex items-center gap-2 font-medium">
                     <input type="checkbox" name="path" value={a.relative_path} />

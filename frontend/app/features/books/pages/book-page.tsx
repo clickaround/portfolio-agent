@@ -1,3 +1,4 @@
+import { AuthenticatedImage, AuthenticatedLink } from "~/common/components/authenticated-resource";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Form, Link, useBeforeUnload, useBlocker, useNavigation, useRevalidator, type BlockerFunction } from "react-router";
 import { JobProgress } from "~/common/components/job-progress";
@@ -6,6 +7,7 @@ import { Button } from "~/common/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/common/components/ui/card";
 import { Input } from "~/common/components/ui/input";
 import { ApiError } from "~/lib/api/client";
+import { authenticatedFetch } from "~/lib/auth/fetch";
 import { bookUrl, pageUrl } from "~/lib/api/urls";
 import { observeDesignCraftSaves } from "../editor-bridge";
 import { executeEditorCommand } from "../editor-command";
@@ -144,7 +146,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
       const canvas = doc?.querySelector("#designcraft_canvas");
       const loading = doc?.querySelector<HTMLElement>("#designcraft_loading");
       if (!canvas || (loading && getComputedStyle(loading).display !== "none")) throw new Error("편집기를 먼저 열고 로딩이 끝날 때까지 기다려 주세요.");
-      const res = await fetch(bookUrl(loaderData.projectId, attempt, "designcraft"));
+      const res = await authenticatedFetch(bookUrl(loaderData.projectId, attempt, "designcraft"));
       if (!res.ok) throw new Error(`편집 파일을 가져오지 못했습니다 (HTTP ${res.status}).`);
       const data = new DataTransfer();
       data.items.add(new File([await res.blob()], `attempt-${attempt}.designcraft`, { type: "application/octet-stream" }));
@@ -276,9 +278,9 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
             <Badge variant="outline">{(a.blocking ?? []).length} blocking</Badge>
             <Badge variant="outline">{(a.advisory ?? []).length} advisory</Badge>
             {a.ledger_pending && <Form method="post"><input type="hidden" name="intent" value="recover-ledger" /><input type="hidden" name="attempt" value={a.attempt} /><Button type="submit" variant="outline" disabled={busy}>저장 이력 복구</Button></Form>}
-            {a.files?.["book.pdf"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pdf")}>PDF</a>}
-            {a.files?.["book.pptx"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pptx")}>PPTX</a>}
-            {a.files?.["book.designcraft"] && <a className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "designcraft")}>DesignCraft 파일 받기</a>}
+            {a.files?.["book.pdf"] && <AuthenticatedLink className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pdf")}>PDF</AuthenticatedLink>}
+            {a.files?.["book.pptx"] && <AuthenticatedLink className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "pptx")}>PPTX</AuthenticatedLink>}
+            {a.files?.["book.designcraft"] && <AuthenticatedLink className="text-sm text-primary underline" href={bookUrl(loaderData.projectId, a.attempt, "designcraft")}>DesignCraft 파일 받기</AuthenticatedLink>}
             {a.files?.["book.designcraft"] && <Link className="rounded-md border px-3 py-2 text-sm" to={`/projects/${loaderData.projectId}/editor/${a.attempt}`}>웹 편집기 열기</Link>}
             {a.files?.["book.designcraft"] && <Button type="button" aria-label={`Open web editor for attempt ${a.attempt}`} variant="outline" disabled={isSending} onClick={() => void openWebEditor(a.attempt)}>인라인 편집</Button>}
             {a.files?.["book.designcraft"] && <Form method="post"><input type="hidden" name="intent" value="open-designcraft" /><input type="hidden" name="attempt" value={a.attempt} /><Button type="submit" variant="outline" disabled={busy}>DesignCraft에서 편집</Button></Form>}
@@ -299,7 +301,7 @@ export function BookWorkspace({ loaderData, actionData, initialAttempt, generati
             </Form>}
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {(a.pages ?? []).map((_, i) => (
-                <img key={i} src={pageUrl(loaderData.projectId, a.attempt, i + 1)} alt={`attempt ${a.attempt} page ${i + 1}`} loading="lazy" className="w-full rounded border bg-white" />
+                <AuthenticatedImage key={i} src={pageUrl(loaderData.projectId, a.attempt, i + 1)} alt={`attempt ${a.attempt} page ${i + 1}`} loading="lazy" className="w-full rounded border bg-white" />
               ))}
             </div>
           </CardContent>

@@ -6,6 +6,8 @@ Layout (domain packages, each with router.py / schemas.py / service.py; shared t
     storage/    projects.py (project folders), jobs.py (background jobs)
     projects/ sources/ plans/ books/ reviews/ jobs/ catalog/    one package per domain
 """
+import threading
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -35,11 +37,15 @@ def _operation_id(route: APIRoute) -> str:
 
 def create_app(settings: Settings | None = None, llm_runner=None, analysis_runner=None) -> FastAPI:
     settings = settings or get_settings()
+    if bool(settings.auth_url) != bool(settings.auth_key):
+        raise ValueError("Both Supabase URL and publishable key are required")
     app = FastAPI(title="Pascal API", version=VERSION, generate_unique_id_function=_operation_id, separate_input_output_schemas=False,
                   description="HTTP service over the portfolio agents: sources -> book plan -> composed book -> fresh review.")
     app.state.settings = settings
     app.state.store = ProjectStore(settings.data_dir)
     app.state.jobs = JobStore(settings.data_dir, settings.workers)
+    app.state.user_stores = {}
+    app.state.user_stores_lock = threading.Lock()
     app.state.llm_runner = llm_runner or make_claude_runner(settings.claude_bin)
     app.state.analysis_runner = analysis_runner or make_read_only_claude_runner(settings.claude_bin)
     app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins), allow_methods=["*"], allow_headers=["*"])

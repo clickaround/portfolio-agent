@@ -57,6 +57,6 @@ export default function AuthPage({ mode }: { mode: "login" | "join" }) {
       <Button type="button" variant="outline" className="w-full" disabled={!authClient || pending} onClick={() => void social("kakao")}><MessageCircle className="size-4" /> Kakao</Button>
     </div>
     <p className="text-center text-sm text-muted-foreground">{joining ? "이미 계정이 있나요?" : "처음이신가요?"} <Link className="text-primary hover:underline" to={joining ? "/auth/login" : "/auth/join"}>{joining ? "로그인" : "회원가입"}</Link></p>
-    <p className="text-xs text-muted-foreground">로그인 계정과 로컬 프로젝트의 접근 권한은 아직 연결되지 않았습니다.</p>
+    <p className="text-xs text-muted-foreground">프로젝트 접근 보호는 연결된 서버의 인증 설정에 따라 적용됩니다.</p>
   </section>;
 }

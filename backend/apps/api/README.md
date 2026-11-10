@@ -7,7 +7,7 @@ python backend/apps/api/run.py --port 8000          # docs: http://127.0.0.1:800
 python -m pytest backend/apps/api/tests -q          # 11 tests (end-to-end flow + architecture) on the synthetic fixtures (no LLM, no real sources)
 python backend/apps/api/scripts/export_openapi.py   # regenerate openapi.json after changing models/routes (a test fails when it is stale)
 ```
-Env: `PASCAL_DATA_DIR` (default `<workspace>/.cache/pascal-data`), `PASCAL_CLAUDE_BIN`, `PASCAL_MAX_UPLOAD_MB` (100), `PASCAL_LLM_TIMEOUT_S` (900), `PASCAL_WORKERS` (2), `PASCAL_CORS_ORIGINS`. No auth yet: bind to localhost only.
+Env: `PASCAL_DATA_DIR` (default `<workspace>/.cache/pascal-data`), `PASCAL_CLAUDE_BIN`, `PASCAL_MAX_UPLOAD_MB` (100), `PASCAL_LLM_TIMEOUT_S` (900), `PASCAL_WORKERS` (2), `PASCAL_CORS_ORIGINS`. Set both `PASCAL_SUPABASE_URL` and `PASCAL_SUPABASE_PUBLISHABLE_KEY` as environment variables or in the ignored `backend/apps/api/.env.local` file to enable Supabase token verification and per-user project/job storage. When neither is set the API remains unauthenticated for local development; bind it to localhost only. Existing local projects are not automatically assigned to any account. File storage is local and is not a production multi-server storage solution.
 
 ## Workflow (what the frontend drives)
 | step | endpoint | agent |

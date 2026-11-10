@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-10: Dedicated Supabase project `lwescxtcempjhfxqlfyb` is reachable through a separately configured OAuth MCP; local frontend and backend public URL/key are configured. Email Auth is enabled, GitHub/Kakao are disabled. Actual email signup/confirmation, password login, project creation, image upload/display, and denial of another real account's project/image access were browser-tested. User data is on local disk; actual Claude generation, PDF/job cross-account checks and production readiness remain unverified. Without backend auth settings the API is unauthenticated and must remain localhost-only. See `project/evidence/2026-11-10_AUTH_LIVE_CHECK.md`.
+
 - 2026-11-09: Synthetic browser flow checked from project creation and uploads through fake-LLM generation, real DesignCraft editing, native save/import, PDF text and review binding. The import completion now shows the new attempt and review link. Finalize correctly rejected a missing review; real Claude remained quota-blocked. Frontend 36 and API 58 tests passed. See `project/evidence/2026-11-09_FULL_FLOW_CHECK.md`.
 
 - 2026-11-09: The project workspace now shows DesignCraft from the outset, uploads sources, submits one plan+DesignCraft compose job and opens the exact generated attempt when safe. A saved/dirty editor is not silently replaced. Full-width desktop and mobile panel behavior plus the upload→fake-plan→actual compose→WASM flow were reproduced; actual Claude was not available. See `project/evidence/2026-11-09_AGENT_WORKSPACE_E2E.md`.

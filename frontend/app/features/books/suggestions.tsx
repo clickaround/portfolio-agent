@@ -17,7 +17,7 @@ export function AgentSuggestions({ projectId, attempt, busy }: { projectId: stri
     requestVersion.current++;
     setDetail(null);
     try {
-      const response = await fetch(base);
+      const response = await authenticatedFetch(base);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       setItems(await response.json() as Suggestion[]);
       setError("");
@@ -25,7 +25,7 @@ export function AgentSuggestions({ projectId, attempt, busy }: { projectId: stri
   }, [base]);
   useEffect(() => {
     let cancelled = false;
-    fetch(base).then((response) => {
+    authenticatedFetch(base).then((response) => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json() as Promise<Suggestion[]>;
     }).then((data) => { if (!cancelled) { setItems(data); setError(""); } })
@@ -36,7 +36,7 @@ export function AgentSuggestions({ projectId, attempt, busy }: { projectId: stri
     const version = ++requestVersion.current;
     setDetail(null);
     try {
-      const response = await fetch(`${base}/${encodeURIComponent(id)}`);
+      const response = await authenticatedFetch(`${base}/${encodeURIComponent(id)}`);
       if (!response.ok) throw new Error(response.status === 409 ? "원본이 변경되어 이 제안은 만료되었습니다." : `HTTP ${response.status}`);
       const result = await response.json() as Detail;
       if (version === requestVersion.current) { setDetail(result); setError(""); }
@@ -57,3 +57,4 @@ export function AgentSuggestions({ projectId, attempt, busy }: { projectId: stri
     {detail && <div className="space-y-2 text-sm">{detail.text_truncated && <p role="alert">문서가 길어 텍스트 일부만 분석했습니다. 뒤쪽 내용이 빠졌을 수 있습니다.</p>}<p>{detail.output.summary}</p>{detail.output.pages.map((page) => <div key={page.page}><strong>페이지 {page.page}</strong><ul className="list-disc pl-5">{page.suggestions.map((suggestion, i) => <li key={i}>{suggestion.issue} — {suggestion.recommendation} ({suggestion.evidence})</li>)}</ul></div>)}</div>}
   </section>;
 }
+import { authenticatedFetch } from "~/lib/auth/fetch";

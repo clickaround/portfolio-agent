@@ -1,3 +1,4 @@
+import { AuthenticatedImage, AuthenticatedLink } from "~/common/components/authenticated-resource";
 import { Form, useNavigation } from "react-router";
 import { Badge } from "~/common/components/ui/badge";
 import { Button } from "~/common/components/ui/button";
@@ -72,12 +73,12 @@ export default function ReviewPage({ loaderData, actionData }: Route.ComponentPr
               <a className="mr-4 underline" target="_blank" rel="noreferrer" href={bookUrl(loaderData.projectId, ctx.attempt, "pdf")}>편집된 PDF 열기</a>
               {ctx.native_edit.parent_attempt && <a className="underline" target="_blank" rel="noreferrer" href={bookUrl(loaderData.projectId, ctx.native_edit.parent_attempt, "pdf")}>기준 시도의 PDF 열기</a>}
               <p>원본 해시 상태: {ctx.native_edit.source_evidence?.status ?? "unverified"}</p>
-              {(ctx.native_edit.source_evidence?.assets ?? []).length > 0 && <details><summary>원본 파일과 기록된 해시</summary><ul className="space-y-1">{ctx.native_edit.source_evidence?.assets?.map((asset) => <li key={asset.path}><a className="underline" target="_blank" rel="noreferrer" href={assetUrl(loaderData.projectId, asset.path)}>{asset.path}</a> <span className="break-all font-mono text-xs">{asset.sha256}</span></li>)}</ul></details>}
+              {(ctx.native_edit.source_evidence?.assets ?? []).length > 0 && <details><summary>원본 파일과 기록된 해시</summary><ul className="space-y-1">{ctx.native_edit.source_evidence?.assets?.map((asset) => <li key={asset.path}><AuthenticatedLink className="underline" href={assetUrl(loaderData.projectId, asset.path)}>{asset.path}</AuthenticatedLink> <span className="break-all font-mono text-xs">{asset.sha256}</span></li>)}</ul></details>}
             </div>}
             <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {Object.keys(ctx.frames).map((f) => (
                 <div key={f} className="space-y-2 text-sm">
-                  <a href={pageUrl(loaderData.projectId, ctx.attempt, pageNumber(f))} target="_blank" rel="noreferrer"><img src={pageUrl(loaderData.projectId, ctx.attempt, pageNumber(f))} alt={f} loading="lazy" className="w-full rounded border bg-white" /></a>
+                  <AuthenticatedImage src={pageUrl(loaderData.projectId, ctx.attempt, pageNumber(f))} alt={f} loading="lazy" className="w-full rounded border bg-white" />
                   <label className="flex items-center gap-2"><input type="checkbox" name="reviewed_frame" value={f} required /> I reviewed {f}</label>
                 </div>
               ))}
