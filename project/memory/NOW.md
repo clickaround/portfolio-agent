@@ -1,5 +1,9 @@
 # Project state — single pointer
 
+- 2026-11-10: Database implementation design refined in `project/architecture/database/IMPLEMENTATION_CONTRACT.md`, covering local slug-to-UUID mapping, before/after-generation conversations, user/worker trust boundaries, atomic message+run+outbox, idempotency, unknown outcomes, migration and validation gates. Draft only; no cloud schema, storage or chat persistence is deployed.
+
+- 2026-11-10: Conversation database work under `supabase/` remains a draft outside the migrations directory. Owner/creator FK, read-only RLS and transactional idempotent user-message function were exercised in a rolled-back transaction; no cloud tables persisted. Assistant writes, concurrent tests, local-to-cloud mapping, API/UI integration and real chat persistence remain unimplemented; see `supabase/README.md`.
+
 - 2026-11-10: Expanded draft conversation and LLM data model in `project/architecture/database/LLM_CONVERSATION_DESIGN.md`: ordered message parts, runs/attempts/model calls, provenance, tools, approvals and editor receipts. This is a design only; no SQL, persisted conversation, durable queue or autonomous editor loop is implemented.
 
 - 2026-11-10: Database design draft in `project/architecture/database/README.md` details user-owned projects, conversations/messages, immutable asset/document versions, agent run inputs, reviews, RLS, storage and failure/recovery contracts. No cloud schema or migration has been applied; SQL/RLS and production behavior remain to be implemented and tested.

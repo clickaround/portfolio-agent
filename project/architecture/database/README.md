@@ -4,6 +4,8 @@
 
 대화·LLM 호출·도구 실행에 대한 최신 상세 계약은 [LLM_CONVERSATION_DESIGN.md](LLM_CONVERSATION_DESIGN.md)를 따른다. 아래 표의 대화 관련 필드는 개요이며 상세 계약에서 `message_parts`, `run_attempts`, `model_calls`, `tool_invocations` 등으로 보완한다.
 
+현재 구현에 연결하기 위한 ID 매핑·쓰기 주체·동시성·outbox·이전·검증 순서는 [구현 계약](IMPLEMENTATION_CONTRACT.md)을 따른다. 1차 텍스트 대화 범위와 후속 파일/편집 범위를 구분한다.
+
 ## 현재 사실과 결정
 
 - 현재 Supabase Auth 이메일/GitHub 로그인은 실제 검증됐지만, 앱 데이터는 사용자별 서버 로컬 파일이다. 대화는 브라우저 메모리에 있고, 클라우드 저장은 구현되지 않았다.
