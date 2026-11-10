@@ -47,16 +47,15 @@ class JobStore:
                 self._save(j)
             try:
                 res = fn(log)
-                with self.lock:
-                    j["status"], j["result"] = "succeeded", json.loads(json.dumps(res, default=str))
+                status, result, error, detail = "succeeded", json.loads(json.dumps(res, default=str)), None, None
             except Exception as e:  # a job never kills the pool; the error is the result
-                with self.lock:
-                    j["status"], j["error"] = "failed", f"{type(e).__name__}: {e}"
-                    j["log"].append(traceback.format_exc()[-1500:])
-            finally:
-                with self.lock:
-                    j["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S")
-                    self._save(j)
+                status, result, error, detail = "failed", None, f"{type(e).__name__}: {e}", traceback.format_exc()[-1500:]
+            with self.lock:
+                j["status"], j["result"], j["error"] = status, result, error
+                if detail:
+                    j["log"].append(detail)
+                j["finished"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+                self._save(j)
 
         def run():
             with project_lock:
@@ -66,9 +65,11 @@ class JobStore:
         return dict(j)
 
     def get(self, jid: str):
-        j = self.jobs.get(jid)
-        return dict(j) if j else None
+        with self.lock:
+            j = self.jobs.get(jid)
+            return {**j, "log": list(j["log"])} if j else None
 
     def list(self, project=None):
-        js = sorted(self.jobs.values(), key=lambda x: x["created"], reverse=True)
-        return [dict(j) for j in js if project is None or j["project"] == project]
+        with self.lock:
+            js = sorted(self.jobs.values(), key=lambda x: x["created"], reverse=True)
+            return [{**j, "log": list(j["log"])} for j in js if project is None or j["project"] == project]

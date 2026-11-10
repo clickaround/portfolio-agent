@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-10: Local Supabase test stack and conversation repository boundary started; draft adds atomic message/run/attempt/outbox and one active run per conversation. Rollback RLS and independent-connection concurrency/idempotency tests passed locally. Repository adapter is not connected to routes; worker, assistant persistence, cloud migration, project mapping and UI integration remain unimplemented. Local JobStore terminal visibility race fixed. See `supabase/README.md`.
+
 - 2026-11-10: Database implementation design refined in `project/architecture/database/IMPLEMENTATION_CONTRACT.md`, covering local slug-to-UUID mapping, before/after-generation conversations, user/worker trust boundaries, atomic message+run+outbox, idempotency, unknown outcomes, migration and validation gates. Draft only; no cloud schema, storage or chat persistence is deployed.
 
 - 2026-11-10: Conversation database work under `supabase/` remains a draft outside the migrations directory. Owner/creator FK, read-only RLS and transactional idempotent user-message function were exercised in a rolled-back transaction; no cloud tables persisted. Assistant writes, concurrent tests, local-to-cloud mapping, API/UI integration and real chat persistence remain unimplemented; see `supabase/README.md`.
