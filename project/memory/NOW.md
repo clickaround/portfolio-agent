@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-10: Database design draft in `project/architecture/database/README.md` details user-owned projects, conversations/messages, immutable asset/document versions, agent run inputs, reviews, RLS, storage and failure/recovery contracts. No cloud schema or migration has been applied; SQL/RLS and production behavior remain to be implemented and tested.
+
 - 2026-11-10: GitHub OAuth app and Supabase GitHub provider configured. Real browser sign-in via GitHub completed and an authenticated local project was created. Callback and homepage were verified only for local development; Kakao and production domain remain unconfigured. See `project/evidence/2026-11-10_GITHUB_AUTH.md`.
 
 - 2026-11-10: Dedicated Supabase project `lwescxtcempjhfxqlfyb` is reachable through a separately configured OAuth MCP; local frontend and backend public URL/key are configured. Email and GitHub Auth are enabled; Kakao is disabled. Actual email signup/confirmation, password login, project creation, image upload/display, and denial of another real account's project/image access were browser-tested. User data is on local disk; actual Claude generation, PDF/job cross-account checks and production readiness remain unverified. Without backend auth settings the API is unauthenticated and must remain localhost-only. See `project/evidence/2026-11-10_AUTH_LIVE_CHECK.md`.
