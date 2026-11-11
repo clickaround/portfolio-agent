@@ -1,5 +1,8 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-11 DUI shared UI
+- Maintained DUI source is in `C:/DK/DUI`, private GitHub `akfldk1028/dui`. Portfolio and MARK pin package commit `d3461d0e617719ec085f35fe18cb3b9bca8626bd`, requiring private GitHub access on every machine or CI installation. Workflow commit `13dcaf57c804360ec4b81b70a56677a1e3ada374` passed GitHub Actions run 42842659376 for React 18 and 19; it was uploaded through the GitHub connector because the CLI OAuth token lacks `workflow` scope. `packages/dui` is a preserved local snapshot, not the canonical source. Run `npm ci` and `npm test` in `C:/DK/DUI`; server-rendering and token tests do not establish browser or full feature parity. Public redistribution/license selection remains outstanding.
+
 ## 2026-11-10 authentication and current limits
 - Dedicated Supabase project `lwescxtcempjhfxqlfyb` is connected by the `portfolio-supabase` OAuth MCP. GitHub OAuth app `Portfolio Agent` is configured, and email signup plus GitHub login were tested through a browser. GitHub login reached the local projects page and created a synthetic project. See `project/evidence/2026-11-10_GITHUB_AUTH.md` and `project/evidence/2026-11-10_AUTH_LIVE_CHECK.md`.
 - Backend verifies Supabase sessions and separates project files and jobs in per-user local directories when the two Supabase settings are configured; frontend authenticates API and binary requests. Cross-user access to project metadata and source image was denied using two real test accounts. Without those settings, local development mode is unauthenticated; do not expose it externally. Local `.env.local` files contain public project config and are ignored by git.

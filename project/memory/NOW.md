@@ -1,5 +1,9 @@
 # Project state — single pointer
 
+- 2026-11-11: DUI is a private standalone GitHub repository `akfldk1028/dui`, with local checkout `C:/DK/DUI`. Portfolio and MARK depend on pinned package commit `d3461d0e617719ec085f35fe18cb3b9bca8626bd`; fresh installs require private-repository Git credentials. `packages/dui` is an untracked historical snapshot, not the maintained source. GitHub connector uploaded the workflow at `13dcaf57c804360ec4b81b70a56677a1e3ada374`, and Actions run 42842659376 passed React 18 and 19.
+
+- 2026-11-11 (superseded by the standalone repository entry above): DUI shared UI began in `packages/dui` with Portfolio and MARK integrations.
+
 - 2026-11-10: Local Supabase test stack and conversation repository boundary started; draft adds atomic message/run/attempt/outbox and one active run per conversation. Rollback RLS and independent-connection concurrency/idempotency tests passed locally. Repository adapter is not connected to routes; worker, assistant persistence, cloud migration, project mapping and UI integration remain unimplemented. Local JobStore terminal visibility race fixed. See `supabase/README.md`.
 
 - 2026-11-10: Database implementation design refined in `project/architecture/database/IMPLEMENTATION_CONTRACT.md`, covering local slug-to-UUID mapping, before/after-generation conversations, user/worker trust boundaries, atomic message+run+outbox, idempotency, unknown outcomes, migration and validation gates. Draft only; no cloud schema, storage or chat persistence is deployed.

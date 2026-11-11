@@ -1,10 +1,14 @@
 import { useState, type CSSProperties } from "react";
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useNavigation } from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLocation, useNavigation } from "react-router";
+import "@dk/dui/styles.css";
+import { duiThemeStyle } from "@dk/dui";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
+import { LandingNavigation } from "./common/components/landing-navigation";
 import { cn } from "./lib/utils";
 import { SessionProvider } from "./lib/auth/session";
+import { duiTheme } from "./lib/dui-theme";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -16,7 +20,7 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className="dark">
+    <html lang="ko" className="dark" style={duiThemeStyle(duiTheme)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,11 +39,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
+  const pathname = useLocation().pathname;
+  const isAuth = pathname.startsWith("/auth/");
+  const isHome = pathname === "/";
   const [collapsed, setCollapsed] = useState(false);
   return (
     <SessionProvider><div style={{ "--sidebar-width": collapsed ? "4rem" : "15rem" } as CSSProperties}>
-      <Navigation collapsed={collapsed} onToggle={() => setCollapsed((value) => !value)} />
-      <div className={cn("px-5 pb-10 pt-20 md:pl-[calc(var(--sidebar-width)+2rem)] md:pr-8 md:pt-10", { "animate-pulse transition-opacity": isLoading })}>
+      {isHome ? <LandingNavigation /> : !isAuth && <Navigation collapsed={collapsed} onToggle={() => setCollapsed((value) => !value)} />}
+      <div className={cn(isHome ? "px-5 pb-10 pt-28 md:px-20 md:pt-40" : !isAuth && "px-5 pb-10 pt-20 md:pl-[calc(var(--sidebar-width)+2rem)] md:pr-8 md:pt-10", { "animate-pulse transition-opacity": isLoading })}>
         <Outlet />
       </div>
     </div></SessionProvider>

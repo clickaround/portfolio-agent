@@ -12,6 +12,8 @@ Product folders. Start here, then open the one you need.
 
 Also: `.cache/` (ignored: vendor clones, signed binaries, blind keys), `_bmad*` (planning tool output, ignored).
 
+The frontend depends on the private `@dk/dui` GitHub repository. Fresh installs and CI require Git credentials authorized to read `akfldk1028/dui`; this public repository alone does not provide that package.
+
 `agents/pascal-agents/` is a separate, optional repository and is not present in a fresh clone. See [pinned setup and verification](project/docs/PASCAL_AGENTS_SETUP.md); an existing checkout and its changes are never reset by this project.
 
 The Book page uses our DesignCraft-derived editor built from source; see [editor build instructions](editor/README.md). Select DesignCraft when composing, then use **웹 편집기 열기** on an attempt to open its full-screen workspace; the selected file is sent after the editor loads. The right-hand Claude panel can discuss the selected attempt's saved PDF text and propose text for insertion. It cannot see unsaved edits, images, or layout. Save and import the downloaded file into a new attempt; the page also offers a best-effort automatic save capture. Its fonts and crop behavior can differ, so inspect the exporter notes and review the actual result.
