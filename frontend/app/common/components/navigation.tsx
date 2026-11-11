@@ -1,4 +1,5 @@
 import { FolderOpen, Home, LogIn, LogOut, Menu, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { DuiSidebarGroups } from "@dk/dui";
 import { Link, useLocation } from "react-router";
 import { Button } from "./ui/button";
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
@@ -13,12 +14,12 @@ function Links({ close }: { close?: boolean }) {
     { to: "/projects", label: "프로젝트", Icon: FolderOpen },
     ...(project ? [{ to: `/projects/${project}`, label: "현재 프로젝트", Icon: FolderOpen }] : []),
   ];
-  return <nav aria-label="주 메뉴" className="space-y-1">
-    {links.map(({ to, label, Icon }) => {
-      const link = <Link to={to} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-accent"><Icon className="size-4 shrink-0" /><span>{label}</span></Link>;
-      return close ? <SheetClose asChild key={to}>{link}</SheetClose> : <div key={to}>{link}</div>;
-    })}
-  </nav>;
+  return <DuiSidebarGroups label="주 메뉴" currentPath={project ? `/projects/${project}` : pathname}
+    groups={[{ id: "main", items: links.map(({ to, label, Icon }) => ({ id: to, href: to, label, icon: <Icon className="size-4 shrink-0" /> })) }]}
+    renderLink={(item, active) => {
+      const link = <Link to={item.href} aria-current={active ? "page" : undefined} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-accent" >{item.icon}<span>{item.label}</span></Link>;
+      return close ? <SheetClose asChild>{link}</SheetClose> : link;
+    }} />;
 }
 
 export default function Navigation({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) {

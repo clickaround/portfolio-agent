@@ -1,5 +1,8 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+## 2026-11-11 DUI upstream adaptation in progress
+- Zola and Studio Admin were cloned into ignored `.cache/vendor/dui-zola` and `.cache/vendor/dui-studio-admin`. `C:/DK/DUI` 0.2.0, commit `acffb53cf3d62f467c3481ae167e726559d739a5`, adapts message composition and sidebar grouping and provides a controlled chat composer/layout, source/license notices and a local example. React 18 and 19 tests passed locally. `npm run preview:dev` provides a mock-only demo. Both apps reference this commit; Portfolio uses the message and grouped navigation components while MARK retains its existing UI. Treat this as a partial adaptation, not complete feature or visual parity.
+
 ## 2026-11-11 DUI shared UI
 - Maintained DUI source is in `C:/DK/DUI`, private GitHub `akfldk1028/dui`. Portfolio and MARK pin package commit `d3461d0e617719ec085f35fe18cb3b9bca8626bd`, requiring private GitHub access on every machine or CI installation. Workflow commit `13dcaf57c804360ec4b81b70a56677a1e3ada374` passed GitHub Actions run 42842659376 for React 18 and 19; it was uploaded through the GitHub connector because the CLI OAuth token lacks `workflow` scope. `packages/dui` is a preserved local snapshot, not the canonical source. Run `npm ci` and `npm test` in `C:/DK/DUI`; server-rendering and token tests do not establish browser or full feature parity. Public redistribution/license selection remains outstanding.
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { DuiMessage, DuiMessageContent } from "@dk/dui";
 import { ArrowUp } from "lucide-react";
 import { JobProgress } from "~/common/components/job-progress";
 import { Button } from "~/common/components/ui/button";
@@ -58,11 +59,11 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, onSnaps
     <div className="flex-1 space-y-3 overflow-y-auto p-4" aria-live="polite">
       <p className="text-xs text-muted-foreground">대화와 저장된 PDF 텍스트가 Claude로 전송됩니다. 현재 편집 상태를 포함하면 요청 시점의 페이지·요소 정보와 짧은 텍스트도 전송됩니다. 이미지는 볼 수 없고 이후 편집은 자동 반영되지 않습니다.</p>
       {messages.length === 0 && <p className="text-sm text-muted-foreground">포트폴리오 문구나 구성에 대해 물어보세요.</p>}
-      {messages.map((message, index) => <div key={index} className={`rounded-2xl p-3 text-sm ${message.role === "user" ? "ml-6 bg-muted" : "mr-6"}`}>
+      {messages.map((message, index) => <DuiMessage key={index} role={message.role} className={`text-sm ${message.role === "user" ? "ml-6" : "mr-6"}`}><DuiMessageContent>
         <p className="whitespace-pre-wrap break-words">{message.content}</p>
         {message.truncated && <p className="mt-2 text-xs">저장된 문서의 텍스트 일부만 전달됐습니다.</p>}
         {message.proposedText && <div className="mt-3 space-y-2 border-t pt-2"><p className="whitespace-pre-wrap break-words">{message.proposedText}</p><Button type="button" size="sm" variant="outline" disabled={!canEdit || isApplying} onClick={() => void insert(message.proposedText!)}>텍스트 상자로 넣기</Button></div>}
-      </div>)}
+      </DuiMessageContent></DuiMessage>)}
       {job && <JobProgress compact key={job} jobId={job} onError={(message) => { setError(message); setJob(null); }} onDone={(finished) => {
         const result = finished.result as ChatResult | null;
         if (finished.status === "succeeded" && typeof result?.reply === "string") {
@@ -77,7 +78,7 @@ export function EditorChatPanel({ projectId, attempt, canEdit, onInsert, onSnaps
       {onSnapshot && <label className="mb-2 flex items-center gap-2 text-xs text-muted-foreground"><input type="checkbox" checked={includeLive} disabled={!canEdit} onChange={(event) => setIncludeLive(event.target.checked)} />현재 편집 상태 포함</label>}
       <label htmlFor="editor-chat-input" className="sr-only">에이전트에게 메시지</label>
       <div className="rounded-2xl border bg-card p-3">
-        <textarea id="editor-chat-input" className="min-h-16 w-full resize-y bg-transparent text-sm outline-none" placeholder="메시지를 입력하세요" maxLength={4000} value={input} onChange={(event) => setInput(event.target.value)} />
+        <textarea id="editor-chat-input" className="min-h-16 w-full resize-y bg-transparent text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary" placeholder="메시지를 입력하세요" maxLength={4000} value={input} onChange={(event) => setInput(event.target.value)} />
         <div className="flex justify-end"><Button type="submit" size="icon" className="rounded-full" aria-label="보내기" disabled={!input.trim() || isSending || Boolean(job)}><ArrowUp className="size-4" /></Button></div>
       </div>
     </form>

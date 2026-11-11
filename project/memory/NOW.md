@@ -1,5 +1,7 @@
 # Project state — single pointer
 
+- 2026-11-11: Zola (`a1390f0f75481ae94a01d06d197e5e7bd83414f4`) and Studio Admin (`3d1d6f4abf4231b258c81da25da1ccbc38d9b954`) were cloned into ignored `.cache/vendor/`. DUI 0.2.0 commit `acffb53cf3d62f467c3481ae167e726559d739a5` contains partial chat-message and grouped-sidebar adaptations, a demo, tests and third-party licenses; both apps reference that commit. Portfolio uses DUI messages and its navigation uses DUI groups; service functionality stays in Portfolio. Neither complete upstream application nor a backend was imported. See `C:/DK/DUI/THIRD_PARTY_NOTICES.md`.
+
 - 2026-11-11: DUI is a private standalone GitHub repository `akfldk1028/dui`, with local checkout `C:/DK/DUI`. Portfolio and MARK depend on pinned package commit `d3461d0e617719ec085f35fe18cb3b9bca8626bd`; fresh installs require private-repository Git credentials. `packages/dui` is an untracked historical snapshot, not the maintained source. GitHub connector uploaded the workflow at `13dcaf57c804360ec4b81b70a56677a1e3ada374`, and Actions run 42842659376 passed React 18 and 19.
 
 - 2026-11-11 (superseded by the standalone repository entry above): DUI shared UI began in `packages/dui` with Portfolio and MARK integrations.

@@ -14,6 +14,8 @@ it("sends the conversation and applies a suggested text only after a click", asy
   await waitFor(() => expect(chatEditor).toHaveBeenCalledWith("demo", "02", [{ role: "user", content: "제목을 제안해줘" }]));
   fireEvent.click(await screen.findByRole("button", { name: "답변 완료" }));
   expect(await screen.findByText("제안입니다")).toBeInTheDocument();
+  expect(screen.getByText("제목을 제안해줘").closest('[data-role="user"]')).toBeTruthy();
+  expect(screen.getByText("제안입니다").closest('[data-role="assistant"]')).toBeTruthy();
   expect(insert).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button", { name: "텍스트 상자로 넣기" }));
   await waitFor(() => expect(insert).toHaveBeenCalledWith("새 제목"));

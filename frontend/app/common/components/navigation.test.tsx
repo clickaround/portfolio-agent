@@ -10,6 +10,7 @@ it("provides real home and project navigation and a sidebar toggle", () => {
   expect(sidebar.querySelector('a[href="/"]')).toBeTruthy();
   expect(sidebar.querySelector('a[href="/projects"]')).toBeTruthy();
   expect(sidebar.querySelector('a[href="/projects/demo"]')).toBeTruthy();
+  expect(sidebar.querySelector('a[href="/projects/demo"]')).toHaveAttribute("aria-current", "page");
   fireEvent.click(screen.getByRole("button", { name: "사이드바 닫기" }));
   expect(toggle).toHaveBeenCalledOnce();
 });
