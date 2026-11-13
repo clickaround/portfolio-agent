@@ -1,0 +1,8 @@
+# gitagent knowledge index (knowledge.schema.json). Paths are relative to knowledge/.
+# The engine reads domains/, editorial/, patterns/ and taxonomy.json directly; they are not prompt documents.
+documents:
+  - path: DOMAINS.md
+    description: "Which domain packs exist and how a domain is added."
+    tags: [domains]
+    priority: medium
+    always_load: false

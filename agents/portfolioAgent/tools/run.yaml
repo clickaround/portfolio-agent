@@ -1,0 +1,26 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of run.sh, which runs
+# `portfolio run ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: run
+description: Rule-only pipeline for a benchmark condition; no host book plan.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    out:
+      type: string
+      description: Output folder
+    condition:
+      type: string
+      description: Benchmark condition id (default B3_full)
+  required:
+  - project
+  - out
+implementation:
+  type: script
+  path: run.sh
+  script: run.sh
+  runtime: sh

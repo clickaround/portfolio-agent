@@ -1,0 +1,2 @@
+# Agent tool and hook launchers are started with sh, which fails on CRLF.
+*.sh text eol=lf

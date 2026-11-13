@@ -1,0 +1,23 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of record-review.sh, which runs
+# `portfolio record-review ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: record-review
+description: Record a fresh reviewer's review if its hashes match the context.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    out:
+      type: string
+      description: Attempt output folder
+    review_json:
+      type: string
+      description: The reviewer's review.json
+  required:
+  - out
+  - review_json
+implementation:
+  type: script
+  path: record-review.sh
+  script: record-review.sh
+  runtime: sh

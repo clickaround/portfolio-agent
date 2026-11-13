@@ -1,0 +1,6 @@
+{
+  "host_skills": "portfolio-plugin/skills",
+  "extra_copies": {
+    "scripts/portfolio.py": "portfolio-plugin/scripts/portfolio.py"
+  }
+}

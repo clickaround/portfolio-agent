@@ -1,0 +1,27 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of check-scenes.sh, which runs
+# `portfolio check-scenes ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: check-scenes
+description: Run the gates on existing scenes.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    scenes_dir:
+      type: string
+      description: Scenes folder
+    out:
+      type: string
+      description: Output folder
+  required:
+  - project
+  - scenes_dir
+  - out
+implementation:
+  type: script
+  path: check-scenes.sh
+  script: check-scenes.sh
+  runtime: sh

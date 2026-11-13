@@ -19,7 +19,7 @@
 Independent **case/reference research** and **source/backend code audits** may run in parallel after P00. Backends should be compared as alternatives; their failures cannot block a working fallback. If no authorized portfolio sample is available, use synthetic data to continue engine development, but mark the real-case quality gate `BLOCKED`—never mislabel synthetic data as professional-quality evidence.
 
 ## Role split
-Integration Lead owns shared task statuses/memory/ADRs; a research agent and a design/QA specialist may work in separate branches/worktrees under `agents/WORKSHARE.md`. Keep small PRs/changes, one artifact owner. Do not have multiple agents share writes to a Scene Document or run competing DB migrations.
+Integration Lead owns shared task statuses/memory/ADRs; a research agent and a design/QA specialist may work in separate branches/worktrees under `project/agent-roles/WORKSHARE.md`. Keep small PRs/changes, one artifact owner. Do not have multiple agents share writes to a Scene Document or run competing DB migrations.
 
 ## Exit evidence
 `evidence/<phase>/<task-id>.md` with hypothesis, exact pinned versions, commands and return codes, hashes, measured outputs, failures, next step. A failed experiment is acceptable evidence for rejecting a backend, not a pass. No promised background execution.

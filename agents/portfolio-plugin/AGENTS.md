@@ -1,6 +1,6 @@
 # portfolio-plugin - the Portfolio plugin shell (Claude Code / Codex)
 
-Plugin root only: `.claude-plugin/`, `.codex-plugin/`, `.agents/plugins/marketplace.json`, `plugin.json`, `skills/` (host-facing workflows; each names the agent that owns it), `scripts/portfolio.py` (single CLI entry). No engine code lives here.
+Plugin root only: `.claude-plugin/`, `.codex-plugin/`, `.agents/plugins/marketplace.json`, `plugin.json`, `skills/` (host-facing workflows; the agent-owned ones are rendered from `../<agent>/skills/` by `../baseAgent/scripts/render_host.py`, so edit them there), `scripts/portfolio.py` (single CLI entry). No engine code lives here.
 
 Mission, evidence labels, licence gate: `../../project/AGENTS.md` (read first). Speak Korean with the owner; code and contracts in English.
 

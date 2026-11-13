@@ -1,0 +1,10 @@
+# C8 plugin / hooks. Enforced in the tool loop by code, not by prose.
+# gitagent events: on_session_start, on_session_end, pre_tool_use, post_tool_use, on_error, pre_response, post_response.
+# A hook script reads the event as JSON on stdin and prints {"action": "allow" | "block" | "modify"}.
+# The deny rules are data in guard.json. fail_open: false means a broken guard blocks.
+hooks:
+  pre_tool_use:
+    - script: scripts/guard.sh
+      description: "Blocks tool calls that break a guardrail listed in guard.json."
+      timeout: 10
+      fail_open: false

@@ -1,0 +1,21 @@
+{
+  "deny": [
+    {
+      "tools": [
+        "write",
+        "edit"
+      ],
+      "pattern": "(^|[\\\"/ ])final/",
+      "reason": "only the `finalize` tool promotes an attempt to final/",
+      "rule": "GUARDRAILS 3"
+    },
+    {
+      "tools": [
+        "cli"
+      ],
+      "pattern": "\\b(cp|mv|copy|xcopy|robocopy|rsync)\\b[^|;&]*\\bfinal/",
+      "reason": "only the `finalize` tool promotes an attempt to final/",
+      "rule": "GUARDRAILS 3"
+    }
+  ]
+}

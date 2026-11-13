@@ -7,7 +7,7 @@
 2. `python scripts/validate_package.py` → `python -m unittest discover -s tests -v` → `python scripts/task_status.py --ready`.
 3. `prompts/START_HERE_KO.md`를 Codex 또는 Claude Code에 입력합니다. 첫 실행 시 P00 검증부터 처리합니다.
 4. P02의 해당 작업을 시작하면 에이전트가 `python scripts/clone_repos.py --group layout --apply`처럼 **자동으로 공개 GitHub 저장소를 고정 SHA로 복제**하도록 지침이 포함돼 있습니다. 설치/실행은 별도 라이선스·안전 검사 후 단계적으로 수행합니다.
-5. `docs/ARCHITECTURE_MAP.md`는 전체 폴더 구조를 설명합니다. `agents/WORKSHARE.md`는 다중 에이전트 협업 규칙입니다.
+5. `docs/ARCHITECTURE_MAP.md`는 전체 폴더 구조를 설명합니다. `project/agent-roles/WORKSHARE.md`는 다중 에이전트 협업 규칙입니다.
 
 ## 작업을 무조건 나누는 이유
 다중 에이전트를 사용할 때에도 원본 파일 변경과 최종 문서 합성은 단일 작업자만 허용합니다. '모든 에이전트가 각자 디자인하고 한 파일에 쓰기'는 충돌과 회귀를 초래하므로 금지합니다.

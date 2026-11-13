@@ -1,0 +1,15 @@
+{
+  "deny": [
+    {
+      "tools": [
+        "read",
+        "cli",
+        "write",
+        "edit"
+      ],
+      "pattern": "_unblind_key",
+      "reason": "the unblind key is never read by, or given to, an agent that generates or reviews",
+      "rule": "GUARDRAILS 5"
+    }
+  ]
+}

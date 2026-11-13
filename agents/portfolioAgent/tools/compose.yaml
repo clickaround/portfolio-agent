@@ -1,0 +1,42 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of compose.sh, which runs
+# `portfolio compose ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: compose
+description: Lay out and export a book from a host-written book plan, with guardrails.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    plan:
+      type: string
+      description: book-plan.json
+    out:
+      type: string
+      description: Output folder
+    width_mm:
+      type: number
+      description: Page width
+    height_mm:
+      type: number
+      description: Page height
+    bleed_mm:
+      type: number
+      description: Bleed
+    design_plan:
+      type: string
+      description: design-plan.json
+    design_md:
+      type: string
+      description: DESIGN.md or tokens.json
+  required:
+  - project
+  - plan
+  - out
+implementation:
+  type: script
+  path: compose.sh
+  script: compose.sh
+  runtime: sh

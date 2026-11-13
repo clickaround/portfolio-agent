@@ -1,0 +1,36 @@
+spec_version: "0.1.0"
+name: portfolio-agent
+version: 0.1.0
+description: "Builds the book: the host writes a book plan, rules lay it out, guardrails check it, exporters write PDF, PPTX and PNG."
+
+metadata:
+  execution_mode: host_plan_rules_execute
+  state_owner: engine
+
+model:
+  preferred: ""             # host decides (claude -p on the owner subscription)
+  fallback: []
+
+skills:
+  - portfolio-create
+  - portfolio-design-direction
+  - portfolio-diagrams
+  - portfolio-edit
+  - portfolio-format
+  - portfolio-plan
+
+tools:    # gitagent built-ins (cli, read, write, memory) + tools/<name>.yaml
+  - cli
+  - read
+  - write
+  - memory
+  - catalogue
+  - check-scenes
+  - compose
+  - edit-element
+  - grid
+  - manifest
+  - run
+
+runtime:
+  max_turns: 60

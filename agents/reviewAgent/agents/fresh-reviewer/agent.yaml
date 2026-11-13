@@ -1,0 +1,8 @@
+spec_version: "0.1.0"
+name: fresh-reviewer
+version: 0.1.0
+description: "Reviews one bound attempt from its rendered frames and the rubric, with no part in generating it, and returns only review.json."
+
+metadata:
+  mode: subagent            # Harness² C5: own context, returns only its result
+  allowed_tools: read

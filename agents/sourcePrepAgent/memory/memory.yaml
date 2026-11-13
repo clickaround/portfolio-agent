@@ -1,0 +1,8 @@
+# gitagent memory config (memory.schema.json). MEMORY.md is C3 and goes into every call.
+layers:
+  - name: working
+    path: MEMORY.md
+    max_lines: 200
+    format: markdown
+update_triggers:
+  - on_explicit_save

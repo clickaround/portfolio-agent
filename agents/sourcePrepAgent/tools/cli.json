@@ -1,0 +1,5 @@
+{
+  "module": "portfolio_agent.cli",
+  "function": "main",
+  "console_script": "portfolio"
+}

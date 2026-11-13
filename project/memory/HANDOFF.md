@@ -1,5 +1,7 @@
 # Handoff to Codex (and any next session) — written 2026-11-06
 
+Claude 후속 개발의 제품 목표, 에이전트별 책임, 벤치마크와 공유 메모리 경로는 `project/memory/CLAUDE_HANDOFF.md`를 함께 읽는다.
+
 ## 2026-11-11 DUI upstream adaptation in progress
 - Zola and Studio Admin were cloned into ignored `.cache/vendor/dui-zola` and `.cache/vendor/dui-studio-admin`. `C:/DK/DUI` 0.2.0, commit `acffb53cf3d62f467c3481ae167e726559d739a5`, adapts message composition and sidebar grouping and provides a controlled chat composer/layout, source/license notices and a local example. React 18 and 19 tests passed locally. `npm run preview:dev` provides a mock-only demo. Both apps reference this commit; Portfolio uses the message and grouped navigation components while MARK retains its existing UI. Treat this as a partial adaptation, not complete feature or visual parity.
 

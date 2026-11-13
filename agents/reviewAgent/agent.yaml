@@ -1,0 +1,34 @@
+spec_version: "0.1.0"
+name: review-agent
+version: 0.1.0
+description: "Independent review: binds what must be reviewed, accepts only a fresh review, and gates finalization."
+
+metadata:
+  execution_mode: deterministic_gate_plus_fresh_reviewer
+  state_owner: engine
+
+model:
+  preferred: ""             # host decides (claude -p on the owner subscription)
+  fallback: []
+
+skills:
+  - portfolio-experiment
+  - portfolio-review
+
+tools:    # gitagent built-ins (cli, read, write, memory) + tools/<name>.yaml
+  - cli
+  - read
+  - write
+  - memory
+  - finalize
+  - record-review
+  - review-context
+
+agents:
+  fresh-reviewer:
+    description: "Reviews one bound attempt from its frames and the rubric; took no part in generating it."
+    delegation:
+      mode: explicit
+
+runtime:
+  max_turns: 60

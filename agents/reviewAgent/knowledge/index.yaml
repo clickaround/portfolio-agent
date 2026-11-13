@@ -1,0 +1,7 @@
+# gitagent knowledge index (knowledge.schema.json). Paths are relative to knowledge/.
+documents:
+  - path: critic-rubric.md
+    description: "Rubric the fresh reviewer scores against."
+    tags: [rubric, review]
+    priority: high
+    always_load: false

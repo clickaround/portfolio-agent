@@ -48,7 +48,7 @@ addopts = "-p no:cacheprovider"
 [tool.ruff]
 line-length = 180            # the agents' code is written in wide lines
 target-version = "py311"
-extend-exclude = ["agents/pascal-agents", "agents/portfolio-plugin/skills", "editor/designcraft/packaging", "_bmad", "_bmad-output", ".cache", "frontend"]
+extend-exclude = ["agents/pascal-agents", "agents/baseAgent/bench", "agents/baseAgent/clients", "agents/baseAgent/crates", "agents/baseAgent/gitagent_harbor", "agents/baseAgent/scripts/dashboard.py", "agents/baseAgent/scripts/make-split.py", "agents/portfolio-plugin/skills", "editor/designcraft/packaging", "_bmad", "_bmad-output", ".cache", "frontend"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
@@ -89,6 +89,7 @@ type = "forbidden"
 source_modules = [
   "pascal_api.projects", "pascal_api.sources", "pascal_api.plans", "pascal_api.books",
   "pascal_api.reviews", "pascal_api.jobs", "pascal_api.catalog", "pascal_api.storage", "pascal_api.config",
+  "pascal_api.conversations", "pascal_api.auth",
 ]
 forbidden_modules = ["portfolio_agent.layout", "portfolio_agent.authors", "portfolio_agent.engine", "portfolio_agent.cli"]
 allow_indirect_imports = true   # the gateway itself is allowed to import them; everything else only via the gateway

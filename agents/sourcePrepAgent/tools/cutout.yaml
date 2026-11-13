@@ -1,0 +1,29 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of cutout.sh, which runs
+# `portfolio cutout ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: cutout
+description: Remove the background of the photographs the host chose.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    files:
+      type: string
+      description: Comma-separated file names under images/
+    engine:
+      type: string
+      description: rembg (default) or photocraft
+    sheet:
+      type: string
+      description: PNG path for the before/after sheet
+  required:
+  - project
+  - files
+implementation:
+  type: script
+  path: cutout.sh
+  script: cutout.sh
+  runtime: sh

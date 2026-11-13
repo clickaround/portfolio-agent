@@ -1,0 +1,31 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of edit-element.sh, which runs
+# `portfolio edit ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: edit-element
+description: Change the text of one element on one page.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    out:
+      type: string
+      description: Output folder
+    page:
+      type: string
+      description: Page
+    element:
+      type: string
+      description: Element id
+    text:
+      type: string
+      description: New text
+  required:
+  - out
+  - page
+  - element
+  - text
+implementation:
+  type: script
+  path: edit-element.sh
+  script: edit-element.sh
+  runtime: sh

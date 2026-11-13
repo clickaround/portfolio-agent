@@ -1,0 +1,31 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of prepare.sh, which runs
+# `portfolio prepare ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: prepare
+description: Propose and, when approved, write trimmed, level-corrected or paper-knocked-out derivatives; originals are kept.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    approve:
+      type: boolean
+      description: Write the derivatives; without it only the proposal and sheet
+    levels:
+      type: boolean
+      description: Stretch drawing levels
+    knockout:
+      type: boolean
+      description: Make drawing paper transparent
+    sheet:
+      type: string
+      description: PNG path for the crop-proposal contact sheet
+  required:
+  - project
+implementation:
+  type: script
+  path: prepare.sh
+  script: prepare.sh
+  runtime: sh

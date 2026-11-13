@@ -1,0 +1,26 @@
+spec_version: "0.1.0"
+name: source-prep-agent
+version: 0.1.0
+description: "Turns the sources people hand over into clean, original-preserving assets."
+
+metadata:
+  execution_mode: deterministic
+  state_owner: engine
+
+model:
+  preferred: ""             # host decides (claude -p on the owner subscription)
+  fallback: []
+
+skills:
+  - portfolio-cutout
+
+tools:    # gitagent built-ins (cli, read, write, memory) + tools/<name>.yaml
+  - cli
+  - read
+  - write
+  - memory
+  - cutout
+  - prepare
+
+runtime:
+  max_turns: 60

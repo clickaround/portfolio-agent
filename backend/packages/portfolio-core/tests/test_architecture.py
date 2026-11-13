@@ -13,7 +13,7 @@ SOURCE_ROOTS = [WORKSPACE / "backend" / "packages" / "portfolio-core" / "src", *
 AGENTS = WORKSPACE / "agents"
 BACKENDS = AGENTS / "portfolioAgent" / "backends"
 TOP_LEVEL_ALLOWED = {
-    "agents", "backend", "frontend", "editor", "project",  # documented product folders
+    "agents", "backend", "frontend", "editor", "project", "supabase",  # documented product folders
     "_bmad", "_bmad-output",                              # BMAD planning tool output
     ".agents", ".cache", ".git", ".github", ".remember", ".pytest_cache", ".claude", ".vscode", ".idea", ".venv", ".ruff_cache", ".import_linter_cache", ".playwright-mcp",
 }
@@ -132,6 +132,96 @@ class AgentFolderTests(unittest.TestCase):
         for agent in ("portfolioAgent", "sourcePrepAgent", "reviewAgent"):
             self.assertTrue((AGENTS / agent / "AGENTS.md").is_file(), f"{agent}/AGENTS.md (identity, contract, how to test) is required")
             self.assertTrue((AGENTS / agent / "tests").is_dir(), f"{agent}/tests")
+
+    def test_base_agent_module_has_the_eight_harness_components(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("check_base", AGENTS / "baseAgent" / "scripts" / "check_base.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        self.assertEqual(mod.check(AGENTS / "baseAgent"), [], "agents/baseAgent is the gitagent + Harness² base every agent folder is copied from")
+        for agent in ("portfolioAgent", "sourcePrepAgent", "reviewAgent"):
+            self.assertEqual(mod.check(AGENTS / agent), [], f"{agent} must follow agents/baseAgent (gitagent names + Harness² C1..C8)")
+
+    def test_host_skills_are_rendered_from_the_owning_agent(self):
+        import subprocess, sys
+        r = subprocess.run([sys.executable, str(AGENTS / "baseAgent" / "scripts" / "render_host.py"), "--check"], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, "agents/<agent>/skills/ is the source; run agents/baseAgent/scripts/render_host.py: " + r.stdout)
+
+    def test_agent_tools_declare_real_cli_subcommands(self):
+        import re
+        cli = (AGENTS / "portfolioAgent" / "src" / "portfolio_agent" / "cli.py").read_text(encoding="utf-8")
+        for path in sorted(AGENTS.glob("*Agent/tools/*.yaml")):
+            sub = re.search(r'tool_entry\.py" ([\w-]+)', path.with_suffix(".sh").read_text(encoding="utf-8")).group(1)   # the launcher names the CLI subcommand
+            self.assertIn(f'add_parser("{sub}")', cli, f"{path.parent.parent.name}/tools/{path.name} declares a CLI command that does not exist")
+
+
+    def test_a_declared_tool_runs_from_json_on_stdin(self):
+        """gitagent hands a script tool its arguments as one JSON object on stdin: 2.x runs `sh tools/<x>.sh` in the agent folder."""
+        import json, shutil, subprocess
+        if not shutil.which("sh"):
+            self.skipTest("sh is not on PATH (gitagent starts hooks and these tools with sh)")
+        tools = AGENTS / "portfolioAgent"
+        project = AGENTS / "portfolioAgent" / "examples" / "synthetic_projects" / "photo_01"
+        ok = subprocess.run(["sh", "tools/manifest.sh"], cwd=tools, input=json.dumps({"project": str(project)}), capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(ok.returncode, 0, ok.stderr)
+        self.assertEqual(json.loads(ok.stdout)["project_id"], "photo_01")
+        bad = subprocess.run(["sh", "tools/manifest.sh"], cwd=tools, input="{}", capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(bad.returncode, 2)
+        self.assertIn("missing required argument", bad.stdout)
+
+    def test_guard_hooks_block_what_the_guardrails_forbid(self):
+        """C8: each agent's pre_tool_use hook, run the way gitagent 2.x runs it: `sh <script>` with the event JSON on stdin."""
+        import json, shutil, subprocess
+        if not shutil.which("sh"):
+            self.skipTest("sh is not on PATH (gitagent starts hooks with sh)")
+
+        def ask(agent, tool, args):
+            event = {"event": "pre_tool_use", "tool": tool, "args": args, "data": {"tool_name": tool, "arguments": args}}
+            r = subprocess.run(["sh", "hooks/scripts/guard.sh"], cwd=AGENTS / agent, input=json.dumps(event), capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            return json.loads(r.stdout)["action"]
+
+        for agent in ("sourcePrepAgent", "portfolioAgent"):
+            self.assertEqual(ask(agent, "write", {"path": "proj\\sources\\a.jpg"}), "block", "originals are never overwritten")
+            self.assertEqual(ask(agent, "cli", {"command": "rm -rf proj/sources/a.jpg"}), "block")
+            self.assertEqual(ask(agent, "cli", {"command": "cat x > proj/sources/a.jpg"}), "block")
+            self.assertEqual(ask(agent, "read", {"path": "proj/sources/a.jpg"}), "allow", "reading an original is fine")
+            self.assertEqual(ask(agent, "write", {"path": "proj/images/a.png"}), "allow")
+            self.assertEqual(ask(agent, "read", {"path": ".cache/_unblind_key_3.json"}), "block", "a generating agent never sees the unblind key")
+        self.assertEqual(ask("reviewAgent", "write", {"path": "out/final/book.pdf"}), "block", "only finalize promotes to final/")
+        self.assertEqual(ask("reviewAgent", "cli", {"command": "cp out/attempts/01/book.pdf out/final/"}), "block")
+        self.assertEqual(ask("reviewAgent", "write", {"path": "out/attempts/01/review.json"}), "allow")
+        self.assertEqual(ask("reviewAgent/agents/fresh-reviewer", "read", {"path": ".cache/_unblind_key.json"}), "block")
+        self.assertEqual(ask("reviewAgent/agents/fresh-reviewer", "read", {"path": "out/preview/page-01.png"}), "allow")
+        broken = subprocess.run(["sh", "hooks/scripts/guard.sh"], cwd=AGENTS / "reviewAgent", input="not json", capture_output=True, text=True)
+        self.assertNotEqual(broken.returncode, 0, "a guard that cannot read its event fails, and hooks.yaml sets fail_open: false")
+
+    def test_tool_arguments_become_cli_arguments(self):
+        import sys
+        sys.path.insert(0, str(AGENTS / "baseAgent" / "scripts"))
+        from tool_entry import to_argv  # noqa: E402
+        self.assertEqual(
+            to_argv("compose", ["project", "plan", "out"], {"out": "o", "project": "p", "plan": "b.json", "width_mm": 297, "design_plan": None}),
+            ["compose", "p", "b.json", "o", "--width-mm", "297"])
+        self.assertEqual(to_argv("prepare", ["project"], {"project": "p", "approve": True, "levels": False}), ["prepare", "p", "--approve"])
+
+    def test_the_folder_checker_rejects_a_broken_agent_folder(self):
+        import importlib.util, shutil, tempfile
+        spec = importlib.util.spec_from_file_location("check_base", AGENTS / "baseAgent" / "scripts" / "check_base.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        with tempfile.TemporaryDirectory() as tmp:
+            copy = Path(tmp) / "reviewAgent"
+            shutil.copytree(AGENTS / "reviewAgent", copy, ignore=shutil.ignore_patterns("src", "tests", "benchmarks", "__pycache__", ".pytest_cache"))
+            self.assertEqual(mod.check(copy), [])
+            (copy / "agents" / "fresh-reviewer" / "SOUL.md").unlink()                      # sub-agent without identity
+            (copy / "tools" / "finalize.sh").unlink()                                      # tool without its launcher
+            manifest = copy / "agent.yaml"
+            manifest.write_text(manifest.read_text(encoding="utf-8").replace("  - portfolio-review\n", ""), encoding="utf-8")   # skill not listed
+            (copy / "guardrails" / "GUARDRAILS.md").write_text('"verdict": "pass"\n', encoding="utf-8")                        # grader output
+            problems = "\n".join(mod.check(copy))
+        for expected in ("fresh-reviewer/SOUL.md", "finalize.sh", "portfolio-review", "grader-output marker"):
+            self.assertIn(expected, problems)
 
 
 class FolderTests(unittest.TestCase):

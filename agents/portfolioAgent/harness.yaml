@@ -1,0 +1,15 @@
+# Harness² manifest (same role and keys as harness.yaml in google-research/harness2).
+# Lists the eight editable components of this agent. Engine code (src/) is frozen infrastructure and is not listed.
+name: portfolioAgent
+
+components:
+  system_prompt: SOUL.md                      # C1 system prompt, every call
+  guardrails: guardrails/GUARDRAILS.md        # C2 guardrails, every call
+  long_term_memory: memory/MEMORY.md          # C3 memory, every call
+  tool_guidance: tools/TOOL_GUIDANCE.md       # C4 tool guidance, every call
+  sub_agents_dir: agents/                     # C5 sub-agents, on delegation
+  skills_dir: skills/                         # C6 skills, on skill call
+  scripts_dir: scripts/                       # C7 scripts, run from the shell
+  plugins_dir: hooks/                         # C8 plugin / hooks, inside the tool loop
+
+compose_order: [system_prompt, guardrails, long_term_memory, tool_guidance]

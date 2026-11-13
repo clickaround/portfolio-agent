@@ -1,0 +1,32 @@
+{
+  "deny": [
+    {
+      "tools": [
+        "write",
+        "edit"
+      ],
+      "pattern": "(^|[\\\"/ ])sources/",
+      "reason": "originals in sources/ are never modified; write a derivative instead",
+      "rule": "GUARDRAILS 3"
+    },
+    {
+      "tools": [
+        "cli"
+      ],
+      "pattern": "(\\b(rm|mv|del|truncate|shred)\\b[^|;&]*|>\\s*\\S*)\\bsources/",
+      "reason": "originals in sources/ are never removed, moved or overwritten",
+      "rule": "GUARDRAILS 3"
+    },
+    {
+      "tools": [
+        "read",
+        "cli",
+        "write",
+        "edit"
+      ],
+      "pattern": "_unblind_key",
+      "reason": "the unblind key is never read by, or given to, an agent that generates or reviews",
+      "rule": "reviewAgent GUARDRAILS 5"
+    }
+  ]
+}

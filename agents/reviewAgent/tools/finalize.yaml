@@ -1,0 +1,19 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of finalize.sh, which runs
+# `portfolio finalize ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: finalize
+description: Promote the attempt to final/ when blocking gates and a fresh review passed.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    out:
+      type: string
+      description: Attempt output folder
+  required:
+  - out
+implementation:
+  type: script
+  path: finalize.sh
+  script: finalize.sh
+  runtime: sh

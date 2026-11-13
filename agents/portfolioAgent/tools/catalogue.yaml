@@ -1,0 +1,26 @@
+# gitagent tool. The arguments arrive as one JSON object on stdin of catalogue.sh, which runs
+# `portfolio catalogue ...` through ../scripts/tool_entry.py. `path` is the spec's key, `script` the one gitagent 2.x reads.
+# runtime is `sh`, not `bash`: a Windows program that starts `bash` gets System32\bash.exe (WSL), not Git's.
+name: catalogue
+description: Render every grid system or photo-set template with the project's assets.
+version: 0.1.0
+input_schema:
+  type: object
+  properties:
+    project:
+      type: string
+      description: Project folder
+    out:
+      type: string
+      description: Output folder
+    photosets:
+      type: boolean
+      description: Photo-set templates instead of grids
+  required:
+  - project
+  - out
+implementation:
+  type: script
+  path: catalogue.sh
+  script: catalogue.sh
+  runtime: sh
