@@ -73,6 +73,7 @@ class LocalBackend:
 
     def __init__(self):
         self.style = {"font_body": None, "font_title": None, "text_color": "#1a1a1a", "paper_color": "#ffffff", "accent_color": None}
+        self._fits = {}
 
     # ---- TextMeasurer ----
     def configure(self, style):
@@ -103,11 +104,14 @@ class LocalBackend:
 
     def text_fits(self, text, w_mm, h_mm, size_pt, bold=False, style=None):
         st = style or {}
-        d = fitz.open()
-        p = d.new_page(width=w_mm * MM + 20, height=h_mm * MM + 20)
-        rc = p.insert_textbox(fitz.Rect(0, 0, w_mm * MM, h_mm * MM), text or "", fontsize=size_pt, fontname=self._font(p, bold, st.get("font")), align=_ALIGN[st.get("align", "left")], lineheight=st.get("line_height"))
-        d.close()
-        return rc >= 0
+        key = (text or "", round(w_mm, 2), round(h_mm, 2), size_pt, bold, st.get("font"), st.get("align", "left"), st.get("line_height"), self.style["font_body"], self.style["font_title"])
+        if key not in self._fits:   # a layout search asks the same question hundreds of times; each answer costs a font load
+            d = fitz.open()
+            p = d.new_page(width=w_mm * MM + 20, height=h_mm * MM + 20)
+            rc = p.insert_textbox(fitz.Rect(0, 0, w_mm * MM, h_mm * MM), text or "", fontsize=size_pt, fontname=self._font(p, bold, st.get("font")), align=_ALIGN[st.get("align", "left")], lineheight=st.get("line_height"))
+            d.close()
+            self._fits[key] = rc >= 0
+        return self._fits[key]
 
     # ---- Exporter ----
     def export(self, scenes, manifest, project_root, out_base, spec, formats):

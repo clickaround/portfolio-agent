@@ -119,6 +119,32 @@ def _record_attempt(out, report, files):
     return att.name
 
 
+def record_edit(out_dir, scenes, manifest, spec, be, project_dir, edit):
+    """An accepted edit becomes the next attempt: export every format again, gate the whole book, record it.
+
+    Review and finalize read the latest attempt, so an edit kept outside the attempts would be neither reviewed nor promoted.
+    """
+    out = Path(out_dir)
+    previous = json.loads((out / "qa.json").read_text(encoding="utf-8"))
+    plan = json.loads((out / "plan.json").read_text(encoding="utf-8"))
+    formats = ["pdf"] + [f for f in ("pptx", "png") if f in be.capabilities and (f != "pptx" or (out / "book.pptx").is_file())]
+    ex = be.export(scenes, manifest, project_dir, out / "book", spec, formats)
+    issues = gates.qa_book(scenes, manifest, plan, spec, project_dir, be) + gates.qa_pdf(str(out / "book.pdf"), scenes, spec) + gates.grounding_issues(scenes, project_dir)
+    page_scores = {}
+    if ex.get("files", {}).get("png"):
+        from portfolio_agent.core.quality import page_metrics
+        for sc, png in zip(scenes, sorted(Path(ex["files"]["png"]).glob("page-*.png"))):
+            pi, sc_scores = page_metrics.page_issues(str(png), sc["page_id"])
+            issues += pi
+            page_scores[sc["page_id"]] = sc_scores
+    blocking, advisory = gates.split(issues)
+    # A native editor file exported for an earlier attempt does not contain this edit, so it is not carried over.
+    report = {**previous, "gate_issues": issues, "blocking_issues": blocking, "advisory_issues": advisory, "gate_pass": not blocking, "repairs": [],
+              "page_scores": page_scores, "pdf_overflow": ex["overflow"], "pptx": ex["notes"], "extra_exporters": {}, "edit": edit}
+    (out / "qa.json").write_text(json.dumps(report, indent=1, ensure_ascii=False), encoding="utf-8")
+    return _record_attempt(out, report, ex.get("files", {}))
+
+
 def run(project_dir, out_dir, condition="B3_full", spec=None, domain=None, pptx=True, **kw):
     """Rule-based author with a named ablation condition (benchmark convenience)."""
     cond = CONDITIONS[condition]

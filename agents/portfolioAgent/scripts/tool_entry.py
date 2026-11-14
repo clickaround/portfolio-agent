@@ -9,10 +9,12 @@ Arguments named there are passed by position; every other argument becomes `--fl
 
 Which CLI is the agent's own setting, in tools/cli.json:
 
-    {"module": "my_package.cli", "function": "main", "console_script": "my-cli"}
+    {"module": "my_package.cli", "function": "main"}
 
 `module:function` is called with the argv list. When the module cannot be imported in the launcher's
-python, `console_script` is run through `uv run` at the nearest parent folder that has a uv.lock.
+python, this script runs itself again through `uv run` at the nearest parent folder that has a uv.lock,
+so the result is the same either way. A failure is printed as {"ok": false, "error": ...}: the model
+gets the reason as the tool's result instead of an empty reply.
 
 This file is the same in every agent; baseAgent/scripts/render_host.py copies it from baseAgent.
 """
@@ -20,11 +22,13 @@ from __future__ import annotations
 
 import importlib
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 CLI = Path(__file__).resolve().parents[1] / "tools" / "cli.json"
+REENTERED = "TOOL_ENTRY_REENTERED"   # set on the second run so a missing module cannot loop
 
 
 def to_argv(command: str, positional: list[str], args: dict) -> list[str]:
@@ -62,7 +66,7 @@ def run(command: str, positional: list[str]) -> int:
             raise ValueError("arguments must be one JSON object")
         argv = to_argv(command, positional, args)
         cli = json.loads(CLI.read_text(encoding="utf-8"))
-        module, function, script = cli["module"], cli.get("function", "main"), cli.get("console_script")
+        module, function = cli["module"], cli.get("function", "main")
     except OSError:
         return fail(f"{CLI.name} is missing next to the tool; it names the CLI this agent's tools run")
     except (ValueError, KeyError) as exc:
@@ -71,14 +75,19 @@ def run(command: str, positional: list[str]) -> int:
         main = getattr(importlib.import_module(module), function)
     except ImportError:
         root = workspace_root()
-        if not script or root is None:
-            return fail(f"{module} cannot be imported in this python and there is no console_script or uv workspace to fall back to")
+        if root is None or os.environ.get(REENTERED):
+            return fail(f"{module} cannot be imported in this python and no uv workspace provides it; run `uv sync`")
         try:
             # --project selects the workspace environment; the caller's working directory (and its relative paths) is kept.
-            return subprocess.run(["uv", "run", "--project", str(root), script, *argv], check=False).returncode
+            again = ["uv", "run", "--project", str(root), "python", str(Path(__file__).resolve()), command, *positional]
+            return subprocess.run(again, input=raw, text=True, encoding="utf-8", env={**os.environ, REENTERED: "1"}, check=False).returncode
         except FileNotFoundError:
             return fail(f"{module} cannot be imported in this python and `uv` is not on PATH")
-    return main(argv) or 0
+    try:
+        return main(argv) or 0
+    except Exception as exc:   # noqa: BLE001 - the model must get the reason as the tool's result, not an empty reply and a traceback
+        fail(f"{command} failed: {type(exc).__name__}: {exc}")
+        return 1
 
 
 if __name__ == "__main__":

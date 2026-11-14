@@ -3,7 +3,7 @@
 edit_element(): change ONE element (text and/or scale), optionally run bounded auto-repair, then verify:
  (a) scene diff only touches the target (+ ids the repair touched, reported as `reflowed`),
  (b) page QA passes, (c) rendered pixels outside target+reflowed boxes are unchanged, (d) every other page renders byte-identical.
-Nothing is written unless all checks pass.
+Nothing is written unless all checks pass. An accepted edit is recorded as the next attempt (pipeline.record_edit), because review and finalize read the latest attempt.
 """
 import json
 import copy
@@ -92,12 +92,15 @@ def edit_element(out_dir, page_id, element_id, text=None, scale=None, auto_repai
             mask[max(0, int((y + b - 1) * m)):int((y + h + b + 1) * m) + 2, max(0, int((x + b - 1) * m)):int((x + w + b + 1) * m) + 2] = False
         changed_outside = int(((A_ != C_).any(axis=2) & mask).sum())
     ok = not diff and not page_issues and changed_outside == 0 and not other_pages_changed
+    attempt = None
     if ok:
         files[idx].write_text(json.dumps(scenes[idx], indent=1), encoding="utf-8")
-        new_pdf.replace(old_pdf)
+        new_pdf.unlink()
+        from . import pipeline   # here, not at the top: pipeline is the larger module and this keeps the import one-way at load time
+        attempt = pipeline.record_edit(out, scenes, manifest, spec, be, root, {"page": page_id, "element": element_id, "reflowed": reflowed})
     elif new_pdf.exists():
         new_pdf.unlink()
-    return {"ok": ok, "area_ratio": grew, "scene_diff": diff, "qa_issues": page_issues, "reflowed": reflowed, "pixels_changed_outside_target": changed_outside, "other_pages_changed": other_pages_changed}
+    return {"ok": ok, "attempt": attempt, "area_ratio": grew, "scene_diff": diff, "qa_issues": page_issues, "reflowed": reflowed, "pixels_changed_outside_target": changed_outside, "other_pages_changed": other_pages_changed}
 
 
 def edit_text(out_dir, page_id, element_id, new_text):

@@ -10,6 +10,7 @@ from pathlib import Path
 import jsonschema
 
 from portfolio_agent import layout
+from portfolio_agent.layout import search
 from portfolio_agent.layout import modular
 from portfolio_agent.core.model.contracts import Plan, Scene
 from portfolio_agent.core.workspace import BOOK_PLAN_SCHEMA
@@ -92,7 +93,13 @@ class PlannedAuthor:
                     raise BookPlanError(f"page {i + 1}: unknown composition {cid!r}; known: {sorted(comps)}")
                 pg["total"] = len(plan["pages"]); pg["doc_title"] = bp["doc_title"]
                 scenes[i]["elements"] = modular.render(pg, A, spec, system, comps[cid], ts, pg_in.get("variant", 0))
-        plan["meta"] = {"author": self.name, "pattern": "host-plan", "retrieval": "n/a (host decided)", "notes": [f"plan={options['plan_path']}"],
+        searched = None
+        if options.get("search"):   # pages whose plan names a composition or device keep it (search.FIXED)
+            for pg_in, pg in zip(bp["pages"], plan["pages"]):
+                if pg_in.get("composition"):
+                    pg["composition"] = pg_in["composition"]
+            scenes, searched = search.search_book(manifest["project_id"], plan, manifest, spec, measurer, ts, scenes, [system["id"]])
+        plan["meta"] = {"author": self.name, "pattern": "host-plan", "retrieval": "n/a (host decided)", "notes": [f"plan={options['plan_path']}"], **({"search": searched} if searched else {}),
                         "style_defaults": {"paper_color": ts.paper, **({"band": bp["band"]} if bp.get("band") else {})}}
         return plan, scenes
 

@@ -62,6 +62,7 @@ def _common(p):
     p.add_argument("--palette", help="palette name inside a tokens.json (e.g. neutral-accent, ink-dark, blueprint-mono)")
     p.add_argument("--band", help="background band 'left|top:#hex:width_mm' e.g. left:#b44a2b:6 (the cover spine B0 used)")
     p.add_argument("--also", action="append", default=[], help="extra exporter backend, e.g. designcraft")
+    p.add_argument("--search", action="store_true", help="per page, try every layout that fits and keep the best one the gates pass (layout/search.py); the tried list goes to plan.json meta.search")
 
 
 def _summary(rep):
@@ -186,9 +187,10 @@ def main(argv=None):
         print(json.dumps(grid.view(a.project, default_spec(**kw), a.columns), ensure_ascii=False, indent=1))
         return 0
     if a.cmd == "run":
-        return _summary(pipeline.run(a.project, a.out, a.condition, _spec_from_args(a), a.domain, also=a.also))
+        cond = pipeline.CONDITIONS[a.condition]
+        return _summary(pipeline.run_author(a.project, a.out, "rule_based", {**cond, "search": a.search}, _spec_from_args(a), a.domain, do_repair=cond["review"], label=a.condition, also=a.also))
     if a.cmd == "compose":
-        return _summary(pipeline.run_author(a.project, a.out, "planned", {"plan_path": a.plan}, _spec_from_args(a), a.domain, do_repair=True, label="B4_plan", also=a.also))
+        return _summary(pipeline.run_author(a.project, a.out, "planned", {"plan_path": a.plan, "search": a.search}, _spec_from_args(a), a.domain, do_repair=True, label="B4_plan", also=a.also))
     if a.cmd == "check-scenes":
         return _summary(pipeline.run_host(a.project, a.scenes_dir, a.out, _spec_from_args(a), a.domain, also=a.also))
     if a.cmd == "candidates":

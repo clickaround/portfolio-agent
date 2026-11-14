@@ -6,6 +6,7 @@ Candidate D / fallback author (ADR-0007). Options (all booleans, ablation switch
 """
 from portfolio_agent.core.model.contracts import Plan, Scene
 from portfolio_agent.authors import knowledge
+from portfolio_agent.layout import search
 from portfolio_agent import layout
 from portfolio_agent.layout.typesystem import TypeSystem
 from . import plan as planmod
@@ -77,9 +78,13 @@ class RuleBasedAuthor:
                     if best >= plan["hero_min_ratio"]:
                         break
                 notes.append(f"layout variant search forced={forced} hero={best:.2f}")
+        searched = None
+        if options.get("search"):
+            scenes, searched = search.search_book(pid, plan, manifest, spec, measurer, ts, scenes)
+            notes.append(f"layout search: {sum(len(r['candidates']) for r in searched)} candidates over {len(searched)} pages")
         notes.append(f"type: display={ts.heading_font or 'body-bold'} italic={ts.italic_font} body={ts.body_font or 'default'} body_pt={ts.body_pt} paper={ts.paper} accent={ts.accent}")
         plan["meta"] = {"author": self.name, "pattern": retrieved["pattern"]["id"], "retrieval": retrieved["rationale"], "notes": notes,
-                        "style_defaults": {"paper_color": ts.paper}}  # author-chosen defaults; user spec.style always wins (merged by the engine)
+                        **({"search": searched} if searched else {}), "style_defaults": {"paper_color": ts.paper}}  # author-chosen defaults; user spec.style always wins (merged by the engine)
         return plan, scenes
 
     def relayout(self, page_plan, scene_before, manifest, spec, weight_mult):

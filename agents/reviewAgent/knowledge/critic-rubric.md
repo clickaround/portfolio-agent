@@ -17,7 +17,7 @@ Structure adapted from AutoDesign `prompts/critic_vision_poster.md` (MIT, (c) Au
 ## Issues
 Each issue: `page`, `severity` (blocker | high | medium | low), `category` (a dimension above), `description` (<= 200 chars), `evidence`, `suggested_route` = `local_refine` (same layout, tweak) | `pivot_layout` (different composition) | `revise_story` (page order / selection) | `revise_type_system` | `none`.
 
-Verdict: `pass` (mean >= 0.75, no blocker/high) | `revise` | `fail`. Rank candidates, or pick none if all fail. A deterministic-gate failure is never overridden by a critic.
+Verdict: `pass` (mean >= 0.75, no blocker/high) | `fail` (any blocker, or mean < 0.5) | `revise` (everything else). The engine computes the verdict from the scores and rejects a review whose verdict differs. Rank candidates, or pick none if all fail. A deterministic-gate failure is never overridden by a critic.
 
 ## Limits
 A single LLM critic is not a designer. Claims of design quality require domain-expert blinded pairwise review (`benchmarks/HUMAN_REVIEW.md`).

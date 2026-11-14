@@ -57,6 +57,44 @@ class RuntimeTests(unittest.TestCase):
             self.assertFalse(bad["ok"])
             self.assertIn("TEXT_OVERFLOW", [i["code"] for i in bad["qa_issues"]])
 
+    def test_an_accepted_edit_becomes_a_new_attempt(self):
+        """Review and finalize read the latest attempt; an edit that stays outside the attempts is never reviewed or promoted."""
+        with tempfile.TemporaryDirectory() as t:
+            pipeline.run(FIX / "arch_01", t, "B3_full", pptx=False)
+            out = Path(t)
+            before_frame = (out / "attempts/01/preview/page-02.png").read_bytes()
+            ok = edit.edit_text(t, "page-02", "body-02", "Short revised text.")
+            self.assertTrue(ok["ok"], ok)
+            self.assertEqual(ok["attempt"], "02")
+            self.assertEqual(sorted(p.name for p in (out / "attempts").iterdir() if p.is_dir()), ["01", "02"])
+            self.assertIn("Short revised text.", (out / "attempts/02/scenes/page-02.json").read_text(encoding="utf-8"))
+            self.assertNotIn("Short revised text.", (out / "attempts/01/scenes/page-02.json").read_text(encoding="utf-8"), "an attempt is immutable")
+            self.assertNotEqual((out / "attempts/02/preview/page-02.png").read_bytes(), before_frame, "the reviewer must see the edited page")
+            self.assertEqual((out / "attempts/02/preview/page-01.png").read_bytes(), (out / "attempts/01/preview/page-01.png").read_bytes())
+            self.assertEqual((out / "preview/page-02.png").read_bytes(), (out / "attempts/02/preview/page-02.png").read_bytes())
+            self.assertTrue(json.loads((out / "attempts/02/qa.json").read_text(encoding="utf-8"))["gate_pass"])
+            rejected = edit.edit_text(t, "page-02", "body-02", "overflow " * 500)
+            self.assertFalse(rejected["ok"])
+            self.assertEqual(len([p for p in (out / "attempts").iterdir() if p.is_dir()]), 2, "a rejected edit leaves no attempt")
+
+    def test_layout_search_keeps_only_candidates_the_gates_pass(self):
+        """Every page records what was tried and why it was rejected; nothing is cropped unless the asset allows it; no content is lost."""
+        with tempfile.TemporaryDirectory() as t:
+            r = pipeline.run_author(FIX / "arch_01", t, "rule_based", {"cases": True, "review": True, "search": True}, pptx=False)
+            self.assertTrue(r["gate_pass"], r["gate_issues"])
+            plan = json.loads((Path(t) / "plan.json").read_text(encoding="utf-8"))
+            records = plan["meta"]["search"]
+            self.assertEqual(len(records), r["pages"])
+            self.assertTrue(any(c["ok"] is False and c["why"] for rec in records for c in rec["candidates"]), "rejections carry their reason")
+            self.assertTrue(any(len(rec["candidates"]) > 20 for rec in records), "a page with assets gets a real search")
+            self.assertFalse(any(rec["chosen"] and rec["chosen"].startswith("bleed") for rec in records), "fixture assets are not marked crop_allowed")
+            scenes = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((Path(t) / "scenes").glob("page-*.json"))]
+            self.assertFalse(any(e.get("crop") for sc in scenes for e in sc["elements"]))
+            for pg, sc in zip(plan["pages"], scenes):
+                self.assertTrue(set(pg["assets"]) <= {e.get("asset_id") for e in sc["elements"]})
+            ok = edit.edit_text(t, "page-02", "body-02", "Short revised text.") if any(e["id"] == "body-02" for e in scenes[1]["elements"]) else {"ok": True}
+            self.assertTrue(ok["ok"], ok)
+
     def test_tampered_source_is_flagged(self):
         with tempfile.TemporaryDirectory() as t:
             proj = Path(t) / "p"

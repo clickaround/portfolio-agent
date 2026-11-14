@@ -114,7 +114,7 @@ def qa_book(scenes, manifest, plan, spec, project_root, measurer):
     for a in A.values():
         if sha256(Path(project_root) / a["relative_path"]) != a["sha256"]:
             issues.append({"code": "SOURCE_MODIFIED", "elements": [a["id"]], "details": "hash mismatch", "page": None})
-    sig = [(pg["role"], pg.get("variant", 0)) for pg in plan["pages"]]
+    sig = [(pg["role"], pg.get("variant", 0), pg.get("layout", "").rsplit(":", 1)[0]) for pg in plan["pages"]]   # `layout` = the key a layout search chose (layout/search.py)
     host_authored = all(pg["role"] == "host" for pg in plan["pages"]) if plan["pages"] else False
     for i in range(1, len(sig)):
         if sig[i] == sig[i - 1] and sig[i][0] not in ("closing", "host") and not host_authored:
