@@ -16,6 +16,13 @@ def list_backends():
     return sorted(p.parent.name for p in BACKENDS_DIR.glob("*/adapter.py"))
 
 
+def backend_dir(name):
+    """Folder of one backend, for the parts of it that are not the exporter (e.g. designcraft/live.py)."""
+    if not (BACKENDS_DIR / name / "adapter.py").is_file():
+        raise LookupError(f"backend {name!r} not found; available: {list_backends()}")
+    return BACKENDS_DIR / name
+
+
 def get_backend(name):
     if name in _cache:
         return _cache[name]

@@ -83,6 +83,9 @@ def build_script(scenes, manifest, project_root, out_base, family="Malgun Gothic
                     styles[key] = name
                     add("style.paragraph.create", {"name": name, "para": {"hyphenate": False, "align": align},
                                                    "chars": {"fontFamily": fam, "fontStyle": fstyle, "size": size, "leading": {"kind": "points", "value": round(size * lh, 2)}, "fill": swatch(color)}})
+    def name(k, sc, e):   # the object carries its scene id, so a later edit or a read-back finds it (backends/designcraft/live.py)
+        add("object.rename", {"ids": [f"${k}.id"], "name": f"{sc['page_id']}/{e['id']}"})
+
     for pi, sc in enumerate(scenes):
         for e in sorted(sc["elements"], key=lambda e: e["z_index"]):
             if e.get("visible") is False:
@@ -92,17 +95,20 @@ def build_script(scenes, manifest, project_root, out_base, family="Malgun Gothic
             if e["kind"] in ("image", "pdf-region", "svg"):
                 k = add("frame.create", {"spread": pi, "rect": rect, "content": "graphic"})
                 add("file.place", {"path": _p(Path(project_root) / A[e["asset_id"]]["relative_path"]), "frame": f"${k}.id"})
+                name(k, sc, e)
                 if e.get("crop"):
                     notes.append(f"{e['id']}: bleed crop {e['crop']} not applied in DesignCraft (frame holds the whole source; crop it in the editor)")
             elif e["kind"] == "text" and e.get("text"):
                 k = add("frame.create", {"spread": pi, "rect": rect, "content": "text", "text": e["text"]})
                 emap[e["id"]] = {"step": k, "page": sc["page_id"], "text": e["text"]}
+                name(k, sc, e)
                 add("selection.set", {"ids": [f"${k}.id"]})
                 add("style.paragraph.apply", {"name": styles[style_key(e)]})
             elif e["kind"] == "shape":
                 fill = (e.get("style") or {}).get("fill") or text_color
                 k = add("frame.create", {"spread": pi, "rect": rect, "shape": "rectangle", "content": "unassigned"})
                 add("object.fill", {"ids": [f"${k}.id"], "swatch": swatch(fill)})
+                name(k, sc, e)
     base = _p(out_base)
     add("file.exportIdml", {"path": base + ".idml"})
     add("file.exportPptx", {"path": base + ".pptx"})
