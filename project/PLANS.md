@@ -14,6 +14,7 @@
 | P07 | Multidomain & multiformat extensions | separate domains and at least 2 meaningful formats; no hardcoded architecture assumptions |
 | P08 | Controlled multi-agent workflow | schema-based handoffs, single-writer merge, direct host comparison |
 | P09 | Optional HarnessRouter / training / commercialization | isolation, costs, licenses and business evidence; *never automatically required* |
+| P10 | Conversation editing beside the canvas + small models (owner's direction 2026-11-14) | mark a spot, say the change, see that element change in the open editor; wrong edits taken back; model work judged on rendered pages. Current priority: `plans/P10-conversational-editing.md` |
 
 ## Work scheduling
 Independent **case/reference research** and **source/backend code audits** may run in parallel after P00. Backends should be compared as alternatives; their failures cannot block a working fallback. If no authorized portfolio sample is available, use synthetic data to continue engine development, but mark the real-case quality gate `BLOCKED`—never mislabel synthetic data as professional-quality evidence.

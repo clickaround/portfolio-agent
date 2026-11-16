@@ -11,7 +11,7 @@ catalogue     render one page's content under every grid system x slot compositi
 prepare       trim scanned sheets to the drawing (originals kept byte-identical in sources/, crops recorded in derived.json)
 cutout        remove the background of chosen photos (rembg; originals kept in sources/, recorded in derived.json) + before/after sheet
 manifest      print assets (ids, role, aspect, size) + brief of a project, for host authors
-live          edit the DesignCraft document during a conversation: start | context PAGE [--at X Y] | edit OPS.json [--marked KEY..] | sync FILE | undo
+live          edit the DesignCraft document during a conversation: start | context PAGE [--at X Y] | edit OPS.json [--marked KEY..] [--instruction TEXT] | sync FILE | undo | judge | verdict SCORE [--notes TEXT]
 review-context / record-review / finalize   fresh-review gate: bind frames -> independent reviewer -> promote to final/ (engine/review.py)
 """
 import argparse
@@ -103,8 +103,10 @@ def main(argv=None):
     e.add_argument("text")
     lv = sp.add_parser("live")
     lv.add_argument("out")
-    lv.add_argument("action", choices=["start", "context", "edit", "sync", "undo"])
-    lv.add_argument("arg", nargs="?", help="context: page id; edit: ops JSON file or - for stdin; sync: the saved .designcraft")
+    lv.add_argument("action", choices=["start", "context", "edit", "sync", "undo", "judge", "verdict"])
+    lv.add_argument("arg", nargs="?", help="context: page id; edit: ops JSON file or - for stdin; sync: the saved .designcraft; verdict: score 0-5")
+    lv.add_argument("--instruction", help="edit: what the user said, word for word")
+    lv.add_argument("--notes", default="", help="verdict: what is still wrong")
     lv.add_argument("--at", nargs=2, type=float, metavar=("X_MM", "Y_MM"), help="context: where the user put the mark")
     lv.add_argument("--marked", nargs="*", default=[], help="edit: element keys the user pointed at")
     rc = sp.add_parser("review-context")
@@ -156,11 +158,15 @@ def main(argv=None):
         from portfolio_agent.engine import live
         if a.action == "edit":
             ops = json.loads(sys.stdin.read() if a.arg in (None, "-") else open(a.arg, encoding="utf-8").read())
-            res = live.edit(a.out, ops, a.marked)
+            res = live.edit(a.out, ops, a.marked, instruction=a.instruction)
         elif a.action == "context":
             res = live.context(a.out, a.arg, *(a.at or (None, None)))
+        elif a.action == "sync":
+            res = live.sync(a.out, a.arg)
+        elif a.action == "verdict":
+            res = live.verdict(a.out, float(a.arg), a.notes)
         else:
-            res = {"start": live.start, "undo": live.undo}[a.action](a.out) if a.action != "sync" else live.sync(a.out, a.arg)
+            res = {"start": live.start, "undo": live.undo, "judge": live.judge_context}[a.action](a.out)
         print(json.dumps(res, ensure_ascii=False, indent=1))
         return 0 if res.get("ok") else 1
     if a.cmd == "backends":

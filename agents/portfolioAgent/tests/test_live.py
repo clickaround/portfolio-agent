@@ -105,6 +105,34 @@ class LiveEditTests(unittest.TestCase):
         self.assertTrue(r["ok"])
         self.assertEqual(_el(self.out, self.image)["box_mm"], [x, y, w, h])
 
+    def test_8_judge_sees_the_request_and_a_low_score_takes_the_edit_back(self):
+        said = "move the title down a little"
+        step, box = live._state(self.out)["step"], _el(self.out, self.title)["box_mm"]
+        r = live.edit(self.out, [{"op": "move", "target": self.title, "dx_mm": 0, "dy_mm": 1}], instruction=said)
+        self.assertTrue(r["ok"], r)
+        j = live.judge_context(self.out)
+        self.assertEqual(j["instruction"], said)
+        self.assertAlmostEqual(j["changed"][self.title]["after"]["box_mm"][1] - j["changed"][self.title]["before"]["box_mm"][1], 1, delta=0.05)
+        self.assertEqual(len(j["pages"][0]["empty_band_after_mm"]), 2)
+        v = live.verdict(self.out, 2, "the title barely moved")
+        self.assertEqual((v["kept"], v["retry"], v["tries"]), (False, True, 1))
+        self.assertEqual(live._state(self.out)["step"], step)
+        self.assertEqual(_el(self.out, self.title)["box_mm"], box)
+        self.assertFalse(live.judge_context(self.out)["ok"])   # nothing left to judge
+        r = live.edit(self.out, [{"op": "move", "target": self.title, "dx_mm": 0, "dy_mm": 2}], instruction=said)
+        self.assertTrue(r["ok"], r)
+        self.assertTrue(live.verdict(self.out, 5)["kept"])
+        h = [x for x in live._state(self.out)["history"] if x.get("instruction") == said]
+        self.assertEqual([(x["judge"]["score"], x.get("undone_by")) for x in h], [(2, "judge"), (5, None)])
+
+    def test_9_user_undo_is_recorded_against_the_agent_edit(self):
+        r = live.edit(self.out, [{"op": "move", "target": self.title, "dx_mm": 0, "dy_mm": -1}], instruction="up a bit")
+        self.assertTrue(r["ok"], r)
+        live.undo(self.out)
+        h = live._state(self.out)["history"]
+        self.assertEqual(h[-2]["undone_by"], "user")
+        self.assertEqual((h[-1]["by"], h[-1]["undid"]), ("undo", r["step"]))
+
 
 if __name__ == "__main__":
     unittest.main()

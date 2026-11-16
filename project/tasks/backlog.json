@@ -2097,6 +2097,423 @@
    "finished_at": null,
    "pass_state": "UNVERIFIED",
    "approval": "external-effect-only"
+  },
+  {
+   "id": "T1000",
+   "phase": "P10",
+   "title": "실시간 편집 첫 조각 (요소 키 + 명령 9개 + 게이트)",
+   "objective": "saved .designcraft edited by element key through typed ops; scope and gate checks; user edits protected; undo",
+   "dependencies": [
+    "T212"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-live-edit.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "지목하지 않은 요소가 바뀌어도 편집이 받아들여지면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P10-live-edit.md",
+   "finished_at": "2026-11-15T17:00:00+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1001",
+   "phase": "P10",
+   "title": "판정 단계와 선호 기록",
+   "objective": "judge context + verdict with rollback and three tries; every attempt logged with instruction, gate result, judge score, user undo",
+   "dependencies": [
+    "T1000"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-judge-record.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "지시를 따르지 않은 실제 편집(2026-11-14 사례)이 그대로 유지되면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P10-judge-record.md",
+   "finished_at": "2026-11-15T17:00:00+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1002",
+   "phase": "P10",
+   "title": "논문·모델·데이터 조사 (가중치 학습 여부)",
+   "objective": "which open layout / editing models and datasets exist, their licences and limits; recommendation",
+   "dependencies": [],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-model-research.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "실행하지 않은 것을 REPRODUCED로 적으면 실패",
+   "owner": "research-owner",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P10-model-research.md",
+   "finished_at": "2026-11-15T17:00:00+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1003",
+   "phase": "P10",
+   "title": "브라우저 에디터 명령 통로 넓히기",
+   "objective": "the web editor fork accepts the commands the nine typed ops need (move, set box, set text, place file, fit, order, type, flags, clear, story.get)",
+   "dependencies": [
+    "T1000"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "editor/designcraft/apps/designcraft-web/src/pascal_bridge.rs"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "허용 목록 밖 명령(file.open 등)이 통과하면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "Rust + trunk 빌드 환경 확인 필요"
+  },
+  {
+   "id": "T1004",
+   "phase": "P10",
+   "title": "편집 명령을 화면의 문서에 바로 적용",
+   "objective": "the same typed ops run on the open document through the bridge instead of on a saved file; state stays in step with engine/live.py",
+   "dependencies": [
+    "T1003"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "frontend/app/features/books/editor-command.ts"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "화면은 바뀌었는데 장면 기록이 다르면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1005",
+   "phase": "P10",
+   "title": "캔버스 표시(빨간 점) → 요소",
+   "objective": "the user marks a point on the canvas; the mark becomes element keys in the chat context",
+   "dependencies": [
+    "T1004"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "frontend/app/features/books/pages/book-page.tsx"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "빈 곳에 찍었을 때 아무 요소도 못 찾으면 실패(가까운 요소를 돌려줘야 함)",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1006",
+   "phase": "P10",
+   "title": "편집 → 판정 → 재시도 자동 반복",
+   "objective": "one host call runs context -> ops -> edit -> judge -> retry (max 3) with a fresh judge",
+   "dependencies": [
+    "T1001"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "agents/portfolioAgent/src/portfolio_agent/engine/live.py"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "판정자가 편집을 만든 같은 문맥이면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1007",
+   "phase": "P10",
+   "title": "빠진 편집 명령: 자르기, 새 요소",
+   "objective": "crop only for crop_allowed assets; add text / picture element",
+   "dependencies": [
+    "T1000"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "agents/portfolioAgent/backends/designcraft/live.py"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "도면처럼 자르기 금지된 원본이 잘리면 실패",
+   "owner": "engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only"
+  },
+  {
+   "id": "T1008",
+   "phase": "P10",
+   "title": "LICA 데이터 받아 내용·라이선스 확인",
+   "objective": "download lica-data.zip (985 MB) outside the repo, read LICENSE, convert a few samples to scene JSON and look at them",
+   "dependencies": [
+    "T1002"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-lica-inspection.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "라이선스 본문을 읽지 않고 학습에 쓰면 실패",
+   "owner": "research-owner",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "주인 허락 필요: 내려받기 985 MB"
+  },
+  {
+   "id": "T1009",
+   "phase": "P10",
+   "title": "PosterCopilot을 배치 제안기로 시험",
+   "objective": "run the open weights on our page inputs, put the proposed boxes through our gates, compare rendered pages with the rule layout by eye",
+   "dependencies": [
+    "T1002"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-postercopilot-proposer.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "게이트를 통과하지 못한 제안을 결과에 섞으면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P10-postercopilot-proposer.md",
+   "finished_at": "2026-11-15T19:13:11+09:00",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "needs": "주인 허락 필요: 가중치 내려받기(약 16 GB), GPU(이 기기는 16 GB VRAM, 모델 카드는 약 20 GB)"
+  },
+  {
+   "id": "T1010",
+   "phase": "P10",
+   "title": "합성 편집 데이터 만들기 (Figma 방식)",
+   "objective": "synthetic instructions on generated pages; Claude attempts the edits; gates and judge filter; kept as instruction / context / ops / score",
+   "dependencies": [
+    "T1006"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-synthetic-edit-data.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "판정 점수만 보고 사람이 한 건도 안 보면 실패",
+   "owner": "eval-engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "구독 한도 안에서 며칠 걸림"
+  },
+  {
+   "id": "T1011",
+   "phase": "P10",
+   "title": "포트폴리오 레이아웃 데이터 모으기",
+   "objective": "real portfolio pages as layout records: page size, element boxes, element kinds, reading order; rights recorded per source",
+   "dependencies": [
+    "T1002"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-portfolio-layout-data.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "학습 권리가 확인되지 않은 자료를 학습 묶음에 넣으면 실패",
+   "owner": "case-curator",
+   "kind": "research",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "실제 포트폴리오 PDF: 지금 2개. Issuu·Behance 대량 수집은 하지 않음(차단·약관). CC 라이선스 작품집과 동의받은 것으로 수백 쪽"
+  },
+  {
+   "id": "T1013",
+   "phase": "P10",
+   "title": "레이아웃 소형 모델 미세조정 (우리 데이터)",
+   "objective": "PosterCopilot weights (poster-trained) + fine-tune on portfolio layout records and skeleton-swap synthetic pages, on a rented pod; output = boxes for our scene JSON, checked by our gates",
+   "dependencies": [
+    "T1011",
+    "T1015"
+   ],
+   "optional_dependencies": [
+    "T1008"
+   ],
+   "outputs": [
+    "evidence/P10-layout-model.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "학습에 쓴 포트폴리오로 평가하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "GPU pod 대여(RunPod, 만들기 전에 시간당 가격을 주인에게 알림), T1011의 실제 배치 + T1015의 합성 데이터"
+  },
+  {
+   "id": "T1014",
+   "phase": "P10",
+   "title": "소형 편집 모델 미세조정 (LoRA)",
+   "objective": "small open weights + LoRA on the edit records; compare with Claude on held-out instructions",
+   "dependencies": [
+    "T1010"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-small-edit-model.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "학습에 쓴 지시로 평가하면 실패",
+   "owner": "eval-engineer",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "GPU 필요"
+  },
+  {
+   "id": "T1012",
+   "phase": "P10",
+   "title": "Claude Design과 같은 원본으로 나란히 비교",
+   "objective": "same sources, chat-edited result vs Claude Design, rendered pages side by side",
+   "dependencies": [
+    "T1005"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-vs-claude-design.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "점수만 적고 그림이 없으면 실패",
+   "owner": "evaluation-owner",
+   "kind": "evaluation",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "분야별 실제 원본 필요"
+  },
+  {
+   "id": "T1015",
+   "phase": "P10",
+   "title": "합성 데이터: 실제 배치 틀 + 바꿔 끼운 내용",
+   "objective": "keep the layout skeleton of a real portfolio page, swap pictures and text for others of the same kind and aspect; write layer PNGs + box JSON in the PosterCopilot training format",
+   "dependencies": [
+    "T1011"
+   ],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-synthetic-layout-data.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "우리 엔진이 만든 배치를 학습 묶음에 넣으면 실패(규칙을 다시 배울 뿐)",
+   "owner": "eval-engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "pending",
+   "evidence_path": null,
+   "finished_at": null,
+   "pass_state": "UNVERIFIED",
+   "approval": "external-effect-only",
+   "needs": "T1011의 추출 결과"
+  },
+  {
+   "id": "T1016",
+   "phase": "P10",
+   "title": "게이트를 보상 점수 하나로 + 페이지 DSL 2판",
+   "objective": "page DSL v2 (no free height) and the hard gates as one number in [0,1] with soft terms, usable as an RL reward",
+   "dependencies": [],
+   "optional_dependencies": [],
+   "outputs": [
+    "evidence/P10-reward-dsl.md"
+   ],
+   "verification": "실제 실행 입력, 명령, 종료 exit status, 산출물 해시 및 합격/실패 결과를 evidence에 기록; 직접 관찰해야 PASS",
+   "negative_test": "일부러 한 줄로 쌓은 배치와 깨진 출력이 실제 배치보다 점수가 높으면 실패",
+   "owner": "eval-engineer",
+   "kind": "engineering",
+   "source": "local",
+   "effort_band": "S",
+   "status": "done",
+   "evidence_path": "evidence/P10-reward-dsl.md",
+   "finished_at": "2026-11-16",
+   "pass_state": "PASS",
+   "approval": "external-effect-only",
+   "needs": null
   }
  ]
 }
